@@ -5,12 +5,34 @@ using UnityEngine;
 public class TourelleStat : MonoBehaviour
 {
     // Start is called before the first frame update
+    enum HitType
+    {
+        Line,Single,AOE
+    }
+    enum Astre
+    {
+        Day, Night,Equilibre
+    }
+    enum Effect
+    {
+        None,Burn,Stun,Push
+    }
     [SerializeField] string name;
-    [SerializeField] int degats;
-    [SerializeField] int delai;
+    [SerializeField] string description;
+    [SerializeField] float degats;
+    [SerializeField] float delai;
     [SerializeField] int cout;
+    [SerializeField] int vente;
+    [SerializeField] int rank;
+    [SerializeField] int range;
+    [SerializeField] bool[] terrainAutorisation = new bool[4];
+    [SerializeField] HitType hitType;
+    [SerializeField] int damageSecond;
+    [SerializeField] int dureeEffect;
+
+
     
-    void Start()
+    /*void Start()
     {
         
     }
@@ -19,5 +41,5 @@ public class TourelleStat : MonoBehaviour
     void Update()
     {
         
-    }
+    }//*/
 }
