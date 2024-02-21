@@ -11,7 +11,6 @@ public class EnemyMovement : MonoBehaviour
   [SerializeField] private float MoveSpeed = 2f;
   
   private Rigidbody2D rb;
-  
   private Transform target;
   private int Point = 0;
 

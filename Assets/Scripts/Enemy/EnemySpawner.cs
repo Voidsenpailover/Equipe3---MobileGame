@@ -3,59 +3,72 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
-    [Header("Spawn Settings")]
-    [SerializeField] private int Enemies = 10;
-    [SerializeField] private float enemiesPerSecond = 0.3f;
-    private int currentWave = 1;
-    private bool isSpawning = false;
+
+   
     private int enemiesLeftToSpawn;
+    private bool isSpawning = false;
     private float timeBetweenSpawns;
+    private WaveManager waveManager;
+
     private void Start()
     {
         LevelManager.OnGameStarted += StartWave;
     }
+
     private void OnDestroy()
     {
         LevelManager.OnGameStarted -= StartWave;
     }
+
     private void Update()
     {
+        #if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SpawnEnemy();
+        }
+        #endif
+
         if (!isSpawning) return;
-        
+
         timeBetweenSpawns += Time.deltaTime;
-        if(timeBetweenSpawns >= 1f / enemiesPerSecond)
+
+        if (timeBetweenSpawns >= 1f / WaveManager.instance.enemiesPerSecond)
         {
             timeBetweenSpawns = 0;
-            if(enemiesLeftToSpawn > 0){
+            if (enemiesLeftToSpawn > 0)
+            {
                 SpawnEnemy();
                 enemiesLeftToSpawn--;
-            }else
+            }
+            else
             {
                 isSpawning = false;
                 EndWave();
             }
         }
     }
+
     private void StartWave()
     {
         isSpawning = true;
-        enemiesLeftToSpawn = Enemies;
+        enemiesLeftToSpawn = WaveManager.instance.Enemies;
+        WaveManager.instance.enemiesPerSecond += 0.1f;
     }
-    
+
     private void EndWave()
     {
-        currentWave++;
-        Enemies += 5;
-        enemiesPerSecond += 0.5f;
+        WaveManager.instance.Enemies += 5;
+        WaveManager.instance.currentWave++;
     }
+
     private void SpawnEnemy()
     {
-       Instantiate(enemyPrefab, LevelManager.instance.Points[0].transform.position, Quaternion.identity);
+        Instantiate(enemyPrefab, LevelManager.instance.Points[0].transform.position, Quaternion.identity);
     }
 }

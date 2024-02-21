@@ -16,7 +16,6 @@ public class LevelManager : MonoBehaviour
         GameOver,
     }
     
-    
     public GameState CurrentState;
     
     public Transform[] Points;
@@ -49,6 +48,4 @@ public class LevelManager : MonoBehaviour
     {
         SceneManager.LoadSceneAsync(0);
     }
-    
-    
 }
