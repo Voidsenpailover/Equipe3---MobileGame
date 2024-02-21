@@ -2,14 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using UnityEditor;
 using UnityEngine;
 
 
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
-
-   
+    
     private int enemiesLeftToSpawn;
     private bool isSpawning = false;
     private float timeBetweenSpawns;
@@ -32,6 +32,7 @@ public class EnemySpawner : MonoBehaviour
         {
             SpawnEnemy();
         }
+        
         #endif
 
         if (!isSpawning) return;
@@ -69,6 +70,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        Instantiate(enemyPrefab, LevelManager.instance.Points[0].transform.position, Quaternion.identity);
+        GameObject prefab = Instantiate(enemyPrefab, LevelManager.instance.Points[0].transform.position, Quaternion.identity); 
     }
+    
 }

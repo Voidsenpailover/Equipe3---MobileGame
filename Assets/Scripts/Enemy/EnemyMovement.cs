@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
+using UnityEditor;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -10,9 +10,12 @@ public class EnemyMovement : MonoBehaviour
   [Header("Attributes")]
   [SerializeField] private float MoveSpeed = 2f;
   
+  
+  
   private Rigidbody2D rb;
   private Transform target;
   private int Point = 0;
+  private float radius = 0.8f;
 
 
   private void Start()
@@ -44,5 +47,11 @@ public class EnemyMovement : MonoBehaviour
     Vector2 direction = (target.position - transform.position).normalized;
     
     rb.velocity = direction * MoveSpeed;
+  }
+  
+  private void OnDrawGizmos()
+  {
+      Handles.color = Color.red;
+      Handles.DrawWireDisc(transform.position, transform.forward, radius);
   }
 }

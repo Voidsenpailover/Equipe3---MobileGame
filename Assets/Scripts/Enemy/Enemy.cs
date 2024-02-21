@@ -10,14 +10,16 @@ public class Enemy
     private bool isAlive {get ; set;}
     public event Action OnDie; 
     private int Level {get ; set;}
-    private SpriteRenderer Sprite {get ; set;}
     
-    public Enemy(string name, string type, bool isAlive, SpriteRenderer sprite)
+    private SpriteRenderer Sprite {get ; set;}
+    private float Speed {get ; set;}
+    
+    
+    public Enemy(string name, string type)
     {
         Name = name;
         Type = type;
         isAlive = true;
-        Sprite = sprite;
     }
     
     public void Die()
