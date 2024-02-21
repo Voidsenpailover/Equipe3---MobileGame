@@ -6,8 +6,8 @@ public class TourelleStat : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] string name;
-    [SerializeField] int dégats;
-    [SerializeField] int délai;
+    [SerializeField] int degats;
+    [SerializeField] int delai;
     [SerializeField] int cout;
     
     void Start()
