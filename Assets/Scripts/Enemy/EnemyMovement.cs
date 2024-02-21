@@ -26,7 +26,12 @@ public class EnemyMovement : MonoBehaviour
     if (Vector2.Distance(target.position, transform.position) <= 0.1f){
       Point++;
       if (Point >= LevelManager.instance.Points.Length){
+        LevelManager.instance.HP -= 1;
         Destroy(gameObject);
+        if (LevelManager.instance.HP <= 0)
+        {
+          LevelManager.instance.GameOver();
+        }
         return;
       }else {
         target = LevelManager.instance.Points[Point];

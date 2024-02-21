@@ -9,6 +9,8 @@ public class LevelManager : MonoBehaviour
     public static LevelManager instance;
     static public event Action OnGameStarted;
     static public event Action OnGameOver;
+    
+    public int HP = 5;
     public enum GameState
     {
         MainMenu,
@@ -40,6 +42,8 @@ public class LevelManager : MonoBehaviour
     
     public void GameOver()
     {
+        int tourFinale = Points.Length;
+        Points[tourFinale - 1].GetComponent<SpriteRenderer>().color = Color.red;
         CurrentState = GameState.GameOver;
         OnGameOver?.Invoke();
     }
