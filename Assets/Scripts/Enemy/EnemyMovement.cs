@@ -30,6 +30,7 @@ public class EnemyMovement : MonoBehaviour
       Point++;
       if (Point >= LevelManager.instance.Points.Length){
         LevelManager.instance.HP -= 1;
+        AudioManager.instance.PlaySound(AudioType.Attaque, AudioSourceType.SFX);
         Destroy(gameObject);
         if (LevelManager.instance.HP <= 0)
         {
