@@ -27,19 +27,11 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
-        #if UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            SpawnEnemy();
-        }
-        
-        #endif
-
         if (!isSpawning) return;
 
         timeBetweenSpawns += Time.deltaTime;
 
-        if (timeBetweenSpawns >= 1f / WaveManager.instance.enemiesPerSecond)
+        if (timeBetweenSpawns >= 1f / WaveManager.instance.enemiesPerSecond + WaveManager.instance.currentWave * 0.1f)
         {
             timeBetweenSpawns = 0;
             if (enemiesLeftToSpawn > 0)
@@ -51,26 +43,32 @@ public class EnemySpawner : MonoBehaviour
             {
                 isSpawning = false;
                 EndWave();
+               StartCoroutine(RestartRound());
             }
         }
     }
     
-    private void StartWave()
+    public void StartWave()
     {
         isSpawning = true;
         enemiesLeftToSpawn = WaveManager.instance.Enemies;
-        WaveManager.instance.enemiesPerSecond += 0.1f;
     }
 
     private void EndWave()
     {
+        WaveManager.instance.enemiesPerSecond += 0.1f;
         WaveManager.instance.Enemies += 5;
         WaveManager.instance.currentWave++;
+    }
+    
+    IEnumerator RestartRound()
+    {
+        yield return new WaitForSeconds(10f);
+        StartWave();
     }
 
     private void SpawnEnemy()
     {
-        GameObject prefab = Instantiate(enemyPrefab, LevelManager.instance.Points[0].transform.position, Quaternion.identity); 
+        var prefab = Instantiate(enemyPrefab, LevelManager.instance.Points[0].transform.position, Quaternion.identity); 
     }
-    
 }
