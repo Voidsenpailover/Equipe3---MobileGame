@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class TourelleStat : MonoBehaviour
+    [CreateAssetMenuAttribute(menuName= "Scriptable Objects/Tourelle")]
+public class Tourelle : ScriptableObject
 {
+    
     // Start is called before the first frame update
     enum HitType
     {

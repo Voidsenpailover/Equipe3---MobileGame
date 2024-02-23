@@ -5,6 +5,7 @@ using UnityEngine;
 public class DayPhase : ScriptableObject
 {
     // Start is called before the first frame update
+    // enum Astre a déplacer possiblement
     enum Astre{
         Day,Night
 
