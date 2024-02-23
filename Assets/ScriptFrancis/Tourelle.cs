@@ -18,7 +18,7 @@ public class Tourelle : ScriptableObject
     }
     enum Effect
     {
-        None,Burn,Stun,Push
+        None,Burn,Stun,Push,Corrosion,Piques,
     }
     [SerializeField] string name;
     [SerializeField] string description;
@@ -32,9 +32,11 @@ public class Tourelle : ScriptableObject
     [SerializeField] HitType hitType;
     [SerializeField] int damageSecond;
     [SerializeField] int dureeEffect;
+    [SerializeField] Effect effet1;
+    [SerializeField] Effect effet2;
 
 
-    
+
     /*void Start()
     {
         

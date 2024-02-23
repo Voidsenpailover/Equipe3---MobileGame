@@ -13,10 +13,14 @@ public class Enemy : ScriptableObject
     [SerializeField] int damage;
     [SerializeField] int speed;
     [SerializeField] int defense;
+    [SerializeField] float duréeEffet1;
+    [SerializeField] float duréeEffet2;
+
     //[SerializeField] 
     //[SerializeField] 
     //[SerializeField] int[] resistanceElémentaire =new int[4]; 
     [SerializeField] string name;
+    [SerializeField] string description;
     /*void Start()
     {
         
