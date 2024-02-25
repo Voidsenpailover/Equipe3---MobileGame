@@ -42,10 +42,10 @@ public class GridBuildingSystem : MonoBehaviour
         }
         if(Input.GetMouseButton(0))
         {
-            if (EventSystem.current.IsPointerOverGameObject(0))
+            /*if (EventSystem.current.IsPointerOverGameObject(0))
             {
                 return;
-            }
+            }*/
 
             if (!temp.Placed)
             {
@@ -60,6 +60,17 @@ public class GridBuildingSystem : MonoBehaviour
                     FollowBuilding();
                 }
             }
+        }
+        else if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (temp.CanBePlaced()){
+                temp.Place();
+            }
+        }
+        else if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            ClearArea();
+            Destroy(temp.gameObject);
         }
     }
 
@@ -155,6 +166,11 @@ public class GridBuildingSystem : MonoBehaviour
             }
         }
         return true;
+    }
+    public void TakeArea(BoundsInt area)
+    {
+        SetTilesBlock(area, TileType.Empty, tempTilemap);
+        SetTilesBlock(area, TileType.Green, mainTilemap);
     }
 
     #endregion

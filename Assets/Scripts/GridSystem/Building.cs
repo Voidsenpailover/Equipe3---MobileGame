@@ -27,5 +27,14 @@ public class Building : MonoBehaviour
         return false;  
     }
 
+    public void Place()
+    {
+        Vector3Int positionInt = GridBuildingSystem.current.gridLayout.LocalToCell(transform.position);
+        BoundsInt areaTemp = area;
+        areaTemp.position = positionInt;
+        Placed = true;
+        GridBuildingSystem.current.TakeArea(area);
+    }
+
     #endregion
 }
