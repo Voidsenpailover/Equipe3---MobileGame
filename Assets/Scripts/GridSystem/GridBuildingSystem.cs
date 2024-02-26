@@ -8,7 +8,7 @@ public class GridBuildingSystem : MonoBehaviour
 {
     [SerializeField] public static GridBuildingSystem current;
 
-    [SerializeField] public GridLayout gridLayout;
+    [SerializeField] private GridLayout gridLayout;
     [SerializeField] Tilemap mainTilemap;
     [SerializeField] Tilemap tempTilemap;
 
@@ -17,6 +17,8 @@ public class GridBuildingSystem : MonoBehaviour
     private Building temp;
     private Vector3 prevPos;
     private BoundsInt prevArea;
+
+    public GridLayout GridLayout { get => gridLayout; set => gridLayout = value; }
 
     #region Unity Methods
 
@@ -32,10 +34,15 @@ public class GridBuildingSystem : MonoBehaviour
         tileBases.Add(TileType.Green, Resources.Load<TileBase>(_tilePath + "SquareG"));
         tileBases.Add(TileType.White, Resources.Load<TileBase>(_tilePath + "Square"));
         tileBases.Add(TileType.Red, Resources.Load<TileBase>(_tilePath + "SquareR"));
+        
     }
 
     private void Update()
     {
+
+        float x = GridLayout.cellSize.x * Camera.main.pixelWidth / 1080;
+        float y = GridLayout.cellSize.y * Camera.main.pixelHeight / 1920;
+
         if (!temp)
         {
             return;
@@ -49,15 +56,15 @@ public class GridBuildingSystem : MonoBehaviour
 
             if (!temp.Placed)
             {
-                Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) * 1/gridLayout.transform.localScale.x;
-                Vector3Int cellPos = gridLayout.LocalToCell(touchPos);
+                Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) * 1/GridLayout.transform.localScale.x;
+                Vector3Int cellPos = GridLayout.LocalToCell(touchPos);
                 Debug.Log(cellPos);
                 Debug.Log(touchPos);
 
                 if (prevPos != cellPos)
                 {
-                    temp.transform.localPosition = gridLayout.CellToLocalInterpolated(cellPos
-                        + new Vector3(.5f ,.5f, 0f)) * gridLayout.transform.localScale.x;
+                    temp.transform.localPosition = GridLayout.CellToLocalInterpolated(cellPos
+                        + new Vector3(.5f ,.5f, 0f)) * GridLayout.transform.localScale.x;
                     prevPos = cellPos;
                     FollowBuilding();
                 }
@@ -131,7 +138,7 @@ public class GridBuildingSystem : MonoBehaviour
     private void FollowBuilding()
     {
         ClearArea();
-        temp.area.position = gridLayout.WorldToCell(temp.gameObject.transform.position);
+        temp.area.position = GridLayout.WorldToCell(temp.gameObject.transform.position);
         BoundsInt buildingArea = temp.area;
 
         TileBase[] baseArray = GetTilesBlock(buildingArea, mainTilemap);
