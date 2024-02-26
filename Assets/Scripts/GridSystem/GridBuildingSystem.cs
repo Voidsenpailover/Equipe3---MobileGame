@@ -49,13 +49,15 @@ public class GridBuildingSystem : MonoBehaviour
 
             if (!temp.Placed)
             {
-                Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) * 1/gridLayout.transform.localScale.x;
                 Vector3Int cellPos = gridLayout.LocalToCell(touchPos);
+                Debug.Log(cellPos);
+                Debug.Log(touchPos);
 
-                if(prevPos != cellPos)
+                if (prevPos != cellPos)
                 {
                     temp.transform.localPosition = gridLayout.CellToLocalInterpolated(cellPos
-                        + new Vector3(.5f,.5f, 0f));
+                        + new Vector3(.5f ,.5f, 0f)) * gridLayout.transform.localScale.x;
                     prevPos = cellPos;
                     FollowBuilding();
                 }
