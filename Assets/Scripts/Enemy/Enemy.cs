@@ -5,6 +5,7 @@ using System;
 
 public class Enemy 
 {
+    //public EnemyStat enemyStat;//Pas sur qu'il faut faire ça d'ou le commentaire
     private string Name {get ; set;}
     private string Type {get ; set;}
     private bool isAlive {get ; set;}

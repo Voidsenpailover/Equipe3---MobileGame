@@ -6,8 +6,9 @@ using UnityEngine.Events;
     [CreateAssetMenuAttribute(menuName= "Scriptable Objects/Tourelle")]
 public class Tourelle : ScriptableObject
 {
-    
+
     // Start is called before the first frame update
+    
     enum HitType
     {
         Line,Single,AOE
@@ -20,6 +21,8 @@ public class Tourelle : ScriptableObject
     {
         None,Burn,Stun,Push,Corrosion,Piques,
     }
+    //[SerializeField] Sprite sprite;
+    //string a changer possiblement en Text ou TextMeshPro
     [SerializeField] string name;
     [SerializeField] string description;
     [SerializeField] float degats;
