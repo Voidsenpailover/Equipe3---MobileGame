@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -5,8 +6,7 @@ using UnityEngine;
   {
   
     [Header("Attributes")]
-    [SerializeField] private float MoveSpeed = 2f;
-  
+    private float MoveSpeed;
     private Rigidbody2D rb;
     private Transform target;
     private int Point = 0;
@@ -64,6 +64,7 @@ using UnityEngine;
     {
       _enemyStat = enemyStat;
       hitsRemaining = enemyStat.Hits;
+      MoveSpeed = enemyStat.Speed;
     }
   }
 

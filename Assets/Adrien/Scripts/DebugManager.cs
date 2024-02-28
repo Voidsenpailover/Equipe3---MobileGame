@@ -1,7 +1,5 @@
 using UnityEngine;
 
-namespace Adrien.Scripts
-{
     public class DebugManager : MonoBehaviour
     { 
         [Header("Touches Debug")]
@@ -23,4 +21,3 @@ namespace Adrien.Scripts
         }
 #endif
     }
-}

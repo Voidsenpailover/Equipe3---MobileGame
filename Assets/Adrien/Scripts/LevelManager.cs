@@ -8,13 +8,16 @@ public class LevelManager : MonoBehaviour
         public static LevelManager instance;
         static public event Action OnGameStarted;
         static public event Action OnGameOver;
+        static public event Action OnVictory;
     
         public int HP = 5;
-        public int Money = 0;
+        public int _money;
+        public int _round;
         public enum GameState
         {
             MainMenu,
             InGame,
+            Victory,
             GameOver,
         }
     
@@ -50,5 +53,10 @@ public class LevelManager : MonoBehaviour
         public void RestartGame()
         {
             SceneManager.LoadSceneAsync(1);
+        }
+        public void Victory()
+        {
+            CurrentState = GameState.Victory;
+            OnVictory?.Invoke();
         }
     }

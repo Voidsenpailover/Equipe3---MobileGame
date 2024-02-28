@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 57266af9ea5f5754987d0103a4b3b3f4, type: 3}
-  m_Name: Enemy-1
+  m_Name: Enemy-2
   m_EditorClassIdentifier: 
-  _enemyType: 0
-  _hits: 0
-  _speed: 0
-  _money: 0
+  _enemyType: 1
+  _hits: 50
+  _speed: 10
+  _money: 1

@@ -5,20 +5,13 @@ using UnityEngine;
     public class RoundProperties : ScriptableObject
     {
         [SerializeField] private List<SpawnGroup> _spawnGroups;
-        private int _roundNumber;
-    
+
         public List<SpawnGroup> SpawnGroups
         {
             get => _spawnGroups;
             set => _spawnGroups = value;
         }
-    
-        public int RoundNumber
-        {
-            get => _roundNumber;
-            set => _roundNumber = Mathf.Max(1, value);
-        }
-    
+        
         public float RoundTime
         {
             get
@@ -26,26 +19,14 @@ using UnityEngine;
                 var maxGroupTime = 0f;
                 foreach (var spawnGroup in _spawnGroups)
                 {
-                    var groupTime = spawnGroup.InitialSpawnDelay + spawnGroup.NumberInGroup * spawnGroup.TimeBetweenBloons;
+                    var groupTime = spawnGroup.InitialDelay + spawnGroup.NumberInGroup * spawnGroup.TimeBetweenSpawn;
                     maxGroupTime = Mathf.Max(maxGroupTime, groupTime);
                 }
-    
                 return maxGroupTime;
             }
         }
     
-        public int EnemyCount
-        {
-            get
-            {
-                int totalEnemiesCount = 0;
-                foreach (var spawnGroup in _spawnGroups)
-                {
-                    totalEnemiesCount += spawnGroup.NumberInGroup;
-                }
-                return totalEnemiesCount;
-            }
-        }
+        
     }
     
 
