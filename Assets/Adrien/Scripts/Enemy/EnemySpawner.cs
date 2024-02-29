@@ -7,17 +7,17 @@ public class EnemySpawner : MonoBehaviour
     {
         public GameObject enemyPrefab;
         private SpriteRenderer _spriteRenderer; 
-        [SerializeField] private List<RoundProperties> _rounds;
-        private RoundProperties _curRound;
-        private int _currentRoundIndex => LevelManager.instance._round - 1;
-        private float _timer;
-        private bool _isRoundOver;
-        private int _enemiesLeft;
-        public static EnemySpawner instance;
-
+        [SerializeField] private List<RoundProperties> _rounds; 
+        [SerializeField] private int _currentRoundIndex;
+        [SerializeField]  private RoundProperties _curRound;
+        [SerializeField] private float _timer;
+        [SerializeField] private bool _isRoundOver;
+        [SerializeField]  private int _enemiesLeft;
+        public static EnemySpawner _instance;
+        
         private void Awake()
         {
-            instance = this;
+            _instance = this;
         }
         private void Start()
         {
@@ -37,22 +37,21 @@ public class EnemySpawner : MonoBehaviour
             if(_timer > 10f)
             {
                 _timer = 0;
+                StartRound();  
                 _isRoundOver = false;
-                StartRound();
             }
         }
-
-   
+        
         private void StartRound()
         {
-            LevelManager.instance._round++;
-            if (_currentRoundIndex >= _rounds.Count)
+            _currentRoundIndex++;
+            if (_currentRoundIndex > _rounds.Count)
             {
                 LevelManager.instance.Victory();
                 return;
             }
-            _curRound = _rounds[_currentRoundIndex];
-            _enemiesLeft = 0;
+            _curRound = _rounds[_currentRoundIndex - 1];
+            _enemiesLeft = _curRound.EnemiesInRound;
             StartCoroutine(SpawnEnemiesInRound(_curRound));
         }
     
@@ -71,7 +70,6 @@ public class EnemySpawner : MonoBehaviour
             for (var i = 0; i < spawnGroup.NumberInGroup; i++)
             {
                 SpawnEnemyType(spawnGroup.EnemyType);
-                _enemiesLeft++;
                 yield return timeBetweenSpawns;
             }
         }
@@ -82,16 +80,16 @@ public class EnemySpawner : MonoBehaviour
             SpawnEnemy(enemyProperties);
         }
     
-        private EnemyMovement SpawnEnemy(EnemyStat enemyStat)
+        private void SpawnEnemy(EnemyStat enemyStat)
         {
             var prefab = Instantiate(enemyPrefab, LevelManager.instance.Points[0].transform.position, Quaternion.identity); 
             var enemyMovement = prefab.GetComponent<EnemyMovement>();
         
             enemyMovement.InitializeEnemies(enemyStat);
-            return enemyMovement;
         }
         
-        private void EnemyDead(EnemyStat enemyStat)
+        
+        public void EnemyReachedEndOfPath()
         {
             DecrementEnemiesLeftCount(1);
         }

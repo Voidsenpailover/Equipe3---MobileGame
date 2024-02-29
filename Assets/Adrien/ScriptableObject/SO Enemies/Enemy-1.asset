@@ -15,4 +15,6 @@ MonoBehaviour:
   _enemyType: 0
   _hits: 10
   _speed: 0.8
-  _money: 0
+  _money: 1
+  _spriteRenderer: {fileID: 0}
+  _damage: 1

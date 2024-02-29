@@ -12,7 +12,6 @@ public class LevelManager : MonoBehaviour
     
         public int HP = 5;
         public int _money;
-        public int _round;
         public enum GameState
         {
             MainMenu,
@@ -44,7 +43,7 @@ public class LevelManager : MonoBehaviour
     
         public void GameOver()
         {
-            int tourFinale = Points.Length;
+            var tourFinale = Points.Length;
             Points[tourFinale - 1].GetComponent<SpriteRenderer>().color = Color.red;
             CurrentState = GameState.GameOver;
             OnGameOver?.Invoke();

@@ -5,7 +5,21 @@ using UnityEngine;
     public class RoundProperties : ScriptableObject
     {
         [SerializeField] private List<SpawnGroup> _spawnGroups;
-
+        
+        
+        public int EnemiesInRound
+        {
+            get
+            {
+                var enemies = 0;
+                foreach (var spawnGroup in _spawnGroups)
+                {
+                    enemies += spawnGroup.NumberInGroup;
+                }
+                return enemies;
+            }
+        }
+        
         public List<SpawnGroup> SpawnGroups
         {
             get => _spawnGroups;
