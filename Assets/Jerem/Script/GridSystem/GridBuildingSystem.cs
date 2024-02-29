@@ -166,10 +166,10 @@ public class GridBuildingSystem : MonoBehaviour
 
     public void InitializeWithBuilding(GameObject building)
     {
-        temp = Instantiate(building, Vector3.zero, Quaternion.identity).GetComponent<Building>();
+        temp = Instantiate(building, prevPos, Quaternion.identity).GetComponent<Building>();
         temp.Data = _turretsData[CurrentID];
-        temp.area.position = GridLayout.WorldToCell(temp.gameObject.transform.position);
-        FollowBuilding();
+        temp.transform.position = GridLayout.CellToLocalInterpolated(prevPos + new Vector3(.5f, .5f, 0f));
+        //FollowBuilding();
     }
     
     private void ClearArea()
