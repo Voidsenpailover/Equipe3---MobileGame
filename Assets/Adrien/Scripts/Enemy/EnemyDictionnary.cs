@@ -8,7 +8,7 @@ using UnityEngine;
       private static void Initialize()
       {
          _enemy.Clear();
-         Resources.LoadAll("ScriptableObjects");
+         Resources.LoadAll("Asset/ScriptableObject");
          if(Resources.FindObjectsOfTypeAll(typeof(EnemyStat)) is EnemyStat[] enemies)
          {
             foreach (var enemy in enemies)

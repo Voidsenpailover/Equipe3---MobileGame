@@ -6,9 +6,8 @@ using UnityEngine;
         [SerializeField] private float _initialSpawnDelay;
         [SerializeField] private EnemyTypes _enemyType;
         [SerializeField] private int _numberInGroup;
-        [SerializeField] private float _timeBetweenBloons;
-        [SerializeField] private SpriteRenderer _spriteRenderer;
-        public float InitialSpawnDelay
+        [SerializeField] private float _timeBetweenSpawn;
+        public float InitialDelay
         {
             get => _initialSpawnDelay;
             set => _initialSpawnDelay = value;
@@ -26,16 +25,10 @@ using UnityEngine;
             set => _numberInGroup = value;
         }
     
-        public float TimeBetweenBloons
+        public float TimeBetweenSpawn
         {
-            get => _timeBetweenBloons;
-            set => _timeBetweenBloons = value;
-        }
-    
-        public SpriteRenderer Sprite
-        {
-            get => _spriteRenderer;
-            set => _spriteRenderer = value;
+            get => _timeBetweenSpawn;
+            set => _timeBetweenSpawn = value;
         }
     }
 
