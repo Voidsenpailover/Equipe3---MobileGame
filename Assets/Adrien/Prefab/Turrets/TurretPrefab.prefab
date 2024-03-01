@@ -127,8 +127,9 @@ GameObject:
   - component: {fileID: 8423427681872163357}
   - component: {fileID: 7701190884591356777}
   - component: {fileID: 5413129416859824546}
+  - component: {fileID: 57047321308959049}
   m_Layer: 0
-  m_Name: Square
+  m_Name: TurretPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -219,5 +220,21 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   range: 4
-  speedRotation: 250
   BulletPerSecond: 1
+  bulletPrefab: {fileID: 6703202451157482724, guid: 10ca29ce84c3bc241ada104b8db57c76, type: 3}
+--- !u!114 &57047321308959049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8852987453620772867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c8a3c0cabb68204da85c61413f280e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  area:
+    m_Position: {x: 0, y: 0, z: 0}
+    m_Size: {x: 1, y: 1, z: 1}
+  _data: {fileID: 0}
