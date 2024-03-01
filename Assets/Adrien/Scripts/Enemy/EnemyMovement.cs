@@ -31,7 +31,7 @@ using System;
         {
           reachedEnd = true;
           LevelManager.instance.HP -= EnemyStat.Damage;
-          AudioManager.instance.PlaySound(AudioType.Attaque, AudioSourceType.SFX);
+          //AudioManager.instance.PlaySound(AudioType.Attaque, AudioSourceType.SFX);
           EnemySpawner._instance.EnemyReachedEndOfPath();
           Destroy(gameObject);
           if (LevelManager.instance.HP <= 0)
