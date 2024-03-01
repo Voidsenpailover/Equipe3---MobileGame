@@ -19,4 +19,4 @@ MonoBehaviour:
   _delayBetweenAtk: 0
   _radAtk: 0
   _AtkSFX: {fileID: 0}
-  _sprite: {fileID: 0}
+  _sprite: {fileID: 21300000, guid: 4b3cd331573566a4c8d27a230b3e1796, type: 3}
