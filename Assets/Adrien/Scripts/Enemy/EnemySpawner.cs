@@ -9,12 +9,11 @@ public class EnemySpawner : MonoBehaviour
         private SpriteRenderer _spriteRenderer; 
         [SerializeField] private List<RoundProperties> _rounds; 
         [SerializeField] private int _currentRoundIndex;
-        [SerializeField]  private RoundProperties _curRound;
+        [SerializeField] private RoundProperties _curRound;
         [SerializeField] private float _timer;
         [SerializeField] private bool _isRoundOver;
-        [SerializeField]  private int _enemiesLeft;
+        [SerializeField] private int _enemiesLeft;
         public static EnemySpawner _instance;
-        
         private void Awake()
         {
             _instance = this;
@@ -54,7 +53,7 @@ public class EnemySpawner : MonoBehaviour
             _enemiesLeft = _curRound.EnemiesInRound;
             StartCoroutine(SpawnEnemiesInRound(_curRound));
         }
-    
+
         private IEnumerator SpawnEnemiesInRound(RoundProperties roundProperties)
         {
             foreach (var spawnGroup in roundProperties.SpawnGroups)
@@ -82,9 +81,8 @@ public class EnemySpawner : MonoBehaviour
     
         private void SpawnEnemy(EnemyStat enemyStat)
         {
-            var prefab = Instantiate(enemyPrefab, LevelManager.instance.Points[0].transform.position, Quaternion.identity); 
+            var prefab = Instantiate(enemyPrefab, LevelManager.instance.Chemin[0].transform.position, Quaternion.identity);
             var enemyMovement = prefab.GetComponent<EnemyMovement>();
-        
             enemyMovement.InitializeEnemies(enemyStat);
         }
         
@@ -103,4 +101,4 @@ public class EnemySpawner : MonoBehaviour
             }
         }
     }
-
+    

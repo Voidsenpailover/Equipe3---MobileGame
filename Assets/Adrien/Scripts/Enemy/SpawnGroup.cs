@@ -30,5 +30,6 @@ using UnityEngine;
             get => _timeBetweenSpawn;
             set => _timeBetweenSpawn = value;
         }
+        
     }
 

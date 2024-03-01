@@ -21,7 +21,8 @@ public class LevelManager : MonoBehaviour
         }
     
         public GameState CurrentState;
-        public Transform[] Points;
+        public Transform[] Chemin;
+        
     
         private void Awake()
         {
@@ -31,7 +32,12 @@ public class LevelManager : MonoBehaviour
     
         private void Start()
         {
-            Points = GameObject.Find("Points").GetComponentsInChildren<Transform>();
+            var parent = GameObject.Find("Chemin");
+            Chemin = new Transform[parent.transform.childCount];
+            for (var i = 0; i < parent.transform.childCount; i++)
+            {
+                Chemin[i] = parent.transform.GetChild(i);
+            }
             CurrentState = GameState.MainMenu;
         }
     
@@ -43,8 +49,6 @@ public class LevelManager : MonoBehaviour
     
         public void GameOver()
         {
-            var tourFinale = Points.Length;
-            Points[tourFinale - 1].GetComponent<SpriteRenderer>().color = Color.red;
             CurrentState = GameState.GameOver;
             OnGameOver?.Invoke();
         }

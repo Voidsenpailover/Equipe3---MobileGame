@@ -25,22 +25,6 @@ using UnityEngine;
             get => _spawnGroups;
             set => _spawnGroups = value;
         }
-        
-        public float RoundTime
-        {
-            get
-            {
-                var maxGroupTime = 0f;
-                foreach (var spawnGroup in _spawnGroups)
-                {
-                    var groupTime = spawnGroup.InitialDelay + spawnGroup.NumberInGroup * spawnGroup.TimeBetweenSpawn;
-                    maxGroupTime = Mathf.Max(maxGroupTime, groupTime);
-                }
-                return maxGroupTime;
-            }
-        }
-    
-        
     }
     
 

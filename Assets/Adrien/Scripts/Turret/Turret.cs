@@ -6,9 +6,13 @@ using UnityEngine;
         [SerializeField] private Transform gun;
         [SerializeField] private LayerMask enemyMask;
         [SerializeField] private float range = 4f;
-        [SerializeField, Range(250, 1000)] private float speedRotation = 250f;
         private Transform target;
-
+        private float timeBetweenShots;
+        [SerializeField] private float BulletPerSecond = 1f; 
+        [SerializeField] private GameObject bulletPrefab;
+        
+       
+        
         private void Update()
         {
             if (target == null)
@@ -17,17 +21,27 @@ using UnityEngine;
                 return;
             }
             Rotate();
+            
             if (!CheckIfInRange())
             {
                 target = null;
+            }
+            else
+            {
+                timeBetweenShots += Time.deltaTime;
+                if(timeBetweenShots >= 1f / BulletPerSecond)
+                {
+                    Shoot();
+                    timeBetweenShots = 0;
+                }
             }
         }
 
         private void Rotate()
         {
-            float angle = Mathf.Atan2(target.position.y - transform.position.y, target.position.x - transform.position.x) * Mathf.Rad2Deg - 90f;
+            var angle = Mathf.Atan2(target.position.y - transform.position.y, target.position.x - transform.position.x) * Mathf.Rad2Deg - 90f;
             Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-            gun.rotation = Quaternion.RotateTowards(gun.transform.rotation, rotation, speedRotation * Time.deltaTime);
+            gun.rotation = rotation;
         }
         private void FindTarget()
         {
@@ -47,5 +61,12 @@ using UnityEngine;
         {
             Handles.color = Color.red;
             Handles.DrawWireDisc(transform.position, transform.forward, range);
+        }
+
+        private void Shoot()
+        {
+            var bullet = Instantiate(bulletPrefab, gun.transform.position, Quaternion.identity);
+            var bulletScript = bullet.GetComponent<Bullet>();
+            bulletScript.SetTarget(target);
         }
     }
