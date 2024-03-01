@@ -14,6 +14,7 @@ using System;
     private float radius = 0.8f;
     private SpriteRenderer _spriteRenderer;
     private bool reachedEnd;
+    public int HP;
     private EnemyStat EnemyStat {get; set;}
 
     private void Start()
@@ -24,7 +25,7 @@ using System;
 
     private void Update()
     {
-      if (!reachedEnd && Vector2.Distance(target.position, transform.position) <= 0.1f)
+      if (!reachedEnd && Vector2.Distance(target.position, transform.position) <= 0f)
       {
         Point++;
         if (Point >= LevelManager.instance.Chemin.Length)
@@ -63,6 +64,7 @@ using System;
     {
       EnemyStat = enemyStat;
       MoveSpeed = enemyStat.Speed;
+      HP = enemyStat.Hits;
     }
 
   }

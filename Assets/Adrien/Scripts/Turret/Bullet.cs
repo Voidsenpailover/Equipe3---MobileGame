@@ -7,7 +7,6 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float bulletSpeed = 5f;
-
     private Transform target;
 
     public void SetTarget(Transform _target)
@@ -26,6 +25,15 @@ public class Bullet : MonoBehaviour
     {
         if (other.GetComponent<EnemyMovement>())
         {
+            other.GetComponent<EnemyMovement>().HP--;
+           
+            Debug.Log(other.GetComponent<EnemyMovement>().HP);
+            if(other.GetComponent<EnemyMovement>().HP <= 0)
+            {
+                Debug.Log("Enemy hit" + other.GetComponent<EnemyMovement>().HP);
+                EnemySpawner._instance.EnemyReachedEndOfPath();
+                Destroy(other.gameObject);
+            }
             Destroy(gameObject);
         }
     }

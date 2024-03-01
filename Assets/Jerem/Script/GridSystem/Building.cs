@@ -12,7 +12,7 @@ public class Building : MonoBehaviour
 
     void Start()
     {
-        this.GetComponentInChildren<SpriteRenderer>().sprite = Data.Sprite;
+        GetComponent<SpriteRenderer>().sprite = Data.Sprite;
     }
 
     #region Build Methods

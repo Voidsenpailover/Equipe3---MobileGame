@@ -4,7 +4,6 @@ using UnityEngine;
     public class Turret : MonoBehaviour
     {
         [SerializeField] private Transform gun;
-        [SerializeField] private LayerMask enemyMask;
         [SerializeField] private float range = 4f;
         private Transform target;
         private float timeBetweenShots;

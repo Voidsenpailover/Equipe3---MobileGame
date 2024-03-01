@@ -15,7 +15,7 @@ public class EnemyStat : ScriptableObject
 
     
     public EnemyTypes Enemy { get => _enemyType;set => _enemyType = value;}
-    public int Hits { get => _hits; set => _hits = Mathf.Max(1, value);}
+    public int Hits { get => _hits; set => _hits = value;}
     public float Speed { get => _speed; set => _speed = value;}
     public int Money { get => _money; set => _money = value;}
     public SpriteRenderer Sprite { get => _spriteRenderer; set => _spriteRenderer = value;}
