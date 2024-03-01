@@ -1,48 +1,47 @@
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using System;
 
   public class EnemyMovement : MonoBehaviour
   {
   
     [Header("Attributes")]
-    [SerializeField] private float MoveSpeed = 2f;
-  
+    private float MoveSpeed;
     private Rigidbody2D rb;
     private Transform target;
-    private int Point = 0;
+    private int Point;
     private float radius = 0.8f;
-    private EnemyStat _enemyStat;
     private SpriteRenderer _spriteRenderer;
-    private int hitsRemaining;
-  
-  
-    public EnemyStat EnemyStat
-    {
-      get => _enemyStat;
-      set => _enemyStat = value;
-    }
+    private bool reachedEnd;
+    private EnemyStat EnemyStat {get; set;}
 
     private void Start()
     {
       rb = GetComponent<Rigidbody2D>();
-      target = LevelManager.instance.Points[Point];
+      target = LevelManager.instance.Chemin[0];
     }
 
     private void Update()
     {
-      if (Vector2.Distance(target.position, transform.position) <= 0.1f){
+      if (!reachedEnd && Vector2.Distance(target.position, transform.position) <= 0.5f)
+      {
         Point++;
-        if (Point >= LevelManager.instance.Points.Length){
-          LevelManager.instance.HP -= 1;
+        if (Point >= LevelManager.instance.Chemin.Length)
+        {
+          reachedEnd = true;
+          LevelManager.instance.HP -= EnemyStat.Damage;
           AudioManager.instance.PlaySound(AudioType.Attaque, AudioSourceType.SFX);
+          EnemySpawner._instance.EnemyReachedEndOfPath();
           Destroy(gameObject);
           if (LevelManager.instance.HP <= 0)
           {
             LevelManager.instance.GameOver();
           }
           return;
-        }else {
-          target = LevelManager.instance.Points[Point];
+        }
+        {
+          target = LevelManager.instance.Chemin[Point];
         }
       }
     }
@@ -62,8 +61,9 @@ using UnityEngine;
   
     public void InitializeEnemies(EnemyStat enemyStat)
     {
-      _enemyStat = enemyStat;
-      hitsRemaining = enemyStat.Hits;
+      EnemyStat = enemyStat;
+      MoveSpeed = enemyStat.Speed;
     }
+
   }
 
