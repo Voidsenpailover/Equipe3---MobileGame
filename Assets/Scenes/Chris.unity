@@ -5455,7 +5455,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 20
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5508,7 +5508,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -8837,8 +8837,8 @@ ParticleSystem:
     curve:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.87266463
-      minScalar: 0.34906584
+      scalar: 0.43633232
+      minScalar: 0.17453292
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -10104,16 +10104,28 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 789276132741812326, guid: 1cc074765709f7140ac52a5e49d45e26, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.94697
+      objectReference: {fileID: 0}
+    - target: {fileID: 789276132741812326, guid: 1cc074765709f7140ac52a5e49d45e26, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.94697
+      objectReference: {fileID: 0}
+    - target: {fileID: 789276132741812326, guid: 1cc074765709f7140ac52a5e49d45e26, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.94697
+      objectReference: {fileID: 0}
+    - target: {fileID: 789276132741812326, guid: 1cc074765709f7140ac52a5e49d45e26, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.0182545
+      value: -1.9112
       objectReference: {fileID: 0}
     - target: {fileID: 789276132741812326, guid: 1cc074765709f7140ac52a5e49d45e26, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.4571224
+      value: 1.3798
       objectReference: {fileID: 0}
     - target: {fileID: 789276132741812326, guid: 1cc074765709f7140ac52a5e49d45e26, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.4255081
+      value: 1.3499
       objectReference: {fileID: 0}
     - target: {fileID: 789276132741812326, guid: 1cc074765709f7140ac52a5e49d45e26, type: 3}
       propertyPath: m_LocalRotation.w
