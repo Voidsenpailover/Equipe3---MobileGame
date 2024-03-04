@@ -9,8 +9,8 @@ using UnityEngine;
         private float timeBetweenShots;
         [SerializeField] private float BulletPerSecond = 1f; 
         [SerializeField] private GameObject bulletPrefab;
-        
-       
+
+        private TurretsData turret {get; set;}
         
         private void Update()
         {
@@ -30,7 +30,7 @@ using UnityEngine;
                 timeBetweenShots += Time.deltaTime;
                 if(timeBetweenShots >= 1f / BulletPerSecond)
                 {
-                    Shoot();
+                    Shoot(turret);
                     timeBetweenShots = 0;
                 }
             }
@@ -44,7 +44,7 @@ using UnityEngine;
         }
         private void FindTarget()
         {
-            RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, range, transform.forward);
+            RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, range, transform.forward, 0);
             if (hits.Length > 0)
             {
                 target = hits[0].transform;
@@ -62,10 +62,17 @@ using UnityEngine;
             Handles.DrawWireDisc(transform.position, transform.forward, range);
         }
 
-        private void Shoot()
+        private void Shoot(TurretsData turret)
         {
             var bullet = Instantiate(bulletPrefab, gun.transform.position, Quaternion.identity);
             var bulletScript = bullet.GetComponent<Bullet>();
+            bulletScript.Turret = turret;
             bulletScript.SetTarget(target);
+        }
+        public void InitializeTurret(TurretsData data)
+        {
+            turret = data;
+            range = data.RadAtk;
+            BulletPerSecond = data.DelayBetweenAtk;
         }
     }

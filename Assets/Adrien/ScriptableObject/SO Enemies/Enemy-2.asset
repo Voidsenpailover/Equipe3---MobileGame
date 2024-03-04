@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: Enemy-2
   m_EditorClassIdentifier: 
   _enemyType: 1
-  _hits: 50
+  _hits: 3
   _speed: 2
   _money: 2
   _spriteRenderer: {fileID: 0}
   _damage: 2
+  _canBeStunned: 0
+  _canBeSlowed: 0
+  _canBeBurned: 0

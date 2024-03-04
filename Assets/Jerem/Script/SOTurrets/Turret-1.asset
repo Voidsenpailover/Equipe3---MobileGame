@@ -15,8 +15,11 @@ MonoBehaviour:
   _name: Turret1
   _description: Test
   _cost: 10
-  _damage: 50
+  _damage: 1
   _delayBetweenAtk: 5
   _radAtk: 20
   _AtkSFX: {fileID: 0}
   _sprite: {fileID: 21300000, guid: 064550c35f3738745b30bbb7a51cbe24, type: 3}
+  _type: 0
+  _level: 1
+  _atkType: 3
