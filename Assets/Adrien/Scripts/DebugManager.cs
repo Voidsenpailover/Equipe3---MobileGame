@@ -20,9 +20,6 @@ using UnityEngine;
             }
         }
 
-    public void LateUpdate()
-    {
-        LevelManager.instance.StartGame();
-    }
+    
 #endif
 }
