@@ -6,7 +6,7 @@ using UnityEngine;
         [SerializeField] private KeyCode StartGame;
         [SerializeField] private KeyCode EndGame;
     
-#if UNITY_EDITOR    
+    #if UNITY_EDITOR    
         private void Update()
         {
             if (Input.GetKeyDown(StartGame))
@@ -20,9 +20,9 @@ using UnityEngine;
             }
         }
 
-    public void LateUpdate()
-    {
-        LevelManager.instance.StartGame();
+        public void LauncheGame()
+        {
+            LevelManager.instance.StartGame();
+        }
+    #endif
     }
-#endif
-}
