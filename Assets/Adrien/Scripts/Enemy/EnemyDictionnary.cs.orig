@@ -3,7 +3,12 @@ using UnityEngine;
 
    public class EnemyDictionnary : MonoBehaviour
    {
+<<<<<<< HEAD
       public static EnemyDictionnary current;
+      private static Dictionary<EnemyTypes, EnemyStat> _enemy = new Dictionary<EnemyTypes, EnemyStat>();
+=======
+      public static Dictionary<EnemyTypes, EnemyStat> _enemy = new Dictionary<EnemyTypes, EnemyStat>();
+>>>>>>> origin/Jerem
       private static bool _initialized;
       private static void Initialize()
       {
