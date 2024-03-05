@@ -19,7 +19,7 @@ using UnityEngine;
                 LevelManager.instance.RestartGame();
             }
         }
-#endif
+    #endif
     public void LauncheGame()
         {
             LevelManager.instance.StartGame();
