@@ -13,16 +13,18 @@ public class UiManager : MonoBehaviour
         GridBuildingSystem.OnTurretMenuDeactivated += UnsetTurretMenu;
     }
 
-    private void UnsetTurretMenu()
-    {
-        _turretMenu.position = Vector3.zero;
-        _menuRotationPoint.SetActive(false);
-    }
+
 
     private void SetTurretMenu(Vector3 pos)
     {
         _turretMenu.position = pos;
         _menuRotationPoint.SetActive(true);
+    }
+
+    private void UnsetTurretMenu()
+    {
+        _turretMenu.position = Vector3.zero;
+        _menuRotationPoint.SetActive(false);
     }
 
     private void OnDestroy()

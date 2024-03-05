@@ -50,29 +50,30 @@ public class GridBuildingSystem : MonoBehaviour
 
     private void Update()
     {
-
-        float x = GridLayout.cellSize.x * Camera.main.pixelWidth / 1080;
-        float y = GridLayout.cellSize.y * Camera.main.pixelHeight / 1920;
-
         /*if (!temp)
         {
             return;
         }*/
         if(Input.GetMouseButtonDown(0))
         {
+            Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) * 1 / GridLayout.transform.localScale.x;
+            Vector3Int cellPos = GridLayout.LocalToCell(touchPos);
+            TileBase test = mainTilemap.GetTile(cellPos);
+            TileBase tileTex = tileBases[TileType.Green];
+            if (test == tileBases[TileType.Empty])
+            {
+                return;
+            }
             if (_canSelect) {
                 _canSelect = false;
                 ClearArea();
-                Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) * 1 / GridLayout.transform.localScale.x;
-                Vector3Int cellPos = GridLayout.LocalToCell(touchPos);
                 prevPos = cellPos;
-
-                TileBase test = mainTilemap.GetTile(cellPos);
-                test = tileBases[TileType.Green];
-                tempTilemap.SetTile(cellPos, test);
+                tempTilemap.SetTile(cellPos, tileTex);
                 OnTurretMenuActive?.Invoke(GridLayout.CellToLocalInterpolated(cellPos + new Vector3(.5f, .5f, 0f)));
                 
-                Debug.Log(test);
+
+                
+                Debug.Log(tileTex);
                 /*
                 if (!temp.Placed)
                 {
@@ -93,8 +94,6 @@ public class GridBuildingSystem : MonoBehaviour
             }
             else
             {
-                Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) * 1 / GridLayout.transform.localScale.x;
-                Vector3Int cellPos = GridLayout.LocalToCell(touchPos);
                 if(cellPos != prevPos && cellPos != new Vector3Int(prevPos.x +1, prevPos.y) && cellPos != new Vector3Int(prevPos.x -1 , prevPos.y)
                     && cellPos != new Vector3Int(prevPos.x, prevPos.y +1) && cellPos != new Vector3Int(prevPos.x, prevPos.y -1))
                 {
