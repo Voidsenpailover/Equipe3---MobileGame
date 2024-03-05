@@ -169,6 +169,7 @@ public class GridBuildingSystem : MonoBehaviour
         temp = Instantiate(building, prevPos, Quaternion.identity).GetComponent<Building>();
         temp.Data = _turretsData[CurrentID];
         temp.transform.position = GridLayout.CellToLocalInterpolated(prevPos + new Vector3(.5f, .5f, 0f));
+        temp.GetComponent<Turret>().InitializeTurret(temp.Data);
         //FollowBuilding();
     }
     

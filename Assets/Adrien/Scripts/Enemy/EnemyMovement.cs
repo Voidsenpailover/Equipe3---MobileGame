@@ -7,14 +7,17 @@ using System;
   {
   
     [Header("Attributes")]
-    private float MoveSpeed;
+    public float MoveSpeed;
     private Rigidbody2D rb;
     private Transform target;
-    private int Point;
+    [SerializeField] private int Point;
     private float radius = 0.8f;
     private SpriteRenderer _spriteRenderer;
     private bool reachedEnd;
-    private EnemyStat EnemyStat {get; set;}
+    public float HP;
+    public bool isStunned = false;
+    public bool isBurning = false;
+    public EnemyStat EnemyStat {get; private set;}
 
     private void Start()
     {
@@ -39,7 +42,7 @@ using System;
             LevelManager.instance.GameOver();
           }
           return;
-        }
+        }else
         {
           target = LevelManager.instance.Chemin[Point];
         }
@@ -66,6 +69,7 @@ using System;
     {
       EnemyStat = enemyStat;
       MoveSpeed = enemyStat.Speed;
+      HP = enemyStat.Hits;
     }
 
   }

@@ -9,14 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57266af9ea5f5754987d0103a4b3b3f4, type: 3}
-  m_Name: Enemy-2
+  m_Script: {fileID: 11500000, guid: e1226162e3935e64eb237a4d7a21abd8, type: 3}
+  m_Name: Round-3
   m_EditorClassIdentifier: 
-  _enemyType: 1
-  _vulnerability: 0
-  _hits: 50
-  _speed: 2
-  _money: 2
-  _spriteRenderer: {fileID: 0}
-  _damage: 2
-  _canBeStunned: 1
+  _spawnGroups:
+  - _initialSpawnDelay: 0
+    _enemyType: 0
+    _numberInGroup: 0
+    _timeBetweenSpawn: 0
+  - _initialSpawnDelay: 0
+    _enemyType: 0
+    _numberInGroup: 0
+    _timeBetweenSpawn: 0
