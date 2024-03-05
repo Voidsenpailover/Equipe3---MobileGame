@@ -14,7 +14,9 @@ using System;
     private float radius = 0.8f;
     private SpriteRenderer _spriteRenderer;
     private bool reachedEnd;
-    public int HP;
+    public float HP;
+    public bool isStunned = false;
+    public bool isBurning = false;
     public EnemyStat EnemyStat {get; private set;}
 
     private void Start()
@@ -25,7 +27,7 @@ using System;
 
     private void Update()
     {
-      if (!reachedEnd && Vector2.Distance(target.position, transform.position) <= 0.01f)
+      if (!reachedEnd && Vector2.Distance(target.position, transform.position) <= 0.1f)
       {
         Point++;
         if (Point >= LevelManager.instance.Chemin.Length)

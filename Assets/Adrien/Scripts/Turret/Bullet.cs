@@ -14,6 +14,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private int range = 1;
     public TurretsData Turret;
     private float _timer;
+    private int timingStun;
     public void SetTarget(Transform _target)
     {
         target = _target;
@@ -44,7 +45,7 @@ public class Bullet : MonoBehaviour
     private void Aoe()
     {
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
-        RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, range, transform.forward, 0, 6);
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, range, transform.forward, range, LayerMask.GetMask("Enemy"));
         if(hits.Length > 0)
         {
             foreach (var hit in hits)
@@ -60,11 +61,22 @@ public class Bullet : MonoBehaviour
         
     }
 
-    private IEnumerator Stun(EnemyMovement enemy)
+    private IEnumerator Stun(EnemyMovement enemy, float dureeStun)
     {
         enemy.MoveSpeed = 0;
-        yield return new WaitForSeconds(2f);
+        enemy.isStunned = true;
+        yield return new WaitForSeconds(dureeStun + Turret.DelayBetweenAtk);
         enemy.MoveSpeed = enemy.EnemyStat.Speed;
+        if (Turret.Type == TurretType.Fulgurite)
+        {
+            yield return new WaitForSeconds(dureeStun + 1f);
+        }
+        else
+        {
+            yield return new WaitForSeconds(dureeStun + 2f);
+        }
+        enemy.isStunned = false;
+        Destroy(gameObject);
     }
 
     private void Slow(EnemyMovement enemy)
@@ -82,10 +94,12 @@ public class Bullet : MonoBehaviour
                 enemy.MoveSpeed *= 0.2f;
                 break;
         }
+        Destroy(gameObject);
     }
     
     private IEnumerator Burn(EnemyMovement enemy)
     {
+        enemy.isBurning = true;
         switch (Turret.Type)
         {
             case TurretType.Feu:
@@ -133,7 +147,8 @@ public class Bullet : MonoBehaviour
                         break;
                 }
                 break;
-        }
+        } 
+        enemy.isBurning = false;
     }
     
     
@@ -143,35 +158,111 @@ public class Bullet : MonoBehaviour
         if (other.GetComponent<EnemyMovement>())
         {
             var enemy = other.GetComponent<EnemyMovement>();
-            enemy.HP -= Turret.Damage;
+            switch (Turret.Type)
+            {
+                case TurretType.Feu:
+                    if (enemy.EnemyStat.Vulnerability == Vulnerability.Feu) enemy.HP -= Turret.Damage * 2;
+                    else enemy.HP -= Turret.Damage;
+                    break;
+                case TurretType.Eau:
+                    if(enemy.EnemyStat.Vulnerability == Vulnerability.Eau) enemy.HP -= Turret.Damage * 2;
+                    else enemy.HP -= Turret.Damage;
+                    break;
+                case TurretType.Terre:
+                    if(enemy.EnemyStat.Vulnerability == Vulnerability.Terre) enemy.HP -= Turret.Damage * 2;
+                    else enemy.HP -= Turret.Damage;
+                    timingStun = Turret.Level;
+                    break;
+                case TurretType.Vent:
+                    if(enemy.EnemyStat.Vulnerability == Vulnerability.Vent) enemy.HP -= Turret.Damage * 2;
+                    else enemy.HP -= Turret.Damage;
+                    break;
+                case TurretType.Mercure:
+                    switch (enemy.EnemyStat.Vulnerability)
+                    {
+                        case Vulnerability.Eau:
+                            enemy.HP -= Turret.Damage * 2;
+                            break;
+                        case Vulnerability.Feu:
+                            enemy.HP -= Turret.Damage * 0.5f;
+                            break;
+                        default:
+                            enemy.HP -= Turret.Damage;
+                            break;
+                    }
+                    break;
+                case TurretType.Phosphore:
+                    switch (enemy.EnemyStat.Vulnerability)
+                    {
+                        case Vulnerability.Feu:
+                            enemy.HP -= Turret.Damage * 2;
+                            break;
+                        case Vulnerability.Terre:
+                            enemy.HP -= Turret.Damage * 0.5f;
+                            break;
+                        default:
+                            enemy.HP -= Turret.Damage;
+                            break;
+                    }
+                    break;
+                case TurretType.Fulgurite:
+                    switch (enemy.EnemyStat.Vulnerability)
+                    {
+                        case Vulnerability.Terre:
+                            enemy.HP -= Turret.Damage * 2;
+                            break;
+                        case Vulnerability.Vent:
+                            enemy.HP -= Turret.Damage * 0.5f;
+                            break;
+                        default:
+                            enemy.HP -= Turret.Damage;
+                            break;
+                    }
+                    break;
+                case TurretType.Pyrite:
+                    switch (enemy.EnemyStat.Vulnerability)
+                    {
+                        case Vulnerability.Feu:
+                            enemy.HP -= Turret.Damage * 2;
+                            break;
+                        case Vulnerability.Terre:
+                            enemy.HP -= Turret.Damage * 0.5f;
+                            break;
+                        default:
+                            enemy.HP -= Turret.Damage;
+                            break;
+                    }
+                    break;
+                default:
+                    enemy.HP -= Turret.Damage;
+                    break;
+            }
+            
             if (enemy.HP <= 0)
             {
                 EnemySpawner._instance.EnemyReachedEndOfPath();
                 Destroy(enemy.gameObject);
+                Destroy(gameObject);
             }
+            
             switch (Turret.AtkType)
             { 
                 case TurretAtk.Stun:
-                    if (enemy.MoveSpeed == 0) return;
-                    StartCoroutine(Stun(enemy)); 
+                    if (!enemy.EnemyStat.CanBeStunned || enemy.isStunned){Destroy(gameObject);}
+                    StartCoroutine(Stun(enemy, timingStun)); 
                     break;
                 case TurretAtk.Explosion:
                     Aoe();
                     break;
                 case TurretAtk.Slow: 
-                    if(enemy.MoveSpeed < enemy.EnemyStat.Speed) return;
+                    if(enemy.MoveSpeed < enemy.EnemyStat.Speed) {Destroy(gameObject);}
                     Slow(enemy);
                     break;
                 case TurretAtk.Burn:
+                    if(enemy.EnemyStat.Vulnerability == Vulnerability.Terre || enemy.isBurning) return;
                     StartCoroutine(Burn(enemy));
                     break;
             }
-
-            if (other.GetComponent<EnemyMovement>().HP <= 0)
-            {
-                Destroy(other.gameObject);
-            }
-            Destroy(gameObject);
         }
     }
 }

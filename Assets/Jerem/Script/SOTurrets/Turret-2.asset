@@ -16,10 +16,10 @@ MonoBehaviour:
   _description: qsd
   _cost: 0
   _damage: 1
-  _delayBetweenAtk: 5
-  _radAtk: 5
+  _delayBetweenAtk: 0.5
+  _radAtk: 20
   _AtkSFX: {fileID: 0}
   _sprite: {fileID: 21300000, guid: 4b3cd331573566a4c8d27a230b3e1796, type: 3}
-  _type: 2
+  _type: 1
   _level: 1
   _atkType: 1

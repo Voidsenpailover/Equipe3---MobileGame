@@ -11,13 +11,13 @@ public enum TurretAtk
 public enum TurretType
 {
    Feu,
-   Eau,
-   Air,
    Terre,
+   Eau,
+   Vent,
    Mercure,
    Phosphore,
    Pyrite,
    Sel,
    Soufre,
-   Foudre,
+   Fulgurite,
 }

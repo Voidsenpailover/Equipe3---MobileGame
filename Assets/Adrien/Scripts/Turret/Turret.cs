@@ -44,7 +44,7 @@ using UnityEngine;
         }
         private void FindTarget()
         {
-            RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, range, transform.forward, 0);
+            RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, range, transform.forward, range, LayerMask.GetMask("Enemy"));
             if (hits.Length > 0)
             {
                 target = hits[0].transform;
