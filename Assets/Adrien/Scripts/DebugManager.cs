@@ -19,5 +19,10 @@ using UnityEngine;
                 LevelManager.instance.RestartGame();
             }
         }
-#endif
+
+    public void LateUpdate()
+    {
+        LevelManager.instance.StartGame();
     }
+#endif
+}

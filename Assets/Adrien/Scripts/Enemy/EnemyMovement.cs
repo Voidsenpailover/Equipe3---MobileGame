@@ -55,8 +55,11 @@ using System;
   
     private void OnDrawGizmos()
     {
-      Handles.color = Color.red;
+#if UNITY_EDITOR
+
+        Handles.color = Color.red;
       Handles.DrawWireDisc(transform.position, transform.forward, radius);
+#endif
     }
   
     public void InitializeEnemies(EnemyStat enemyStat)
