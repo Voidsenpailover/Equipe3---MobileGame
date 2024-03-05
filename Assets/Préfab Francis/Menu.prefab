@@ -787,7 +787,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   creditScreen: {fileID: 5450324875222931933}
   firstchooseScreen: {fileID: 3736401838556327653}
-  levelManager: {fileID: 0}
 --- !u!1 &3223931618988958503
 GameObject:
   m_ObjectHideFlags: 0
@@ -938,7 +937,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6938366099175328621
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1515,7 +1514,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &696376174076763982
 RectTransform:
   m_ObjectHideFlags: 0

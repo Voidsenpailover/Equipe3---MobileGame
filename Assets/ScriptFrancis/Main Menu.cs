@@ -8,11 +8,11 @@ public class MainMenu : MonoBehaviour
     // Start is called before the first frame update
     public GameObject creditScreen;
     public GameObject firstchooseScreen;
-    public LevelManager levelManager;
+    //public LevelManager levelManager;
     public void StartGame()
     {
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);/*En cas de Scene Manager*/
-        //SceneManager.LoadSceneAsync(1);/*Copier coller d'un morceau de code dans le script Level Manager*/
+        SceneManager.LoadSceneAsync(1);/*Copier coller d'un morceau de code dans le script Level Manager*/
 
     }
     public void ShowCredit()
