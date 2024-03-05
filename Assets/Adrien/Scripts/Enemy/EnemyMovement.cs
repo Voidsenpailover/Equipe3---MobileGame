@@ -27,7 +27,7 @@ using System;
 
     private void Update()
     {
-      if (!reachedEnd && Vector2.Distance(target.position, transform.position) <= 0.1f)
+      if (!reachedEnd && Vector2.Distance(target.position, transform.position) <= 0.0001f)
       {
         Point++;
         if (Point >= LevelManager.instance.Chemin.Length)
@@ -58,8 +58,11 @@ using System;
   
     private void OnDrawGizmos()
     {
-      Handles.color = Color.red;
+#if UNITY_EDITOR
+
+        Handles.color = Color.red;
       Handles.DrawWireDisc(transform.position, transform.forward, radius);
+#endif
     }
   
     public void InitializeEnemies(EnemyStat enemyStat)

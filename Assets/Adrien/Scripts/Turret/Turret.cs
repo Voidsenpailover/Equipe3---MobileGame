@@ -58,9 +58,11 @@ using UnityEngine;
 
         private void OnDrawGizmos()
         {
-            Handles.color = Color.red;
+#if UNITY_EDITOR
+        Handles.color = Color.red;
             Handles.DrawWireDisc(transform.position, transform.forward, range);
-        }
+#endif
+    }
 
         private void Shoot(TurretsData turret)
         {
