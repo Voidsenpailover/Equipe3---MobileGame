@@ -213,6 +213,23 @@ public class GridBuildingSystem : MonoBehaviour
     }
 
     #endregion
+
+    #region Brain For Points
+
+    private void DetectTileNear(Vector3Int cellpos)
+    {
+        TileBase tile = mainTilemap.GetTile(cellpos);
+        if(tile == mainTilemap.GetTile(new Vector3Int(cellpos.x + 1, cellpos.y, cellpos.z)))
+        {
+
+        }
+    }
+
+    private void CompareTileType(TileBase tile, TileBase tile2, TileType type)
+    {
+
+    }
+    #endregion
 }
 public enum TileType
 {
