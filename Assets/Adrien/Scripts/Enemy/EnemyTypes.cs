@@ -1,0 +1,41 @@
+public enum EnemyTypes
+{
+     Robot1,
+     Robot2,
+     Robot3,
+     RobotFeu,
+     RobotTerre,
+     RobotEau,
+     RobotVent,
+     Mechant1,
+     Mechant2,
+     Mechant3,
+     MechantFeu,
+     MechantTerre,
+     MechantEau,
+     MechantVent,
+     Demon1,
+     Demon2,
+     Demon3,
+     DemonFeu,
+     DemonTerre,
+     DemonEau,
+     DemonVent,
+     BossFeu,
+     BossTerre,
+     BossEau,
+     BossVent,
+     BossFeu2,
+     BossTerre2,
+     BossEau2,
+     BossVent2,
+}
+
+public enum Vulnerability
+{
+    Feu,
+    Eau,
+    Terre,
+    Vent,
+    None,
+}
