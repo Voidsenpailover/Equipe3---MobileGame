@@ -13,6 +13,7 @@ public class RessourceTileDataBase: MonoBehaviour
     private TileBase forwardTileBase;
     private TileBase blankTileBase;
     private TileBase turnTileBase;
+    private TileBase interTileBase;
 
     //Lists
     private List<TileBase> roadTile;
@@ -28,24 +29,27 @@ public class RessourceTileDataBase: MonoBehaviour
     public TileBase ForwardTileBase { get => forwardTileBase; set => forwardTileBase = value; }
     public TileBase BlankTileBase { get => blankTileBase; set => blankTileBase = value; }
     public TileBase TurnTileBase { get => turnTileBase; set => turnTileBase = value; }
+    public TileBase InterTileBase { get => interTileBase; set => interTileBase = value; }
 
     void Awake()
     {
-        string _roadTilePath = @"Palette\RoadPalette";
+        string _roadTilePath = @"Palette\RoadPalette\";
 
-        ForwardTileBase = Resources.Load<TileBase>(_roadTilePath + "MainRoad(blank)");
-        BlankTileBase = Resources.Load<TileBase>(_roadTilePath + "MainRoadForward(blank)");
+        BlankTileBase = Resources.Load<TileBase>(_roadTilePath + "MainRoad(blank)");
+        ForwardTileBase = Resources.Load<TileBase>(_roadTilePath + "MainRoadForward(blank)");
         TurnTileBase = Resources.Load<TileBase>(_roadTilePath + "MainRoadTurn(blank)");
+        InterTileBase = Resources.Load<TileBase>(_roadTilePath + "MainRoadInter(blank)");
+        Debug.Log(ForwardTileBase);
 
-        RoadTile = new List<TileBase>
+        RoadTile = new List<TileBase>(3)
         {
-            ForwardTileBase, BlankTileBase, TurnTileBase
+            BlankTileBase, ForwardTileBase, TurnTileBase, InterTileBase
         };
 
         string _selectionPath = @"PaletteTest\";
         SelectionTile = new List<TileBase>
         {
-                Resources.Load<TileBase>(_selectionPath + "SquareG")        
+                Resources.Load<TileBase>(_selectionPath + "SquareG")
         };
 
         string _floorPath = @"PaletteTest\";

@@ -1,13 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
 
 public class GridBuildingSystem : MonoBehaviour
 {
-    //Instanciate
+    //Instantiate
     [SerializeField] public static GridBuildingSystem current;
 
     //Events
@@ -28,6 +29,9 @@ public class GridBuildingSystem : MonoBehaviour
     private Building temp;
     private Vector3Int prevPos;
     private BoundsInt prevArea;
+
+    private Vector3Int spawningPos;
+    [SerializeField] private Transform spawningPosT;
 
     //Turrets Data
     private int _currentID;
@@ -55,7 +59,39 @@ public class GridBuildingSystem : MonoBehaviour
         tileBases.Add(TileType.Road, _sourceTileData.RoadTile);
         //tileBases.Add(TileType.Red, Resources.Load<TileBase>(_tilePath + "SquareR"));
         _canSelect = true;
-        
+
+        spawningPos = GridLayout.LocalToCell(spawningPosT.position);
+
+        Vector3Int comparePos = Vector3Int.zero;
+        Vector3Int cellpos = spawningPos;
+        Vector3Int tempPos = Vector3Int.zero;
+        while (comparePos != cellpos)
+        {
+            tempPos = DetectTileNear(cellpos, comparePos, 0);
+            if(tempPos == cellpos)
+            {
+                tempPos = DetectTileNear(cellpos, comparePos, 3);
+                if (tempPos != cellpos)
+                {
+                    Vector3Int convertPosForInter = new Vector3Int(tempPos.x - cellpos.x, tempPos.y - cellpos.y, tempPos.z - cellpos.z);
+                    comparePos = tempPos;
+                    tempPos += convertPosForInter;
+                    cellpos = tempPos;
+                    Debug.Log("OVERLAP" + " " + cellpos);
+                    continue;
+                }
+                tempPos = DetectTileNear(cellpos, comparePos, 2);
+                if( tempPos != cellpos)
+                {
+                    //Instantiate POINT
+                    Debug.Log("POINT" +" "+ tempPos);
+                }
+            }
+            comparePos = cellpos;
+            cellpos = tempPos;
+            Debug.Log("Coord" + " " + cellpos);
+        }
+        //Instantiate Final Point
     }
 
     private void Update()
@@ -215,19 +251,53 @@ public class GridBuildingSystem : MonoBehaviour
     #endregion
 
     #region Brain For Points
-
-    private void DetectTileNear(Vector3Int cellpos)
+    //DetectIfTileNearIsATurn
+    private Vector3Int DetectTileNear(Vector3Int cellpos, Vector3Int prevpos, int id)
     {
         TileBase tile = mainTilemap.GetTile(cellpos);
-        if(tile == mainTilemap.GetTile(new Vector3Int(cellpos.x + 1, cellpos.y, cellpos.z)))
+        Vector3Int temp;
+        temp = new Vector3Int(cellpos.x + 1, cellpos.y, cellpos.z);
+        if (CompareTileTypeID(mainTilemap.GetTile(temp),TileType.Road, id))
         {
-
+            if(temp != prevpos)
+            {
+                return temp;
+            }
         }
+        temp = new Vector3Int(cellpos.x - 1, cellpos.y, cellpos.z);
+        if (CompareTileTypeID(mainTilemap.GetTile(temp), TileType.Road, id))
+        {
+            if (temp != prevpos)
+            {
+                return temp;
+            }
+        }
+        temp = new Vector3Int(cellpos.x, cellpos.y + 1, cellpos.z);
+        if (CompareTileTypeID(mainTilemap.GetTile(temp), TileType.Road, id))
+        {
+            if (temp != prevpos)
+            {
+                return temp;
+            }
+        }
+        temp = new Vector3Int(cellpos.x, cellpos.y - 1, cellpos.z);
+        if (CompareTileTypeID(mainTilemap.GetTile(temp), TileType.Road, id))
+        {
+            if (temp != prevpos)
+            {
+                return temp;
+            }
+        }
+        return cellpos;
     }
-
-    private void CompareTileType(TileBase tile, TileBase tile2, TileType type)
+    //Compare Tile with ID
+    private bool CompareTileTypeID(TileBase tile, TileType type, int typeID)
     {
-
+        if(tile == tileBases[type][typeID])
+        {
+            return true;
+        }
+        return false;
     }
     #endregion
 }
