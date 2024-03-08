@@ -9,12 +9,18 @@ using UnityEngine.InputSystem.Interactions;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private CapsuleCollider2D collider;
     [SerializeField] private float bulletSpeed = 5f;
     private Transform target;
+    [Header("Taille d'explosion")]
     [SerializeField] private int range = 1;
     public TurretsData Turret;
     private float _timer;
     private int timingStun;
+    private int timingBurn = 3;
+    private int burnDamage;
+    private float slowPercent;
+    
     public void SetTarget(Transform _target)
     {
         target = _target;
@@ -62,98 +68,6 @@ public class Bullet : MonoBehaviour
         }
         
     }
-
-    private IEnumerator Stun(EnemyMovement enemy, float dureeStun)
-    {
-        enemy.MoveSpeed = 0;
-        enemy.isStunned = true;
-        yield return new WaitForSeconds(dureeStun + Turret.DelayBetweenAtk);
-        enemy.MoveSpeed = enemy.EnemyStat.Speed;
-        if (Turret.Type == TurretType.Fulgurite)
-        {
-            yield return new WaitForSeconds(dureeStun + 1f);
-        }
-        else
-        {
-            yield return new WaitForSeconds(dureeStun + 2f);
-        }
-        enemy.isStunned = false;
-        Destroy(gameObject);
-    }
-
-    private void Slow(EnemyMovement enemy)
-    {
-        
-        switch (Turret.Level)
-        {
-            case 1:
-                enemy.MoveSpeed *= 0.7f;
-                break;
-            case 2:
-                enemy.MoveSpeed *= 0.5f;
-                break;
-            case 3:
-                enemy.MoveSpeed *= 0.2f;
-                break;
-        }
-        Destroy(gameObject);
-    }
-    
-    private IEnumerator Burn(EnemyMovement enemy)
-    {
-        enemy.isBurning = true;
-        switch (Turret.Type)
-        {
-            case TurretType.Feu:
-            switch (Turret.Level)
-            {
-                case 1:
-                for(var i = 0; i < 3; i++)
-                {
-                    enemy.HP -= 1;
-                    yield return new WaitForSeconds(1f);
-                }
-                break;
-                case 2:
-                    for(var i = 0; i < 3; i++)
-                    {
-                        enemy.HP -= 3;
-                        yield return new WaitForSeconds(1f);
-                    }
-                    break;
-                case 3:
-                    for(var i = 0; i < 3; i++)
-                    {
-                        enemy.HP -= 10;
-                        yield return new WaitForSeconds(1f);
-                    }
-                    break;
-            }
-            break;
-            case TurretType.Pyrite:
-                switch (Turret.Level)
-                {
-                    case 1:
-                        for(var i = 0; i < 7; i++)
-                        {
-                            enemy.HP -= 1;
-                            yield return new WaitForSeconds(1f);
-                        }
-                        break;
-                    case 2:
-                        for(var i = 0; i < 6; i++)
-                        {
-                            enemy.HP -= 3;
-                            yield return new WaitForSeconds(1f);
-                        }
-                        break;
-                }
-                break;
-        } 
-        enemy.isBurning = false;
-    }
-    
-    
     
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -165,10 +79,35 @@ public class Bullet : MonoBehaviour
                 case TurretType.Feu:
                     if (enemy.EnemyStat.Vulnerability == Vulnerability.Feu) enemy.HP -= Turret.Damage * 2;
                     else enemy.HP -= Turret.Damage;
+                    switch (Turret.Level)
+                    {
+                        case 1:
+                            burnDamage = 1;
+                            break;
+                        case 2:
+                            burnDamage = 3;
+                            break;
+                        case 3:
+                            burnDamage = 10;
+                            break;
+                    }
                     break;
                 case TurretType.Eau:
                     if(enemy.EnemyStat.Vulnerability == Vulnerability.Eau) enemy.HP -= Turret.Damage * 2;
                     else enemy.HP -= Turret.Damage;
+                    
+                    switch(Turret.Level)
+                    {
+                        case 1:
+                            slowPercent = 0.2f;
+                            break;
+                        case 2:
+                            slowPercent = 0.5f;
+                            break;
+                        case 3:
+                            slowPercent = 0.7f;
+                            break;
+                    }
                     break;
                 case TurretType.Terre:
                     if(enemy.EnemyStat.Vulnerability == Vulnerability.Terre) enemy.HP -= Turret.Damage * 2;
@@ -193,20 +132,6 @@ public class Bullet : MonoBehaviour
                             break;
                     }
                     break;
-                case TurretType.Phosphore:
-                    switch (enemy.EnemyStat.Vulnerability)
-                    {
-                        case Vulnerability.Feu:
-                            enemy.HP -= Turret.Damage * 2;
-                            break;
-                        case Vulnerability.Terre:
-                            enemy.HP -= Turret.Damage * 0.5f;
-                            break;
-                        default:
-                            enemy.HP -= Turret.Damage;
-                            break;
-                    }
-                    break;
                 case TurretType.Fulgurite:
                     switch (enemy.EnemyStat.Vulnerability)
                     {
@@ -220,6 +145,7 @@ public class Bullet : MonoBehaviour
                             enemy.HP -= Turret.Damage;
                             break;
                     }
+                    timingStun = Turret.Level + 1;
                     break;
                 case TurretType.Pyrite:
                     switch (enemy.EnemyStat.Vulnerability)
@@ -234,6 +160,16 @@ public class Bullet : MonoBehaviour
                             enemy.HP -= Turret.Damage;
                             break;
                     }
+
+                    switch (Turret.Level)
+                    {
+                        case 1:
+                            burnDamage = 1;
+                            break;
+                        case 2:
+                            burnDamage = 3;
+                            break;
+                    }
                     break;
                 default:
                     enemy.HP -= Turret.Damage;
@@ -243,6 +179,7 @@ public class Bullet : MonoBehaviour
             if (enemy.HP <= 0)
             {
                 EnemySpawner._instance.EnemyReachedEndOfPath();
+                LevelManager.instance.money += enemy.EnemyStat.Money;
                 Destroy(enemy.gameObject);
                 Destroy(gameObject);
             }
@@ -250,21 +187,21 @@ public class Bullet : MonoBehaviour
             switch (Turret.AtkType)
             { 
                 case TurretAtk.Stun:
-                    if (!enemy.EnemyStat.CanBeStunned || enemy.isStunned){Destroy(gameObject);}
-                    StartCoroutine(Stun(enemy, timingStun)); 
+                    if (!enemy.EnemyStat.CanBeStunned){Destroy(gameObject);}
+                    enemy.ApplyStun(timingStun);
                     break;
                 case TurretAtk.Explosion:
                     Aoe();
-                    break;
+                    break;  
                 case TurretAtk.Slow: 
-                    if(enemy.MoveSpeed < enemy.EnemyStat.Speed) {Destroy(gameObject);}
-                    Slow(enemy);
+                    enemy.ApplySlow(3, slowPercent);
                     break;
                 case TurretAtk.Burn:
-                    if(enemy.EnemyStat.Vulnerability == Vulnerability.Terre || enemy.isBurning) return;
-                    StartCoroutine(Burn(enemy));
+                    if(enemy.EnemyStat.Vulnerability == Vulnerability.Terre) return;
+                    enemy.ApplyBurn(timingBurn, burnDamage);
                     break;
             }
+            Destroy(gameObject);
         }
     }
 }

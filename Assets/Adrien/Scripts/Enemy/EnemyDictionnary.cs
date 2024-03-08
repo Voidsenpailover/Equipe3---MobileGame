@@ -4,6 +4,7 @@ using UnityEngine;
    public class EnemyDictionnary : MonoBehaviour
    {
       public static EnemyDictionnary current;
+      public static Dictionary<EnemyTypes, EnemyStat> _enemy = new Dictionary<EnemyTypes, EnemyStat>();
       private static bool _initialized;
       private static void Initialize()
       {

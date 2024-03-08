@@ -1,13 +1,14 @@
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
     public class Turret : MonoBehaviour
     {
         [SerializeField] private Transform gun;
-        [SerializeField] private float range = 4f;
+        private float range = 4f;
         private Transform target;
-        private float timeBetweenShots;
-        [SerializeField] private float BulletPerSecond = 1f; 
+        private float timeBetweenShots; 
+        private float BulletPerSecond = 1f; 
         [SerializeField] private GameObject bulletPrefab;
 
         private TurretsData turret {get; set;}
@@ -51,6 +52,7 @@ using UnityEngine;
             }
         }
 
+
         private bool CheckIfInRange()
         {
             return Vector2.Distance(target.position, transform.position) <= range;
@@ -64,11 +66,11 @@ using UnityEngine;
 #endif
     }
 
-        private void Shoot(TurretsData turret)
+        private void Shoot(TurretsData _turret)
         {
-            var bullet = Instantiate(bulletPrefab, gun.transform.position, Quaternion.identity);
+            var bullet = Instantiate(turret.AtkSFX, gun.transform.position, Quaternion.identity);
             var bulletScript = bullet.GetComponent<Bullet>();
-            bulletScript.Turret = turret;
+            bulletScript.Turret = _turret;
             bulletScript.SetTarget(target);
         }
         public void InitializeTurret(TurretsData data)
@@ -77,4 +79,5 @@ using UnityEngine;
             range = data.RadAtk;
             BulletPerSecond = data.DelayBetweenAtk;
         }
+        
     }

@@ -11,7 +11,7 @@ public class LevelManager : MonoBehaviour
         static public event Action OnVictory;
     
         public int HP = 5;
-        public int _money;
+        public int money;
         public enum GameState
         {
             MainMenu,
