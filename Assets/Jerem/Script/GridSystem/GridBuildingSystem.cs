@@ -15,6 +15,9 @@ public class GridBuildingSystem : MonoBehaviour
     public static event Action<Vector3> OnTurretMenuActive;
     public static event Action OnTurretMenuDeactivated;
 
+    public static event Action<Vector3Int> OnPointCreated;
+    public static event Action OnRoadEnd;
+
     //TileMaps
     [SerializeField] private GridLayout gridLayout;
     [SerializeField] Tilemap mainTilemap;
@@ -65,6 +68,7 @@ public class GridBuildingSystem : MonoBehaviour
         Vector3Int comparePos = Vector3Int.zero;
         Vector3Int cellpos = spawningPos;
         Vector3Int tempPos = Vector3Int.zero;
+        OnPointCreated?.Invoke(cellpos);
         while (comparePos != cellpos)
         {
             tempPos = DetectTileNear(cellpos, comparePos, 0);
@@ -84,6 +88,7 @@ public class GridBuildingSystem : MonoBehaviour
                 if( tempPos != cellpos)
                 {
                     //Instantiate POINT
+                    OnPointCreated?.Invoke(tempPos);
                     Debug.Log("POINT" +" "+ tempPos);
                 }
             }
@@ -91,7 +96,9 @@ public class GridBuildingSystem : MonoBehaviour
             cellpos = tempPos;
             Debug.Log("Coord" + " " + cellpos);
         }
-        //Instantiate Final Point
+        OnPointCreated?.Invoke(cellpos);
+        OnRoadEnd?.Invoke();
+
     }
 
     private void Update()
