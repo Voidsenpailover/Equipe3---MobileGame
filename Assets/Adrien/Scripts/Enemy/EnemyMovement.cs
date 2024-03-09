@@ -27,7 +27,7 @@ using System;
 
     private void Update()
     {
-      if (!reachedEnd && Vector2.Distance(target.position, transform.position) <= 0.0001f)
+      if (!reachedEnd && Vector2.Distance(target.position, transform.position) <= 0.01f)
       {
         Point++;
         if (Point >= LevelManager.instance.Chemin.Length)

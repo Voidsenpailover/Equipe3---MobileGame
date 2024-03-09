@@ -194,6 +194,9 @@ public class GridBuildingSystem : MonoBehaviour
         temp.Data = _turretsData[CurrentID];
         temp.transform.position = GridLayout.CellToLocalInterpolated(prevPos + new Vector3(.5f, .5f, 0f));
         temp.GetComponent<Turret>().InitializeTurret(temp.Data);
+        mainTilemap.SetTile(gridLayout.WorldToCell(temp.transform.position), tileBases[TileType.Empty][0]);
+        OnTurretMenuDeactivated?.Invoke();
+        _canSelect = true;
     }
     
     private void ClearArea()
