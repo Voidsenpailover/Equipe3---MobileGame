@@ -9,7 +9,6 @@ using UnityEngine.InputSystem.Interactions;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private CapsuleCollider2D collider;
     [SerializeField] private float bulletSpeed = 5f;
     private Transform target;
     [Header("Taille d'explosion")]
@@ -20,6 +19,9 @@ public class Bullet : MonoBehaviour
     private int timingBurn = 3;
     private int burnDamage;
     private float slowPercent;
+    
+    public static event Action OnMoneyChanged;
+    
     
     public void SetTarget(Transform _target)
     {
@@ -180,6 +182,7 @@ public class Bullet : MonoBehaviour
             {
                 EnemySpawner._instance.EnemyReachedEndOfPath();
                 LevelManager.instance.money += enemy.EnemyStat.Money;
+                OnMoneyChanged?.Invoke();
                 Destroy(enemy.gameObject);
                 Destroy(gameObject);
             }

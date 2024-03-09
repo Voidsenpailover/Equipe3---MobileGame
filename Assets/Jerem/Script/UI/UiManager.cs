@@ -14,14 +14,13 @@ public class UiManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI _healthText;
     void Start()
     {
-        GridBuildingSystem.OnTurretMenuActive += SetTurretMenu;
-        GridBuildingSystem.OnTurretMenuDeactivated += UnsetTurretMenu;
         _waveText.text =  EnemySpawner._instance._currentRoundIndex.ToString();
         _maxWaveText.text = EnemySpawner._instance._rounds.Count.ToString();
         _moneyText.text = LevelManager.instance.money.ToString();
         _healthText.text = LevelManager.instance.HP.ToString();
     }
 
+    
     private void UnsetTurretMenu()
     {
         _turretMenu.position = Vector3.zero;
@@ -32,10 +31,35 @@ public class UiManager : MonoBehaviour
     {
         _turretMenu.position = pos;
         _menuRotationPoint.SetActive(true);
+    }   
+    
+    private void UpdateWaveText()
+    {
+        _waveText.text =  EnemySpawner._instance._currentRoundIndex.ToString();
+    }
+    private void UpdateMoneyText()
+    {
+        _moneyText.text = LevelManager.instance.money.ToString();
+    }
+    private void UpdateHealthText()
+    {
+        _healthText.text = LevelManager.instance.HP.ToString();
+    }
+    private void OnEnable()
+    {
+        GridBuildingSystem.OnTurretMenuActive += SetTurretMenu;
+        GridBuildingSystem.OnTurretMenuDeactivated += UnsetTurretMenu;
+        EnemySpawner.OnWaveChanged += UpdateWaveText;
+        Bullet.OnMoneyChanged += UpdateMoneyText;
+        EnemyMovement.OnHealthChanged += UpdateHealthText;
     }
 
     private void OnDestroy()
     {
         GridBuildingSystem.OnTurretMenuActive -= SetTurretMenu;
+        GridBuildingSystem.OnTurretMenuDeactivated -= UnsetTurretMenu;
+        EnemySpawner.OnWaveChanged -= UpdateWaveText;
+        Bullet.OnMoneyChanged -= UpdateMoneyText;
+        EnemyMovement.OnHealthChanged -= UpdateHealthText;
     }
 }

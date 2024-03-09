@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -10,6 +11,8 @@ using UnityEngine;
         private float timeBetweenShots; 
         private float BulletPerSecond = 1f; 
         [SerializeField] private GameObject bulletPrefab;
+        private List<EnemyMovement> enemies;
+        
 
         private TurretsData turret {get; set;}
         
@@ -31,7 +34,22 @@ using UnityEngine;
                 timeBetweenShots += Time.deltaTime;
                 if(timeBetweenShots >= 1f / BulletPerSecond)
                 {
-                    Shoot(turret);
+                    if (turret.Type == TurretType.Phosphore)
+                    {
+                        enemies = FindObjectsOfType<EnemyMovement>().ToList();
+                        foreach (var enemy in enemies)
+                        {
+                            if (Vector2.Distance(enemy.transform.position, transform.position) <= range)
+                            {
+                                enemy.HP -= turret.Damage;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        FindTarget();
+                        Shoot(turret);
+                    }
                     timeBetweenShots = 0;
                 }
             }
@@ -51,8 +69,7 @@ using UnityEngine;
                 target = hits[0].transform;
             }
         }
-
-
+        
         private bool CheckIfInRange()
         {
             return Vector2.Distance(target.position, transform.position) <= range;

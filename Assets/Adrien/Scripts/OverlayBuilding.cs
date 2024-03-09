@@ -22,6 +22,8 @@ public class OverlayBuilding : MonoBehaviour
         _cost.text = _turretData.Cost.ToString();
     }
 
+   
+
     private void OnDestroy()
     {
         GridBuildingSystem.OnTurretMenuActivated -= SetActive;

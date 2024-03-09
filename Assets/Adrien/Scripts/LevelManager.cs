@@ -6,9 +6,10 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
     {
         public static LevelManager instance;
-        static public event Action OnGameStarted;
-        static public event Action OnGameOver;
-        static public event Action OnVictory;
+        public static event Action OnGameStarted;
+        public static event Action OnGameOver;
+        public static event Action OnVictory;
+        
     
         public int HP = 5;
         public int money;

@@ -7,7 +7,8 @@ using System.Collections;
 public class EnemyMovement : MonoBehaviour
   {
   
-    [Header("Attributes")]
+    public static event Action OnHealthChanged;
+
     public float MoveSpeed;
     private Rigidbody2D rb;
     private Transform target;
@@ -26,7 +27,7 @@ public class EnemyMovement : MonoBehaviour
     private float stunDurCooldown = 5.0f;
     private int stunCount;
     
-    public bool isBurning = false;
+    public bool isBurning;
     private Coroutine burnCoroutine;
     private float burnSeconds;
     private int burnDamage;
@@ -64,6 +65,7 @@ public class EnemyMovement : MonoBehaviour
         {
           reachedEnd = true;
           LevelManager.instance.HP -= EnemyStat.Damage;
+          OnHealthChanged?.Invoke();
           //AudioManager.instance.PlaySound(AudioType.Attaque, AudioSourceType.SFX);
           EnemySpawner._instance.EnemyReachedEndOfPath();
           Destroy(gameObject);
@@ -261,7 +263,6 @@ public class EnemyMovement : MonoBehaviour
       while (slowSeconds > 0) {
         MoveSpeed *= slowPercent;
         slowSeconds = total - (Time.time - start);
-        Debug.Log(slowSeconds);
         yield return new WaitForSeconds(slowSeconds);
       }
       
