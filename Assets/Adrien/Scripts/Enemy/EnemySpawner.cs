@@ -7,8 +7,8 @@ public class EnemySpawner : MonoBehaviour
     {
         public GameObject enemyPrefab;
         private SpriteRenderer _spriteRenderer; 
-        [SerializeField] private List<RoundProperties> _rounds; 
-        [SerializeField] private int _currentRoundIndex;
+        public List<RoundProperties> _rounds; 
+        public int _currentRoundIndex;
         [SerializeField] private RoundProperties _curRound;
         [SerializeField] private float _timer;
         [SerializeField] private bool _isRoundOver;

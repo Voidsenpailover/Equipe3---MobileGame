@@ -102,7 +102,8 @@ MonoBehaviour:
   MoveSpeed: 0
   Point: 0
   HP: 0
-  isStunned: 0
+  stunned: 0
+  isBurning: 0
 --- !u!50 &5046722912952151004
 Rigidbody2D:
   serializedVersion: 4

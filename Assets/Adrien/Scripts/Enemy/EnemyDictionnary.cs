@@ -3,8 +3,8 @@ using UnityEngine;
 
    public class EnemyDictionnary : MonoBehaviour
    {
-    private static Dictionary<EnemyTypes, EnemyStat> _enemy = new Dictionary<EnemyTypes, EnemyStat>();
-    public static EnemyDictionnary current;
+      public static EnemyDictionnary current;
+      public static Dictionary<EnemyTypes, EnemyStat> _enemy = new Dictionary<EnemyTypes, EnemyStat>();
       private static bool _initialized;
       private static void Initialize()
       {

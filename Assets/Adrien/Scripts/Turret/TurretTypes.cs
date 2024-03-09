@@ -6,6 +6,7 @@ public enum TurretAtk
    Stun,
    Burn,
    Explosion,
+   None,
 }
 
 public enum TurretType
