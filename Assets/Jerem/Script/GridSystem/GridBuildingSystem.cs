@@ -10,6 +10,7 @@ public class GridBuildingSystem : MonoBehaviour
     [SerializeField] public static GridBuildingSystem current;
 
     public static event Action<Vector3> OnTurretMenuActive;
+    public static event Action OnTurretMenuActivated;
     public static event Action OnTurretMenuDeactivated;
 
     [SerializeField] private GridLayout gridLayout;
@@ -71,6 +72,7 @@ public class GridBuildingSystem : MonoBehaviour
                 test = tileBases[TileType.Green];
                 tempTilemap.SetTile(cellPos, test);
                 OnTurretMenuActive?.Invoke(GridLayout.CellToLocalInterpolated(cellPos + new Vector3(.5f, .5f, 0f)));
+                OnTurretMenuActivated?.Invoke();
                 
                 Debug.Log(test);
                 /*

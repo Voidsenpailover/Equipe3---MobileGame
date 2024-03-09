@@ -3127,6 +3127,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _turretMenu: {fileID: 2014181226}
   _menuRotationPoint: {fileID: 806115096}
+  _waveText: {fileID: 0}
+  _maxWaveText: {fileID: 0}
+  _moneyText: {fileID: 0}
+  _healthText: {fileID: 0}
 --- !u!4 &1138939575
 Transform:
   m_ObjectHideFlags: 0

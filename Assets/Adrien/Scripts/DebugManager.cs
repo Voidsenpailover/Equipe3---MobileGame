@@ -4,7 +4,6 @@ using UnityEngine;
     { 
         [Header("Touches Debug")]
         [SerializeField] private KeyCode StartGame;
-        [SerializeField] private KeyCode EndGame;
     
     #if UNITY_EDITOR    
         private void Update()
@@ -13,11 +12,7 @@ using UnityEngine;
             {
                 LevelManager.instance.StartGame();
             }
-        
-            if (Input.GetKeyDown(EndGame))
-            {
-                LevelManager.instance.RestartGame();
-            }
+            
         }
 
         public void LauncheGame()
