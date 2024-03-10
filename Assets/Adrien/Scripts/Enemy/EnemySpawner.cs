@@ -1,19 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 
 public class EnemySpawner : MonoBehaviour
     {
         public GameObject enemyPrefab;
         private SpriteRenderer _spriteRenderer; 
-        [SerializeField] private List<RoundProperties> _rounds; 
-        [SerializeField] private int _currentRoundIndex;
+        public List<RoundProperties> _rounds; 
+        public int _currentRoundIndex;
         [SerializeField] private RoundProperties _curRound;
         [SerializeField] private float _timer;
         [SerializeField] private bool _isRoundOver;
         [SerializeField] private int _enemiesLeft;
         public static EnemySpawner _instance;
+        
+        public static event Action OnWaveChanged;
         private void Awake()
         {
             _instance = this;
@@ -36,6 +39,7 @@ public class EnemySpawner : MonoBehaviour
             if(_timer > 10f)
             {
                 _timer = 0;
+                OnWaveChanged?.Invoke();
                 StartRound();  
                 _isRoundOver = false;
             }

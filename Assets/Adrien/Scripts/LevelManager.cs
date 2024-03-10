@@ -6,12 +6,13 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
     {
         public static LevelManager instance;
-        static public event Action OnGameStarted;
-        static public event Action OnGameOver;
-        static public event Action OnVictory;
+        public static event Action OnGameStarted;
+        public static event Action OnGameOver;
+        public static event Action OnVictory;
+        
     
         public int HP = 5;
-        public int _money;
+        public int money;
         public enum GameState
         {
             MainMenu,
@@ -52,14 +53,15 @@ public class LevelManager : MonoBehaviour
             CurrentState = GameState.GameOver;
             OnGameOver?.Invoke();
         }
-    
-        public void RestartGame()
-        {
-            SceneManager.LoadSceneAsync(1);
-        }
+        
         public void Victory()
         {
             CurrentState = GameState.Victory;
             OnVictory?.Invoke();
+        }
+
+        public void LoadMainScene()
+        {
+            SceneManager.LoadScene(1);
         }
     }
