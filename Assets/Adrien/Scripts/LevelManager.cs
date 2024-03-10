@@ -29,9 +29,10 @@ public class LevelManager : MonoBehaviour
         {
             instance = this;
             Application.targetFrameRate = 60;
+            GridBuildingSystem.OnRoadEnd += GridBuildingSystem_OnRoadEnd;
         }
-    
-        private void Start()
+
+        private void GridBuildingSystem_OnRoadEnd()
         {
             var parent = GameObject.Find("Chemin");
             Chemin = new Transform[parent.transform.childCount];
