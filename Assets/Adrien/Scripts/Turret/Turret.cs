@@ -12,6 +12,7 @@ using UnityEngine;
         private float BulletPerSecond = 1f; 
         [SerializeField] private GameObject bulletPrefab;
         private List<EnemyMovement> enemies;
+        private float turretDamage;
         
 
         private TurretsData turret {get; set;}
@@ -85,14 +86,16 @@ using UnityEngine;
 
         private void Shoot(TurretsData _turret)
         {
-            var bullet = Instantiate(turret.AtkSFX, gun.transform.position, Quaternion.identity);
+            var bullet = Instantiate(bulletPrefab, gun.transform.position, Quaternion.identity);
             var bulletScript = bullet.GetComponent<Bullet>();
             bulletScript.Turret = _turret;
+            bulletScript.localDamage = turretDamage;
             bulletScript.SetTarget(target);
         }
         public void InitializeTurret(TurretsData data)
         {
             turret = data;
+            turretDamage = data.Damage;
             range = data.RadAtk;
             BulletPerSecond = data.DelayBetweenAtk;
         }
