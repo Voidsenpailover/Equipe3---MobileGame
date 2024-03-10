@@ -14,6 +14,7 @@ public class GridBuildingSystem : MonoBehaviour
     //Events
     public static event Action<Vector3> OnTurretMenuActive;
     public static event Action OnTurretMenuDeactivated;
+    public static event Action OnTurretMenuActivated;
 
     public static event Action<Vector3Int> OnPointCreated;
     public static event Action OnRoadEnd;
