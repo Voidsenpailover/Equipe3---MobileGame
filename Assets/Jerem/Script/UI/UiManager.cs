@@ -11,6 +11,19 @@ public class UiManager : MonoBehaviour
     {
         GridBuildingSystem.OnTurretMenuActive += SetTurretMenu;
         GridBuildingSystem.OnTurretMenuDeactivated += UnsetTurretMenu;
+        GridBuildingSystem.OnFusionMenuActive += SetFusionMenu;
+        GridBuildingSystem.OnFusionMenuDeactivated += UnsetFusionMenu;
+    }
+
+
+    private void SetFusionMenu(Vector3 pos)
+    {
+        Debug.Log("Tour mon bg");
+    }
+
+    private void UnsetFusionMenu()
+    {
+        throw new System.NotImplementedException();
     }
 
     private void SetTurretMenu(Vector3 pos)

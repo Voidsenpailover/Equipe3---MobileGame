@@ -49,7 +49,8 @@ public class RessourceTileDataBase: MonoBehaviour
         string _selectionPath = @"PaletteTest\";
         SelectionTile = new List<TileBase>
         {
-                Resources.Load<TileBase>(_selectionPath + "SquareG")
+                Resources.Load<TileBase>(_selectionPath + "SquareG"),
+                Resources.Load<TileBase>(_selectionPath + "SquareB")
         };
 
         string _floorPath = @"PaletteTest\";
