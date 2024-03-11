@@ -127,6 +127,7 @@ GameObject:
   - component: {fileID: 1662181604233474404}
   - component: {fileID: 612022793687242925}
   - component: {fileID: 7038349780276964821}
+  - component: {fileID: 7112199037055298303}
   m_Layer: 0
   m_Name: FX_tower_apparition
   m_TagString: Untagged
@@ -4980,6 +4981,18 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!210 &7112199037055298303
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4882041698799904689}
+  m_Enabled: 1
+  m_SortingLayerID: -125046261
+  m_SortingLayer: 4
+  m_SortingOrder: 1
+  m_SortAtRoot: 0
 --- !u!1 &8305811087557162601
 GameObject:
   m_ObjectHideFlags: 0
@@ -5050,9 +5063,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -125046261
+  m_SortingLayer: 4
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: c18af0035da2d334082865ef40aac452, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -5140,11 +5153,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -125046261
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.34591186, b: 0.34591186, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

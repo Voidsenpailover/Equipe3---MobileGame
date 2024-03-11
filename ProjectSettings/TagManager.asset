@@ -54,3 +54,6 @@ TagManager:
   - name: Environment_VFX
     uniqueID: 4271801071
     locked: 0
+  - name: Turret
+    uniqueID: 4169921035
+    locked: 0

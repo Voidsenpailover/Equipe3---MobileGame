@@ -123,6 +123,23 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &99496334 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4882041698799904689, guid: f71553e82850cad449b3df4700aa7a1f, type: 3}
+  m_PrefabInstance: {fileID: 1043872456}
+  m_PrefabAsset: {fileID: 0}
+--- !u!210 &99496338
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 99496334}
+  m_Enabled: 1
+  m_SortingLayerID: -125046261
+  m_SortingLayer: 4
+  m_SortingOrder: 1
+  m_SortAtRoot: 0
 --- !u!1 &190827799
 GameObject:
   m_ObjectHideFlags: 0
@@ -5223,9 +5240,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1662181604233474404, guid: f71553e82850cad449b3df4700aa7a1f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 1662181604233474404, guid: f71553e82850cad449b3df4700aa7a1f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 1662181604233474404, guid: f71553e82850cad449b3df4700aa7a1f, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 1662181604233474404, guid: f71553e82850cad449b3df4700aa7a1f, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6191953253111623919, guid: f71553e82850cad449b3df4700aa7a1f, type: 3}
       propertyPath: m_Controller
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8305811087557162601, guid: f71553e82850cad449b3df4700aa7a1f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8423427681872163357, guid: f71553e82850cad449b3df4700aa7a1f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5267,6 +5304,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8443486290238800377, guid: f71553e82850cad449b3df4700aa7a1f, type: 3}
+      propertyPath: m_SortingLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443486290238800377, guid: f71553e82850cad449b3df4700aa7a1f, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -125046261
+      objectReference: {fileID: 0}
     - target: {fileID: 8852987453620772867, guid: f71553e82850cad449b3df4700aa7a1f, type: 3}
       propertyPath: m_Name
       value: TurretPrefab
@@ -5281,6 +5326,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8852987453620772867, guid: f71553e82850cad449b3df4700aa7a1f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1053036188}
+    - targetCorrespondingSourceObject: {fileID: 4882041698799904689, guid: f71553e82850cad449b3df4700aa7a1f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 99496338}
   m_SourcePrefab: {fileID: 100100000, guid: f71553e82850cad449b3df4700aa7a1f, type: 3}
 --- !u!1 &1053036182 stripped
 GameObject:
