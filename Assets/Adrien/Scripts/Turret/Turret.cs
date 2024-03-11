@@ -14,6 +14,7 @@ using UnityEngine;
         private List<EnemyMovement> enemies;
         private float turretDamage;
         
+        
 
         private TurretsData turret {get; set;}
         
@@ -45,6 +46,7 @@ using UnityEngine;
                                 enemy.HP -= turret.Damage;
                             }
                         }
+                        AudioManager.instance.PlaySound(AudioType.Phosphore, AudioSourceType.SFX);
                     }
                     else
                     {
@@ -91,6 +93,36 @@ using UnityEngine;
             bulletScript.Turret = _turret;
             bulletScript.localDamage = turretDamage;
             bulletScript.SetTarget(target);
+            switch (turret.Type)
+            {
+                case TurretType.Eau:
+                    AudioManager.instance.PlaySound(AudioType.Eau, AudioSourceType.SFX);
+                    break;
+                case TurretType.Feu:
+                    AudioManager.instance.PlaySound(AudioType.Feu, AudioSourceType.SFX);
+                    break;
+                case TurretType.Vent:
+                    AudioManager.instance.PlaySound(AudioType.Air, AudioSourceType.SFX);
+                    break;
+                case TurretType.Terre:
+                    AudioManager.instance.PlaySound(AudioType.Terre, AudioSourceType.SFX);
+                    break;
+                case TurretType.Sel:
+                    AudioManager.instance.PlaySound(AudioType.Sel, AudioSourceType.SFX);
+                    break;
+                case TurretType.Soufre:
+                    AudioManager.instance.PlaySound(AudioType.Soufre, AudioSourceType.SFX);
+                    break;
+                case TurretType.Mercure:
+                    AudioManager.instance.PlaySound(AudioType.Mercurehit, AudioSourceType.SFX);
+                    break;
+                case TurretType.Pyrite:
+                    AudioManager.instance.PlaySound(AudioType.Pyrite, AudioSourceType.SFX);
+                    break;
+                case TurretType.Fulgurite:
+                    AudioManager.instance.PlaySound(AudioType.fulgurite, AudioSourceType.SFX);
+                    break;
+            }
         }
         public void InitializeTurret(TurretsData data)
         {
