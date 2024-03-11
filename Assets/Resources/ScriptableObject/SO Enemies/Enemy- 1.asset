@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyType: 0
   _vulnerability: 1
-  _hits: 50
+  _hits: 20
   _speed: 1
   _money: 1
   _spriteRenderer: {fileID: 0}
