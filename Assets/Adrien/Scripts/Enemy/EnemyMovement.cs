@@ -32,20 +32,18 @@ public class EnemyMovement : MonoBehaviour
     private float burnSeconds;
     private int burnDamage;
     
-    private Coroutine burnDurCoroutine;
-    private bool burnDur;
-    private float burnDurCooldown = 5.0f;
-    private int burnCount;
-    
     private Coroutine slowCoroutine;
     public bool isSlowed;
     private float slowSeconds;
-    private float slowDurCooldown = 5.0f;
-    
-    private Coroutine slowDurCoroutine;
-    private bool slowDur;
-    private int slowCount;
     private float slowPercent;
+    
+    private Coroutine debuffCoroutine;
+    public bool isDebuffed;
+    private float debuffSeconds;
+    private float debuffDurCooldown = 5.0f;
+    public float debuffPercent = 1;
+    
+    public bool isMercure;
     
     
     public EnemyStat EnemyStat {get; private set;}
@@ -66,7 +64,7 @@ public class EnemyMovement : MonoBehaviour
           reachedEnd = true;
           LevelManager.instance.HP -= EnemyStat.Damage;
           OnHealthChanged?.Invoke();
-          //AudioManager.instance.PlaySound(AudioType.Attaque, AudioSourceType.SFX);
+          AudioManager.instance.PlaySound(AudioType.Attaque, AudioSourceType.SFX);
           EnemySpawner._instance.EnemyReachedEndOfPath();
           Destroy(gameObject);
           if (LevelManager.instance.HP <= 0)
@@ -168,15 +166,10 @@ public class EnemyMovement : MonoBehaviour
     
     public void ApplyBurn(int duration, int damage)
     {
-      if(isBurning || burnDur) {
+      if(isBurning) {
         return;
       }
       
-      burnCount++;
-      if(burnCount > 1) {
-        burnDur = true;
-        return;
-      }
       isBurning = true;
   
       burnSeconds = 0;
@@ -193,11 +186,6 @@ public class EnemyMovement : MonoBehaviour
       var start = Time.time;
       var total = burnSeconds;
       
-      if(burnDurCoroutine != null) {
-        StopCoroutine(burnDurCoroutine);
-      }
-      burnDurCoroutine = StartCoroutine(BurnDur());
-      
       while (burnSeconds > 0) {
         isBurning = true;
         HP -= burnDamage;
@@ -213,39 +201,23 @@ public class EnemyMovement : MonoBehaviour
       yield return null;
     }
     
-    private IEnumerator BurnDur()
-    {
-      var start = Time.time;
-      var total = burnDurCooldown;
-      
-      var cooldown = burnDurCooldown;
-      while(cooldown > 0) {
-        cooldown = total - (Time.time - start);
-        yield return new WaitForEndOfFrame();
-      }
-      
-      burnDur = false;
-      burnCount = 0;
-      yield return null;
-    }
+    
     
     public void ApplySlow(int duration, float percent)
     {
-      if(isSlowed || slowDur) {
+      if(isSlowed) {
         return;
       }
       
-      slowCount++;
-      if(slowCount > 1) {
-        slowDur = true;
-        return;
-      }
       isSlowed = true;
+      
       slowPercent = percent;
       slowSeconds = 0;
+      
       if(slowCoroutine != null) {
         StopCoroutine(slowCoroutine);
       }
+      
       slowSeconds = duration;
       slowCoroutine = StartCoroutine(Slow());
     }
@@ -254,11 +226,6 @@ public class EnemyMovement : MonoBehaviour
     {
       var start = Time.time;
       var total = slowSeconds;
-      
-      if(slowDurCoroutine != null) {
-        StopCoroutine(slowDurCoroutine);
-      }
-      slowDurCoroutine = StartCoroutine(SlowDur());
       
       while (slowSeconds > 0) {
         MoveSpeed *= slowPercent;
@@ -270,22 +237,43 @@ public class EnemyMovement : MonoBehaviour
       isSlowed = false;
       yield return null;
     }
-
-    private IEnumerator SlowDur()
+    
+    
+    public void ApplyDebuff(int duration)
+    {
+      if(isDebuffed) {
+        return;
+      }
+      
+      isDebuffed = true;
+      debuffSeconds = 0;
+      
+      if(debuffCoroutine != null) {
+        StopCoroutine(debuffCoroutine);
+      }
+      
+      debuffSeconds = duration;
+      debuffCoroutine = StartCoroutine(Debuff());
+    }
+    
+    private IEnumerator Debuff()
     {
       var start = Time.time;
-      var total = slowDurCooldown;
-
-      var cooldown = slowDurCooldown;
-      while (cooldown > 0)
-      {
-        cooldown = total - (Time.time - start);
-        yield return new WaitForEndOfFrame();
+      var total = debuffSeconds;
+      
+      while (debuffSeconds > 0) {
+        debuffSeconds = total - (Time.time - start);
+        yield return new WaitForSeconds(debuffSeconds);
       }
-
-      slowDur = false;
-      slowCount = 0;
+      
+      isDebuffed = false;
       yield return null;
+    }
+
+    public void ApplyMercure()
+    {
+      if (isMercure) return;
+        isMercure = true;
     }
   }
 

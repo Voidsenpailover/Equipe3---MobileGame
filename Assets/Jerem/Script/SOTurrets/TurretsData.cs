@@ -8,7 +8,7 @@ public class TurretsData : ScriptableObject
     [SerializeField] private string _name;
     [SerializeField] private string _description;
     [SerializeField] private int _cost;
-    [SerializeField] private int _damage;
+    [SerializeField] private float _damage;
     [SerializeField] private float _delayBetweenAtk;
     [SerializeField] private float _radAtk;
     [SerializeField] private GameObject _AtkSFX;
@@ -21,7 +21,7 @@ public class TurretsData : ScriptableObject
     public string Name { get => _name; set => _name = value; }
     public string Description { get => _description; set => _description = value; }
     public int Cost { get => _cost; set => _cost = value; }
-    public int Damage { get => _damage; set => _damage = value; }
+    public float Damage { get => _damage; set => _damage = value; }
     public float DelayBetweenAtk { get => _delayBetweenAtk; set => _delayBetweenAtk = value;}
     public float RadAtk { get => _radAtk; set => _radAtk = value; }
     public GameObject AtkSFX { get => _AtkSFX; set => _AtkSFX = value; }
