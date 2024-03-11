@@ -14,8 +14,6 @@ public class OverlayBuilding : MonoBehaviour
     
     private void Start()
     {
-        GridBuildingSystem.OnTurretMenuActivated += SetActive;
-        GridBuildingSystem.OnTurretMenuDeactivated += SetInactive;
         _name.text = _turretData.Name;
         _damage.text = _turretData.Damage.ToString();
         _atkSpeed.text = _turretData.DelayBetweenAtk.ToString("0.0");
@@ -26,8 +24,6 @@ public class OverlayBuilding : MonoBehaviour
 
     private void OnDestroy()
     {
-        GridBuildingSystem.OnTurretMenuActivated -= SetActive;
-        GridBuildingSystem.OnTurretMenuDeactivated -= SetInactive;
     }
     private void SetActive()
     {
