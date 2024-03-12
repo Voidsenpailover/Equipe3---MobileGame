@@ -85,7 +85,7 @@ using UnityEngine;
                             switch (card.Type)
                             {
                                 case CardType.Soleil:
-                                    range -= 1;
+                                    if(range >= 2) range -= 1;
                                     BulletPerSecond *= 1.3f;
                                     break;
                                 case CardType.Lune:
@@ -103,9 +103,6 @@ using UnityEngine;
                                     case CardType.Soleil:
                                         BulletPerSecond *= 2;
                                         break;
-                                    case CardType.Lune:
-                                        
-                                        break;
                                 }
                                 range += 1;
                             break;
@@ -115,10 +112,68 @@ using UnityEngine;
                                     case CardType.Soleil:
                                         BulletPerSecond *= 0.5f;
                                         break;
-                                    case CardType.Lune:
+                                }
+                                if(range >= 2) range -= 1;
+                                break;
+                        }
+                        break;
+                    case CardName.Taureau:
+                        if (range >= 2)
+                        {
+                            range -= 1;
+                        }
+                        break;
+                    case CardName.Cancer:
+                        if(card.Type == CardType.Lune) BulletPerSecond *= 0.5f;
+                        break;
+                    case CardName.Sagittaire:
+                        range += 2;
+                        break;
+                    case CardName.Capricorne:
+                        switch (card.Type)
+                        {
+                            case CardType.Soleil:
+                               switch (turret.Type)
+                               {
+                                   case TurretType.Terre:
+                                       range += 2;
+                                       break;
+                                   case TurretType.Vent:
+                                       BulletPerSecond *= 0.9f;
+                                       break;
+                               }
+                               break;
+                        }break;
+                    case CardName.Poisson:
+                            switch (card.Type)
+                            {
+                                case CardType.Soleil:
+                                switch (turret.Type)
+                                {
+                                    case TurretType.Eau:
+                                        BulletPerSecond *= 1.5f;
+                                        break;
+                                    case TurretType.Vent:
+                                        range += 1;
                                         break;
                                 }
-                                range -= 1;
+                                break;
+                                case CardType.Lune:
+                                if (turret.Type == TurretType.Terre)
+                                {
+                                    BulletPerSecond *= 0.75f;
+                                }
+                                break;
+                            }
+                        break;
+                    case CardName.Scorpion:
+                        switch (card.Type)
+                        {
+                            case CardType.Soleil:
+                                BulletPerSecond *= 2f;
+                                break;
+                            case CardType.Lune:
+                                range += 3;
                                 break;
                         }
                         break;
