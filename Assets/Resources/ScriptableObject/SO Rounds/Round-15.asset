@@ -12,4 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1226162e3935e64eb237a4d7a21abd8, type: 3}
   m_Name: Round-15
   m_EditorClassIdentifier: 
-  _spawnGroups: []
+  _spawnGroups:
+  - _initialSpawnDelay: 0
+    _enemyType: 0
+    _numberInGroup: 30
+    _timeBetweenSpawn: 0.1
+  - _initialSpawnDelay: 3
+    _enemyType: 1
+    _numberInGroup: 30
+    _timeBetweenSpawn: 0.1
+  - _initialSpawnDelay: 6
+    _enemyType: 2
+    _numberInGroup: 30
+    _timeBetweenSpawn: 0.1
+  - _initialSpawnDelay: 10
+    _enemyType: 5
+    _numberInGroup: 5
+    _timeBetweenSpawn: 1
