@@ -11,6 +11,9 @@ public class DragController : MonoBehaviour
     private Vector3 _worldPosition;
     private Draggable _lastDragged;
 
+    [SerializeField] private GridBuildingSystem _buildingSystem;
+    [SerializeField] private GameObject _turretDragObject;
+
     private void Awake()
     {
         DragController[] controller = FindObjectsOfType<DragController>();
@@ -24,10 +27,11 @@ public class DragController : MonoBehaviour
         if (_isDragActive && (Input.GetMouseButtonUp(0) || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Ended)))
         {
             Drop();
+            _buildingSystem.CanDrag = false;
             return;
         }
 
-        if (Input.GetMouseButton(0))
+        if (_buildingSystem.CanDrag)
         {
             Vector3 mousePos = Input.mousePosition;
             _screenPosition = new Vector2(mousePos.x, mousePos.y);
@@ -43,13 +47,13 @@ public class DragController : MonoBehaviour
 
         _worldPosition = Camera.main.ScreenToWorldPoint(_screenPosition);
 
-        if(_isDragActive )
+        if(_isDragActive)
         {
             Drag();
         }
         else
         {
-            RaycastHit2D hit = Physics2D.Raycast(_worldPosition, Vector2.zero);
+            /*RaycastHit2D hit = Physics2D.Raycast(_worldPosition, Vector2.zero);
             if(hit.collider != null)
             {
                 Draggable draggable = hit.transform.gameObject.GetComponent<Draggable>();
@@ -58,6 +62,12 @@ public class DragController : MonoBehaviour
                     _lastDragged = draggable;
                     InitDrag();
                 }
+            }
+            */
+            if(_buildingSystem.IsDraggingNow)
+            {
+                _lastDragged = _turretDragObject.GetComponent<Draggable>();
+                InitDrag();
             }
         }
     }
@@ -76,6 +86,9 @@ public class DragController : MonoBehaviour
     void Drop()
     {
         UpdateDragStatus(false);
+        _lastDragged.transform.position = new Vector2(100, 100);
+        _buildingSystem.IsDraggingNow = false;
+        _buildingSystem.CanSelect = true;
         Debug.Log("Wtf le drop");
     }
 

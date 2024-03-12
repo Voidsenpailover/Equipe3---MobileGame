@@ -6,13 +6,15 @@ public class Draggable : MonoBehaviour
 {
     public bool IsDragging;
 
-    public Vector3 LastPosition;
+    private Vector3 _lastPosition;
 
     private BoxCollider2D _collider;
     private DragController _dragController;
 
     private float _movementTime = 15f;
     private System.Nullable<Vector3> _movementDestination;
+
+    public Vector3 LastPosition { get => _lastPosition; set => _lastPosition = value; }
 
     private void Start()
     {

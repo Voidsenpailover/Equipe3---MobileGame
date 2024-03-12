@@ -5,41 +5,66 @@ using UnityEngine;
 public class UiManager : MonoBehaviour
 {
     [SerializeField] RectTransform _turretMenu;
-    [SerializeField] GameObject _menuRotationPoint;
+    [SerializeField] GameObject _menuSelectionPoint;
+    [SerializeField] GameObject _menuInfoPoint;
+    [SerializeField] GameObject _menuFusionPoint;
 
     void Start()
     {
-        GridBuildingSystem.OnTurretMenuActive += SetTurretMenu;
-        GridBuildingSystem.OnTurretMenuDeactivated += UnsetTurretMenu;
+        GridBuildingSystem.OnSelectionMenuActive += SetSelectionMenu;
+        GridBuildingSystem.OnSelectionMenuDeactivated += UnsetSelectionMenu;
+
+        GridBuildingSystem.OnInfoMenuActive += SetInfoMenu;
+        GridBuildingSystem.OnInfoMenuDeactivated += UnsetInfoMenu;
+
         GridBuildingSystem.OnFusionMenuActive += SetFusionMenu;
         GridBuildingSystem.OnFusionMenuDeactivated += UnsetFusionMenu;
     }
 
+    private void SetInfoMenu(Vector3 pos)
+    {
+        _turretMenu.position = pos;
+        _menuInfoPoint.SetActive(true);
+    }
+    private void UnsetInfoMenu()
+    {
+        _turretMenu.position = Vector3.zero;
+        _menuInfoPoint.SetActive(false);
+    }
 
     private void SetFusionMenu(Vector3 pos)
     {
-        Debug.Log("Tour mon bg");
+        _turretMenu.position = pos;
+        _menuFusionPoint.SetActive(true);
     }
 
     private void UnsetFusionMenu()
     {
-        throw new System.NotImplementedException();
+        _turretMenu.position = Vector3.zero;
+        _menuFusionPoint.SetActive(false);
     }
 
-    private void SetTurretMenu(Vector3 pos)
+    private void SetSelectionMenu(Vector3 pos)
     {
         _turretMenu.position = pos;
-        _menuRotationPoint.SetActive(true);
+        _menuSelectionPoint.SetActive(true);
     }
 
-    private void UnsetTurretMenu()
+    private void UnsetSelectionMenu()
     {
         _turretMenu.position = Vector3.zero;
-        _menuRotationPoint.SetActive(false);
+        _menuSelectionPoint.SetActive(false);
     }
 
     private void OnDestroy()
     {
-        GridBuildingSystem.OnTurretMenuActive -= SetTurretMenu;
+        GridBuildingSystem.OnSelectionMenuActive -= SetSelectionMenu;
+        GridBuildingSystem.OnSelectionMenuDeactivated -= UnsetSelectionMenu;
+
+        GridBuildingSystem.OnInfoMenuActive -= SetInfoMenu;
+        GridBuildingSystem.OnInfoMenuDeactivated -= UnsetInfoMenu;
+
+        GridBuildingSystem.OnFusionMenuActive -= SetFusionMenu;
+        GridBuildingSystem.OnFusionMenuDeactivated -= UnsetFusionMenu;
     }
 }
