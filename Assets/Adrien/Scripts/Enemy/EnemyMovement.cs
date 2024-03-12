@@ -44,6 +44,7 @@ public class EnemyMovement : MonoBehaviour
     public float debuffPercent = 1;
     
     public bool isMercure;
+    public int mercureBonus;
     
     
     public EnemyStat EnemyStat {get; private set;}
@@ -270,10 +271,11 @@ public class EnemyMovement : MonoBehaviour
       yield return null;
     }
 
-    public void ApplyMercure()
+    public void ApplyMercure(int money)
     {
       if (isMercure) return;
         isMercure = true;
+        mercureBonus = money;
     }
   }
 

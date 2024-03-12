@@ -13,6 +13,8 @@ using UnityEngine;
         [SerializeField] private GameObject bulletPrefab;
         private List<EnemyMovement> enemies;
         private float turretDamage;
+        private float localRange;
+        private float localBPS;
         
         
 
@@ -71,6 +73,58 @@ using UnityEngine;
             {
                 target = hits[0].transform;
             }
+            range = localRange;
+            BulletPerSecond = localBPS;
+            foreach (var card in UiManager.instance._listCard)
+            {
+                switch (card.CardName)
+                {
+                    case CardName.Verseau:
+                        if (turret.Type == TurretType.Vent)
+                        {
+                            switch (card.Type)
+                            {
+                                case CardType.Soleil:
+                                    range -= 1;
+                                    BulletPerSecond *= 1.3f;
+                                    break;
+                                case CardType.Lune:
+                                    range += 1;
+                                    break;
+                            }
+                        
+                        }break;
+                    case CardName.Belier:
+                        switch (turret.Level)
+                        {
+                            case 1:
+                                switch (card.Type)
+                                {
+                                    case CardType.Soleil:
+                                        BulletPerSecond *= 2;
+                                        break;
+                                    case CardType.Lune:
+                                        
+                                        break;
+                                }
+                                range += 1;
+                            break;
+                            case 2:
+                                switch (card.Type)
+                                {
+                                    case CardType.Soleil:
+                                        BulletPerSecond *= 0.5f;
+                                        break;
+                                    case CardType.Lune:
+                                        break;
+                                }
+                                range -= 1;
+                                break;
+                        }
+                        break;
+                }
+                
+            }
         }
         
         private bool CheckIfInRange()
@@ -93,6 +147,7 @@ using UnityEngine;
             bulletScript.Turret = _turret;
             bulletScript.localDamage = turretDamage;
             bulletScript.SetTarget(target);
+            
             switch (turret.Type)
             {
                 case TurretType.Eau:
@@ -128,8 +183,10 @@ using UnityEngine;
         {
             turret = data;
             turretDamage = data.Damage;
-            range = data.RadAtk;
-            BulletPerSecond = data.DelayBetweenAtk;
+            localRange = data.RadAtk;
+            localBPS = data.DelayBetweenAtk;
+            range = localRange;
+            BulletPerSecond = localBPS;
         }
         
     }

@@ -17,7 +17,7 @@ public class Bullet : MonoBehaviour
     private float _timer;
     private int timingStun;
     private int timingBurn = 3;
-    private int burnDamage;
+    private int burnDamage = 1;
     private float slowPercent;
     private int mercureMoney;
     public float localDamage;
@@ -85,10 +85,47 @@ public class Bullet : MonoBehaviour
             {
                 turretDamage = localDamage;
                 turretDamage *= enemy.debuffPercent;
-            }
-            else
-            {
+            }else {
                 turretDamage = localDamage;
+            }
+            
+            foreach (var card in UiManager.instance._listCard)
+            {
+                switch (card.CardName)
+                {
+                    case CardName.Verseau:
+                    if (card.Type == CardType.Lune && Turret.Type == TurretType.Feu)
+                    {
+                        turretDamage *= 0.5f;
+                    }
+                    break;
+                    case CardName.Belier:
+                        if (card.Type == CardType.Soleil)
+                        {
+                            switch (Turret.Level)
+                            {
+                                case 1:
+                                    turretDamage *= 2f;
+                                    break;
+                                case 2:
+                                case 3:    
+                                    turretDamage *= 0.75f;
+                                    break;
+                            }
+                        }else if (card.Type == CardType.Lune)
+                        {
+                            switch (Turret.Level)
+                            {
+                                case 1:
+                                    break;
+                                case 2:
+                                case 3:    
+                                    
+                                    break;
+                            }
+                        }
+                }
+                
             }
             
             switch (Turret.Type)
@@ -98,14 +135,11 @@ public class Bullet : MonoBehaviour
                     else enemy.HP -= turretDamage;
                     switch (Turret.Level)
                     {
-                        case 1:
-                            burnDamage = 1;
-                            break;
                         case 2:
-                            burnDamage = 3;
+                            burnDamage += 3;
                             break;
                         case 3:
-                            burnDamage = 10;
+                            burnDamage += 10;
                             break;
                     }
                     break;
@@ -152,13 +186,13 @@ public class Bullet : MonoBehaviour
                     switch (Turret.Level)
                     {
                         case 1:
-                            mercureMoney = 1;
+                            mercureMoney += 1;
                             break;
                         case 2:
-                            mercureMoney = 3;
+                            mercureMoney += 3;
                             break;
                     }
-                    enemy.ApplyMercure();
+                    enemy.ApplyMercure(mercureMoney);
                     break;
                 case TurretType.Fulgurite:
                     switch (enemy.EnemyStat.Vulnerability)
@@ -221,7 +255,7 @@ public class Bullet : MonoBehaviour
             {
                 EnemySpawner._instance.EnemyReachedEndOfPath();
                 LevelManager.instance.money += enemy.EnemyStat.Money;
-                if(enemy.isMercure) LevelManager.instance.money += mercureMoney;
+                if(enemy.isMercure) LevelManager.instance.money += enemy.mercureBonus;
                 OnMoneyChanged?.Invoke();
                 Destroy(enemy.gameObject);
                 Destroy(gameObject);
