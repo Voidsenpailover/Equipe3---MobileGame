@@ -239,8 +239,8 @@ TextureImporter:
       name: ENV_TILES_ground_6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 116
+        x: 348
+        y: 232
         width: 116
         height: 116
       alignment: 0
@@ -260,7 +260,7 @@ TextureImporter:
       name: ENV_TILES_ground_7
       rect:
         serializedVersion: 2
-        x: 116
+        x: 0
         y: 116
         width: 116
         height: 116
@@ -281,7 +281,7 @@ TextureImporter:
       name: ENV_TILES_ground_8
       rect:
         serializedVersion: 2
-        x: 232
+        x: 116
         y: 116
         width: 116
         height: 116
@@ -302,8 +302,8 @@ TextureImporter:
       name: ENV_TILES_ground_9
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 232
+        y: 116
         width: 116
         height: 116
       alignment: 0
@@ -323,7 +323,7 @@ TextureImporter:
       name: ENV_TILES_ground_10
       rect:
         serializedVersion: 2
-        x: 116
+        x: 0
         y: 0
         width: 116
         height: 116
@@ -336,6 +336,48 @@ TextureImporter:
       bones: []
       spriteID: 60857865517aa724eb9f4b990d7552d9
       internalID: -380910467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ENV_TILES_ground_11
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 0
+        width: 116
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56638e2bd433a5e4287431de40b22496
+      internalID: -562581662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ENV_TILES_ground_12
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 0
+        width: 116
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1172fa3a34982c4f9799583a04c8dc3
+      internalID: 2091107937
       vertices: []
       indices: 
       edges: []
@@ -354,6 +396,8 @@ TextureImporter:
       ENV_TILES_ground_0: -481751425
       ENV_TILES_ground_1: -283049042
       ENV_TILES_ground_10: -380910467
+      ENV_TILES_ground_11: -562581662
+      ENV_TILES_ground_12: 2091107937
       ENV_TILES_ground_2: -1219237202
       ENV_TILES_ground_3: -844662404
       ENV_TILES_ground_4: 558929070
