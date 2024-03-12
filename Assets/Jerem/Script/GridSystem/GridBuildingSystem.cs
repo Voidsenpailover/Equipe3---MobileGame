@@ -17,6 +17,7 @@ public class GridBuildingSystem : MonoBehaviour
     public static event Action OnTurretMenuActivated;
 
     public static event Action<Vector3> OnInfoMenuActive;
+    public static event Action<TurretsData> OnInfoMenuDragActive;
     public static event Action OnInfoMenuDeactivated;
 
     public static event Action<Vector3> OnFusionMenuActive;
@@ -33,6 +34,7 @@ public class GridBuildingSystem : MonoBehaviour
     //TileBase
     private static List<TileBase> _tiles;
     private static Dictionary<TileType, List<TileBase>> tileBases = new Dictionary<TileType, List<TileBase>>();
+    private static Dictionary<Vector3Int, GameObject> tileDataBases = new Dictionary<Vector3Int, GameObject>();
     [SerializeField] private RessourceTileDataBase _sourceTileData;
 
     //TilesPos
@@ -185,6 +187,11 @@ public class GridBuildingSystem : MonoBehaviour
                     if (cellPos == prevPos && CanDrag)
                     {
                         OnInfoMenuDeactivated?.Invoke();
+                        if (tileDataBases[cellPos] != null)
+                        {
+                            Debug.Log(tileDataBases[cellPos].GetComponent<Building>().Data.Level);
+                            OnInfoMenuDragActive?.Invoke(tileDataBases[cellPos].GetComponent<Building>().Data);
+                        }
                         IsDraggingNow = true;
                     }
                     else
@@ -247,6 +254,7 @@ public class GridBuildingSystem : MonoBehaviour
         temp.transform.position = GridLayout.CellToLocalInterpolated(prevPos + new Vector3(.5f, .5f, 0f));
         temp.GetComponent<Turret>().InitializeTurret(temp.Data);
         mainTilemap.SetTile(gridLayout.WorldToCell(temp.transform.position), tileBases[TileType.Green][1]);
+        tileDataBases.Add(gridLayout.WorldToCell(temp.transform.position), temp.transform.gameObject);
         OnSelectionMenuDeactivated?.Invoke();
         CanSelect = true;
     }

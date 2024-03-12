@@ -14,6 +14,8 @@ public class DragController : MonoBehaviour
     [SerializeField] private GridBuildingSystem _buildingSystem;
     [SerializeField] private GameObject _turretDragObject;
 
+    private TurretsData _currentTurretData;
+
     private void Awake()
     {
         DragController[] controller = FindObjectsOfType<DragController>();
@@ -21,7 +23,14 @@ public class DragController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        GridBuildingSystem.OnInfoMenuDragActive += WhenDragIsProc;
     }
+
+    private void WhenDragIsProc(TurretsData data)
+    {
+        _currentTurretData = data;
+    }
+
     void Update()
     {
         if (_isDragActive && (Input.GetMouseButtonUp(0) || (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Ended)))
@@ -67,6 +76,10 @@ public class DragController : MonoBehaviour
             if(_buildingSystem.IsDraggingNow)
             {
                 _lastDragged = _turretDragObject.GetComponent<Draggable>();
+                if(_lastDragged.transform.gameObject.GetComponent<SpriteRenderer>() != null)
+                {
+                    _lastDragged.transform.gameObject.GetComponent<SpriteRenderer>().sprite = _currentTurretData.Sprite;
+                }
                 InitDrag();
             }
         }
@@ -75,6 +88,7 @@ public class DragController : MonoBehaviour
     void InitDrag()
     {
         _lastDragged.LastPosition = _lastDragged.transform.position;
+
         UpdateDragStatus(true);
     }
 
