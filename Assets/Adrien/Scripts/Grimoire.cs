@@ -215,34 +215,17 @@ public class Grimoire : MonoBehaviour
         _cards[27].SetActive(true);
     }
     
-    public void Ennemi2()
+    public void EnnemiTypes()
     {
         _cards[_index].SetActive(false);
         _index = 28;
         _cards[28].SetActive(true);
     }
-    
-    public void Ennemi3()
-    {
-        _cards[_index].SetActive(false);
-        _index = 29;
-        _cards[29].SetActive(true);
-        
-        
-    }
-
-    public void EnnemiTypes()
-    {
-        _cards[_index].SetActive(false);
-        _index = 30;
-        _cards[30].SetActive(true);
-        
-    }
 
     public void Boss()
     {
         _cards[_index].SetActive(false);
-        _index = 31;
-        _cards[31].SetActive(true);
+        _index = 29;
+        _cards[29].SetActive(true);
     }
 }

@@ -12,7 +12,7 @@ public class UiManager : MonoBehaviour
     [SerializeField] GameObject _menuInfoPoint;
     [SerializeField] GameObject _menuFusionPoint;
     /*
-    [SerializeField] TextMeshProUGUI _waveText;
+/*    [SerializeField] TextMeshProUGUI _waveText;
     [SerializeField] TextMeshProUGUI _maxWaveText;
     [SerializeField] TextMeshProUGUI _moneyText;
     [SerializeField] TextMeshProUGUI _healthText;
@@ -43,16 +43,24 @@ public class UiManager : MonoBehaviour
         GridBuildingSystem.OnFusionMenuActive += SetFusionMenu;
         GridBuildingSystem.OnFusionMenuDeactivated += UnsetFusionMenu;
         /*
-        _waveText.text =  EnemySpawner._instance._currentRoundIndex.ToString();
-        _maxWaveText.text = EnemySpawner._instance._rounds.Count.ToString();
-        _moneyText.text = LevelManager.instance.money.ToString();
-        _healthText.text = LevelManager.instance.HP.ToString();
+      //  _waveText.text =  EnemySpawner._instance._currentRoundIndex.ToString();
+        //_maxWaveText.text = EnemySpawner._instance._rounds.Count.ToString();
+        //_moneyText.text = LevelManager.instance.money.ToString();
+        //_healthText.text = LevelManager.instance.HP.ToString();
         */
     }
 
     private void SetInfoMenu(Vector3 pos)
     {
         _turretMenu.position = pos;
+        RaycastHit2D hit2D = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(pos), Vector2.zero);
+        if(hit2D.collider != null)
+        {
+            if(hit2D.collider.gameObject.GetComponent<Building>().Data != null)
+            {
+                _menuInfoPoint.GetComponent<SetInfo>().SetTurretInfo(hit2D.collider.gameObject.GetComponent<Building>().Data);   
+            }
+        }
         _menuInfoPoint.SetActive(true);
     }
     private void UnsetInfoMenu()
@@ -92,16 +100,16 @@ public class UiManager : MonoBehaviour
          switch (indexBonus)
          {
              case 1:
-                 _bonusIcone1.GetComponent<SpriteRenderer>().sprite = card.Icone;
-                 _bonusSunMoon1.GetComponent<SpriteRenderer>().sprite = card.BouleSoleilLune;
+          //       _bonusIcone1.GetComponent<SpriteRenderer>().sprite = card.Icone;
+            //     _bonusSunMoon1.GetComponent<SpriteRenderer>().sprite = card.BouleSoleilLune;
                  break;
              case 2:
-                 _bonusIcone2.GetComponent<SpriteRenderer>().sprite = card.Icone;
-                 _bonusSunMoon2.GetComponent<SpriteRenderer>().sprite = card.BouleSoleilLune;
+              //   _bonusIcone2.GetComponent<SpriteRenderer>().sprite = card.Icone;
+                // _bonusSunMoon2.GetComponent<SpriteRenderer>().sprite = card.BouleSoleilLune;
                  break;
              case 3:
-                 _bonusIcone3.GetComponent<SpriteRenderer>().sprite = card.Icone;
-                 _bonusSunMoon3.GetComponent<SpriteRenderer>().sprite = card.BouleSoleilLune;
+               //  _bonusIcone3.GetComponent<SpriteRenderer>().sprite = card.Icone;
+                // _bonusSunMoon3.GetComponent<SpriteRenderer>().sprite = card.BouleSoleilLune;
                  break;
          }
         */
@@ -112,15 +120,15 @@ public class UiManager : MonoBehaviour
     /*
      private void UpdateWaveText()
      {
-         _waveText.text =  EnemySpawner._instance._currentRoundIndex.ToString();
+       //  _waveText.text =  EnemySpawner._instance._currentRoundIndex.ToString();
      }
      private void UpdateMoneyText()
      {
-         _moneyText.text = LevelManager.instance.money.ToString();
+        // _moneyText.text = LevelManager.instance.money.ToString();
      }
      private void UpdateHealthText()
      {
-         _healthText.text = LevelManager.instance.HP.ToString();
+         //_healthText.text = LevelManager.instance.HP.ToString();
      }
     */
  

@@ -19,6 +19,14 @@ using UnityEngine;
 
         private TurretsData turret {get; set;}
         
+        public void SellTower()
+        {
+            Destroy(gameObject);
+        }
+        
+        
+        
+        
         private void Update()
         {
             if (target == null)

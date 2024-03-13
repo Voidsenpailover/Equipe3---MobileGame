@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10f865bb9cd135e43ba521286f5ad7ba, type: 3}
+  m_Name: Card-18
+  m_EditorClassIdentifier: 
+  _name: Capricorne
+  _goodeffect: "Tour de Terre : Dur\xE9e du stun + 100%"
+  _badEffect: "Tour de Feu : D\xE9gats de brulure - 50%"
+  _cardName: 8
+  _type: 1
+  _icone: {fileID: 21300000, guid: 6e27207e5bcd7a740b43a86e7ac56ea6, type: 3}
+  _background: {fileID: 21300000, guid: a5b5d4e19699a3d43b8d5ebefede0020, type: 3}
+  _bouleSoleilLune: {fileID: 21300000, guid: 3f57b354252edec4db9062ef0a8b8e67, type: 3}
