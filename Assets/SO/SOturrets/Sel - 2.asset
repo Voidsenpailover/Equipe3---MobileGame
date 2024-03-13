@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b2f6079cca79be41ad0ef20c3992cb6, type: 3}
-  m_Name: Air- 2
+  m_Name: Sel - 2
   m_EditorClassIdentifier: 
-  _name: Air
-  _description: 
-  _cost: 150
+  _name: "Sel\xB2"
+  _description: Cristaux Parasitaire
+  _cost: 3000
   _damage: 1
-  _delayBetweenAtk: 0.33
-  _radAtk: 6
+  _delayBetweenAtk: 1
+  _radAtk: 3
   _AtkSFX: {fileID: 0}
-  _sprite: {fileID: 21300000, guid: 0874cff35fd9ed4448cdd5545f6afdb7, type: 3}
-  _type: 3
-  _level: 1
+  _sprite: {fileID: 21300000, guid: 2c4511ae9bdf80d4dada6fb74a16405b, type: 3}
+  _type: 7
+  _level: 2
   _atkType: 4

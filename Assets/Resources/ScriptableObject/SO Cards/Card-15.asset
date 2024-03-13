@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Card-15
   m_EditorClassIdentifier: 
   _name: Sagittaire
-  _Goodeffect: "Toutes tours : + 2 de port\xE9e"
+  _goodeffect: "Toutes tours : + 2 de port\xE9e"
   _badEffect: "Toutes tours : - 50% de d\xE9gats"
   _cardName: 7
   _type: 0
-  _icone: {fileID: 0}
-  _background: {fileID: 0}
+  _icone: {fileID: 21300000, guid: 088e9ae62cca9f6419fb79f5a2a803a4, type: 3}
+  _background: {fileID: 21300000, guid: afbde76d797ad0a4f9e71ce824090814, type: 3}
+  _bouleSoleilLune: {fileID: 21300000, guid: fe9bde3ab034cd548a4deeb7c308c9c5, type: 3}

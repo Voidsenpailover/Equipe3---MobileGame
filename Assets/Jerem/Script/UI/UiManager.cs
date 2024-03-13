@@ -8,8 +8,11 @@ using UnityEngine.UI;
 public class UiManager : MonoBehaviour
 {
     [SerializeField] RectTransform _turretMenu;
-    [SerializeField] GameObject _menuRotationPoint;
-    [SerializeField] TextMeshProUGUI _waveText;
+    [SerializeField] GameObject _menuSelectionPoint;
+    [SerializeField] GameObject _menuInfoPoint;
+    [SerializeField] GameObject _menuFusionPoint;
+
+/*    [SerializeField] TextMeshProUGUI _waveText;
     [SerializeField] TextMeshProUGUI _maxWaveText;
     [SerializeField] TextMeshProUGUI _moneyText;
     [SerializeField] TextMeshProUGUI _healthText;
@@ -20,7 +23,7 @@ public class UiManager : MonoBehaviour
     [SerializeField] private GameObject _bonusSunMoon1;
     [SerializeField] private GameObject _bonusSunMoon2;
     [SerializeField] private GameObject _bonusSunMoon3;
-    
+    */
     public List<CardData> _listCard;
     public static UiManager instance;
     private int indexBonus;
@@ -30,72 +33,122 @@ public class UiManager : MonoBehaviour
     }
     void Start()
     {
-        _waveText.text =  EnemySpawner._instance._currentRoundIndex.ToString();
-        _maxWaveText.text = EnemySpawner._instance._rounds.Count.ToString();
-        _moneyText.text = LevelManager.instance.money.ToString();
-        _healthText.text = LevelManager.instance.HP.ToString();
-    }
-
+        GridBuildingSystem.OnSelectionMenuActive += SetSelectionMenu;
+        GridBuildingSystem.OnSelectionMenuDeactivated += UnsetSelectionMenu;
     
-    private void UnsetTurretMenu()
-    {
-        _turretMenu.position = Vector3.zero;
-        _menuRotationPoint.SetActive(false);
+
+        GridBuildingSystem.OnInfoMenuActive += SetInfoMenu;
+        GridBuildingSystem.OnInfoMenuDeactivated += UnsetInfoMenu;
+
+        GridBuildingSystem.OnFusionMenuActive += SetFusionMenu;
+        GridBuildingSystem.OnFusionMenuDeactivated += UnsetFusionMenu;
+        
+      //  _waveText.text =  EnemySpawner._instance._currentRoundIndex.ToString();
+        //_maxWaveText.text = EnemySpawner._instance._rounds.Count.ToString();
+        //_moneyText.text = LevelManager.instance.money.ToString();
+        //_healthText.text = LevelManager.instance.HP.ToString();
     }
 
-    private void SetTurretMenu(Vector3 pos)
+    private void SetInfoMenu(Vector3 pos)
     {
         _turretMenu.position = pos;
-        _menuRotationPoint.SetActive(true);
-    }   
+        RaycastHit2D hit2D = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(pos), Vector2.zero);
+        if(hit2D.collider != null)
+        {
+            if(hit2D.collider.gameObject.GetComponent<Building>().Data != null)
+            {
+                _menuInfoPoint.GetComponent<SetInfo>().SetTurretInfo(hit2D.collider.gameObject.GetComponent<Building>().Data);   
+            }
+        }
+        _menuInfoPoint.SetActive(true);
+    }
+    private void UnsetInfoMenu()
+    {
+        _turretMenu.position = Vector3.zero;
+        _menuInfoPoint.SetActive(false);
+    }
+    
+    private void SetFusionMenu(Vector3 pos)
+    {
+        _turretMenu.position = pos;
+        _menuFusionPoint.SetActive(true);
+    }
 
- private void UpdateWaveText()
- {
-     _waveText.text =  EnemySpawner._instance._currentRoundIndex.ToString();
- }
- private void UpdateMoneyText()
- {
-     _moneyText.text = LevelManager.instance.money.ToString();
- }
- private void UpdateHealthText()
- {
-     _healthText.text = LevelManager.instance.HP.ToString();
- }
+    private void UnsetFusionMenu()
+    {
+        _turretMenu.position = Vector3.zero;
+        _menuFusionPoint.SetActive(false);
+    }
+    
+    private void SetSelectionMenu(Vector3 pos)
+    {
+        _turretMenu.position = pos;
+        _menuSelectionPoint.SetActive(true);
+    }
+    
+    private void UnsetSelectionMenu()
+    {
+        _turretMenu.position = Vector3.zero;
+        _menuSelectionPoint.SetActive(false);
+    }
+    
+    private void UpdateSlotBonus(CardData card)
+    {
+         indexBonus++;
+         switch (indexBonus)
+         {
+             case 1:
+          //       _bonusIcone1.GetComponent<SpriteRenderer>().sprite = card.Icone;
+            //     _bonusSunMoon1.GetComponent<SpriteRenderer>().sprite = card.BouleSoleilLune;
+                 break;
+             case 2:
+              //   _bonusIcone2.GetComponent<SpriteRenderer>().sprite = card.Icone;
+                // _bonusSunMoon2.GetComponent<SpriteRenderer>().sprite = card.BouleSoleilLune;
+                 break;
+             case 3:
+               //  _bonusIcone3.GetComponent<SpriteRenderer>().sprite = card.Icone;
+                // _bonusSunMoon3.GetComponent<SpriteRenderer>().sprite = card.BouleSoleilLune;
+                 break;
+         }
+         _listCard.Add(card);
+    }
+ 
+     private void UpdateWaveText()
+     {
+       //  _waveText.text =  EnemySpawner._instance._currentRoundIndex.ToString();
+     }
+     private void UpdateMoneyText()
+     {
+        // _moneyText.text = LevelManager.instance.money.ToString();
+     }
+     private void UpdateHealthText()
+     {
+         //_healthText.text = LevelManager.instance.HP.ToString();
+     }
 
  
- private void UpdateSlotBonus(CardData card)
- {
-     indexBonus++;
-     switch (indexBonus)
+     private void OnEnable()
      {
-         case 1:
-             _bonusIcone1.GetComponent<SpriteRenderer>().sprite = card.Icone;
-             _bonusSunMoon1.GetComponent<SpriteRenderer>().sprite = card.BouleSoleilLune;
-             break;
-         case 2:
-             _bonusIcone2.GetComponent<SpriteRenderer>().sprite = card.Icone;
-             _bonusSunMoon2.GetComponent<SpriteRenderer>().sprite = card.BouleSoleilLune;
-             break;
-         case 3:
-             _bonusIcone3.GetComponent<SpriteRenderer>().sprite = card.Icone;
-             _bonusSunMoon3.GetComponent<SpriteRenderer>().sprite = card.BouleSoleilLune;
-             break;
+            EnemySpawner.OnWaveChanged += UpdateWaveText;
+            Bullet.OnMoneyChanged += UpdateMoneyText;
+            EnemyMovement.OnHealthChanged += UpdateHealthText;
+            CardManager.CardSelected += UpdateSlotBonus;
      }
-     _listCard.Add(card);
- }
- private void OnEnable()
- {
-     EnemySpawner.OnWaveChanged += UpdateWaveText;
-     Bullet.OnMoneyChanged += UpdateMoneyText;
-     EnemyMovement.OnHealthChanged += UpdateHealthText;
-     CardManager.CardSelected += UpdateSlotBonus;
- }
 
- private void OnDestroy()
- {
-     EnemySpawner.OnWaveChanged -= UpdateWaveText;
-     Bullet.OnMoneyChanged -= UpdateMoneyText;
-     EnemyMovement.OnHealthChanged -= UpdateHealthText;
-     CardManager.CardSelected -= UpdateSlotBonus;
- }
+    private void OnDestroy()
+    {  
+        GridBuildingSystem.OnSelectionMenuActive -= SetSelectionMenu;
+        GridBuildingSystem.OnSelectionMenuDeactivated -= UnsetSelectionMenu;
+
+        GridBuildingSystem.OnInfoMenuActive -= SetInfoMenu;
+        GridBuildingSystem.OnInfoMenuDeactivated -= UnsetInfoMenu;
+
+        GridBuildingSystem.OnFusionMenuActive -= SetFusionMenu;
+        GridBuildingSystem.OnFusionMenuDeactivated -= UnsetFusionMenu;
+        
+        EnemySpawner.OnWaveChanged -= UpdateWaveText;
+        Bullet.OnMoneyChanged -= UpdateMoneyText;
+        EnemyMovement.OnHealthChanged -= UpdateHealthText;
+        CardManager.CardSelected -= UpdateSlotBonus;
+    }
 }
