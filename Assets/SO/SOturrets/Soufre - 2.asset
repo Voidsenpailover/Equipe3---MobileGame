@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b2f6079cca79be41ad0ef20c3992cb6, type: 3}
+  m_Name: Soufre - 2
+  m_EditorClassIdentifier: 
+  _name: "Soufre\xB2"
+  _description: "D\xE9flagration Min\xE9rale"
+  _cost: 3000
+  _damage: 16
+  _delayBetweenAtk: 1
+  _radAtk: 5
+  _AtkSFX: {fileID: 0}
+  _sprite: {fileID: 21300000, guid: 641ce536850c23a4b9245098101e3f92, type: 3}
+  _type: 8
+  _level: 2
+  _atkType: 3
