@@ -7,7 +7,6 @@ using Screen = UnityEngine.Device.Screen;
 public class AdaptSizeCam : MonoBehaviour
 {
     Camera m_camera;
-    private float c_size_buffer = 7686.36f;
 
     public float s_screen;
 

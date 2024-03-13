@@ -1,35 +1,66 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
 
 public class GridBuildingSystem : MonoBehaviour
 {
+    //Instantiate
     [SerializeField] public static GridBuildingSystem current;
 
-    public static event Action<Vector3> OnTurretMenuActive;
+    //Events
+    public static event Action<Vector3> OnSelectionMenuActive;
+    public static event Action OnSelectionMenuDeactivated;
     public static event Action OnTurretMenuActivated;
-    public static event Action OnTurretMenuDeactivated;
 
+    public static event Action<Vector3> OnInfoMenuActive;
+    public static event Action<TurretsData> OnInfoMenuDragActive;
+    public static event Action OnInfoMenuDeactivated;
+
+    public static event Action<Vector3> OnFusionMenuActive;
+    public static event Action OnFusionMenuDeactivated;
+
+    public static event Action<Vector3Int> OnPointCreated;
+    public static event Action OnRoadEnd;
+
+    //TileMaps
     [SerializeField] private GridLayout gridLayout;
     [SerializeField] Tilemap mainTilemap;
     [SerializeField] Tilemap tempTilemap;
 
-    private int _currentID;
-    [SerializeField] private List<TurretsData> _turretsData;
+    //TileBase
+    private static List<TileBase> _tiles;
+    private static Dictionary<TileType, List<TileBase>> tileBases = new Dictionary<TileType, List<TileBase>>();
+    private static Dictionary<Vector3Int, GameObject> tileDataBases = new Dictionary<Vector3Int, GameObject>();
+    [SerializeField] private RessourceTileDataBase _sourceTileData;
 
-    private static Dictionary<TileType, TileBase> tileBases = new Dictionary<TileType, TileBase> ();
-
+    //TilesPos
     private Building temp;
     private Vector3Int prevPos;
     private BoundsInt prevArea;
 
-    private bool _canSelect;
+    private Vector3Int spawningPos;
+    [SerializeField] private Transform spawningPosT;
 
+    //Turrets Data
+    private int _currentID;
+    [SerializeField] private List<TurretsData> _turretsData;
+
+    //Properties
     public GridLayout GridLayout { get => gridLayout; set => gridLayout = value; }
     public int CurrentID { get => _currentID; set => _currentID = value; }
+    public bool CanDrag { get => _canDrag; set => _canDrag = value; }
+    public bool IsDraggingNow { get => _isDraggingNow; set => _isDraggingNow = value; }
+    public bool CanSelect { get => _canSelect; set => _canSelect = value; }
+    public List<TurretsData> TurretsData { get => _turretsData; set => _turretsData = value; }
+
+    //Selections
+    private bool _canSelect;
+    private bool _canDrag = false;
+    private bool _isDraggingNow = false;
 
     #region Unity Methods
 
@@ -40,89 +71,141 @@ public class GridBuildingSystem : MonoBehaviour
 
     private void Start()
     {
-        string _tilePath = @"PaletteTest\";
-        tileBases.Add(TileType.Empty, null);
-        tileBases.Add(TileType.Green, Resources.Load<TileBase>(_tilePath + "SquareG"));
-        tileBases.Add(TileType.White, Resources.Load<TileBase>(_tilePath + "Square"));
-        tileBases.Add(TileType.Red, Resources.Load<TileBase>(_tilePath + "SquareR"));
-        _canSelect = true;
-        
+        tileBases.Add(TileType.Empty, _sourceTileData.EmptyTile);
+        tileBases.Add(TileType.Green, _sourceTileData.SelectionTile);
+        tileBases.Add(TileType.White, _sourceTileData.FloorTile);
+        tileBases.Add(TileType.Road, _sourceTileData.RoadTile);
+        //tileBases.Add(TileType.Red, Resources.Load<TileBase>(_tilePath + "SquareR"));
+        CanSelect = true;
+
+        spawningPos = GridLayout.LocalToCell(spawningPosT.position);
+
+        Vector3Int comparePos = Vector3Int.zero;
+        Vector3Int cellpos = spawningPos;
+        Vector3Int tempPos = Vector3Int.zero;
+        OnPointCreated?.Invoke(cellpos);
+        while (comparePos != cellpos)
+        {
+            tempPos = DetectTileNear(cellpos, comparePos, 0);
+            if(tempPos == cellpos)
+            {
+                tempPos = DetectTileNear(cellpos, comparePos, 3);
+                if (tempPos != cellpos)
+                {
+                    Vector3Int convertPosForInter = new Vector3Int(tempPos.x - cellpos.x, tempPos.y - cellpos.y, tempPos.z - cellpos.z);
+                    comparePos = tempPos;
+                    tempPos += convertPosForInter;
+                    cellpos = tempPos;
+                    Debug.Log("OVERLAP" + " " + cellpos);
+                    continue;
+                }
+                tempPos = DetectTileNear(cellpos, comparePos, 2);
+                if( tempPos != cellpos)
+                {
+                    //Instantiate POINT
+                    OnPointCreated?.Invoke(tempPos);
+                    Debug.Log("POINT" +" "+ tempPos);
+                }
+            }
+            comparePos = cellpos;
+            cellpos = tempPos;
+            Debug.Log("Coord" + " " + cellpos);
+        }
+        OnPointCreated?.Invoke(cellpos);
+        OnRoadEnd?.Invoke();
+
     }
 
     private void Update()
     {
-
-        float x = GridLayout.cellSize.x * Camera.main.pixelWidth / 1080;
-        float y = GridLayout.cellSize.y * Camera.main.pixelHeight / 1920;
-
-        /*if (!temp)
-        {
-            return;
-        }*/
+        /// Clicking System 
+        /// Input ON TOUCH (to change) 
         if(Input.GetMouseButtonDown(0))
         {
-            if (_canSelect) {
-                _canSelect = false;
-                ClearArea();
-                Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) * 1 / GridLayout.transform.localScale.x;
-                Vector3Int cellPos = GridLayout.LocalToCell(touchPos);
-                prevPos = cellPos;
+            Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) * 1 / GridLayout.transform.localScale.x; //where the point is
+            Vector3Int cellPos = GridLayout.LocalToCell(touchPos); //corresponding touch to his cell
 
-                TileBase test = mainTilemap.GetTile(cellPos);
-                test = tileBases[TileType.Green];
-                tempTilemap.SetTile(cellPos, test);
-                OnTurretMenuActive?.Invoke(GridLayout.CellToLocalInterpolated(cellPos + new Vector3(.5f, .5f, 0f)));
-                OnTurretMenuActivated?.Invoke();
-                
-                Debug.Log(test);
-                /*
-                if (!temp.Placed)
+            TileBase tileSelected = mainTilemap.GetTile(cellPos); //Tile Selected
+
+            //If it's beyond grid
+            if (tileSelected == tileBases[TileType.Empty][0]) 
+            {
+                return;
+            }
+            //If it's road
+            for (int i = 0; i < tileBases[TileType.Road].Count; i++)
+            {
+                if (tileSelected == tileBases[TileType.Road][i])
                 {
-                    Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) * 1/GridLayout.transform.localScale.x;
-                    Vector3Int cellPos = GridLayout.LocalToCell(touchPos);
-                    Debug.Log(cellPos);
-                    Debug.Log(touchPos);
+                    return;
+                }
+            }
 
-                    if (prevPos != cellPos)
+            //Selection
+            if (CanSelect) // Check For selection
+            {
+                CanSelect = false; //Un-allow Spaming
+                ClearArea(); //Clear Tiles for TEMP
+                prevPos = cellPos; //Keep Pos For Further utility
+
+                //Selection TILE
+                /*
+                TileBase tileTex = tileBases[TileType.Green][0]; 
+                tempTilemap.SetTile(cellPos, tileTex);
+                */
+
+                //Event for UI
+                //If it's tower
+                if (tileSelected == tileBases[TileType.Green][1])
+                {
+                    OnInfoMenuActive?.Invoke(GridLayout.CellToLocalInterpolated(cellPos + new Vector3(.5f, .5f, 0f)));
+                    CanDrag = true;
+                }
+                else
+                {
+                    OnSelectionMenuActive?.Invoke(GridLayout.CellToLocalInterpolated(cellPos + new Vector3(.5f, .5f, 0f)));
+                }
+            }
+            else //UI already UP
+            {
+                //Check if its not a fusion mode
+                if(mainTilemap.GetTile(prevPos) != tileBases[TileType.Green][1])
+                {
+                    //Check for UP/DOWN/LEFT/RIGHT Pos For Buttons
+                    if (cellPos != prevPos && cellPos != new Vector3Int(prevPos.x + 1, prevPos.y) && cellPos != new Vector3Int(prevPos.x - 1, prevPos.y)
+                        && cellPos != new Vector3Int(prevPos.x, prevPos.y + 1) && cellPos != new Vector3Int(prevPos.x, prevPos.y - 1))
                     {
-                        temp.transform.localPosition = GridLayout.CellToLocalInterpolated(cellPos
-                            + new Vector3(.5f ,.5f, 0f)) * GridLayout.transform.localScale.x;
-                        prevPos = cellPos;
-                        FollowBuilding();
+                        ClearArea(prevPos); //Clear TEMP
+
+                        //Event for disabling UI
+                        OnSelectionMenuDeactivated?.Invoke();
+
+                        CanSelect = true; //Allow Another Selection
                     }
                 }
-                */
-            }
-            else
-            {
-                Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) * 1 / GridLayout.transform.localScale.x;
-                Vector3Int cellPos = GridLayout.LocalToCell(touchPos);
-                if(cellPos != prevPos && cellPos != new Vector3Int(prevPos.x +1, prevPos.y) && cellPos != new Vector3Int(prevPos.x -1 , prevPos.y)
-                    && cellPos != new Vector3Int(prevPos.x, prevPos.y +1) && cellPos != new Vector3Int(prevPos.x, prevPos.y -1))
+                else
                 {
-                    ClearArea(prevPos);
-                    OnTurretMenuDeactivated?.Invoke();
-                    _canSelect = true;
+                    if (cellPos == prevPos && CanDrag)
+                    {
+                        OnInfoMenuDeactivated?.Invoke();
+                        if (tileDataBases[cellPos] != null)
+                        {
+                            Debug.Log(tileDataBases[cellPos].GetComponent<Building>().Data.Level);
+                            OnInfoMenuDragActive?.Invoke(tileDataBases[cellPos].GetComponent<Building>().Data);
+                        }
+                        IsDraggingNow = true;
+                    }
+                    else
+                    {
+                        OnInfoMenuDeactivated?.Invoke();
+                        CanSelect = true;
+                    }
                 }
+
             }
         }
-        
-        else if (Input.GetKeyDown(KeyCode.Space))
-        {
-            /*if (temp.CanBePlaced()){
-                temp.Place();
-            }*/
-            ClearArea();
-            _canSelect = true;
-        }
-        /*
-        else if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            ClearArea();
-            Destroy(temp.gameObject);
-        }*/
     }
-
+    //Change The ID of the spawning Turret
     public void ChangeTurretID(int id)
     {
         CurrentID = id;
@@ -130,7 +213,6 @@ public class GridBuildingSystem : MonoBehaviour
     #endregion
 
     #region Tilemap Management
-
     private static TileBase[] GetTilesBlock(BoundsInt area, Tilemap tilemap)
     {
         TileBase[] array = new TileBase[area.size.x * area.size.y * area.size.z];
@@ -149,7 +231,7 @@ public class GridBuildingSystem : MonoBehaviour
     {
         for(int i = 0; i < arr.Length; i++)
         {
-            arr[i] = tileBases[type];
+            arr[i] = tileBases[type][0];
         }
     }
 
@@ -169,10 +251,13 @@ public class GridBuildingSystem : MonoBehaviour
     public void InitializeWithBuilding(GameObject building)
     {
         temp = Instantiate(building, prevPos, Quaternion.identity).GetComponent<Building>();
-        temp.Data = _turretsData[CurrentID];
+        temp.Data = TurretsData[CurrentID];
         temp.transform.position = GridLayout.CellToLocalInterpolated(prevPos + new Vector3(.5f, .5f, 0f));
         temp.GetComponent<Turret>().InitializeTurret(temp.Data);
-        //FollowBuilding();
+        mainTilemap.SetTile(gridLayout.WorldToCell(temp.transform.position), tileBases[TileType.Green][1]);
+        tileDataBases.Add(gridLayout.WorldToCell(temp.transform.position), temp.transform.gameObject);
+        OnSelectionMenuDeactivated?.Invoke();
+        CanSelect = true;
     }
     
     private void ClearArea()
@@ -184,7 +269,7 @@ public class GridBuildingSystem : MonoBehaviour
 
     private void ClearArea(Vector3Int pos)
     {
-        tempTilemap.SetTile(pos, tileBases[TileType.Empty]);
+        tempTilemap.SetTile(pos, tileBases[TileType.Empty][0]);
     }
 
     private void FollowBuilding()
@@ -200,13 +285,13 @@ public class GridBuildingSystem : MonoBehaviour
 
         for(int i = 0; i < baseArray.Length; i++)
         {
-            if (baseArray[i] == tileBases[TileType.White])
+            if (baseArray[i] == tileBases[TileType.White][0])
             {
-                tileArray[i] = tileBases[TileType.Green];
+                tileArray[i] = tileBases[TileType.Green][0];
             }
             else
             {
-                FillTiles(tileArray, TileType.Red);
+                //FillTiles(tileArray, TileType.Red);
                 break;
             }
         }
@@ -220,7 +305,7 @@ public class GridBuildingSystem : MonoBehaviour
         TileBase[] baseArray = GetTilesBlock(area, mainTilemap);
         foreach(var b in baseArray)
         {
-            if(b != tileBases[TileType.White])
+            if(b != tileBases[TileType.White][0])
             {
                 Debug.Log("You can't place here");
                 return false;
@@ -235,11 +320,64 @@ public class GridBuildingSystem : MonoBehaviour
     }
 
     #endregion
+
+    #region Brain For Points
+    //DetectIfTileNearIsATurn
+    private Vector3Int DetectTileNear(Vector3Int cellpos, Vector3Int prevpos, int id)
+    {
+        TileBase tile = mainTilemap.GetTile(cellpos);
+        Vector3Int temp;
+        temp = new Vector3Int(cellpos.x + 1, cellpos.y, cellpos.z);
+        if (CompareTileTypeID(mainTilemap.GetTile(temp),TileType.Road, id))
+        {
+            if(temp != prevpos)
+            {
+                return temp;
+            }
+        }
+        temp = new Vector3Int(cellpos.x - 1, cellpos.y, cellpos.z);
+        if (CompareTileTypeID(mainTilemap.GetTile(temp), TileType.Road, id))
+        {
+            if (temp != prevpos)
+            {
+                return temp;
+            }
+        }
+        temp = new Vector3Int(cellpos.x, cellpos.y + 1, cellpos.z);
+        if (CompareTileTypeID(mainTilemap.GetTile(temp), TileType.Road, id))
+        {
+            if (temp != prevpos)
+            {
+                return temp;
+            }
+        }
+        temp = new Vector3Int(cellpos.x, cellpos.y - 1, cellpos.z);
+        if (CompareTileTypeID(mainTilemap.GetTile(temp), TileType.Road, id))
+        {
+            if (temp != prevpos)
+            {
+                return temp;
+            }
+        }
+        return cellpos;
+    }
+    //Compare Tile with ID
+    private bool CompareTileTypeID(TileBase tile, TileType type, int typeID)
+    {
+        if(tile == tileBases[type][typeID])
+        {
+            return true;
+        }
+        return false;
+    }
+    #endregion
 }
 public enum TileType
 {
     Empty,
     White,
     Green,
-    Red
+    Floor,
+    Road,
+    Water
 }

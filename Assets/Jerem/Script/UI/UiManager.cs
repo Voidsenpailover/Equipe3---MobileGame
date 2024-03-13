@@ -1,16 +1,17 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine;
 
 public class UiManager : MonoBehaviour
 {
     [SerializeField] RectTransform _turretMenu;
-    [SerializeField] GameObject _menuRotationPoint;
+    [SerializeField] GameObject _menuSelectionPoint;
     [SerializeField] TextMeshProUGUI _waveText;
     [SerializeField] TextMeshProUGUI _maxWaveText;
+    [SerializeField] GameObject _menuInfoPoint;
+    [SerializeField] GameObject _menuFusionPoint;
     [SerializeField] TextMeshProUGUI _moneyText;
     [SerializeField] TextMeshProUGUI _healthText;
     
@@ -30,24 +31,54 @@ public class UiManager : MonoBehaviour
     }
     void Start()
     {
-        _waveText.text =  EnemySpawner._instance._currentRoundIndex.ToString();
+        _waveText.text = EnemySpawner._instance._currentRoundIndex.ToString();
         _maxWaveText.text = EnemySpawner._instance._rounds.Count.ToString();
+        GridBuildingSystem.OnSelectionMenuActive += SetSelectionMenu;
+        GridBuildingSystem.OnSelectionMenuDeactivated += UnsetSelectionMenu;
+
+        GridBuildingSystem.OnInfoMenuActive += SetInfoMenu;
+        GridBuildingSystem.OnInfoMenuDeactivated += UnsetInfoMenu;
+
+        GridBuildingSystem.OnFusionMenuActive += SetFusionMenu;
+        GridBuildingSystem.OnFusionMenuDeactivated += UnsetFusionMenu;
         _moneyText.text = LevelManager.instance.money.ToString();
         _healthText.text = LevelManager.instance.HP.ToString();
     }
 
-    
-    private void UnsetTurretMenu()
-    {
-        _turretMenu.position = Vector3.zero;
-        _menuRotationPoint.SetActive(false);
-    }
-
-    private void SetTurretMenu(Vector3 pos)
+    private void SetInfoMenu(Vector3 pos)
     {
         _turretMenu.position = pos;
-        _menuRotationPoint.SetActive(true);
-    }   
+        _menuInfoPoint.SetActive(true);
+    }
+    private void UnsetInfoMenu()
+    {
+        _turretMenu.position = Vector3.zero;
+        _menuInfoPoint.SetActive(false);
+    }
+
+    private void SetFusionMenu(Vector3 pos)
+    {
+        _turretMenu.position = pos;
+        _menuFusionPoint.SetActive(true);
+    }
+
+    private void UnsetFusionMenu()
+    {
+        _turretMenu.position = Vector3.zero;
+        _menuFusionPoint.SetActive(false);
+    }
+
+    private void SetSelectionMenu(Vector3 pos)
+    {
+        _turretMenu.position = pos;
+        _menuSelectionPoint.SetActive(true);
+    }
+    
+    private void UnsetSelectionMenu()
+    {
+        _turretMenu.position = Vector3.zero;
+        _menuSelectionPoint.SetActive(false);
+    }
 
  private void UpdateWaveText()
  {
@@ -93,11 +124,21 @@ public class UiManager : MonoBehaviour
      CardManager.CardSelected += UpdateSlotBonus;
  }
 
+
  private void OnDestroy()
  {
-     GridBuildingSystem.OnTurretMenuActive -= SetTurretMenu;
-     GridBuildingSystem.OnTurretMenuDeactivated -= UnsetTurretMenu;
-     EnemySpawner.OnWaveChanged -= UpdateWaveText;
+         GridBuildingSystem.OnSelectionMenuActive -= SetSelectionMenu;
+        GridBuildingSystem.OnSelectionMenuDeactivated -= UnsetSelectionMenu;
+
+        GridBuildingSystem.OnInfoMenuActive -= SetInfoMenu;
+        GridBuildingSystem.OnInfoMenuDeactivated -= UnsetInfoMenu;
+
+        GridBuildingSystem.OnFusionMenuActive -= SetFusionMenu;
+        GridBuildingSystem.OnFusionMenuDeactivated -= UnsetFusionMenu;
+
+        GridBuildingSystem.OnFusionMenuActive -= SetFusionMenu;
+        GridBuildingSystem.OnFusionMenuDeactivated -= UnsetFusionMenu;
+             EnemySpawner.OnWaveChanged -= UpdateWaveText;
      Bullet.OnMoneyChanged -= UpdateMoneyText;
      EnemyMovement.OnHealthChanged -= UpdateHealthText;
      CardManager.CardSelected -= UpdateSlotBonus;

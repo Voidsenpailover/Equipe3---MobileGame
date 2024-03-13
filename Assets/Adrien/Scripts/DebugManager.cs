@@ -14,10 +14,10 @@ using UnityEngine;
             }
             
         }
-
-        public void LauncheGame()
+    #endif
+    public void LauncheGame()
         {
             LevelManager.instance.StartGame();
         }
-    #endif
+
     }
