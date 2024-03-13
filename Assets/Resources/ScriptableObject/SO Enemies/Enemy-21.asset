@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57266af9ea5f5754987d0103a4b3b3f4, type: 3}
+  m_Name: Enemy-21
+  m_EditorClassIdentifier: 
+  _enemyType: 18
+  _vulnerability: 3
+  _hits: 150
+  _speed: 2
+  _money: 200
+  _spriteRenderer: {fileID: 0}
+  _damage: 35
+  _canBeStunned: 1

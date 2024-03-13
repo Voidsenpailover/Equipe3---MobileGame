@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Enemy- 1
   m_EditorClassIdentifier: 
   _enemyType: 0
-  _vulnerability: 1
-  _hits: 50
+  _vulnerability: 4
+  _hits: 5
   _speed: 1
-  _money: 1
+  _money: 5
   _spriteRenderer: {fileID: 0}
   _damage: 1
   _canBeStunned: 1
