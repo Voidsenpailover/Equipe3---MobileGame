@@ -85,8 +85,6 @@ public class UiManager : MonoBehaviour
  }
  private void OnEnable()
  {
-     GridBuildingSystem.OnTurretMenuActive += SetTurretMenu;
-     GridBuildingSystem.OnTurretMenuDeactivated += UnsetTurretMenu; 
      EnemySpawner.OnWaveChanged += UpdateWaveText;
      Bullet.OnMoneyChanged += UpdateMoneyText;
      EnemyMovement.OnHealthChanged += UpdateHealthText;
@@ -95,8 +93,6 @@ public class UiManager : MonoBehaviour
 
  private void OnDestroy()
  {
-     GridBuildingSystem.OnTurretMenuActive -= SetTurretMenu;
-     GridBuildingSystem.OnTurretMenuDeactivated -= UnsetTurretMenu;
      EnemySpawner.OnWaveChanged -= UpdateWaveText;
      Bullet.OnMoneyChanged -= UpdateMoneyText;
      EnemyMovement.OnHealthChanged -= UpdateHealthText;

@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Card-19
   m_EditorClassIdentifier: 
   _name: Poisson
-  _Goodeffect: 'Tour d''Eau : Vitesse d''attaque + 50%'
+  _goodeffect: 'Tour d''Eau : Vitesse d''attaque + 50%'
   _badEffect: "Tour de Vent : - 1 de port\xE9e"
   _cardName: 9
   _type: 0
-  _icone: {fileID: 0}
-  _background: {fileID: 0}
+  _icone: {fileID: 21300000, guid: 348671c16094ce542935e435fb24edad, type: 3}
+  _background: {fileID: 21300000, guid: afbde76d797ad0a4f9e71ce824090814, type: 3}
+  _bouleSoleilLune: {fileID: 21300000, guid: fe9bde3ab034cd548a4deeb7c308c9c5, type: 3}
