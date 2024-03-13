@@ -44,15 +44,18 @@ TagManager:
   - name: Background
     uniqueID: 3665806347
     locked: 0
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: Water
     uniqueID: 1003584041
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0
   - name: Gameplay_VFX
     uniqueID: 1809935733
     locked: 0
   - name: Environment_VFX
     uniqueID: 4271801071
+    locked: 0
+  - name: Turret
+    uniqueID: 4169921035
     locked: 0
