@@ -1,38 +1,81 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class UiManager : MonoBehaviour
 {
     [SerializeField] RectTransform _turretMenu;
+<<<<<<< HEAD
     [SerializeField] GameObject _menuRotationPoint;
+    [SerializeField] TextMeshProUGUI _waveText;
+    [SerializeField] TextMeshProUGUI _maxWaveText;
+    [SerializeField] TextMeshProUGUI _moneyText;
+    [SerializeField] TextMeshProUGUI _healthText;
+    void Start()
+    {
+        _waveText.text = EnemySpawner._instance._currentRoundIndex.ToString();
+        _maxWaveText.text = EnemySpawner._instance._rounds.Count.ToString();
+        GridBuildingSystem.OnTurretMenuActive += SetTurretMenu;
+        GridBuildingSystem.OnTurretMenuDeactivated += UnsetTurretMenu;
+=======
+    [SerializeField] GameObject _menuSelectionPoint;
+    [SerializeField] GameObject _menuInfoPoint;
+    [SerializeField] GameObject _menuFusionPoint;
 
     void Start()
     {
-        GridBuildingSystem.OnTurretMenuActive += SetTurretMenu;
-        GridBuildingSystem.OnTurretMenuDeactivated += UnsetTurretMenu;
+        GridBuildingSystem.OnSelectionMenuActive += SetSelectionMenu;
+        GridBuildingSystem.OnSelectionMenuDeactivated += UnsetSelectionMenu;
+
+        GridBuildingSystem.OnInfoMenuActive += SetInfoMenu;
+        GridBuildingSystem.OnInfoMenuDeactivated += UnsetInfoMenu;
+
+>>>>>>> Jerem
+        GridBuildingSystem.OnFusionMenuActive += SetFusionMenu;
+        GridBuildingSystem.OnFusionMenuDeactivated += UnsetFusionMenu;
+        _moneyText.text = LevelManager.instance.money.ToString();
+        _healthText.text = LevelManager.instance.HP.ToString();
     }
 
-    private void SetTurretMenu(Vector3 pos)
+    private void SetInfoMenu(Vector3 pos)
     {
         _turretMenu.position = pos;
-        _menuRotationPoint.SetActive(true);
-<<<<<<< HEAD
+        _menuInfoPoint.SetActive(true);
+    }
+    private void UnsetInfoMenu()
+    {
+        _turretMenu.position = Vector3.zero;
+        _menuInfoPoint.SetActive(false);
     }
 
+    private void SetFusionMenu(Vector3 pos)
+    {
+<<<<<<< HEAD
     private void UnsetTurretMenu()
     {
         _turretMenu.position = Vector3.zero;
         _menuRotationPoint.SetActive(false);
-    }
-
-    private void OnDestroy()
-    {
-        GridBuildingSystem.OnTurretMenuActive -= SetTurretMenu;
-    }
+        Debug.Log("Tour mon bg");
 =======
-    }   
+        _turretMenu.position = pos;
+        _menuFusionPoint.SetActive(true);
+>>>>>>> Jerem
+    }
 
+    private void UnsetFusionMenu()
+    {
+        _turretMenu.position = Vector3.zero;
+        _menuFusionPoint.SetActive(false);
+    }
+
+    private void SetSelectionMenu(Vector3 pos)
+    {
+        _turretMenu.position = pos;
+        _menuSelectionPoint.SetActive(true);
+    }
+
+<<<<<<< HEAD
  private void UpdateWaveText()
  {
      _waveText.text =  EnemySpawner._instance._currentRoundIndex.ToString();
@@ -54,7 +97,16 @@ public class UiManager : MonoBehaviour
      Bullet.OnMoneyChanged += UpdateMoneyText;
      EnemyMovement.OnHealthChanged += UpdateHealthText;
  }
+    private void UnsetTurretMenu()
+=======
+    private void UnsetSelectionMenu()
+>>>>>>> Jerem
+    {
+        _turretMenu.position = Vector3.zero;
+        _menuSelectionPoint.SetActive(false);
+    }
 
+<<<<<<< HEAD
  private void OnDestroy()
  {
      GridBuildingSystem.OnTurretMenuActive -= SetTurretMenu;
@@ -63,5 +115,17 @@ public class UiManager : MonoBehaviour
      Bullet.OnMoneyChanged -= UpdateMoneyText;
      EnemyMovement.OnHealthChanged -= UpdateHealthText;
  }
->>>>>>> Adrien
+=======
+    private void OnDestroy()
+    {
+        GridBuildingSystem.OnSelectionMenuActive -= SetSelectionMenu;
+        GridBuildingSystem.OnSelectionMenuDeactivated -= UnsetSelectionMenu;
+
+        GridBuildingSystem.OnInfoMenuActive -= SetInfoMenu;
+        GridBuildingSystem.OnInfoMenuDeactivated -= UnsetInfoMenu;
+
+        GridBuildingSystem.OnFusionMenuActive -= SetFusionMenu;
+        GridBuildingSystem.OnFusionMenuDeactivated -= UnsetFusionMenu;
+    }
+>>>>>>> Jerem
 }

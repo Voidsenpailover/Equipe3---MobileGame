@@ -69,7 +69,7 @@ public class Draggable : MonoBehaviour
 
         if (other.CompareTag("DropValid"))
         {
-            if(_canDrop == true)
+            if(_canDrop)
             {
                 _movementDestination = other.transform.position;
                 Debug.Log("Il a drop");
