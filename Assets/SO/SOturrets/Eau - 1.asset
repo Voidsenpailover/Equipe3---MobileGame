@@ -18,7 +18,7 @@ MonoBehaviour:
   _damage: 2
   _delayBetweenAtk: 2
   _radAtk: 5
-  _AtkSFX: {fileID: 0}
+  _AtkSFX: {fileID: 3801919937251534224, guid: 523cae426ba85a34280a63f29b878291, type: 3}
   _sprite: {fileID: 21300000, guid: 520fbe88fc192464faafcfd030cb76ce, type: 3}
   _type: 2
   _level: 1
