@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DragController : MonoBehaviour
@@ -10,6 +12,8 @@ public class DragController : MonoBehaviour
     private Vector2 _screenPosition;
     private Vector3 _worldPosition;
     private Draggable _lastDragged;
+
+    public static event Action OnDropOnTurret;
 
     [SerializeField] private GridBuildingSystem _buildingSystem;
     [SerializeField] private GameObject _turretDragObject;
@@ -79,6 +83,7 @@ public class DragController : MonoBehaviour
                 if(_lastDragged.transform.gameObject.GetComponent<SpriteRenderer>() != null)
                 {
                     _lastDragged.transform.gameObject.GetComponent<SpriteRenderer>().sprite = _currentTurretData.Sprite;
+                    _lastDragged.TurretData = _currentTurretData;
                 }
                 InitDrag();
             }
@@ -103,6 +108,7 @@ public class DragController : MonoBehaviour
         _lastDragged.transform.position = new Vector2(100, 100);
         _buildingSystem.IsDraggingNow = false;
         _buildingSystem.CanSelect = true;
+        OnDropOnTurret?.Invoke();
         Debug.Log("Wtf le drop");
     }
 

@@ -55,6 +55,7 @@ public class GridBuildingSystem : MonoBehaviour
     public bool CanDrag { get => _canDrag; set => _canDrag = value; }
     public bool IsDraggingNow { get => _isDraggingNow; set => _isDraggingNow = value; }
     public bool CanSelect { get => _canSelect; set => _canSelect = value; }
+    public List<TurretsData> TurretsData { get => _turretsData; set => _turretsData = value; }
 
     //Selections
     private bool _canSelect;
@@ -250,7 +251,7 @@ public class GridBuildingSystem : MonoBehaviour
     public void InitializeWithBuilding(GameObject building)
     {
         temp = Instantiate(building, prevPos, Quaternion.identity).GetComponent<Building>();
-        temp.Data = _turretsData[CurrentID];
+        temp.Data = TurretsData[CurrentID];
         temp.transform.position = GridLayout.CellToLocalInterpolated(prevPos + new Vector3(.5f, .5f, 0f));
         temp.GetComponent<Turret>().InitializeTurret(temp.Data);
         mainTilemap.SetTile(gridLayout.WorldToCell(temp.transform.position), tileBases[TileType.Green][1]);

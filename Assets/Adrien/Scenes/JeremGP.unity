@@ -352,11 +352,11 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6195361648053638102, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1336320871}
+      insertIndex: 0
+      addedObject: {fileID: 1138939575}
     - targetCorrespondingSourceObject: {fileID: 6195361648053638102, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1138939575}
+      addedObject: {fileID: 1336320871}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
 --- !u!1001 &340759046
@@ -3268,7 +3268,7 @@ GameObject:
   - component: {fileID: 1138939575}
   - component: {fileID: 1138939574}
   m_Layer: 0
-  m_Name: --UiManager--
+  m_Name: UiManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
