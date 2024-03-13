@@ -58,7 +58,7 @@ public class UiManager : MonoBehaviour
         {
             if(hit2D.collider.gameObject.GetComponent<Building>().Data != null)
             {
-                _menuInfoPoint.GetComponent<SetInfo>().SetTurretInfo(hit2D.collider.gameObject.GetComponent<Building>().Data);   
+                _menuInfoPoint.GetComponent<SetInfo>().SetTurretInfo(hit2D.collider.gameObject.GetComponent<Building>().Data);
             }
         }
         _menuInfoPoint.SetActive(true);

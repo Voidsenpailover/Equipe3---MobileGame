@@ -39,7 +39,7 @@ public class Draggable : MonoBehaviour
         {
             Debug.Log("Il a drop");
             collider2dTemp.transform.gameObject.GetComponent<Building>().Data = TurretData;
-            collider2dTemp.transform.gameObject.GetComponent<SpriteRenderer>().sprite = TurretData.Sprite;
+            collider2dTemp.transform.Find("Text").gameObject.GetComponent<SpriteRenderer>().sprite = TurretData.Sprite;
             _movementDestination = collider2dTemp.transform.position;
             CanDrop = false;
         }

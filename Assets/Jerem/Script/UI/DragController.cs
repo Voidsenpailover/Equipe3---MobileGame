@@ -80,9 +80,9 @@ public class DragController : MonoBehaviour
             if(_buildingSystem.IsDraggingNow)
             {
                 _lastDragged = _turretDragObject.GetComponent<Draggable>();
-                if(_lastDragged.transform.gameObject.GetComponent<SpriteRenderer>() != null)
+                if(_lastDragged.transform.GetComponent<SpriteRenderer>() != null)
                 {
-                    _lastDragged.transform.gameObject.GetComponent<SpriteRenderer>().sprite = _currentTurretData.Sprite;
+                    _lastDragged.transform.GetComponent<SpriteRenderer>().sprite = _currentTurretData.Sprite;
                     _lastDragged.TurretData = _currentTurretData;
                 }
                 InitDrag();
