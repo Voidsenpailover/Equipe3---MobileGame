@@ -16,6 +16,9 @@ public class GridBuildingSystem : MonoBehaviour
     public static event Action OnTurretMenuDeactivated;
     public static event Action OnTurretMenuActivated;
 
+    public static event Action<Vector3> OnFusionMenuActive;
+    public static event Action OnFusionMenuDeactivated;
+
     public static event Action<Vector3Int> OnPointCreated;
     public static event Action OnRoadEnd;
 
@@ -113,10 +116,21 @@ public class GridBuildingSystem : MonoBehaviour
 
             TileBase tileSelected = mainTilemap.GetTile(cellPos); //Tile Selected
 
-            if (tileSelected == tileBases[TileType.Empty][0] || tileSelected == tileBases[TileType.Road][0]) //If it's beyond grid
+            //If it's beyond grid
+            if (tileSelected == tileBases[TileType.Empty][0]) 
             {
                 return;
             }
+            //If it's road
+            for (int i = 0; i < tileBases[TileType.Road].Count; i++)
+            {
+                if (tileSelected == tileBases[TileType.Road][i])
+                {
+                    return;
+                }
+            }
+
+            //Selection
             if (_canSelect) // Check For selection
             {
                 _canSelect = false; //Un-allow Spaming
@@ -124,25 +138,44 @@ public class GridBuildingSystem : MonoBehaviour
                 prevPos = cellPos; //Keep Pos For Further utility
 
                 //Selection TILE
+                /*
                 TileBase tileTex = tileBases[TileType.Green][0]; 
                 tempTilemap.SetTile(cellPos, tileTex);
-                
+                */
+
                 //Event for UI
-                OnTurretMenuActive?.Invoke(GridLayout.CellToLocalInterpolated(cellPos + new Vector3(.5f, .5f, 0f)));
+                //If it's tower
+                if (tileSelected == tileBases[TileType.Green][1])
+                {
+                    OnFusionMenuActive?.Invoke(GridLayout.CellToLocalInterpolated(cellPos + new Vector3(.5f, .5f, 0f)));
+                }
+                else
+                {
+                    OnTurretMenuActive?.Invoke(GridLayout.CellToLocalInterpolated(cellPos + new Vector3(.5f, .5f, 0f)));
+                }
             }
             else //UI already UP
             {
-                //Check for UP/DOWN/LEFT/RIGHT Pos For Buttons
-                if(cellPos != prevPos && cellPos != new Vector3Int(prevPos.x +1, prevPos.y) && cellPos != new Vector3Int(prevPos.x -1 , prevPos.y)
-                    && cellPos != new Vector3Int(prevPos.x, prevPos.y +1) && cellPos != new Vector3Int(prevPos.x, prevPos.y -1))
+                //Check if its not a fusion mode
+                if(mainTilemap.GetTile(prevPos) != tileBases[TileType.Green][1])
                 {
-                    ClearArea(prevPos); //Clear TEMP
+                    //Check for UP/DOWN/LEFT/RIGHT Pos For Buttons
+                    if (cellPos != prevPos && cellPos != new Vector3Int(prevPos.x + 1, prevPos.y) && cellPos != new Vector3Int(prevPos.x - 1, prevPos.y)
+                        && cellPos != new Vector3Int(prevPos.x, prevPos.y + 1) && cellPos != new Vector3Int(prevPos.x, prevPos.y - 1))
+                    {
+                        ClearArea(prevPos); //Clear TEMP
 
-                    //Event for disabling UI
-                    OnTurretMenuDeactivated?.Invoke();
+                        //Event for disabling UI
+                        OnTurretMenuDeactivated?.Invoke();
 
-                    _canSelect = true; //Allow Another Selection
+                        _canSelect = true; //Allow Another Selection
+                    }
                 }
+                else
+                {
+                    OnFusionMenuDeactivated?.Invoke();
+                }
+
             }
         }
     }
@@ -195,7 +228,7 @@ public class GridBuildingSystem : MonoBehaviour
         temp.Data = _turretsData[CurrentID];
         temp.transform.position = GridLayout.CellToLocalInterpolated(prevPos + new Vector3(.5f, .5f, 0f));
         temp.GetComponent<Turret>().InitializeTurret(temp.Data);
-        mainTilemap.SetTile(gridLayout.WorldToCell(temp.transform.position), tileBases[TileType.Empty][0]);
+        mainTilemap.SetTile(gridLayout.WorldToCell(temp.transform.position), tileBases[TileType.Green][1]);
         OnTurretMenuDeactivated?.Invoke();
         _canSelect = true;
     }
