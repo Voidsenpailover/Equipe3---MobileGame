@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: AirBoss
+  m_Controller: {fileID: 9100000, guid: 113c0fca7bebb9c48b8c04bebc16fdfd, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: bae9443a6c9bcc14b9110e6888683574, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 71feac1d555f4184f8c23c5708325092, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 89ace5f65d49c364584643c02148f745, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 0de8fb6ff616c1c43b80a4dc543ae145, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: abaaf9a783449ae438a16295acb6e8b4, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 8cd821d2622ee704aa3ba264cc965a80, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: d8025d28725cdd84a9358530cd0f559e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 4d91cfc9c04df1d4ba5779b5c98a2ddc, type: 2}
