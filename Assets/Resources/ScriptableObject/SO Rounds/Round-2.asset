@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Round-2
   m_EditorClassIdentifier: 
   _spawnGroups:
-  - _initialSpawnDelay: 5
-    _enemyType: 0
-    _numberInGroup: 1
-    _timeBetweenSpawn: 2
   - _initialSpawnDelay: 0
+    _enemyType: 0
+    _numberInGroup: 15
+    _timeBetweenSpawn: 0.5
+  - _initialSpawnDelay: 5
     _enemyType: 1
-    _numberInGroup: 2
-    _timeBetweenSpawn: 2
+    _numberInGroup: 5
+    _timeBetweenSpawn: 1
