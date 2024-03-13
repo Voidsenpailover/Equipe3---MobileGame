@@ -3169,16 +3169,6 @@ MonoBehaviour:
   _menuSelectionPoint: {fileID: 806115096}
   _menuInfoPoint: {fileID: 1841475571}
   _menuFusionPoint: {fileID: 993971670}
-  _waveText: {fileID: 0}
-  _maxWaveText: {fileID: 0}
-  _moneyText: {fileID: 0}
-  _healthText: {fileID: 0}
-  _bonusIcone1: {fileID: 0}
-  _bonusIcone2: {fileID: 0}
-  _bonusIcone3: {fileID: 0}
-  _bonusSunMoon1: {fileID: 0}
-  _bonusSunMoon2: {fileID: 0}
-  _bonusSunMoon3: {fileID: 0}
   _listCard: []
 --- !u!4 &1138939575
 Transform:
@@ -4487,6 +4477,10 @@ PrefabInstance:
     - target: {fileID: 973698615939296287, guid: d16023d0aada86248af7c5922734d1c4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2132645940387789576, guid: d16023d0aada86248af7c5922734d1c4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2582833802794652918, guid: d16023d0aada86248af7c5922734d1c4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
