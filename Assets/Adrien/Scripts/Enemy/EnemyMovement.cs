@@ -30,7 +30,7 @@ public class EnemyMovement : MonoBehaviour
     public bool isBurning;
     private Coroutine burnCoroutine;
     private float burnSeconds;
-    private int burnDamage;
+    private float burnDamage;
     
     private Coroutine slowCoroutine;
     public bool isSlowed;
@@ -40,10 +40,10 @@ public class EnemyMovement : MonoBehaviour
     private Coroutine debuffCoroutine;
     public bool isDebuffed;
     private float debuffSeconds;
-    private float debuffDurCooldown = 5.0f;
     public float debuffPercent = 1;
     
     public bool isMercure;
+    public int mercureBonus;
     
     
     public EnemyStat EnemyStat {get; private set;}
@@ -105,7 +105,7 @@ public class EnemyMovement : MonoBehaviour
       HP = enemyStat.Hits;
     }
 
-    public void ApplyStun(int duration)
+    public void ApplyStun(float duration)
     {
       if(stunned || stunDur) {
         return;
@@ -164,7 +164,7 @@ public class EnemyMovement : MonoBehaviour
       yield return null;
     }
     
-    public void ApplyBurn(int duration, int damage)
+    public void ApplyBurn(int duration, float damage)
     {
       if(isBurning) {
         return;
@@ -191,6 +191,7 @@ public class EnemyMovement : MonoBehaviour
         HP -= burnDamage;
         if(HP <= 0) {
           EnemySpawner._instance.EnemyReachedEndOfPath();
+          LevelManager.instance.money += EnemyStat.Money;
           Destroy(gameObject);
         }
         burnSeconds = total - (Time.time - start);
@@ -270,10 +271,11 @@ public class EnemyMovement : MonoBehaviour
       yield return null;
     }
 
-    public void ApplyMercure()
+    public void ApplyMercure(int money)
     {
       if (isMercure) return;
         isMercure = true;
+        mercureBonus = money;
     }
   }
 

@@ -13,6 +13,8 @@ using UnityEngine;
         [SerializeField] private GameObject bulletPrefab;
         private List<EnemyMovement> enemies;
         private float turretDamage;
+        private float localRange;
+        private float localBPS;
         
         
 
@@ -71,6 +73,113 @@ using UnityEngine;
             {
                 target = hits[0].transform;
             }
+            range = localRange;
+            BulletPerSecond = localBPS;
+            foreach (var card in UiManager.instance._listCard)
+            {
+                switch (card.CardName)
+                {
+                    case CardName.Verseau:
+                        if (turret.Type == TurretType.Vent)
+                        {
+                            switch (card.Type)
+                            {
+                                case CardType.Soleil:
+                                    if(range >= 2) range -= 1;
+                                    BulletPerSecond *= 1.3f;
+                                    break;
+                                case CardType.Lune:
+                                    range += 1;
+                                    break;
+                            }
+                        
+                        }break;
+                    case CardName.Belier:
+                        switch (turret.Level)
+                        {
+                            case 1:
+                                switch (card.Type)
+                                {
+                                    case CardType.Soleil:
+                                        BulletPerSecond *= 2;
+                                        break;
+                                }
+                                range += 1;
+                            break;
+                            case 2:
+                                switch (card.Type)
+                                {
+                                    case CardType.Soleil:
+                                        BulletPerSecond *= 0.5f;
+                                        break;
+                                }
+                                if(range >= 2) range -= 1;
+                                break;
+                        }
+                        break;
+                    case CardName.Taureau:
+                        if (range >= 2)
+                        {
+                            range -= 1;
+                        }
+                        break;
+                    case CardName.Cancer:
+                        if(card.Type == CardType.Lune) BulletPerSecond *= 0.5f;
+                        break;
+                    case CardName.Sagittaire:
+                        range += 2;
+                        break;
+                    case CardName.Capricorne:
+                        switch (card.Type)
+                        {
+                            case CardType.Soleil:
+                               switch (turret.Type)
+                               {
+                                   case TurretType.Terre:
+                                       range += 2;
+                                       break;
+                                   case TurretType.Vent:
+                                       BulletPerSecond *= 0.9f;
+                                       break;
+                               }
+                               break;
+                        }break;
+                    case CardName.Poisson:
+                            switch (card.Type)
+                            {
+                                case CardType.Soleil:
+                                switch (turret.Type)
+                                {
+                                    case TurretType.Eau:
+                                        BulletPerSecond *= 1.5f;
+                                        break;
+                                    case TurretType.Vent:
+                                        range += 1;
+                                        break;
+                                }
+                                break;
+                                case CardType.Lune:
+                                if (turret.Type == TurretType.Terre)
+                                {
+                                    BulletPerSecond *= 0.75f;
+                                }
+                                break;
+                            }
+                        break;
+                    case CardName.Scorpion:
+                        switch (card.Type)
+                        {
+                            case CardType.Soleil:
+                                BulletPerSecond *= 2f;
+                                break;
+                            case CardType.Lune:
+                                range += 3;
+                                break;
+                        }
+                        break;
+                }
+                
+            }
         }
         
         private bool CheckIfInRange()
@@ -93,6 +202,7 @@ using UnityEngine;
             bulletScript.Turret = _turret;
             bulletScript.localDamage = turretDamage;
             bulletScript.SetTarget(target);
+            
             switch (turret.Type)
             {
                 case TurretType.Eau:
@@ -128,8 +238,10 @@ using UnityEngine;
         {
             turret = data;
             turretDamage = data.Damage;
-            range = data.RadAtk;
-            BulletPerSecond = data.DelayBetweenAtk;
+            localRange = data.RadAtk;
+            localBPS = data.DelayBetweenAtk;
+            range = localRange;
+            BulletPerSecond = localBPS;
         }
         
     }

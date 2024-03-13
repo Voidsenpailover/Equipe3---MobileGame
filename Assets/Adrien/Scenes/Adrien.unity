@@ -277,6 +277,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 864468184947467066, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
+      propertyPath: volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 864468184947467066, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
@@ -388,6 +392,10 @@ PrefabInstance:
       propertyPath: Points.Array.data[2]
       value: 
       objectReference: {fileID: 340759047}
+    - target: {fileID: 6031861013927170124, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6108355931400305964, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
       propertyPath: m_Name
       value: ---MANAGER---
@@ -434,7 +442,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7070858874779867917, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3223,6 +3231,12 @@ MonoBehaviour:
   _maxWaveText: {fileID: 0}
   _moneyText: {fileID: 0}
   _healthText: {fileID: 0}
+  _bonusIcone1: {fileID: 0}
+  _bonusIcone2: {fileID: 0}
+  _bonusIcone3: {fileID: 0}
+  _bonusEffect1: {fileID: 0}
+  _bonusEffect2: {fileID: 0}
+  _bonusEffect3: {fileID: 0}
 --- !u!4 &1138939575
 Transform:
   m_ObjectHideFlags: 0

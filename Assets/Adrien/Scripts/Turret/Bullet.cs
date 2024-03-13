@@ -15,9 +15,9 @@ public class Bullet : MonoBehaviour
     [SerializeField] private int range = 1;
     public TurretsData Turret;
     private float _timer;
-    private int timingStun;
+    private float timingStun = 1;
     private int timingBurn = 3;
-    private int burnDamage;
+    private float burnDamage = 1;
     private float slowPercent;
     private int mercureMoney;
     public float localDamage;
@@ -85,10 +85,114 @@ public class Bullet : MonoBehaviour
             {
                 turretDamage = localDamage;
                 turretDamage *= enemy.debuffPercent;
-            }
-            else
-            {
+            }else {
                 turretDamage = localDamage;
+            }
+            
+            foreach (var card in UiManager.instance._listCard)
+            {
+                switch (card.CardName)
+                {
+                    case CardName.Verseau:
+                    if (card.Type == CardType.Lune && Turret.Type == TurretType.Feu)
+                    {
+                        turretDamage *= 0.5f;
+                    }
+                    break;
+                    case CardName.Belier:
+                        if (card.Type == CardType.Soleil)
+                        {
+                            switch (Turret.Level)
+                            {
+                                case 1:
+                                    turretDamage *= 2f;
+                                    break;
+                                case 2:
+                                case 3:    
+                                    turretDamage *= 0.75f;
+                                    break;
+                            }
+                        }else if (card.Type == CardType.Lune)
+                        {
+                            switch (Turret.Level)
+                            {
+                                case 1:
+                                    slowPercent *= 2;
+                                    timingStun *= 2;
+                                    break;
+                                case 2:
+                                case 3:    
+                                    slowPercent *= 0.75f;
+                                    timingStun *= 0.5f;
+                                    break;
+                            }
+                        }
+                        break;
+                    case CardName.Taureau:
+                        switch (card.Type)
+                        {
+                            case CardType.Soleil:
+                                turretDamage *= 2f;
+                                break;
+                            case CardType.Lune:
+                                break;
+                        }
+                        break;
+                    case CardName.Lion:
+                        switch (card.Type)
+                        {
+                            case CardType.Soleil:
+                                burnDamage *= 1.5f;
+                                slowPercent *= 0.5f;
+                                break;
+                            case CardType.Lune:
+                                burnDamage *= 2f;
+                                timingStun *= 0.5f;
+                                break;
+                        }
+                        break;
+                    case CardName.Cancer:
+                        switch (card.Type)
+                        {
+                            case CardType.Soleil:
+                                slowPercent *= 2f;
+                                burnDamage *= 2f;
+                                turretDamage *= 0.5f;
+                                break;
+                            case CardType.Lune:
+                                timingBurn *= 2;
+                                timingStun *= 2f;
+                                break;
+                        }
+                        break;
+                    case CardName.Sagittaire:
+                        switch (card.Type)
+                        {
+                            case CardType.Soleil:
+                                turretDamage *= 0.7f;
+                                break;
+                            case CardType.Lune:
+                                slowPercent *= 0.7f;
+                                burnDamage *= 0.7f;
+                                break;
+                        }break;
+                    case CardName.Capricorne:
+                        if (card.Type == CardType.Lune)
+                        {
+                            if (Turret.Type == TurretType.Terre)
+                            {
+                                timingStun *= 2f;
+                            }
+                            burnDamage *= 0.5f;
+                        }break;
+                    case CardName.Poisson:
+                        if (card.Type == CardType.Lune)
+                        {
+                            slowPercent *= 1.1f;
+                        }
+                        break;
+                }
+                
             }
             
             switch (Turret.Type)
@@ -98,14 +202,11 @@ public class Bullet : MonoBehaviour
                     else enemy.HP -= turretDamage;
                     switch (Turret.Level)
                     {
-                        case 1:
-                            burnDamage = 1;
-                            break;
                         case 2:
-                            burnDamage = 3;
+                            burnDamage += 3;
                             break;
                         case 3:
-                            burnDamage = 10;
+                            burnDamage += 10;
                             break;
                     }
                     break;
@@ -129,7 +230,7 @@ public class Bullet : MonoBehaviour
                 case TurretType.Terre:
                     if(enemy.EnemyStat.Vulnerability == Vulnerability.Terre) enemy.HP -= turretDamage * 1.5f;
                     else enemy.HP -= turretDamage;
-                    timingStun = Turret.Level;
+                    timingStun *= Turret.Level;
                     break;
                 case TurretType.Vent:
                     if(enemy.EnemyStat.Vulnerability == Vulnerability.Vent) enemy.HP -= turretDamage * 1.5f;
@@ -152,13 +253,13 @@ public class Bullet : MonoBehaviour
                     switch (Turret.Level)
                     {
                         case 1:
-                            mercureMoney = 1;
+                            mercureMoney += 1;
                             break;
                         case 2:
-                            mercureMoney = 3;
+                            mercureMoney += 3;
                             break;
                     }
-                    enemy.ApplyMercure();
+                    enemy.ApplyMercure(mercureMoney);
                     break;
                 case TurretType.Fulgurite:
                     switch (enemy.EnemyStat.Vulnerability)
@@ -173,7 +274,7 @@ public class Bullet : MonoBehaviour
                             enemy.HP -= turretDamage;
                             break;
                     }
-                    timingStun = Turret.Level + 1;
+                    timingStun *= Turret.Level + 1;
                     break;
                 case TurretType.Pyrite:
                     switch (enemy.EnemyStat.Vulnerability)
@@ -221,7 +322,7 @@ public class Bullet : MonoBehaviour
             {
                 EnemySpawner._instance.EnemyReachedEndOfPath();
                 LevelManager.instance.money += enemy.EnemyStat.Money;
-                if(enemy.isMercure) LevelManager.instance.money += mercureMoney;
+                if(enemy.isMercure) LevelManager.instance.money += enemy.mercureBonus;
                 OnMoneyChanged?.Invoke();
                 Destroy(enemy.gameObject);
                 Destroy(gameObject);
