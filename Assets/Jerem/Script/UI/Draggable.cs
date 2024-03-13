@@ -6,7 +6,9 @@ public class Draggable : MonoBehaviour
 {
     public bool IsDragging;
 
-    public Vector3 LastPosition;
+    [SerializeField] GridBuildingSystem gridBuildingSystem;
+
+    private Vector3 _lastPosition;
 
     private BoxCollider2D _collider;
     private DragController _dragController;
@@ -14,10 +16,23 @@ public class Draggable : MonoBehaviour
     private float _movementTime = 15f;
     private System.Nullable<Vector3> _movementDestination;
 
+    private TurretsData _turretData;
+    private bool _canDrop;
+
+    public Vector3 LastPosition { get => _lastPosition; set => _lastPosition = value; }
+    public TurretsData TurretData { get => _turretData; set => _turretData = value; }
+
     private void Start()
     {
         _collider = this.GetComponent<BoxCollider2D>();
         _dragController = FindObjectOfType<DragController>();
+        DragController.OnDropOnTurret += DragController_OnDropOnTurret;
+        _canDrop = false;   
+    }
+
+    private void DragController_OnDropOnTurret()
+    {
+        _canDrop = true;
     }
 
     private void FixedUpdate()
@@ -54,8 +69,14 @@ public class Draggable : MonoBehaviour
 
         if (other.CompareTag("DropValid"))
         {
-            _movementDestination = other.transform.position;
-            Debug.Log(_movementDestination);
+            if(_canDrop == true)
+            {
+                _movementDestination = other.transform.position;
+                Debug.Log("Il a drop");
+                other.transform.gameObject.GetComponent<Building>().Data = TurretData;
+                other.transform.gameObject.GetComponent<SpriteRenderer>().sprite = TurretData.Sprite;
+                _canDrop = false;
+            }
         } else if(other.CompareTag("DropInvalid"))
         {
             _movementDestination = LastPosition;

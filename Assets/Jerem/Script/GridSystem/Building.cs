@@ -5,10 +5,13 @@ using UnityEngine;
 public class Building : MonoBehaviour
 {
     public bool Placed { get; private set; }
-    public TurretsData Data { get => _data; set => _data = value; }
+    
 
     public BoundsInt area;
     [SerializeField] private TurretsData _data;
+
+    //Properties
+    public TurretsData Data { get => _data; set => _data = value; }
 
     void Start()
     {
