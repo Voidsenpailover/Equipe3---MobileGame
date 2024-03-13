@@ -56,6 +56,7 @@ public class GridBuildingSystem : MonoBehaviour
     public bool IsDraggingNow { get => _isDraggingNow; set => _isDraggingNow = value; }
     public bool CanSelect { get => _canSelect; set => _canSelect = value; }
     public List<TurretsData> TurretsData { get => _turretsData; set => _turretsData = value; }
+    public GridLayout GridLayout1 { get => gridLayout; set => gridLayout = value; }
 
     //Selections
     private bool _canSelect;
