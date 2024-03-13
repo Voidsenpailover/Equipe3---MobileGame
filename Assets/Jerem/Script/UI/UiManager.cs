@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class UiManager : MonoBehaviour
 {
@@ -13,12 +14,12 @@ public class UiManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI _moneyText;
     [SerializeField] TextMeshProUGUI _healthText;
     
-    [SerializeField] private Sprite _bonusIcone1;
-    [SerializeField] private Sprite _bonusIcone2;
-    [SerializeField] private Sprite _bonusIcone3;
-    [SerializeField] private Sprite _bonusSunMoon1;
-    [SerializeField] private Sprite _bonusSunMoon2;
-    [SerializeField] private Sprite _bonusSunMoon3;
+    [SerializeField] private GameObject _bonusIcone1;
+    [SerializeField] private GameObject _bonusIcone2;
+    [SerializeField] private GameObject _bonusIcone3;
+    [SerializeField] private GameObject _bonusSunMoon1;
+    [SerializeField] private GameObject _bonusSunMoon2;
+    [SerializeField] private GameObject _bonusSunMoon3;
     
     public List<CardData> _listCard;
     public static UiManager instance;
@@ -68,16 +69,16 @@ public class UiManager : MonoBehaviour
      switch (indexBonus)
      {
          case 1:
-             _bonusIcone1 = card.Icone;
-             _bonusSunMoon1 = card.BouleSoleilLune;
+             _bonusIcone1.GetComponent<SpriteRenderer>().sprite = card.Icone;
+             _bonusSunMoon1.GetComponent<SpriteRenderer>().sprite = card.BouleSoleilLune;
              break;
          case 2:
-             _bonusIcone2 = card.Icone;
-             _bonusSunMoon2 = card.BouleSoleilLune;
+             _bonusIcone2.GetComponent<SpriteRenderer>().sprite = card.Icone;
+             _bonusSunMoon2.GetComponent<SpriteRenderer>().sprite = card.BouleSoleilLune;
              break;
          case 3:
-             _bonusIcone3 = card.Icone;
-             _bonusSunMoon3 = card.BouleSoleilLune;
+             _bonusIcone3.GetComponent<SpriteRenderer>().sprite = card.Icone;
+             _bonusSunMoon3.GetComponent<SpriteRenderer>().sprite = card.BouleSoleilLune;
              break;
      }
      _listCard.Add(card);
