@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 57266af9ea5f5754987d0103a4b3b3f4, type: 3}
-  m_Name: Enemy-2
+  m_Name: Enemy-16
   m_EditorClassIdentifier: 
-  _enemyType: 1
+  _enemyType: 15
   _vulnerability: 4
-  _hits: 15
-  _speed: 1
-  _money: 10
+  _hits: 20
+  _speed: 2
+  _money: 20
   _spriteRenderer: {fileID: 0}
-  _damage: 2
+  _damage: 4
   _canBeStunned: 1
