@@ -11,6 +11,7 @@ public class UiManager : MonoBehaviour
     [SerializeField] GameObject _menuSelectionPoint;
     [SerializeField] GameObject _menuInfoPoint;
     [SerializeField] GameObject _menuFusionPoint;
+
     [SerializeField] TextMeshProUGUI _waveText;
     [SerializeField] TextMeshProUGUI _maxWaveText;
     [SerializeField] TextMeshProUGUI _moneyText;
