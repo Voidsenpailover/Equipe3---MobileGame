@@ -19,20 +19,30 @@ public class Draggable : MonoBehaviour
     private TurretsData _turretData;
     private bool _canDrop;
 
+    private Collider2D collider2dTemp;
+
     public Vector3 LastPosition { get => _lastPosition; set => _lastPosition = value; }
     public TurretsData TurretData { get => _turretData; set => _turretData = value; }
+    public bool CanDrop { get => _canDrop; set => _canDrop = value; }
 
     private void Start()
     {
         _collider = this.GetComponent<BoxCollider2D>();
         _dragController = FindObjectOfType<DragController>();
         DragController.OnDropOnTurret += DragController_OnDropOnTurret;
-        _canDrop = false;   
+        CanDrop = false;   
     }
 
     private void DragController_OnDropOnTurret()
     {
-        _canDrop = true;
+        if (CanDrop)
+        {
+            Debug.Log("Il a drop");
+            collider2dTemp.transform.gameObject.GetComponent<Building>().Data = TurretData;
+            collider2dTemp.transform.gameObject.GetComponent<SpriteRenderer>().sprite = TurretData.Sprite;
+            _movementDestination = collider2dTemp.transform.position;
+            CanDrop = false;
+        }
     }
 
     private void FixedUpdate()
@@ -59,6 +69,8 @@ public class Draggable : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        collider2dTemp = other;
+        /*
         Draggable collidedDraggable = GetComponent<Draggable>();
         if (collidedDraggable != null && _dragController.LastDragged.gameObject == gameObject)
         {
@@ -66,21 +78,19 @@ public class Draggable : MonoBehaviour
             Vector3 diff = new Vector3(colliderDistance2D.normal.x, colliderDistance2D.normal.y, 0.0f) * colliderDistance2D.distance;
             transform.position -= diff;
         }
+        */
 
         if (other.CompareTag("DropValid"))
         {
-            if(_canDrop)
-            {
-                _movementDestination = other.transform.position;
-                Debug.Log("Il a drop");
-                other.transform.gameObject.GetComponent<Building>().Data = TurretData;
-                other.transform.gameObject.GetComponent<SpriteRenderer>().sprite = TurretData.Sprite;
-                _canDrop = false;
-            }
+            CanDrop = true;
+            Debug.Log("Hey");
+
         } else if(other.CompareTag("DropInvalid"))
         {
             _movementDestination = LastPosition;
             Debug.Log(_movementDestination);
+            CanDrop = false;
         }
+        
     }
 }

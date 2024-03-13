@@ -93,7 +93,7 @@ public class DragController : MonoBehaviour
     void InitDrag()
     {
         _lastDragged.LastPosition = _lastDragged.transform.position;
-
+        _lastDragged.GetComponent<Draggable>().CanDrop = false;
         UpdateDragStatus(true);
     }
 
@@ -108,8 +108,10 @@ public class DragController : MonoBehaviour
         _lastDragged.transform.position = new Vector2(100, 100);
         _buildingSystem.IsDraggingNow = false;
         _buildingSystem.CanSelect = true;
-        OnDropOnTurret?.Invoke();
         Debug.Log("Wtf le drop");
+        OnDropOnTurret?.Invoke();
+
+
     }
 
     void UpdateDragStatus(bool IsDragging)

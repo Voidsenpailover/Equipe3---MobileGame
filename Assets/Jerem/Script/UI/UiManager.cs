@@ -11,7 +11,7 @@ public class UiManager : MonoBehaviour
     [SerializeField] GameObject _menuSelectionPoint;
     [SerializeField] GameObject _menuInfoPoint;
     [SerializeField] GameObject _menuFusionPoint;
-
+    /*
     [SerializeField] TextMeshProUGUI _waveText;
     [SerializeField] TextMeshProUGUI _maxWaveText;
     [SerializeField] TextMeshProUGUI _moneyText;
@@ -23,7 +23,7 @@ public class UiManager : MonoBehaviour
     [SerializeField] private GameObject _bonusSunMoon1;
     [SerializeField] private GameObject _bonusSunMoon2;
     [SerializeField] private GameObject _bonusSunMoon3;
-    
+    */
     public List<CardData> _listCard;
     public static UiManager instance;
     private int indexBonus;
@@ -42,11 +42,12 @@ public class UiManager : MonoBehaviour
 
         GridBuildingSystem.OnFusionMenuActive += SetFusionMenu;
         GridBuildingSystem.OnFusionMenuDeactivated += UnsetFusionMenu;
-        
+        /*
         _waveText.text =  EnemySpawner._instance._currentRoundIndex.ToString();
         _maxWaveText.text = EnemySpawner._instance._rounds.Count.ToString();
         _moneyText.text = LevelManager.instance.money.ToString();
         _healthText.text = LevelManager.instance.HP.ToString();
+        */
     }
 
     private void SetInfoMenu(Vector3 pos)
@@ -87,6 +88,7 @@ public class UiManager : MonoBehaviour
     private void UpdateSlotBonus(CardData card)
     {
          indexBonus++;
+        /*
          switch (indexBonus)
          {
              case 1:
@@ -102,9 +104,12 @@ public class UiManager : MonoBehaviour
                  _bonusSunMoon3.GetComponent<SpriteRenderer>().sprite = card.BouleSoleilLune;
                  break;
          }
+        */
          _listCard.Add(card);
     }
  
+
+    /*
      private void UpdateWaveText()
      {
          _waveText.text =  EnemySpawner._instance._currentRoundIndex.ToString();
@@ -117,13 +122,14 @@ public class UiManager : MonoBehaviour
      {
          _healthText.text = LevelManager.instance.HP.ToString();
      }
-
+    */
  
      private void OnEnable()
      {
+        /*
             EnemySpawner.OnWaveChanged += UpdateWaveText;
             Bullet.OnMoneyChanged += UpdateMoneyText;
-            EnemyMovement.OnHealthChanged += UpdateHealthText;
+            EnemyMovement.OnHealthChanged += UpdateHealthText;*/
             CardManager.CardSelected += UpdateSlotBonus;
      }
 
@@ -138,9 +144,10 @@ public class UiManager : MonoBehaviour
         GridBuildingSystem.OnFusionMenuActive -= SetFusionMenu;
         GridBuildingSystem.OnFusionMenuDeactivated -= UnsetFusionMenu;
         
+        /*
         EnemySpawner.OnWaveChanged -= UpdateWaveText;
         Bullet.OnMoneyChanged -= UpdateMoneyText;
-        EnemyMovement.OnHealthChanged -= UpdateHealthText;
+        EnemyMovement.OnHealthChanged -= UpdateHealthText;*/
         CardManager.CardSelected -= UpdateSlotBonus;
     }
 }
