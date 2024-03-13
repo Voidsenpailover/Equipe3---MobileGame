@@ -15,7 +15,8 @@ public class EnemySpawner : MonoBehaviour
         [SerializeField] private bool _isRoundOver;
         [SerializeField] private int _enemiesLeft;
         public static EnemySpawner _instance;
-        
+        public static event Action CardChoice;
+
         public static event Action OnWaveChanged;
         private void Awake()
         {
@@ -36,9 +37,13 @@ public class EnemySpawner : MonoBehaviour
             if (!_isRoundOver) return;
         
             _timer += Time.deltaTime;
-            if(_timer > 10f)
+            if(_timer > 1f)
             {
                 _timer = 0;
+                if(_currentRoundIndex is 10 or 20 or 30)
+                {
+                    CardChoice?.Invoke();
+                }
                 OnWaveChanged?.Invoke();
                 StartRound();  
                 _isRoundOver = false;
@@ -48,6 +53,7 @@ public class EnemySpawner : MonoBehaviour
         private void StartRound()
         {
             _currentRoundIndex++;
+            
             if (_currentRoundIndex > _rounds.Count)
             {
                 LevelManager.instance.Victory();
