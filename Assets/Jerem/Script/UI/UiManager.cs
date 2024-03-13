@@ -1,17 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using UnityEngine;
 
 public class UiManager : MonoBehaviour
 {
     [SerializeField] RectTransform _turretMenu;
     [SerializeField] GameObject _menuSelectionPoint;
-    [SerializeField] TextMeshProUGUI _waveText;
-    [SerializeField] TextMeshProUGUI _maxWaveText;
     [SerializeField] GameObject _menuInfoPoint;
     [SerializeField] GameObject _menuFusionPoint;
+    [SerializeField] TextMeshProUGUI _waveText;
+    [SerializeField] TextMeshProUGUI _maxWaveText;
     [SerializeField] TextMeshProUGUI _moneyText;
     [SerializeField] TextMeshProUGUI _healthText;
     
@@ -31,16 +32,18 @@ public class UiManager : MonoBehaviour
     }
     void Start()
     {
-        _waveText.text = EnemySpawner._instance._currentRoundIndex.ToString();
-        _maxWaveText.text = EnemySpawner._instance._rounds.Count.ToString();
         GridBuildingSystem.OnSelectionMenuActive += SetSelectionMenu;
         GridBuildingSystem.OnSelectionMenuDeactivated += UnsetSelectionMenu;
+    
 
         GridBuildingSystem.OnInfoMenuActive += SetInfoMenu;
         GridBuildingSystem.OnInfoMenuDeactivated += UnsetInfoMenu;
 
         GridBuildingSystem.OnFusionMenuActive += SetFusionMenu;
         GridBuildingSystem.OnFusionMenuDeactivated += UnsetFusionMenu;
+        
+        _waveText.text =  EnemySpawner._instance._currentRoundIndex.ToString();
+        _maxWaveText.text = EnemySpawner._instance._rounds.Count.ToString();
         _moneyText.text = LevelManager.instance.money.ToString();
         _healthText.text = LevelManager.instance.HP.ToString();
     }
@@ -55,7 +58,7 @@ public class UiManager : MonoBehaviour
         _turretMenu.position = Vector3.zero;
         _menuInfoPoint.SetActive(false);
     }
-
+    
     private void SetFusionMenu(Vector3 pos)
     {
         _turretMenu.position = pos;
@@ -67,7 +70,7 @@ public class UiManager : MonoBehaviour
         _turretMenu.position = Vector3.zero;
         _menuFusionPoint.SetActive(false);
     }
-
+    
     private void SetSelectionMenu(Vector3 pos)
     {
         _turretMenu.position = pos;
@@ -79,55 +82,53 @@ public class UiManager : MonoBehaviour
         _turretMenu.position = Vector3.zero;
         _menuSelectionPoint.SetActive(false);
     }
-
- private void UpdateWaveText()
- {
-     _waveText.text =  EnemySpawner._instance._currentRoundIndex.ToString();
- }
- private void UpdateMoneyText()
- {
-     _moneyText.text = LevelManager.instance.money.ToString();
- }
- private void UpdateHealthText()
- {
-     _healthText.text = LevelManager.instance.HP.ToString();
- }
+    
+    private void UpdateSlotBonus(CardData card)
+    {
+         indexBonus++;
+         switch (indexBonus)
+         {
+             case 1:
+                 _bonusIcone1.GetComponent<SpriteRenderer>().sprite = card.Icone;
+                 _bonusSunMoon1.GetComponent<SpriteRenderer>().sprite = card.BouleSoleilLune;
+                 break;
+             case 2:
+                 _bonusIcone2.GetComponent<SpriteRenderer>().sprite = card.Icone;
+                 _bonusSunMoon2.GetComponent<SpriteRenderer>().sprite = card.BouleSoleilLune;
+                 break;
+             case 3:
+                 _bonusIcone3.GetComponent<SpriteRenderer>().sprite = card.Icone;
+                 _bonusSunMoon3.GetComponent<SpriteRenderer>().sprite = card.BouleSoleilLune;
+                 break;
+         }
+         _listCard.Add(card);
+    }
+ 
+     private void UpdateWaveText()
+     {
+         _waveText.text =  EnemySpawner._instance._currentRoundIndex.ToString();
+     }
+     private void UpdateMoneyText()
+     {
+         _moneyText.text = LevelManager.instance.money.ToString();
+     }
+     private void UpdateHealthText()
+     {
+         _healthText.text = LevelManager.instance.HP.ToString();
+     }
 
  
- private void UpdateSlotBonus(CardData card)
- {
-     indexBonus++;
-     switch (indexBonus)
+     private void OnEnable()
      {
-         case 1:
-             _bonusIcone1.GetComponent<SpriteRenderer>().sprite = card.Icone;
-             _bonusSunMoon1.GetComponent<SpriteRenderer>().sprite = card.BouleSoleilLune;
-             break;
-         case 2:
-             _bonusIcone2.GetComponent<SpriteRenderer>().sprite = card.Icone;
-             _bonusSunMoon2.GetComponent<SpriteRenderer>().sprite = card.BouleSoleilLune;
-             break;
-         case 3:
-             _bonusIcone3.GetComponent<SpriteRenderer>().sprite = card.Icone;
-             _bonusSunMoon3.GetComponent<SpriteRenderer>().sprite = card.BouleSoleilLune;
-             break;
+            EnemySpawner.OnWaveChanged += UpdateWaveText;
+            Bullet.OnMoneyChanged += UpdateMoneyText;
+            EnemyMovement.OnHealthChanged += UpdateHealthText;
+            CardManager.CardSelected += UpdateSlotBonus;
      }
-     _listCard.Add(card);
- }
- private void OnEnable()
- {
-     GridBuildingSystem.OnTurretMenuActive += SetTurretMenu;
-     GridBuildingSystem.OnTurretMenuDeactivated += UnsetTurretMenu; 
-     EnemySpawner.OnWaveChanged += UpdateWaveText;
-     Bullet.OnMoneyChanged += UpdateMoneyText;
-     EnemyMovement.OnHealthChanged += UpdateHealthText;
-     CardManager.CardSelected += UpdateSlotBonus;
- }
 
-
- private void OnDestroy()
- {
-         GridBuildingSystem.OnSelectionMenuActive -= SetSelectionMenu;
+    private void OnDestroy()
+    {  
+        GridBuildingSystem.OnSelectionMenuActive -= SetSelectionMenu;
         GridBuildingSystem.OnSelectionMenuDeactivated -= UnsetSelectionMenu;
 
         GridBuildingSystem.OnInfoMenuActive -= SetInfoMenu;
@@ -135,12 +136,10 @@ public class UiManager : MonoBehaviour
 
         GridBuildingSystem.OnFusionMenuActive -= SetFusionMenu;
         GridBuildingSystem.OnFusionMenuDeactivated -= UnsetFusionMenu;
-
-        GridBuildingSystem.OnFusionMenuActive -= SetFusionMenu;
-        GridBuildingSystem.OnFusionMenuDeactivated -= UnsetFusionMenu;
-             EnemySpawner.OnWaveChanged -= UpdateWaveText;
-     Bullet.OnMoneyChanged -= UpdateMoneyText;
-     EnemyMovement.OnHealthChanged -= UpdateHealthText;
-     CardManager.CardSelected -= UpdateSlotBonus;
- }
+        
+        EnemySpawner.OnWaveChanged -= UpdateWaveText;
+        Bullet.OnMoneyChanged -= UpdateMoneyText;
+        EnemyMovement.OnHealthChanged -= UpdateHealthText;
+        CardManager.CardSelected -= UpdateSlotBonus;
+    }
 }
