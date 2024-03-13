@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -69,10 +69,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -108,7 +108,700 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: NeutralEnnemies_0
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 337
+        width: 46
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aacdb757bf4bf4d45b131014398e5feb
+      internalID: 1622555747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeutralEnnemies_1
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 336
+        width: 35
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33d0e16702a90b4488dc10cb8f2337e3
+      internalID: -1201505633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeutralEnnemies_2
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 335
+        width: 46
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e08d4e8bdf0f584e91fd7c185aebfcf
+      internalID: 1936571582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeutralEnnemies_3
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 334
+        width: 41
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c7474b5a810bf14a913cb3a0aceb21f
+      internalID: 2054305845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeutralEnnemies_4
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 322
+        width: 52
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f12789e625b1a5242a0a6f60e511b03a
+      internalID: 551057533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeutralEnnemies_5
+      rect:
+        serializedVersion: 2
+        x: 490
+        y: 322
+        width: 52
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ced0b5bf00434e846ac43aefd0549de4
+      internalID: 1885701487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeutralEnnemies_6
+      rect:
+        serializedVersion: 2
+        x: 555
+        y: 333
+        width: 74
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94c954e1641f2fc439b5bdb76c6c74fc
+      internalID: -2021808590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeutralEnnemies_7
+      rect:
+        serializedVersion: 2
+        x: 667
+        y: 359
+        width: 35
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2db855f58f38f474b92967555c10b73a
+      internalID: 1779674040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeutralEnnemies_8
+      rect:
+        serializedVersion: 2
+        x: 730
+        y: 361
+        width: 33
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb90b1f5152e5ae4e90cc89a06e55bb4
+      internalID: -1407501797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeutralEnnemies_9
+      rect:
+        serializedVersion: 2
+        x: 785
+        y: 350
+        width: 42
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb2b8052ff5a9464896e714d8629bfa0
+      internalID: -1619349860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeutralEnnemies_10
+      rect:
+        serializedVersion: 2
+        x: 846
+        y: 352
+        width: 38
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0aeda559bcd31454fbee2daaca3b37c8
+      internalID: 63449148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeutralEnnemies_11
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 257
+        width: 49
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0d16e7135e532a489e84f7cb00a4f57
+      internalID: 133765545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeutralEnnemies_12
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 256
+        width: 36
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 047c478cfde0e4642a5bccd6f86f633c
+      internalID: -608062350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeutralEnnemies_13
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 254
+        width: 49
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33c0864c384e7414bb46bd1f535bf980
+      internalID: 824674438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeutralEnnemies_14
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 253
+        width: 49
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7681a902887df9040a4403ce3c201152
+      internalID: -600102904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeutralEnnemies_15
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 250
+        width: 52
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90e2fcdf7bcd87e4d9689bb3d78098dd
+      internalID: 2076790758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeutralEnnemies_16
+      rect:
+        serializedVersion: 2
+        x: 489
+        y: 250
+        width: 52
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 451097471ff4a17428d2ad769a95f9f0
+      internalID: 976198078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeutralEnnemies_17
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 261
+        width: 74
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c343efbba949f847954fbe4d84838fb
+      internalID: -1306531914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeutralEnnemies_18
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 275
+        width: 43
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3100a4ef01d1bcb44a1bea93ac29f2e0
+      internalID: -1471605543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeutralEnnemies_19
+      rect:
+        serializedVersion: 2
+        x: 723
+        y: 277
+        width: 40
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 757afd9539b308946b7629694d37ede1
+      internalID: -417321214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeutralEnnemies_20
+      rect:
+        serializedVersion: 2
+        x: 782
+        y: 266
+        width: 46
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e83fd1eba55fb5a47a8a87338f09e7b5
+      internalID: 1951947879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeutralEnnemies_21
+      rect:
+        serializedVersion: 2
+        x: 842
+        y: 268
+        width: 46
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b553c9ee60a5bfb47922ec3f5fafee62
+      internalID: 29806047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeutralEnnemies_22
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 173
+        width: 55
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 356970cc5f6607049b7fbead7a44b79f
+      internalID: 41783712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeutralEnnemies_23
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 172
+        width: 37
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40d7bb02dc05fee4993486c711ec147d
+      internalID: 468565917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeutralEnnemies_24
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 170
+        width: 60
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6f83cfeda94ef145a02338aae3d0365
+      internalID: -738484302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeutralEnnemies_25
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 171
+        width: 58
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 795988a5f4cc52c439f1349f86db9472
+      internalID: -47232205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeutralEnnemies_26
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 173
+        width: 52
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 856f28efc0aa72245b2ea6eeb3436555
+      internalID: -506916186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeutralEnnemies_27
+      rect:
+        serializedVersion: 2
+        x: 489
+        y: 173
+        width: 52
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bae2ade3444524419ebe677025e302d
+      internalID: 784881029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeutralEnnemies_28
+      rect:
+        serializedVersion: 2
+        x: 554
+        y: 184
+        width: 74
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2209e40c5739f4c44b0c20ac6bc0417f
+      internalID: 2092784509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeutralEnnemies_29
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 175
+        width: 45
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b598f0b07c3a1e4d93209e04b38c6ed
+      internalID: -830891187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeutralEnnemies_30
+      rect:
+        serializedVersion: 2
+        x: 718
+        y: 177
+        width: 44
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ae68ff848d5cb549b30a691c63c12a9
+      internalID: -1246100652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeutralEnnemies_31
+      rect:
+        serializedVersion: 2
+        x: 777
+        y: 166
+        width: 54
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf4319a3efd406d46a3aa5a2ccf70f1b
+      internalID: 1516113136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NeutralEnnemies_32
+      rect:
+        serializedVersion: 2
+        x: 835
+        y: 168
+        width: 56
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adb2fa44d1dfb17449db0b92c92cf413
+      internalID: 1518522871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -119,7 +812,40 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      NeutralEnnemies_0: 1622555747
+      NeutralEnnemies_1: -1201505633
+      NeutralEnnemies_10: 63449148
+      NeutralEnnemies_11: 133765545
+      NeutralEnnemies_12: -608062350
+      NeutralEnnemies_13: 824674438
+      NeutralEnnemies_14: -600102904
+      NeutralEnnemies_15: 2076790758
+      NeutralEnnemies_16: 976198078
+      NeutralEnnemies_17: -1306531914
+      NeutralEnnemies_18: -1471605543
+      NeutralEnnemies_19: -417321214
+      NeutralEnnemies_2: 1936571582
+      NeutralEnnemies_20: 1951947879
+      NeutralEnnemies_21: 29806047
+      NeutralEnnemies_22: 41783712
+      NeutralEnnemies_23: 468565917
+      NeutralEnnemies_24: -738484302
+      NeutralEnnemies_25: -47232205
+      NeutralEnnemies_26: -506916186
+      NeutralEnnemies_27: 784881029
+      NeutralEnnemies_28: 2092784509
+      NeutralEnnemies_29: -830891187
+      NeutralEnnemies_3: 2054305845
+      NeutralEnnemies_30: -1246100652
+      NeutralEnnemies_31: 1516113136
+      NeutralEnnemies_32: 1518522871
+      NeutralEnnemies_4: 551057533
+      NeutralEnnemies_5: 1885701487
+      NeutralEnnemies_6: -2021808590
+      NeutralEnnemies_7: 1779674040
+      NeutralEnnemies_8: -1407501797
+      NeutralEnnemies_9: -1619349860
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
