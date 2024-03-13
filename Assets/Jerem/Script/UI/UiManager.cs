@@ -1,16 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class UiManager : MonoBehaviour
 {
     [SerializeField] RectTransform _turretMenu;
     [SerializeField] GameObject _menuRotationPoint;
+    [SerializeField] TextMeshProUGUI _waveText;
+    [SerializeField] TextMeshProUGUI _healthText;
+    [SerializeField] TextMeshProUGUI _moneyText;
 
-    void Start()
+
+
+    private void UnsetTurretMenu()
     {
-        GridBuildingSystem.OnTurretMenuActive += SetTurretMenu;
-        GridBuildingSystem.OnTurretMenuDeactivated += UnsetTurretMenu;
+        _turretMenu.position = Vector3.zero;
+        _menuRotationPoint.SetActive(false);
     }
 
     private void SetTurretMenu(Vector3 pos)

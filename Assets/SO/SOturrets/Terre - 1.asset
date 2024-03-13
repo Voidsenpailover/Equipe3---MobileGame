@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b2f6079cca79be41ad0ef20c3992cb6, type: 3}
-  m_Name: Eau-3
+  m_Name: Terre - 1
   m_EditorClassIdentifier: 
-  _name: Tsunami
+  _name: Terre
   _description: 
-  _cost: 2500
-  _damage: 5
-  _delayBetweenAtk: 1.5
-  _radAtk: 5
+  _cost: 150
+  _damage: 4
+  _delayBetweenAtk: 3
+  _radAtk: 1
   _AtkSFX: {fileID: 0}
-  _sprite: {fileID: 21300000, guid: ea3e737444090254eb9c449bfae99320, type: 3}
-  _type: 2
-  _level: 3
-  _atkType: 0
+  _sprite: {fileID: 21300000, guid: 75d3a47c1093e144b80bf022e65d6297, type: 3}
+  _type: 1
+  _level: 1
+  _atkType: 1

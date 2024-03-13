@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b2f6079cca79be41ad0ef20c3992cb6, type: 3}
-  m_Name: Air- 2
+  m_Name: Air - 1
   m_EditorClassIdentifier: 
   _name: Air
-  _description: 
+  _description: "Tape tres vite mais peu de d\xE9gats"
   _cost: 150
   _damage: 1
   _delayBetweenAtk: 0.33
