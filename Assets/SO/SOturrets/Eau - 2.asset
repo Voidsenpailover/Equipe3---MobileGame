@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Eau - 2
   m_EditorClassIdentifier: 
   _name: Torrent
-  _description: 
+  _description: Vague Ralentissante plus forte
   _cost: 750
   _damage: 3
   _delayBetweenAtk: 2

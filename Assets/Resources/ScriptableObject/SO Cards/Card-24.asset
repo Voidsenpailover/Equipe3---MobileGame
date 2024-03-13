@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Card-24
   m_EditorClassIdentifier: 
   _name: Scorpion
-  _Goodeffect: "Toutes tours : + 3 de port\xE9e"
+  _goodeffect: "Toutes tours : + 3 de port\xE9e"
   _badEffect: 'PV : 1 jusqu''a la fin de la partie'
   _cardName: 11
   _type: 1
-  _icone: {fileID: 0}
-  _background: {fileID: 0}
+  _icone: {fileID: 21300000, guid: bc7b397a739be774eb4172d7a5e14161, type: 3}
+  _background: {fileID: 21300000, guid: a5b5d4e19699a3d43b8d5ebefede0020, type: 3}
+  _bouleSoleilLune: {fileID: 21300000, guid: 3f57b354252edec4db9062ef0a8b8e67, type: 3}

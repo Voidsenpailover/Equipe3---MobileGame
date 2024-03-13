@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Terre - 1
   m_EditorClassIdentifier: 
   _name: Terre
-  _description: 
+  _description: "Tremblement de terre \xE9tourdissant"
   _cost: 150
   _damage: 4
   _delayBetweenAtk: 3

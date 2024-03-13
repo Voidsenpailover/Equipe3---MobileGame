@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Feu - 2
   m_EditorClassIdentifier: 
   _name: Brasier
-  _description: 
+  _description: Flamme Immolante
   _cost: 750
   _damage: 3
   _delayBetweenAtk: 1

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Terre - 3
   m_EditorClassIdentifier: 
   _name: "S\xE9isme"
-  _description: 
+  _description: Fissure terrestre
   _cost: 2500
   _damage: 20
   _delayBetweenAtk: 3

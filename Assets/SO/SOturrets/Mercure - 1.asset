@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mercure - 1
   m_EditorClassIdentifier: 
   _name: Mercure
-  _description: 
+  _description: Transforme les ennemis en plomb
   _cost: 1000
   _damage: 5
   _delayBetweenAtk: 1

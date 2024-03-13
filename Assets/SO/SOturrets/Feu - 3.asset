@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Feu - 3
   m_EditorClassIdentifier: 
   _name: Eruption
-  _description: 
+  _description: Flamme Purificatrice
   _cost: 2500
   _damage: 3
   _delayBetweenAtk: 1

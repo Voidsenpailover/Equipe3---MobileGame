@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Air - 2
   m_EditorClassIdentifier: 
   _name: "Temp\xEAte"
-  _description: 
+  _description: Attaque encore plus vite
   _cost: 750
   _damage: 2
   _delayBetweenAtk: 0.25

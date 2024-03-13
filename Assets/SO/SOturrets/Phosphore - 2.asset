@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Phosphore - 2
   m_EditorClassIdentifier: 
   _name: "Phosphore\xB2"
-  _description: 
+  _description: Aura infernal
   _cost: 3000
   _damage: 4
   _delayBetweenAtk: 0.33

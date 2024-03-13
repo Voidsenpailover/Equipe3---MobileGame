@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Card-5
   m_EditorClassIdentifier: 
   _name: Taureau
-  _Goodeffect: "Toutes tours : + 100 % de d\xE9gats"
+  _goodeffect: "Toutes tours : + 100 % de d\xE9gats"
   _badEffect: "Toutes tours : - 1 de port\xE9e (jamais 0)"
   _cardName: 2
   _type: 0
-  _icone: {fileID: 0}
-  _background: {fileID: 0}
+  _icone: {fileID: 21300000, guid: 6ae41e26e847d9d469a10257cb3ca2ce, type: 3}
+  _background: {fileID: 21300000, guid: afbde76d797ad0a4f9e71ce824090814, type: 3}
+  _bouleSoleilLune: {fileID: 21300000, guid: fe9bde3ab034cd548a4deeb7c308c9c5, type: 3}

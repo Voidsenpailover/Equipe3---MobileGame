@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Feu - 1
   m_EditorClassIdentifier: 
   _name: Feu
-  _description: 
+  _description: "Flamme br\xFBlante"
   _cost: 150
   _damage: 2
   _delayBetweenAtk: 1

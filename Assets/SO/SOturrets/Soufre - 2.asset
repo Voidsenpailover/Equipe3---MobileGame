@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Soufre - 2
   m_EditorClassIdentifier: 
   _name: "Soufre\xB2"
-  _description: 
+  _description: "D\xE9flagration Min\xE9rale"
   _cost: 3000
   _damage: 16
   _delayBetweenAtk: 1
