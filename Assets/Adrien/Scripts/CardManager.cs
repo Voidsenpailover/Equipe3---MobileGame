@@ -1,7 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
+using UnityEngine.UI;
+using Random = UnityEngine.Random;
+
 public class CardManager : MonoBehaviour
 {
     [SerializeField] private List<CardData> _cards;
@@ -14,18 +19,45 @@ public class CardManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _cardName;
     [SerializeField] private TextMeshProUGUI _cardGoodEffect;
     [SerializeField] private TextMeshProUGUI _cardBadEffect;
-    [SerializeField] private SpriteRenderer _cardIcone;
-    [SerializeField] private SpriteRenderer _cardBackground;
+    [SerializeField] private Image _cardIcone;
+    [SerializeField] private Image _cardBackground;
     [Header("Card2")]
     [SerializeField] private GameObject _cardPanel2;
     [SerializeField] private TextMeshProUGUI _cardName2;
     [SerializeField] private TextMeshProUGUI _cardGoodEffect2;
     [SerializeField] private TextMeshProUGUI _cardBadEffect2;
-    [SerializeField] private SpriteRenderer _cardIcone2;
-    [SerializeField] private SpriteRenderer _cardBackground2;
+    [SerializeField] private Image _cardIcone2;
+    [SerializeField] private Image _cardBackground2;
+
+    public static event Action<CardData> CardSelected;
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.left);
+            if (hit.collider != null)
+            {
+                if (hit.collider.gameObject == _cardPanel)
+                {
+                    CardSelected?.Invoke(Card);
+                    _cardPanel.SetActive(false);
+                    _cardPanel2.SetActive(false);
+                    Time.timeScale = 1; 
+                }
+                else if (hit.collider.gameObject == _cardPanel2)
+                {
+                    CardSelected?.Invoke(Card2);
+                    _cardPanel.SetActive(false);
+                    _cardPanel2.SetActive(false);
+                    Time.timeScale = 1; 
+                }
+            }
+        }
+    }
     
     
-    
+
     private void OnEnable()
     {
         EnemySpawner.CardChoice += ChooseCard;

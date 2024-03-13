@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class UiManager : MonoBehaviour
 {
@@ -11,13 +13,30 @@ public class UiManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI _maxWaveText;
     [SerializeField] TextMeshProUGUI _moneyText;
     [SerializeField] TextMeshProUGUI _healthText;
+    
+    [SerializeField] private GameObject _bonusIcone1;
+    [SerializeField] private GameObject _bonusIcone2;
+    [SerializeField] private GameObject _bonusIcone3;
+    [SerializeField] private GameObject _bonusSunMoon1;
+    [SerializeField] private GameObject _bonusSunMoon2;
+    [SerializeField] private GameObject _bonusSunMoon3;
+    
+    public List<CardData> _listCard;
+    public static UiManager instance;
+    private int indexBonus;
+    private void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
-        _waveText.text = EnemySpawner._instance._currentRoundIndex.ToString();
+        _waveText.text =  EnemySpawner._instance._currentRoundIndex.ToString();
         _maxWaveText.text = EnemySpawner._instance._rounds.Count.ToString();
         _moneyText.text = LevelManager.instance.money.ToString();
         _healthText.text = LevelManager.instance.HP.ToString();
     }
+
+    
     private void UnsetTurretMenu()
     {
         _turretMenu.position = Vector3.zero;
@@ -28,7 +47,7 @@ public class UiManager : MonoBehaviour
     {
         _turretMenu.position = pos;
         _menuRotationPoint.SetActive(true);
-    }
+    }   
 
  private void UpdateWaveText()
  {
@@ -43,6 +62,27 @@ public class UiManager : MonoBehaviour
      _healthText.text = LevelManager.instance.HP.ToString();
  }
 
+ 
+ private void UpdateSlotBonus(CardData card)
+ {
+     indexBonus++;
+     switch (indexBonus)
+     {
+         case 1:
+             _bonusIcone1.GetComponent<SpriteRenderer>().sprite = card.Icone;
+             _bonusSunMoon1.GetComponent<SpriteRenderer>().sprite = card.BouleSoleilLune;
+             break;
+         case 2:
+             _bonusIcone2.GetComponent<SpriteRenderer>().sprite = card.Icone;
+             _bonusSunMoon2.GetComponent<SpriteRenderer>().sprite = card.BouleSoleilLune;
+             break;
+         case 3:
+             _bonusIcone3.GetComponent<SpriteRenderer>().sprite = card.Icone;
+             _bonusSunMoon3.GetComponent<SpriteRenderer>().sprite = card.BouleSoleilLune;
+             break;
+     }
+     _listCard.Add(card);
+ }
  private void OnEnable()
  {
      GridBuildingSystem.OnTurretMenuActive += SetTurretMenu;
@@ -50,6 +90,7 @@ public class UiManager : MonoBehaviour
      EnemySpawner.OnWaveChanged += UpdateWaveText;
      Bullet.OnMoneyChanged += UpdateMoneyText;
      EnemyMovement.OnHealthChanged += UpdateHealthText;
+     CardManager.CardSelected += UpdateSlotBonus;
  }
 
  private void OnDestroy()
@@ -59,5 +100,6 @@ public class UiManager : MonoBehaviour
      EnemySpawner.OnWaveChanged -= UpdateWaveText;
      Bullet.OnMoneyChanged -= UpdateMoneyText;
      EnemyMovement.OnHealthChanged -= UpdateHealthText;
+     CardManager.CardSelected -= UpdateSlotBonus;
  }
 }

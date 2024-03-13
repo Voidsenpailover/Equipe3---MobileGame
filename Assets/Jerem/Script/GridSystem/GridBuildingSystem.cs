@@ -12,9 +12,13 @@ public class GridBuildingSystem : MonoBehaviour
     [SerializeField] public static GridBuildingSystem current;
 
     //Events
-    public static event Action<Vector3> OnTurretMenuActive;
-    public static event Action OnTurretMenuDeactivated;
+    public static event Action<Vector3> OnSelectionMenuActive;
+    public static event Action OnSelectionMenuDeactivated;
     public static event Action OnTurretMenuActivated;
+
+    public static event Action<Vector3> OnInfoMenuActive;
+    public static event Action<TurretsData> OnInfoMenuDragActive;
+    public static event Action OnInfoMenuDeactivated;
 
     public static event Action<Vector3> OnFusionMenuActive;
     public static event Action OnFusionMenuDeactivated;
@@ -30,6 +34,7 @@ public class GridBuildingSystem : MonoBehaviour
     //TileBase
     private static List<TileBase> _tiles;
     private static Dictionary<TileType, List<TileBase>> tileBases = new Dictionary<TileType, List<TileBase>>();
+    private static Dictionary<Vector3Int, GameObject> tileDataBases = new Dictionary<Vector3Int, GameObject>();
     [SerializeField] private RessourceTileDataBase _sourceTileData;
 
     //TilesPos
@@ -47,9 +52,15 @@ public class GridBuildingSystem : MonoBehaviour
     //Properties
     public GridLayout GridLayout { get => gridLayout; set => gridLayout = value; }
     public int CurrentID { get => _currentID; set => _currentID = value; }
+    public bool CanDrag { get => _canDrag; set => _canDrag = value; }
+    public bool IsDraggingNow { get => _isDraggingNow; set => _isDraggingNow = value; }
+    public bool CanSelect { get => _canSelect; set => _canSelect = value; }
+    public List<TurretsData> TurretsData { get => _turretsData; set => _turretsData = value; }
 
     //Selections
     private bool _canSelect;
+    private bool _canDrag = false;
+    private bool _isDraggingNow = false;
 
     #region Unity Methods
 
@@ -65,7 +76,7 @@ public class GridBuildingSystem : MonoBehaviour
         tileBases.Add(TileType.White, _sourceTileData.FloorTile);
         tileBases.Add(TileType.Road, _sourceTileData.RoadTile);
         //tileBases.Add(TileType.Red, Resources.Load<TileBase>(_tilePath + "SquareR"));
-        _canSelect = true;
+        CanSelect = true;
 
         spawningPos = GridLayout.LocalToCell(spawningPosT.position);
 
@@ -131,9 +142,9 @@ public class GridBuildingSystem : MonoBehaviour
             }
 
             //Selection
-            if (_canSelect) // Check For selection
+            if (CanSelect) // Check For selection
             {
-                _canSelect = false; //Un-allow Spaming
+                CanSelect = false; //Un-allow Spaming
                 ClearArea(); //Clear Tiles for TEMP
                 prevPos = cellPos; //Keep Pos For Further utility
 
@@ -147,11 +158,12 @@ public class GridBuildingSystem : MonoBehaviour
                 //If it's tower
                 if (tileSelected == tileBases[TileType.Green][1])
                 {
-                    OnFusionMenuActive?.Invoke(GridLayout.CellToLocalInterpolated(cellPos + new Vector3(.5f, .5f, 0f)));
+                    OnInfoMenuActive?.Invoke(GridLayout.CellToLocalInterpolated(cellPos + new Vector3(.5f, .5f, 0f)));
+                    CanDrag = true;
                 }
                 else
                 {
-                    OnTurretMenuActive?.Invoke(GridLayout.CellToLocalInterpolated(cellPos + new Vector3(.5f, .5f, 0f)));
+                    OnSelectionMenuActive?.Invoke(GridLayout.CellToLocalInterpolated(cellPos + new Vector3(.5f, .5f, 0f)));
                 }
             }
             else //UI already UP
@@ -166,14 +178,28 @@ public class GridBuildingSystem : MonoBehaviour
                         ClearArea(prevPos); //Clear TEMP
 
                         //Event for disabling UI
-                        OnTurretMenuDeactivated?.Invoke();
+                        OnSelectionMenuDeactivated?.Invoke();
 
-                        _canSelect = true; //Allow Another Selection
+                        CanSelect = true; //Allow Another Selection
                     }
                 }
                 else
                 {
-                    OnFusionMenuDeactivated?.Invoke();
+                    if (cellPos == prevPos && CanDrag)
+                    {
+                        OnInfoMenuDeactivated?.Invoke();
+                        if (tileDataBases[cellPos] != null)
+                        {
+                            Debug.Log(tileDataBases[cellPos].GetComponent<Building>().Data.Level);
+                            OnInfoMenuDragActive?.Invoke(tileDataBases[cellPos].GetComponent<Building>().Data);
+                        }
+                        IsDraggingNow = true;
+                    }
+                    else
+                    {
+                        OnInfoMenuDeactivated?.Invoke();
+                        CanSelect = true;
+                    }
                 }
 
             }
@@ -225,12 +251,13 @@ public class GridBuildingSystem : MonoBehaviour
     public void InitializeWithBuilding(GameObject building)
     {
         temp = Instantiate(building, prevPos, Quaternion.identity).GetComponent<Building>();
-        temp.Data = _turretsData[CurrentID];
+        temp.Data = TurretsData[CurrentID];
         temp.transform.position = GridLayout.CellToLocalInterpolated(prevPos + new Vector3(.5f, .5f, 0f));
         temp.GetComponent<Turret>().InitializeTurret(temp.Data);
         mainTilemap.SetTile(gridLayout.WorldToCell(temp.transform.position), tileBases[TileType.Green][1]);
-        OnTurretMenuDeactivated?.Invoke();
-        _canSelect = true;
+        tileDataBases.Add(gridLayout.WorldToCell(temp.transform.position), temp.transform.gameObject);
+        OnSelectionMenuDeactivated?.Invoke();
+        CanSelect = true;
     }
     
     private void ClearArea()
