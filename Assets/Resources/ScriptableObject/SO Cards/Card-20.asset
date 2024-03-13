@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10f865bb9cd135e43ba521286f5ad7ba, type: 3}
+  m_Name: Card-20
+  m_EditorClassIdentifier: 
+  _name: Poisson
+  _Goodeffect: 'Tour d''Eau : Ralentissement + 10% (brut)'
+  _badEffect: 'Tour de Terre : Vitesse d''attaque - 25%'
+  _cardName: 9
+  _type: 1
+  _icone: {fileID: 0}
+  _background: {fileID: 0}
