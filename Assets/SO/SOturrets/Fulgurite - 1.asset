@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fulgurite - 1
   m_EditorClassIdentifier: 
   _name: 'Fulgurite '
-  _description: 
+  _description: Appel le pouvoir de la foudre
   _cost: 1000
   _damage: 10
   _delayBetweenAtk: 1

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pyrite - 2
   m_EditorClassIdentifier: 
   _name: "Pyrite\xB2"
-  _description: 
+  _description: Pierre empalante
   _cost: 3000
   _damage: 10
   _delayBetweenAtk: 0.5

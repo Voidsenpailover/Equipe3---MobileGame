@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Soufre - 1
   m_EditorClassIdentifier: 
   _name: Soufre
-  _description: 
+  _description: "R\xE9action d\xE9tonante"
   _cost: 1000
   _damage: 8
   _delayBetweenAtk: 1

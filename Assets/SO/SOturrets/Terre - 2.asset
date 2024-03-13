@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Terre - 2
   m_EditorClassIdentifier: 
   _name: Fracture
-  _description: 
+  _description: Glissement de terrain
   _cost: 750
   _damage: 8
   _delayBetweenAtk: 3

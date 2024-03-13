@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Phosphore - 1
   m_EditorClassIdentifier: 
   _name: Phosphore
-  _description: 
+  _description: "Aura Cendr\xE9e"
   _cost: 1000
   _damage: 2
   _delayBetweenAtk: 0.33

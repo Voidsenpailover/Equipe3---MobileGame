@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fulgurite - 2
   m_EditorClassIdentifier: 
   _name: "Fulgurite\xB2"
-  _description: 
+  _description: Le ciel s'abbat sur les indignes
   _cost: 3000
   _damage: 20
   _delayBetweenAtk: 0.5

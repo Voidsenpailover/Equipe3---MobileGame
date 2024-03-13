@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sel - 1
   m_EditorClassIdentifier: 
   _name: Sel
-  _description: 
+  _description: "Cristaux infest\xE9s"
   _cost: 1000
   _damage: 1
   _delayBetweenAtk: 1

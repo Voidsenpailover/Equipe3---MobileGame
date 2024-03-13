@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sel - 2
   m_EditorClassIdentifier: 
   _name: "Sel\xB2"
-  _description: 
+  _description: Cristaux Parasitaire
   _cost: 3000
   _damage: 1
   _delayBetweenAtk: 1

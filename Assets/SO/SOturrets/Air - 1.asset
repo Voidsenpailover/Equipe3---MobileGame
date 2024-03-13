@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Air - 1
   m_EditorClassIdentifier: 
   _name: Air
-  _description: "Tape tres vite mais peu de d\xE9gats"
+  _description: "Attaque tr\xE8s vite"
   _cost: 150
   _damage: 1
   _delayBetweenAtk: 0.33
