@@ -19,7 +19,9 @@ public class Bullet : MonoBehaviour
     private int timingBurn = 3;
     private int burnDamage;
     private float slowPercent;
-    
+    private int mercureMoney;
+    public float localDamage;
+    private float turretDamage;
     public static event Action OnMoneyChanged;
     
     
@@ -63,6 +65,8 @@ public class Bullet : MonoBehaviour
                  hit.transform.GetComponent<EnemyMovement>().HP -= 8;
                  if(hit.transform.GetComponent<EnemyMovement>().HP <= 0)
                  {
+                     LevelManager.instance.money += hit.transform.GetComponent<EnemyMovement>().EnemyStat.Money;
+                     OnMoneyChanged?.Invoke();
                      EnemySpawner._instance.EnemyReachedEndOfPath();
                      Destroy(hit.transform.gameObject);
                  }
@@ -76,11 +80,22 @@ public class Bullet : MonoBehaviour
         if (other.GetComponent<EnemyMovement>())
         {
             var enemy = other.GetComponent<EnemyMovement>();
+            
+            if (enemy.isDebuffed)
+            {
+                turretDamage = localDamage;
+                turretDamage *= enemy.debuffPercent;
+            }
+            else
+            {
+                turretDamage = localDamage;
+            }
+            
             switch (Turret.Type)
             {
                 case TurretType.Feu:
-                    if (enemy.EnemyStat.Vulnerability == Vulnerability.Feu) enemy.HP -= Turret.Damage * 2;
-                    else enemy.HP -= Turret.Damage;
+                    if (enemy.EnemyStat.Vulnerability == Vulnerability.Feu) enemy.HP -= turretDamage * 1.5f;
+                    else enemy.HP -= turretDamage;
                     switch (Turret.Level)
                     {
                         case 1:
@@ -95,8 +110,8 @@ public class Bullet : MonoBehaviour
                     }
                     break;
                 case TurretType.Eau:
-                    if(enemy.EnemyStat.Vulnerability == Vulnerability.Eau) enemy.HP -= Turret.Damage * 2;
-                    else enemy.HP -= Turret.Damage;
+                    if(enemy.EnemyStat.Vulnerability == Vulnerability.Eau) enemy.HP -= turretDamage * 1.5f;
+                    else enemy.HP -= turretDamage;
                     
                     switch(Turret.Level)
                     {
@@ -112,39 +127,50 @@ public class Bullet : MonoBehaviour
                     }
                     break;
                 case TurretType.Terre:
-                    if(enemy.EnemyStat.Vulnerability == Vulnerability.Terre) enemy.HP -= Turret.Damage * 2;
-                    else enemy.HP -= Turret.Damage;
+                    if(enemy.EnemyStat.Vulnerability == Vulnerability.Terre) enemy.HP -= turretDamage * 1.5f;
+                    else enemy.HP -= turretDamage;
                     timingStun = Turret.Level;
                     break;
                 case TurretType.Vent:
-                    if(enemy.EnemyStat.Vulnerability == Vulnerability.Vent) enemy.HP -= Turret.Damage * 2;
-                    else enemy.HP -= Turret.Damage;
+                    if(enemy.EnemyStat.Vulnerability == Vulnerability.Vent) enemy.HP -= turretDamage * 1.5f;
+                    else enemy.HP -= turretDamage;
                     break;
                 case TurretType.Mercure:
                     switch (enemy.EnemyStat.Vulnerability)
                     {
                         case Vulnerability.Eau:
-                            enemy.HP -= Turret.Damage * 2;
+                            enemy.HP -= turretDamage * 1.5f;
                             break;
                         case Vulnerability.Feu:
-                            enemy.HP -= Turret.Damage * 0.5f;
+                            enemy.HP -= turretDamage * 0.5f;
                             break;
                         default:
-                            enemy.HP -= Turret.Damage;
+                            enemy.HP -= turretDamage;
                             break;
                     }
+
+                    switch (Turret.Level)
+                    {
+                        case 1:
+                            mercureMoney = 1;
+                            break;
+                        case 2:
+                            mercureMoney = 3;
+                            break;
+                    }
+                    enemy.ApplyMercure();
                     break;
                 case TurretType.Fulgurite:
                     switch (enemy.EnemyStat.Vulnerability)
                     {
                         case Vulnerability.Terre:
-                            enemy.HP -= Turret.Damage * 2;
+                            enemy.HP -= turretDamage * 1.5f;
                             break;
                         case Vulnerability.Vent:
-                            enemy.HP -= Turret.Damage * 0.5f;
+                            enemy.HP -= turretDamage * 0.5f;
                             break;
                         default:
-                            enemy.HP -= Turret.Damage;
+                            enemy.HP -= turretDamage;
                             break;
                     }
                     timingStun = Turret.Level + 1;
@@ -153,13 +179,13 @@ public class Bullet : MonoBehaviour
                     switch (enemy.EnemyStat.Vulnerability)
                     {
                         case Vulnerability.Feu:
-                            enemy.HP -= Turret.Damage * 2;
+                            enemy.HP -= turretDamage * 1.5f;
                             break;
                         case Vulnerability.Terre:
-                            enemy.HP -= Turret.Damage * 0.5f;
+                            enemy.HP -= turretDamage * 0.5f;
                             break;
                         default:
-                            enemy.HP -= Turret.Damage;
+                            enemy.HP -= turretDamage;
                             break;
                     }
 
@@ -173,8 +199,21 @@ public class Bullet : MonoBehaviour
                             break;
                     }
                     break;
+                case TurretType.Sel:
+                    switch (Turret.Level)
+                    {
+                        case 1:
+                            enemy.debuffPercent = 1.5f;
+                            break;
+                        case 2:
+                            enemy.debuffPercent = 2f;
+                            break;
+                    }
+                    enemy.HP -= turretDamage;
+                    enemy.ApplyDebuff(3);
+                    break;
                 default:
-                    enemy.HP -= Turret.Damage;
+                    enemy.HP -= turretDamage;
                     break;
             }
             
@@ -182,6 +221,7 @@ public class Bullet : MonoBehaviour
             {
                 EnemySpawner._instance.EnemyReachedEndOfPath();
                 LevelManager.instance.money += enemy.EnemyStat.Money;
+                if(enemy.isMercure) LevelManager.instance.money += mercureMoney;
                 OnMoneyChanged?.Invoke();
                 Destroy(enemy.gameObject);
                 Destroy(gameObject);
