@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Card-7
   m_EditorClassIdentifier: 
   _name: Vierge
-  _goodeffect: "Tour Niveau 3 : D\xE9gats + 100% , Vitesse d'attaque + 100%"
-  _badEffect: "Tour de niveau 1 et 2 : D\xE9gats - 75% , vitesse d'attaque - 75%"
+  _goodeffect: "Toutes tours : + 20% de d\xE9gats , + 20% de vitesse d'attaque"
+  _badEffect: 'Toutes tours : ne doit avoir aucune tour voisine'
   _cardName: 3
   _type: 0
   _icone: {fileID: 21300000, guid: 209f56c731c11b64cabf2c7a71746e5c, type: 3}

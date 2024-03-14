@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Card-21
   m_EditorClassIdentifier: 
   _name: "G\xE9meaux"
-  _goodeffect: "Tour Fusion : + 1 de port\xE9e , d\xE9gats + 50%"
-  _badEffect: "Tour Infusion : - 1 de port\xE9e , d\xE9gats - 50%"
+  _goodeffect: "Toutes Tours : + 5% de d\xE9gats , + 10% de vitesse d'attaque"
+  _badEffect: 'Toutes Tours : s''active x fois par tour autour'
   _cardName: 10
   _type: 0
   _icone: {fileID: 21300000, guid: 1b5dec6087861364090d638086826ea1, type: 3}

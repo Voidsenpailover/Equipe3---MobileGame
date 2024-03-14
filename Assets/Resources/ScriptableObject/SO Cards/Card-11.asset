@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Card-11
   m_EditorClassIdentifier: 
   _name: Balance
-  _goodeffect: "Toutes tours : + 50% de d\xE9gats , + 50% de vitesse d'attaque ,    
+  _goodeffect: "Toutes tours : + 50% de d\xE9gats , + 20% de vitesse d'attaque ,    
     + 1 de port\xE9e"
-  _badEffect: "Toutes tours : ne s'active que si vous ne poss\xE9dez que 4 tours
-    ou moins"
+  _badEffect: "Toutes tours : ne s'active que si le nombre de tours d'un \xE9l\xE9ment
+    est \xE9gale aux nombres de toutes les autres tours sur le terrain"
   _cardName: 5
   _type: 0
   _icone: {fileID: 21300000, guid: 53360fb6a7e7dcd4c876cc75e58339ef, type: 3}
