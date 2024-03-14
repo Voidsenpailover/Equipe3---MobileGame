@@ -643,7 +643,7 @@ SpriteRenderer:
   m_Size: {x: 25.679998, y: 21.642422}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &249902098
@@ -885,7 +885,7 @@ SpriteRenderer:
   m_Size: {x: 25.679998, y: 21.642422}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &304305508
@@ -982,7 +982,7 @@ SpriteRenderer:
   m_Size: {x: 25.679998, y: 21.642422}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &315420834
@@ -993,106 +993,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 864468184947467066, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
-      propertyPath: volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 864468184947467066, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 864468184947467066, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
-      propertyPath: audioData.Array.size
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 864468184947467066, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
-      propertyPath: audioData.Array.data[0].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 9f30fb604bfa1224493268028ed2bb41, type: 3}
-    - target: {fileID: 864468184947467066, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
-      propertyPath: audioData.Array.data[0].type
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 864468184947467066, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
-      propertyPath: audioData.Array.data[1].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 407594bb90cf45143bd5ea62129a7adf, type: 3}
-    - target: {fileID: 864468184947467066, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
-      propertyPath: audioData.Array.data[1].type
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 864468184947467066, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
-      propertyPath: audioData.Array.data[2].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 3a31d7c99d832714f92b33f9354cc44a, type: 3}
-    - target: {fileID: 864468184947467066, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
-      propertyPath: audioData.Array.data[2].type
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 864468184947467066, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
-      propertyPath: audioData.Array.data[3].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 78450bb5d89f42e4c940bfd565a45705, type: 3}
-    - target: {fileID: 864468184947467066, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
-      propertyPath: audioData.Array.data[3].type
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 864468184947467066, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
-      propertyPath: audioData.Array.data[4].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 9d0cf5099ce725a4abb1ea713576bfb1, type: 3}
-    - target: {fileID: 864468184947467066, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
-      propertyPath: audioData.Array.data[4].type
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 864468184947467066, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
-      propertyPath: audioData.Array.data[5].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: ee7b6ecb6c192644aaa13ce7bd66e725, type: 3}
-    - target: {fileID: 864468184947467066, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
-      propertyPath: audioData.Array.data[5].type
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 864468184947467066, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
-      propertyPath: audioData.Array.data[6].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: f8f74c35138faae438e6d61a89c728f8, type: 3}
-    - target: {fileID: 864468184947467066, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
-      propertyPath: audioData.Array.data[6].type
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 864468184947467066, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
-      propertyPath: audioData.Array.data[7].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 3016b42dd51da7c438d9b1b47d4fc2e4, type: 3}
-    - target: {fileID: 864468184947467066, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
-      propertyPath: audioData.Array.data[7].type
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 864468184947467066, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
-      propertyPath: audioData.Array.data[8].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: b947074cbb4451c4d9b94a2b626033ef, type: 3}
-    - target: {fileID: 864468184947467066, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
-      propertyPath: audioData.Array.data[8].type
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 864468184947467066, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
-      propertyPath: audioData.Array.data[9].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: 68de3f28c2f4dad40adaa9ac44afe5ba, type: 3}
-    - target: {fileID: 864468184947467066, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
-      propertyPath: audioData.Array.data[9].type
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 864468184947467066, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
-      propertyPath: audioData.Array.data[10].clip
-      value: 
-      objectReference: {fileID: 8300000, guid: b3553e53674a6e54db5e2dd28ab82095, type: 3}
-    - target: {fileID: 864468184947467066, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
-      propertyPath: audioData.Array.data[10].type
-      value: 12
-      objectReference: {fileID: 0}
     - target: {fileID: 1000319492054409521, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
       propertyPath: Points.Array.size
       value: 3
@@ -1240,10 +1140,6 @@ PrefabInstance:
     - target: {fileID: 6195361648053638102, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7070858874779867917, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1940,7 +1836,7 @@ SpriteRenderer:
   m_Size: {x: 25.679998, y: 21.642422}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &520510975
@@ -2798,7 +2694,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -629160949
-  m_SortingLayer: -1
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -4020,6 +3916,8 @@ MonoBehaviour:
   gridLayout: {fileID: 841614798}
   mainTilemap: {fileID: 650953556}
   tempTilemap: {fileID: 1277071570}
+  _sourceTileData: {fileID: 0}
+  spawningPosT: {fileID: 0}
   _turretsData:
   - {fileID: 11400000, guid: 8237417b49092ca42b94b1a67db1b1c2, type: 2}
   - {fileID: 11400000, guid: 9e0753148dbe41744a5b40ec8c4ec607, type: 2}
@@ -4790,18 +4688,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 552b1a1a6ee4fcb49afa89b3102b8c17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gridBuildingSystem: {fileID: 0}
   _turretMenu: {fileID: 2014181226}
-  _menuRotationPoint: {fileID: 806115096}
-  _waveText: {fileID: 176085195}
-  _maxWaveText: {fileID: 520510977}
-  _moneyText: {fileID: 1794965751}
-  _healthText: {fileID: 2082900289}
-  _bonusIcone1: {fileID: 218091793}
-  _bonusIcone2: {fileID: 1372143508}
-  _bonusIcone3: {fileID: 295824501}
-  _bonusSunMoon1: {fileID: 304305508}
-  _bonusSunMoon2: {fileID: 491425294}
-  _bonusSunMoon3: {fileID: 1843779984}
+  _menuSelectionPoint: {fileID: 0}
+  _menuInfoPoint: {fileID: 0}
+  _menuFusionPoint: {fileID: 0}
   _listCard: []
 --- !u!4 &1138939575
 Transform:
@@ -5201,7 +5092,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -629160949
-  m_SortingLayer: -1
+  m_SortingLayer: -2
   m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -5463,7 +5354,7 @@ SpriteRenderer:
   m_Size: {x: 25.679998, y: 21.642422}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1381570136
@@ -6655,7 +6546,7 @@ SpriteRenderer:
   m_Size: {x: 25.679998, y: 21.642422}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1986500253

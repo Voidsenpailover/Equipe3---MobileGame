@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Mercure
   _description: Transforme les ennemis en plomb
+  _descriptionEffect: 
   _cost: 1000
   _damage: 5
   _delayBetweenAtk: 1
   _radAtk: 5
-  _AtkSFX: {fileID: 3801919937251534224, guid: 7c9d7963f9e3bdf4a8c86d26ce1a7a60, type: 3}
+  _prefabBullet: {fileID: 3801919937251534224, guid: 7c9d7963f9e3bdf4a8c86d26ce1a7a60, type: 3}
   _sprite: {fileID: 21300000, guid: 92e7648f9f9de70498f519472ab9b629, type: 3}
   _type: 4
   _level: 1
