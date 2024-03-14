@@ -2984,7 +2984,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0117480995b9f7f4c8ffb95e21499b00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cards: []
+  _cards:
+  - {fileID: 11400000, guid: 8eaf4290ec4f8fc48b3addbf5dec2fb6, type: 2}
+  - {fileID: 11400000, guid: 718175199b827b141b8b43dd2e48e424, type: 2}
+  - {fileID: 11400000, guid: bd9ebb315aff7304699f11458a0ca11e, type: 2}
+  - {fileID: 11400000, guid: 0292418fc067af34fb5b57b690c9a941, type: 2}
+  - {fileID: 11400000, guid: 46f4e4e4579e9274b89ec13809f70dd6, type: 2}
+  - {fileID: 11400000, guid: 94b2601ca42e4644faaa1f3522105b5a, type: 2}
+  - {fileID: 11400000, guid: 6fcb0f8062ff4ac489e66d7979a48b23, type: 2}
+  - {fileID: 11400000, guid: 2014bf0ec0b45224f8b17a1729aeb904, type: 2}
+  - {fileID: 11400000, guid: 462a2bd67b061314d90f7e3b223060e5, type: 2}
+  - {fileID: 11400000, guid: 95a82e0761548c840a02abeed4a04482, type: 2}
+  - {fileID: 11400000, guid: 8257aa2f22c0fe94c886a6c57981dc62, type: 2}
+  - {fileID: 11400000, guid: 3b59dfc058cfdc743a9bb95a6ee2ac5b, type: 2}
+  - {fileID: 11400000, guid: 47224ddbe66ee3c4084ad703ad6b484e, type: 2}
+  - {fileID: 11400000, guid: 72f09357d26bdd24ab836a48616c8b80, type: 2}
+  - {fileID: 11400000, guid: d3cba14f0037d8b44b29fc145572d2ce, type: 2}
+  - {fileID: 11400000, guid: dcce60a0716f4084b8d505581d433f76, type: 2}
+  - {fileID: 11400000, guid: 5d8ee55ae7506d440936ad608b4abd5d, type: 2}
+  - {fileID: 11400000, guid: 25c03d613b664a247ba0e49c4d143695, type: 2}
+  - {fileID: 11400000, guid: f90e0b65af36eeb43b5253d8aef78145, type: 2}
+  - {fileID: 11400000, guid: abf691378ea6dc445bb1ca454b5443db, type: 2}
+  - {fileID: 11400000, guid: 16a833614fb5d4a4692da37b86d898e7, type: 2}
+  - {fileID: 11400000, guid: c2d6b92bb30e721469138e97f66af42f, type: 2}
+  - {fileID: 11400000, guid: 770a0dcb5beae564e9beefca16404b92, type: 2}
+  - {fileID: 11400000, guid: 2cd3b23739c9a4643bb3aeec4a0e27ca, type: 2}
   Card: {fileID: 0}
   Card2: {fileID: 0}
   _cardPanel: {fileID: 716667081}
@@ -36519,7 +36543,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0117480995b9f7f4c8ffb95e21499b00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cards: []
+  _cards:
+  - {fileID: 11400000, guid: 8eaf4290ec4f8fc48b3addbf5dec2fb6, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   Card: {fileID: 0}
   Card2: {fileID: 0}
   _cardPanel: {fileID: 840346498}
