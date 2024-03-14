@@ -12739,6 +12739,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _options: {fileID: 1352764691}
+  _gameOverScene: {fileID: 0}
+  _winScene: {fileID: 0}
 --- !u!4 &686237709
 Transform:
   m_ObjectHideFlags: 0
