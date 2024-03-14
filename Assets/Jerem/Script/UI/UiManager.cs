@@ -27,6 +27,9 @@ public class UiManager : MonoBehaviour
     [SerializeField] private GameObject _bonusSunMoon2;
     [SerializeField] private GameObject _bonusSunMoon3;
     
+    [SerializeField] private GameObject _cardsSlot;
+    [SerializeField] private GameObject _banner;
+    
     public List<CardData> _listCard;
     public static UiManager instance;
     private int indexBonus;
@@ -69,6 +72,7 @@ public class UiManager : MonoBehaviour
         Vector3Int tempCellPos = gridBuildingSystem.GridLayout.WorldToCell(pos);
         _menuInfoPoint.GetComponent<SetInfo>().SetTurretInfo(GridBuildingSystem.TileDataBases[tempCellPos].GetComponent<Building>().Data);
         _menuInfoPoint.SetActive(true);
+       
     }
     private void UnsetInfoMenu()
     {
@@ -94,12 +98,16 @@ public class UiManager : MonoBehaviour
     {
         _turretMenu.position = pos;
         _menuSelectionPoint.SetActive(true);
+        _cardsSlot.SetActive(true);
+        _banner.SetActive(false);
     }
     
     private void UnsetSelectionMenu()
     {
         _turretMenu.position = Vector3.zero;
         _menuSelectionPoint.SetActive(false);
+        _cardsSlot.SetActive(false);
+        _banner.SetActive(true);
     }
     
     private void UpdateSlotBonus(CardData card)
