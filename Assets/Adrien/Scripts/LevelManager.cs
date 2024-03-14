@@ -11,9 +11,11 @@ public class LevelManager : MonoBehaviour
     public static event Action OnVictory;
         
     
-    public int HP = 5;
-    public int money;
+    public int HP = 200;
+    public int money = 200;
     public int moneyToLoose;
+    
+    
     public enum GameState
     {
         MainMenu,
