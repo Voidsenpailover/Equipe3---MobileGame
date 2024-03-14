@@ -18,6 +18,7 @@ public class DragController : MonoBehaviour
     [SerializeField] private GridBuildingSystem _buildingSystem;
     [SerializeField] private GameObject _turretDragObject;
 
+
     private TurretsData _currentTurretData;
 
     private void Awake()
@@ -28,11 +29,14 @@ public class DragController : MonoBehaviour
             Destroy(gameObject);
         }
         GridBuildingSystem.OnInfoMenuDragActive += WhenDragIsProc;
+        _lastDragged = _turretDragObject.GetComponent<Draggable>();
     }
 
-    private void WhenDragIsProc(TurretsData data)
+    private void WhenDragIsProc(Vector3Int locOfGO)
     {
-        _currentTurretData = data;
+        _currentTurretData = GridBuildingSystem.TileDataBases[locOfGO].GetComponent<Building>().Data;
+        _lastDragged.LastPosition = locOfGO;
+        _lastDragged.LastTurret = GridBuildingSystem.TileDataBases[locOfGO];
     }
 
     void Update()
@@ -80,9 +84,9 @@ public class DragController : MonoBehaviour
             if(_buildingSystem.IsDraggingNow)
             {
                 _lastDragged = _turretDragObject.GetComponent<Draggable>();
-                if(_lastDragged.transform.gameObject.GetComponent<SpriteRenderer>() != null)
+                if(_lastDragged.transform.GetComponent<SpriteRenderer>() != null)
                 {
-                    _lastDragged.transform.gameObject.GetComponent<SpriteRenderer>().sprite = _currentTurretData.Sprite;
+                    _lastDragged.transform.GetComponent<SpriteRenderer>().sprite = _currentTurretData.Sprite;
                     _lastDragged.TurretData = _currentTurretData;
                 }
                 InitDrag();
@@ -92,8 +96,7 @@ public class DragController : MonoBehaviour
 
     void InitDrag()
     {
-        _lastDragged.LastPosition = _lastDragged.transform.position;
-
+        _lastDragged.GetComponent<Draggable>().CanDrop = false;
         UpdateDragStatus(true);
     }
 
@@ -109,7 +112,6 @@ public class DragController : MonoBehaviour
         _buildingSystem.IsDraggingNow = false;
         _buildingSystem.CanSelect = true;
         OnDropOnTurret?.Invoke();
-        Debug.Log("Wtf le drop");
     }
 
     void UpdateDragStatus(bool IsDragging)

@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Torrent
   _description: Vague Ralentissante plus forte
+  _descriptionEffect: 
   _cost: 750
   _damage: 3
   _delayBetweenAtk: 2
   _radAtk: 5
   _AtkSFX: {fileID: 0}
+  _prefabBullet: {fileID: 6703202451157482724, guid: 10ca29ce84c3bc241ada104b8db57c76, type: 3}
   _sprite: {fileID: 21300000, guid: 9a01a85f5e2185840968632120700176, type: 3}
   _type: 2
   _level: 2
