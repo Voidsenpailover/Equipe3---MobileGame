@@ -4,70 +4,88 @@ using UnityEngine;
 
 public class FusionBehaviour : MonoBehaviour
 {
-    private TurretType SpawningRightTower(TurretType turret1, TurretType turret2)
+    [SerializeField] private GridBuildingSystem gridBuildingSystem;
+    private List<TurretsData> turretsData;
+    private void Start()
     {
-        switch (turret1)
+        turretsData = gridBuildingSystem.TurretsData;
+    }
+    public TurretsData SpawningRightTower(TurretsData turret1, TurretsData turret2)
+    {
+        switch (turret1.Type)
         {
             case TurretType.Feu:
-                if(turret2 == TurretType.Vent)
+                if(turret2.Type == TurretType.Vent)
                 {
-                    return TurretType.Soufre;
+                    //Souffre1
+                    return turretsData[22];
                 }
-                else if (turret2 == TurretType.Eau)
+                else if (turret2.Type == TurretType.Eau)
                 {
-                    return TurretType.Pyrite;
+                    //Pyrite1
+                    return turretsData[18];
                 }
-                else if (turret2 == TurretType.Terre)
+                else if (turret2.Type == TurretType.Terre)
                 {
-                    return TurretType.Phosphore;
+                    //Phosphore1
+                    return turretsData[16];
                 }
                 break;
             case TurretType.Eau:
-                if (turret2 == TurretType.Feu)
+                if (turret2.Type == TurretType.Feu)
                 {
-                    return TurretType.Pyrite;
+                    //Pyrite1
+                    return turretsData[18];
                 }
-                else if (turret2 == TurretType.Vent)
+                else if (turret2.Type == TurretType.Vent)
                 {
-                    return TurretType.Mercure;
+                    //Mercure1
+                    return turretsData[14];
                 }
-                else if (turret2 == TurretType.Terre)
+                else if (turret2.Type == TurretType.Terre)
                 {
-                    return TurretType.Sel;
+                    //Sel1
+                    return turretsData[20];
                 }
                 break;
             case TurretType.Vent:
-                if (turret2 == TurretType.Feu)
+                if (turret2.Type == TurretType.Feu)
                 {
-                    return TurretType.Soufre;
+                    //Souffre1
+                    return turretsData[22];
                 }
-                else if (turret2 == TurretType.Eau)
+                else if (turret2.Type == TurretType.Eau)
                 {
-                    return TurretType.Mercure;
+                    //Mercure1
+                    return turretsData[14];
                 }
-                else if (turret2 == TurretType.Terre)
+                else if (turret2.Type == TurretType.Terre)
                 {
-                    return TurretType.Fulgurite;
+                    //Fulgurite1
+                    return turretsData[12];
                 }
                 break;
             case TurretType.Terre:
-                if (turret2 == TurretType.Eau)
+                if (turret2.Type == TurretType.Eau)
                 {
-                    return TurretType.Sel;
+                    //Sel1
+                    return turretsData[20];
                 }
-                else if (turret2 == TurretType.Vent)
+                else if (turret2.Type == TurretType.Vent)
                 {
-                    return TurretType.Fulgurite;
+                    //Fulgurite1
+                    return turretsData[12];
                 }
-                else if (turret2 == TurretType.Feu)
+                else if (turret2.Type == TurretType.Feu)
                 {
-                    return TurretType.Phosphore;
+                    //Phosphore1
+                    return turretsData[16];
                 }
                 break;
             default:
                 break;
         }
-        return turret1;
+        return turret2;
     }
 
 }

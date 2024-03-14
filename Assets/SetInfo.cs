@@ -18,6 +18,5 @@ public class SetInfo : MonoBehaviour
         _TurretAtkSpeed.text = turret.DelayBetweenAtk.ToString("0.0");
         var cout = turret.Cost * 0.6f;
         _TurretCost.text = cout.ToString("0.0");
-            ;
     }
 }
