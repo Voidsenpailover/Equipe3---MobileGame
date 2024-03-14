@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class UiManager : MonoBehaviour
 {
@@ -29,22 +30,30 @@ public class UiManager : MonoBehaviour
     public List<CardData> _listCard;
     public static UiManager instance;
     private int indexBonus;
-    private void Awake()
-    {
-        instance = this;
-    }
-    void Start()
+
+    private void OnEnable()
     {
         GridBuildingSystem.OnSelectionMenuActive += SetSelectionMenu;
         GridBuildingSystem.OnSelectionMenuDeactivated += UnsetSelectionMenu;
-    
+
 
         GridBuildingSystem.OnInfoMenuActive += SetInfoMenu;
         GridBuildingSystem.OnInfoMenuDeactivated += UnsetInfoMenu;
 
         Draggable.OnFusionMenuActive += SetFusionMenu;
         Draggable.OnFusionMenuDeactivated += UnsetFusionMenu;
-        
+
+        EnemySpawner.OnWaveChanged += UpdateWaveText;
+        Bullet.OnMoneyChanged += UpdateMoneyText;
+        EnemyMovement.OnHealthChanged += UpdateHealthText;
+        CardManager.CardSelected += UpdateSlotBonus;
+    }
+    private void Awake()
+    {
+        instance = this;
+    }
+    void Start()
+    {
         _waveText.text =  EnemySpawner._instance._currentRoundIndex.ToString() + 1;
         _maxWaveText.text = EnemySpawner._instance._rounds.Count.ToString();
         _moneyText.text = LevelManager.instance.money.ToString();
@@ -131,14 +140,7 @@ public class UiManager : MonoBehaviour
      }
     
  
-     private void OnEnable()
-     {
-        
-            EnemySpawner.OnWaveChanged += UpdateWaveText;
-            Bullet.OnMoneyChanged += UpdateMoneyText;
-            EnemyMovement.OnHealthChanged += UpdateHealthText;
-            CardManager.CardSelected += UpdateSlotBonus;
-     }
+
 
     private void OnDestroy()
     {  

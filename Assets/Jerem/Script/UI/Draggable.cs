@@ -36,11 +36,16 @@ public class Draggable : MonoBehaviour
     public bool CanDrop { get => _canDrop; set => _canDrop = value; }
     public GameObject LastTurret { get => _lastTurret; set => _lastTurret = value; }
 
+    private void OnEnable()
+    {
+        DragController.OnDropOnTurret += DragController_OnDropOnTurret;
+
+    }
+
     private void Start()
     {
         _collider = this.GetComponent<BoxCollider2D>();
         _dragController = FindObjectOfType<DragController>();
-        DragController.OnDropOnTurret += DragController_OnDropOnTurret;
         CanDrop = false;   
     }
 

@@ -20,11 +20,6 @@ public class OverlayBuilding : MonoBehaviour
         _cost.text = _turretData.Cost.ToString();
     }
 
-   
-
-    private void OnDestroy()
-    {
-    }
     private void SetActive()
     {
         gameObject.SetActive(true);
