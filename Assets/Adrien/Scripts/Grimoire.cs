@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,9 @@ public class Grimoire : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _cards;
     private int _index;
+
+    [SerializeField] private GameObject _boutonGauche;
+    [SerializeField] private GameObject _boutonDroite;
     
     public void CloseGrimoire()
     {
@@ -14,12 +18,21 @@ public class Grimoire : MonoBehaviour
             card.SetActive(false);
         }
         Time.timeScale = 1;
+        _boutonGauche.SetActive(false);
+        _boutonDroite.SetActive(false);
     }
-    
-    
+
+    private void Update()
+    {
+        _boutonGauche.SetActive(_index != 0);
+    }
+
     public void OpenGrimoire()
     {
         _cards[0].SetActive(true);
+        _boutonDroite.SetActive(true);
+        
+        _index = 0;
         Time.timeScale = 0;
     }
 
