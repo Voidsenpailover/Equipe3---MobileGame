@@ -12737,8 +12737,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _options: {fileID: 1839629463}
-  _gameOverScene: {fileID: 0}
-  _winScene: {fileID: 0}
+  _gameOverScene: {fileID: 2069536094}
+  _winScene: {fileID: 1589188488}
 --- !u!4 &686237709
 Transform:
   m_ObjectHideFlags: 0
