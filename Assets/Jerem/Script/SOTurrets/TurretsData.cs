@@ -12,7 +12,6 @@ public class TurretsData : ScriptableObject
     [SerializeField] private float _damage;
     [SerializeField] private float _delayBetweenAtk;
     [SerializeField] private float _radAtk;
-    [SerializeField] private GameObject _AtkSFX;
     [SerializeField] private GameObject _prefabBullet;
     [SerializeField] private Sprite _sprite;
     [SerializeField] private TurretType _type;
@@ -27,7 +26,6 @@ public class TurretsData : ScriptableObject
     public float Damage { get => _damage; set => _damage = value; }
     public float DelayBetweenAtk { get => _delayBetweenAtk; set => _delayBetweenAtk = value;}
     public float RadAtk { get => _radAtk; set => _radAtk = value; }
-    public GameObject AtkSFX { get => _AtkSFX; set => _AtkSFX = value; }
     public GameObject PrefabBullet { get => _prefabBullet; set => _prefabBullet = value; }
     public Sprite Sprite { get => _sprite; set => _sprite = value; }
     public TurretType Type { get => _type; set => _type = value; }

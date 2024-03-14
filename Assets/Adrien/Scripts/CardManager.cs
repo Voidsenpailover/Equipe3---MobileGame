@@ -23,6 +23,7 @@ public class CardManager : MonoBehaviour
     [SerializeField] private Image _cardBackground;
     [Header("Card2")]
     [SerializeField] private GameObject _cardPanel2;
+    [SerializeField] private GameObject _cardPanel3;
     [SerializeField] private TextMeshProUGUI _cardName2;
     [SerializeField] private TextMeshProUGUI _cardGoodEffect2;
     [SerializeField] private TextMeshProUGUI _cardBadEffect2;
@@ -35,7 +36,7 @@ public class CardManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.left);
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
             if (hit.collider != null)
             {
                 if (hit.collider.gameObject == _cardPanel)
@@ -43,6 +44,7 @@ public class CardManager : MonoBehaviour
                     CardSelected?.Invoke(Card);
                     _cardPanel.SetActive(false);
                     _cardPanel2.SetActive(false);
+                    _cardPanel3.SetActive(false);
                     Time.timeScale = 1; 
                 }
                 else if (hit.collider.gameObject == _cardPanel2)
@@ -50,6 +52,7 @@ public class CardManager : MonoBehaviour
                     CardSelected?.Invoke(Card2);
                     _cardPanel.SetActive(false);
                     _cardPanel2.SetActive(false);
+                    _cardPanel3.SetActive(false);
                     Time.timeScale = 1; 
                 }
             }
@@ -78,6 +81,7 @@ public class CardManager : MonoBehaviour
         _cards.Remove(card2);
         _cardPanel.SetActive(true);
         _cardPanel2.SetActive(true);
+        _cardPanel3.SetActive(true);
         Time.timeScale = 0;
     }
     

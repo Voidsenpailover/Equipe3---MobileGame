@@ -40,7 +40,7 @@ public class EnemySpawner : MonoBehaviour
             if(_timer > 1f)
             {
                 _timer = 0;
-                if(_currentRoundIndex is 10 or 20 or 30)
+                if(_currentRoundIndex is 11 or 21 or 31)
                 {
                     CardChoice?.Invoke();
                 }

@@ -19,8 +19,7 @@ MonoBehaviour:
   _damage: 8
   _delayBetweenAtk: 1
   _radAtk: 4
-  _AtkSFX: {fileID: 0}
-  _prefabBullet: {fileID: 6703202451157482724, guid: 10ca29ce84c3bc241ada104b8db57c76, type: 3}
+  _prefabBullet: {fileID: 3801919937251534224, guid: c1a239a446c6481439eab9b251bad613, type: 3}
   _sprite: {fileID: 21300000, guid: ce64f73f23ab79b46b6a29f05283b00d, type: 3}
   _type: 8
   _level: 1
