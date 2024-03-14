@@ -4,6 +4,8 @@ using UnityEngine;
     { 
         [Header("Touches Debug")]
         [SerializeField] private KeyCode StartGame;
+
+        [SerializeField] private GameObject _mainMenu;
     
     #if UNITY_EDITOR    
         private void Update()
@@ -18,6 +20,7 @@ using UnityEngine;
     public void LauncheGame()
         {
             LevelManager.instance.StartGame();
+            _mainMenu.SetActive(false);
         }
 
     }
