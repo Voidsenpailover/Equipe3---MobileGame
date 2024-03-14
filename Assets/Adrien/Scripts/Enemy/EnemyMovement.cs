@@ -64,7 +64,6 @@ public class EnemyMovement : MonoBehaviour
           reachedEnd = true;
           LevelManager.instance.HP -= EnemyStat.Damage;
           OnHealthChanged?.Invoke();
-          AudioManager.instance.PlaySound(AudioType.Attaque, AudioSourceType.SFX);
           EnemySpawner._instance.EnemyReachedEndOfPath();
           Destroy(gameObject);
           if (LevelManager.instance.HP <= 0)

@@ -18,7 +18,7 @@ MonoBehaviour:
   _cost: 150
   _damage: 4
   _delayBetweenAtk: 3
-  _radAtk: 1
+  _radAtk: 5
   _prefabBullet: {fileID: 3801919937251534224, guid: c1a239a446c6481439eab9b251bad613, type: 3}
   _sprite: {fileID: 21300000, guid: 75d3a47c1093e144b80bf022e65d6297, type: 3}
   _type: 1

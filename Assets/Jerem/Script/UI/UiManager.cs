@@ -45,7 +45,7 @@ public class UiManager : MonoBehaviour
         Draggable.OnFusionMenuActive += SetFusionMenu;
         Draggable.OnFusionMenuDeactivated += UnsetFusionMenu;
         
-        _waveText.text =  EnemySpawner._instance._currentRoundIndex.ToString();
+        _waveText.text =  EnemySpawner._instance._currentRoundIndex.ToString() + 1;
         _maxWaveText.text = EnemySpawner._instance._rounds.Count.ToString();
         _moneyText.text = LevelManager.instance.money.ToString();
         _healthText.text = LevelManager.instance.HP.ToString();
@@ -97,16 +97,16 @@ public class UiManager : MonoBehaviour
          switch (indexBonus)
          {
              case 1:
-                _bonusIcone1.GetComponent<SpriteRenderer>().sprite = card.Icone;
-                 _bonusSunMoon1.GetComponent<SpriteRenderer>().sprite = card.BouleSoleilLune;
+                _bonusIcone1.GetComponent<Image>().sprite = card.Icone;
+                 _bonusSunMoon1.GetComponent<Image>().sprite = card.BouleSoleilLune;
                  break;
              case 2:
-                 _bonusIcone2.GetComponent<SpriteRenderer>().sprite = card.Icone;
-                 _bonusSunMoon2.GetComponent<SpriteRenderer>().sprite = card.BouleSoleilLune;
+                 _bonusIcone2.GetComponent<Image>().sprite = card.Icone;
+                 _bonusSunMoon2.GetComponent<Image>().sprite = card.BouleSoleilLune;
                  break;
              case 3:
-                _bonusIcone3.GetComponent<SpriteRenderer>().sprite = card.Icone;
-                 _bonusSunMoon3.GetComponent<SpriteRenderer>().sprite = card.BouleSoleilLune;
+                _bonusIcone3.GetComponent<Image>().sprite = card.Icone;
+                 _bonusSunMoon3.GetComponent<Image>().sprite = card.BouleSoleilLune;
                  break;
          }
         

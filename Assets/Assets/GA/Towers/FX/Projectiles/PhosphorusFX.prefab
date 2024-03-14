@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 5031337128405382666}
   - component: {fileID: 697579751549951165}
   - component: {fileID: 6850109351450665383}
+  - component: {fileID: 340403223933525591}
+  - component: {fileID: -6456518968082051439}
   m_Layer: 0
   m_Name: PhosphorusFX
   m_TagString: Untagged
@@ -4887,3 +4889,48 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &340403223933525591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8033771812414370071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6cd441f2a7a78e439e6f9a718ee956d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: -6456518968082051439}
+  bulletSpeed: 5
+  range: 1
+  Turret: {fileID: 0}
+  localDamage: 0
+  compteurTurret: 0
+--- !u!50 &-6456518968082051439
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8033771812414370071}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
