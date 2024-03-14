@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: -3564934513168534607}
   - component: {fileID: -4867845072261461697}
   - component: {fileID: 6689608191166671799}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: bullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,10 +100,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: -4867845072261461697}
-  collider: {fileID: 6689608191166671799}
   bulletSpeed: 5
   range: 1
   Turret: {fileID: 0}
+  localDamage: 0
+  compteurTurret: 0
 --- !u!50 &-4867845072261461697
 Rigidbody2D:
   serializedVersion: 4

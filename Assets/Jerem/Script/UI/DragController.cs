@@ -113,6 +113,7 @@ public class DragController : MonoBehaviour
     void Drop()
     {
         UpdateDragStatus(false);
+        Debug.Log("Drop");
         _lastDragged.transform.position = new Vector2(100, 100);
         _buildingSystem.IsDraggingNow = false;
         _buildingSystem.CanSelect = true;

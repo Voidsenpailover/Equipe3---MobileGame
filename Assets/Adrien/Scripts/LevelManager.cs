@@ -9,13 +9,15 @@ public class LevelManager : MonoBehaviour
     public static event Action OnGameStarted;
     public static event Action OnGameOver;
     public static event Action OnVictory;
+    public static event Action OnSell;
         
     
     public int HP = 200;
     public int money = 200;
     public int moneyToLoose;
-    
-    
+
+    [SerializeField] private float mult = 0.5f;
+
     public enum GameState
     {
         MainMenu,
@@ -86,5 +88,11 @@ public class LevelManager : MonoBehaviour
     public void LooseMoney(TurretsData data)
     {
         money -= data.Cost;
+    }
+    public void LooseMoneyForSell(TurretsData data)
+    {
+        Debug.Log("Test");
+        money += (int)(data.Cost * mult);
+        OnSell?.Invoke();
     }
 }

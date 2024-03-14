@@ -27,6 +27,7 @@ public class GridBuildingSystem : MonoBehaviour
     public static event Action<Vector3Int> OnPointCreated;
     public static event Action OnRoadEnd;
 
+
     //TileMaps
     [SerializeField] private GridLayout gridLayout;
     [SerializeField] Tilemap mainTilemap;
@@ -42,6 +43,7 @@ public class GridBuildingSystem : MonoBehaviour
     private Building temp;
     private Vector3Int prevPos;
     private BoundsInt prevArea;
+    private Vector3Int cellPos;
 
     private Vector3Int spawningPos;
     [SerializeField] private Transform spawningPosT;
@@ -66,6 +68,20 @@ public class GridBuildingSystem : MonoBehaviour
 
     #region Unity Methods
 
+    private void OnEnable()
+    {
+        LevelManager.OnSell += LevelManager_OnSell;
+    }
+
+    private void LevelManager_OnSell()
+    {
+        OnInfoMenuDeactivated?.Invoke();
+        ClearAreaDeuxPointZero(GridLayout.WorldToCell(prevPos));
+        Destroy(TileDataBases[prevPos]);
+        TileDataBases.Remove(GridLayout.WorldToCell(prevPos));
+        CanSelect = true;
+    }
+
     private void Awake()
     {
         current = this;
@@ -77,6 +93,7 @@ public class GridBuildingSystem : MonoBehaviour
         tileBases.Add(TileType.Green, _sourceTileData.SelectionTile);
         tileBases.Add(TileType.White, _sourceTileData.FloorTile);
         tileBases.Add(TileType.Road, _sourceTileData.RoadTile);
+        tileBases.Add(TileType.Water, _sourceTileData.WaterTile);
         //tileBases.Add(TileType.Red, Resources.Load<TileBase>(_tilePath + "SquareR"));
         CanSelect = true;
 
@@ -125,12 +142,17 @@ public class GridBuildingSystem : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) * 1 / GridLayout.transform.localScale.x; //where the point is
-            Vector3Int cellPos = GridLayout.LocalToCell(touchPos); //corresponding touch to his cell
+            cellPos = GridLayout.LocalToCell(touchPos); //corresponding touch to his cell
 
             TileBase tileSelected = mainTilemap.GetTile(cellPos); //Tile Selected
 
             //If it's beyond grid
             if (tileSelected == tileBases[TileType.Empty][0]) 
+            {
+                return;
+            }
+            //If it's water
+            if (tileSelected == tileBases[TileType.Water][0])
             {
                 return;
             }

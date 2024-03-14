@@ -130,7 +130,7 @@ public class UiManager : MonoBehaviour
      {
          _waveText.text =  EnemySpawner._instance._currentRoundIndex.ToString();
      }
-     private void UpdateMoneyText()
+     public void UpdateMoneyText()
      {
          _moneyText.text = LevelManager.instance.money.ToString();
      }
