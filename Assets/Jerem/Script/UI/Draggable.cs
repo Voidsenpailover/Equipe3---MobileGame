@@ -24,7 +24,9 @@ public class Draggable : MonoBehaviour
     private System.Nullable<Vector3> _movementDestination;
 
     private TurretsData _turretData;
+    private TurretsData newData;
     private bool _canDrop;
+    private bool _isFusionUIStay = false;
 
     private Collider2D collider2dTemp;
 
@@ -45,20 +47,31 @@ public class Draggable : MonoBehaviour
     {
         if (CanDrop)
         {
-            TurretsData newData = collider2dTemp.transform.gameObject.GetComponent<Building>().Data;
-            if (TurretData.Type != collider2dTemp.transform.gameObject.GetComponent<Building>().Data.Type)
-            {
-                newData = fusionBehaviour.SpawningRightTower(TurretData, collider2dTemp.transform.gameObject.GetComponent<Building>().Data);
-                collider2dTemp.transform.gameObject.GetComponent<Building>().Data = newData;
-                collider2dTemp.transform.Find("Text").gameObject.GetComponent<SpriteRenderer>().sprite = newData.Sprite;
-                _movementDestination = collider2dTemp.transform.position;
-                gridBuildingSystem.ClearAreaDeuxPointZero(gridBuildingSystem.GridLayout.WorldToCell(LastPosition));
-                GridBuildingSystem.TileDataBases.Remove(gridBuildingSystem.GridLayout.WorldToCell(LastPosition));
-                OnMoneyLoose?.Invoke(newData.Cost);
-                Destroy(LastTurret);
-            }
+            _isFusionUIStay = true;
             CanDrop = false;
         }
+    }
+
+    public void MakeFusion()
+    {
+        newData = collider2dTemp.transform.gameObject.GetComponent<Building>().Data;
+        if (TurretData.Type != collider2dTemp.transform.gameObject.GetComponent<Building>().Data.Type)
+        {
+            newData = fusionBehaviour.SpawningRightTower(TurretData, collider2dTemp.transform.gameObject.GetComponent<Building>().Data);
+            collider2dTemp.transform.gameObject.GetComponent<Building>().Data = newData;
+            collider2dTemp.transform.Find("Text").gameObject.GetComponent<SpriteRenderer>().sprite = newData.Sprite;
+            _movementDestination = collider2dTemp.transform.position;
+            gridBuildingSystem.ClearAreaDeuxPointZero(gridBuildingSystem.GridLayout.WorldToCell(LastPosition));
+            GridBuildingSystem.TileDataBases.Remove(gridBuildingSystem.GridLayout.WorldToCell(LastPosition));
+            OnMoneyLoose?.Invoke(newData.Cost);
+            Destroy(LastTurret);
+            DeactivateFusionUI();
+        }
+    }
+
+    public void DeactivateFusionUI()
+    {
+        OnFusionMenuDeactivated?.Invoke();
     }
 
     private void FixedUpdate()
@@ -98,8 +111,13 @@ public class Draggable : MonoBehaviour
 
         if (other.CompareTag("DropValid"))
         {
-            CanDrop = true;
-            OnFusionMenuActive?.Invoke(other.transform.position);
+            newData = collider2dTemp.transform.gameObject.GetComponent<Building>().Data;
+            if (TurretData.Type != collider2dTemp.transform.gameObject.GetComponent<Building>().Data.Type)
+            {
+                newData = fusionBehaviour.SpawningRightTower(TurretData, collider2dTemp.transform.gameObject.GetComponent<Building>().Data);
+                CanDrop = true;
+                OnFusionMenuActive?.Invoke(other.transform.position);
+            }
         } else if(other.CompareTag("DropInvalid"))
         {
             _movementDestination = LastPosition;
@@ -109,6 +127,9 @@ public class Draggable : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         CanDrop = false;
-        OnFusionMenuDeactivated?.Invoke();
+        if (!_isFusionUIStay)
+        {
+            OnFusionMenuDeactivated?.Invoke();
+        }
     }
 }

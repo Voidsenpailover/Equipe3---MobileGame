@@ -77,8 +77,8 @@ public class LevelManager : MonoBehaviour
     {
         money -= moneyToLoose;
     }
-    public void LooseMoney(int moneyloosed)
+    public void LooseMoney(TurretsData data)
     {
-        money -= moneyloosed;
+        money -= data.Cost;
     }
 }

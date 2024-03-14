@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public class GridBuildingSystem : MonoBehaviour
 {
@@ -141,6 +142,17 @@ public class GridBuildingSystem : MonoBehaviour
                     return;
                 }
             }
+
+            RaycastHit2D hit2dForButton = Physics2D.Raycast(touchPos, Vector2.zero);
+            if(hit2dForButton.collider != null)
+            {
+                if(hit2dForButton.collider.GetComponent<Button>() != null)
+                {
+                    Debug.Log("WOW");
+                    return;
+                }
+            }
+
 
             //Selection
             if (CanSelect) // Check For selection
