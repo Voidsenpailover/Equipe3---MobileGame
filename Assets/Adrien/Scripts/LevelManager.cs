@@ -26,14 +26,18 @@ public class LevelManager : MonoBehaviour
     
     public GameState CurrentState;
     public Transform[] Chemin;
-        
-    
+
+    private void OnEnable()
+    {
+        GridBuildingSystem.OnRoadEnd += GridBuildingSystem_OnRoadEnd;
+        Draggable.OnMoneyLoose += WhenMoneyLoose;
+    }
+
     private void Awake()
     {
         instance = this;
         Application.targetFrameRate = 60;
-        GridBuildingSystem.OnRoadEnd += GridBuildingSystem_OnRoadEnd;
-        Draggable.OnMoneyLoose += WhenMoneyLoose;
+
     }
 
     private void WhenMoneyLoose(int cost)
