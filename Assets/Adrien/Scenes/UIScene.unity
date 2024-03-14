@@ -22597,6 +22597,8 @@ MonoBehaviour:
   _bonusSunMoon1: {fileID: 481012233}
   _bonusSunMoon2: {fileID: 1624397246}
   _bonusSunMoon3: {fileID: 727760719}
+  _cardsSlot: {fileID: 1875187650}
+  _banner: {fileID: 961296190}
   _listCard: []
 --- !u!4 &1138939575
 Transform:
