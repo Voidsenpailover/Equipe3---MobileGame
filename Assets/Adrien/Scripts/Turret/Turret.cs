@@ -14,17 +14,15 @@ using UnityEngine;
         private float turretDamage;
         private float localRange;
         private float localBPS;
-        
-        
+        public int compteurTour;
 
         private TurretsData turret {get; set;}
         
         public void SellTower()
         {
+            compteurTour--;
             Destroy(gameObject);
         }
-        
-        
         
         
         private void Update()
@@ -184,6 +182,57 @@ using UnityEngine;
                                 break;
                         }
                         break;
+                    case CardName.Vierge:
+                        if (turret.Level == 3)
+                        {
+                            if(card.Type == CardType.Soleil){
+                                    BulletPerSecond *= 2f;
+                            }
+                        }
+                        else
+                        {
+                            if(card.Type == CardType.Soleil){
+                                BulletPerSecond *= 0.25f;
+                            }
+                        }
+                        break;
+                    case CardName.Balance:
+                        if (compteurTour <= 4)
+                        {
+                            switch (card.Type)
+                            {
+                                case CardType.Soleil:
+                                    BulletPerSecond *= 1.5f;
+                                    range += 1;
+                                    break;
+                            }
+                        }break;
+                    case CardName.Gémeaux:
+                        if (turret.Type is TurretType.Eau or TurretType.Vent or TurretType.Feu or TurretType.Terre)
+                        {
+                            switch (card.Type)
+                            {
+                                case CardType.Soleil:
+                                    range -= 1;
+                                    break;
+                                case CardType.Lune:
+                                    range -= 1;
+                                    break;
+                            }
+                        }else
+                        {
+                            switch (card.Type)
+                            {
+                                case CardType.Soleil:
+                                    range += 1;
+                                    break;
+                                case CardType.Lune:
+                                    range += 1;
+                                    break;
+                            }
+                        }
+                        break;
+                    
                 }
                 
             }
@@ -219,6 +268,7 @@ using UnityEngine;
                 bulletScript.Turret = _turret;
                 bulletScript.localDamage = turretDamage;
                 bulletScript.SetTarget(target);
+                bulletScript.compteurTurret = compteurTour;
             }
             
             switch (turret.Type)
@@ -260,6 +310,8 @@ using UnityEngine;
             localBPS = data.DelayBetweenAtk;
             range = localRange;
             BulletPerSecond = localBPS;
+            compteurTour++;
+            
         }
         
     }

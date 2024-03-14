@@ -13,6 +13,7 @@ public class Grimoire : MonoBehaviour
     
     public void CloseGrimoire()
     {
+        _index = 0;
         foreach (var card in _cards)
         {
             card.SetActive(false);
@@ -25,27 +26,32 @@ public class Grimoire : MonoBehaviour
     private void Update()
     {
         _boutonGauche.SetActive(_index != 0);
+        _boutonDroite.SetActive(_index != _cards.Count - 1);
     }
 
     public void OpenGrimoire()
     {
         _cards[0].SetActive(true);
         _boutonDroite.SetActive(true);
-        
         _index = 0;
         Time.timeScale = 0;
     }
 
     public void flecheGauche()
     {
-        _cards[_index].SetActive(false);
-        _cards[_index - 1].SetActive(true);
+        if (_index > 0)
+        {
+            _cards[_index].SetActive(false);
+            _cards[_index - 1].SetActive(true);
+            _index--;
+        }
     }
     
     public void flecheDroite()
     {
         _cards[_index].SetActive(false);
         _cards[_index + 1].SetActive(true);
+        _index++;
     }
 
     

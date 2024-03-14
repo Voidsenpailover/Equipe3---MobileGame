@@ -34,7 +34,7 @@ public class GridBuildingSystem : MonoBehaviour
     //TileBase
     private static List<TileBase> _tiles;
     private static Dictionary<TileType, List<TileBase>> tileBases = new Dictionary<TileType, List<TileBase>>();
-    private static Dictionary<Vector3Int, GameObject> tileDataBases = new Dictionary<Vector3Int, GameObject>();
+    public static Dictionary<Vector3Int, GameObject> tileDataBases = new Dictionary<Vector3Int, GameObject>();
     [SerializeField] private RessourceTileDataBase _sourceTileData;
 
     //TilesPos
