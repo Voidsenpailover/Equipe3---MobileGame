@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class UiManager : MonoBehaviour
 {
+    [SerializeField] GridBuildingSystem gridBuildingSystem;
+
     [SerializeField] RectTransform _turretMenu;
     [SerializeField] GameObject _menuSelectionPoint;
     [SerializeField] GameObject _menuInfoPoint;
@@ -40,8 +42,8 @@ public class UiManager : MonoBehaviour
         GridBuildingSystem.OnInfoMenuActive += SetInfoMenu;
         GridBuildingSystem.OnInfoMenuDeactivated += UnsetInfoMenu;
 
-        GridBuildingSystem.OnFusionMenuActive += SetFusionMenu;
-        GridBuildingSystem.OnFusionMenuDeactivated += UnsetFusionMenu;
+        Draggable.OnFusionMenuActive += SetFusionMenu;
+        Draggable.OnFusionMenuDeactivated += UnsetFusionMenu;
         /*
       //  _waveText.text =  EnemySpawner._instance._currentRoundIndex.ToString();
         //_maxWaveText.text = EnemySpawner._instance._rounds.Count.ToString();
@@ -53,14 +55,9 @@ public class UiManager : MonoBehaviour
     private void SetInfoMenu(Vector3 pos)
     {
         _turretMenu.position = pos;
-        RaycastHit2D hit2D = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(pos), Vector2.zero);
-        if(hit2D.collider != null)
-        {
-            if(hit2D.collider.gameObject.GetComponent<Building>().Data != null)
-            {
-                _menuInfoPoint.GetComponent<SetInfo>().SetTurretInfo(hit2D.collider.gameObject.GetComponent<Building>().Data);
-            }
-        }
+
+        Vector3Int tempCellPos = gridBuildingSystem.GridLayout.WorldToCell(pos);
+        _menuInfoPoint.GetComponent<SetInfo>().SetTurretInfo(GridBuildingSystem.TileDataBases[tempCellPos].GetComponent<Building>().Data);
         _menuInfoPoint.SetActive(true);
     }
     private void UnsetInfoMenu()

@@ -10,73 +10,73 @@ public class FusionBehaviour : MonoBehaviour
     {
         turretsData = gridBuildingSystem.TurretsData;
     }
-    public TurretsData SpawningRightTower(TurretType turret1, TurretType turret2)
+    public TurretsData SpawningRightTower(TurretsData turret1, TurretsData turret2)
     {
-        switch (turret1)
+        switch (turret1.Type)
         {
             case TurretType.Feu:
-                if(turret2 == TurretType.Vent)
+                if(turret2.Type == TurretType.Vent)
                 {
                     //Souffre1
                     return turretsData[22];
                 }
-                else if (turret2 == TurretType.Eau)
+                else if (turret2.Type == TurretType.Eau)
                 {
                     //Pyrite1
                     return turretsData[18];
                 }
-                else if (turret2 == TurretType.Terre)
+                else if (turret2.Type == TurretType.Terre)
                 {
                     //Phosphore1
                     return turretsData[16];
                 }
                 break;
             case TurretType.Eau:
-                if (turret2 == TurretType.Feu)
+                if (turret2.Type == TurretType.Feu)
                 {
                     //Pyrite1
                     return turretsData[18];
                 }
-                else if (turret2 == TurretType.Vent)
+                else if (turret2.Type == TurretType.Vent)
                 {
                     //Mercure1
                     return turretsData[14];
                 }
-                else if (turret2 == TurretType.Terre)
+                else if (turret2.Type == TurretType.Terre)
                 {
                     //Sel1
                     return turretsData[20];
                 }
                 break;
             case TurretType.Vent:
-                if (turret2 == TurretType.Feu)
+                if (turret2.Type == TurretType.Feu)
                 {
                     //Souffre1
                     return turretsData[22];
                 }
-                else if (turret2 == TurretType.Eau)
+                else if (turret2.Type == TurretType.Eau)
                 {
                     //Mercure1
                     return turretsData[14];
                 }
-                else if (turret2 == TurretType.Terre)
+                else if (turret2.Type == TurretType.Terre)
                 {
                     //Fulgurite1
                     return turretsData[12];
                 }
                 break;
             case TurretType.Terre:
-                if (turret2 == TurretType.Eau)
+                if (turret2.Type == TurretType.Eau)
                 {
                     //Sel1
                     return turretsData[20];
                 }
-                else if (turret2 == TurretType.Vent)
+                else if (turret2.Type == TurretType.Vent)
                 {
                     //Fulgurite1
                     return turretsData[12];
                 }
-                else if (turret2 == TurretType.Feu)
+                else if (turret2.Type == TurretType.Feu)
                 {
                     //Phosphore1
                     return turretsData[16];
@@ -85,7 +85,7 @@ public class FusionBehaviour : MonoBehaviour
             default:
                 break;
         }
-        return turretsData[0];
+        return turret2;
     }
 
 }

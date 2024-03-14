@@ -17,7 +17,7 @@ public class GridBuildingSystem : MonoBehaviour
     public static event Action OnTurretMenuActivated;
 
     public static event Action<Vector3> OnInfoMenuActive;
-    public static event Action<TurretsData> OnInfoMenuDragActive;
+    public static event Action<Vector3Int> OnInfoMenuDragActive;
     public static event Action OnInfoMenuDeactivated;
 
     public static event Action<Vector3> OnFusionMenuActive;
@@ -34,7 +34,7 @@ public class GridBuildingSystem : MonoBehaviour
     //TileBase
     private static List<TileBase> _tiles;
     private static Dictionary<TileType, List<TileBase>> tileBases = new Dictionary<TileType, List<TileBase>>();
-    private static Dictionary<Vector3Int, GameObject> tileDataBases = new Dictionary<Vector3Int, GameObject>();
+    public static Dictionary<Vector3Int, GameObject> tileDataBases = new Dictionary<Vector3Int, GameObject>();
     [SerializeField] private RessourceTileDataBase _sourceTileData;
 
     //TilesPos
@@ -56,7 +56,7 @@ public class GridBuildingSystem : MonoBehaviour
     public bool IsDraggingNow { get => _isDraggingNow; set => _isDraggingNow = value; }
     public bool CanSelect { get => _canSelect; set => _canSelect = value; }
     public List<TurretsData> TurretsData { get => _turretsData; set => _turretsData = value; }
-    public GridLayout GridLayout1 { get => gridLayout; set => gridLayout = value; }
+    public static Dictionary<Vector3Int, GameObject> TileDataBases { get => tileDataBases; set => tileDataBases = value; }
 
     //Selections
     private bool _canSelect;
@@ -191,8 +191,7 @@ public class GridBuildingSystem : MonoBehaviour
                         OnInfoMenuDeactivated?.Invoke();
                         if (tileDataBases[cellPos] != null)
                         {
-                            Debug.Log(tileDataBases[cellPos].GetComponent<Building>().Data.Level);
-                            OnInfoMenuDragActive?.Invoke(tileDataBases[cellPos].GetComponent<Building>().Data);
+                            OnInfoMenuDragActive?.Invoke(gridLayout.WorldToCell(TileDataBases[cellPos].transform.position));
                         }
                         IsDraggingNow = true;
                     }
@@ -255,6 +254,7 @@ public class GridBuildingSystem : MonoBehaviour
         temp.Data = TurretsData[CurrentID];
         temp.transform.position = GridLayout.CellToLocalInterpolated(prevPos + new Vector3(.5f, .5f, 0f));
         temp.GetComponent<Turret>().InitializeTurret(temp.Data);
+        temp.transform.Find("Text").GetComponent<SpriteRenderer>().sortingOrder = -prevPos.y;
         mainTilemap.SetTile(gridLayout.WorldToCell(temp.transform.position), tileBases[TileType.Green][1]);
         tileDataBases.Add(gridLayout.WorldToCell(temp.transform.position), temp.transform.gameObject);
         OnSelectionMenuDeactivated?.Invoke();
@@ -268,9 +268,13 @@ public class GridBuildingSystem : MonoBehaviour
         tempTilemap.SetTilesBlock(prevArea, toClear);
     }
 
-    private void ClearArea(Vector3Int pos)
+    public void ClearArea(Vector3Int pos)
     {
         tempTilemap.SetTile(pos, tileBases[TileType.Empty][0]);
+    }    
+    public void ClearAreaDeuxPointZero(Vector3Int pos)
+    {
+        mainTilemap.SetTile(pos, tileBases[TileType.White][0]);
     }
 
     private void FollowBuilding()

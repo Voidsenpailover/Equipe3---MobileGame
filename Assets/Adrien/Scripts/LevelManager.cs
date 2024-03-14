@@ -31,6 +31,12 @@ public class LevelManager : MonoBehaviour
         instance = this;
         Application.targetFrameRate = 60;
         GridBuildingSystem.OnRoadEnd += GridBuildingSystem_OnRoadEnd;
+        Draggable.OnMoneyLoose += WhenMoneyLoose;
+    }
+
+    private void WhenMoneyLoose(int cost)
+    {
+        money -= cost;
     }
 
     private void GridBuildingSystem_OnRoadEnd()
@@ -70,5 +76,9 @@ public class LevelManager : MonoBehaviour
     public void LooseMoney()
     {
         money -= moneyToLoose;
+    }
+    public void LooseMoney(int moneyloosed)
+    {
+        money -= moneyloosed;
     }
 }
