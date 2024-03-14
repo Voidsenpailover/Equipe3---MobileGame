@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Draggable : MonoBehaviour
@@ -11,7 +12,7 @@ public class Draggable : MonoBehaviour
     [SerializeField] FusionBehaviour fusionBehaviour;
 
     public static event Action<int> OnMoneyLoose;
-    public static event Action<Vector3> OnFusionMenuActive;
+    public static event Action<Vector3,TurretsData> OnFusionMenuActive;
     public static event Action OnFusionMenuDeactivated;
 
     private Vector3 _lastPosition;
@@ -116,7 +117,11 @@ public class Draggable : MonoBehaviour
             {
                 newData = fusionBehaviour.SpawningRightTower(TurretData, collider2dTemp.transform.gameObject.GetComponent<Building>().Data);
                 CanDrop = true;
-                OnFusionMenuActive?.Invoke(other.transform.position);
+                OnFusionMenuActive?.Invoke(other.transform.position,newData);
+            }
+            else if (TurretData.GetComponent<Transform>() != collider2dTemp.transform)
+            {
+
             }
         } else if(other.CompareTag("DropInvalid"))
         {

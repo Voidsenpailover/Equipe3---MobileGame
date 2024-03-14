@@ -66,9 +66,11 @@ public class UiManager : MonoBehaviour
         _menuInfoPoint.SetActive(false);
     }
     
-    private void SetFusionMenu(Vector3 pos)
+    private void SetFusionMenu(Vector3 pos, TurretsData data)
     {
         _turretMenu.position = pos;
+        Vector3Int tempCellPos = gridBuildingSystem.GridLayout.WorldToCell(pos);
+        _menuFusionPoint.GetComponent<SetInfo>().SetTurretFusion(data);
         _menuFusionPoint.SetActive(true);
     }
 
@@ -146,7 +148,6 @@ public class UiManager : MonoBehaviour
         GridBuildingSystem.OnInfoMenuActive -= SetInfoMenu;
         GridBuildingSystem.OnInfoMenuDeactivated -= UnsetInfoMenu;
 
-        GridBuildingSystem.OnFusionMenuActive -= SetFusionMenu;
         GridBuildingSystem.OnFusionMenuDeactivated -= UnsetFusionMenu;
         
         /*
