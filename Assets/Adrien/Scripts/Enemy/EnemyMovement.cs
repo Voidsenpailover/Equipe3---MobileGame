@@ -164,7 +164,7 @@ public class EnemyMovement : MonoBehaviour
       yield return null;
     }
     
-    public void ApplyBurn(int duration, float damage)
+    public void ApplyBurn(float duration, float damage)
     {
       if(isBurning) {
         return;

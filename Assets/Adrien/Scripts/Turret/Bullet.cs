@@ -16,12 +16,13 @@ public class Bullet : MonoBehaviour
     public TurretsData Turret;
     private float _timer;
     private float timingStun = 1;
-    private int timingBurn = 3;
+    private float timingBurn = 3;
     private float burnDamage = 1;
     private float slowPercent;
     private int mercureMoney;
     public float localDamage;
     private float turretDamage;
+    public int compteurTurret;
     public static event Action OnMoneyChanged;
     
     
@@ -189,6 +190,80 @@ public class Bullet : MonoBehaviour
                         if (card.Type == CardType.Lune)
                         {
                             slowPercent *= 1.1f;
+                        }
+                        break;
+                    case CardName.Balance:
+                        if (compteurTurret <= 4)
+                        {
+                            switch (card.Type)
+                            {
+                                case CardType.Soleil:
+                                    turretDamage *= 1.5f;
+                                    break;
+                                case CardType.Lune:
+                                    slowPercent *= 1.5f;
+                                    burnDamage *= 1.5f;
+                                    timingStun *= 1.5f;
+                                    timingBurn *= 1.5f;
+                                    break;
+                            }
+                        }
+                        break;
+                    case CardName.Vierge:
+                        if(Turret.Level == 3)
+                        {
+                            switch (card.Type)
+                            {
+                                case CardType.Soleil:
+                                    turretDamage *= 2f;
+                                    break;
+                                case CardType.Lune:
+                                    slowPercent *= 1.3f;
+                                    burnDamage *= 1.3f;
+                                    timingStun *= 2f;
+                                    timingBurn *= 2f;
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            switch (card.Type)
+                            {
+                                case CardType.Soleil:
+                                    turretDamage *= 0.25f;
+                                    break;
+                                case CardType.Lune:
+                                    slowPercent *= 0.5f;
+                                    burnDamage *= 0.5f;
+                                    timingStun *= 0.25f;
+                                    timingBurn *= 0.25f;
+                                    break;
+                            }
+                        }
+                        break;
+                    case CardName.Gémeaux:
+                        if (Turret.Type is TurretType.Eau or TurretType.Vent or TurretType.Feu or TurretType.Terre)
+                        {
+                            switch (card.Type)
+                            {
+                                case CardType.Soleil:
+                                    turretDamage *= 0.5f;
+                                    break;
+                                case CardType.Lune:
+                                    turretDamage *= 0.5f;
+                                    break;
+                            }
+                        }else
+                        {
+                            switch (card.Type)
+                            {
+                                case CardType.Soleil:
+                                    turretDamage *= 1.5f;
+                                    break;
+                                case CardType.Lune:
+                                    turretDamage *= 1.5f;
+                                    break;
+                            }
                         }
                         break;
                 }

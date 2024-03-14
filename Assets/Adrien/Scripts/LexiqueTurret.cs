@@ -7,11 +7,9 @@ public class LexiqueTurret : MonoBehaviour
 {
     
     [SerializeField] private TurretsData TourPrincipale;
-    [SerializeField] private TurretsData TourNiveauApres;
-    [SerializeField] private Sprite SpriteTour;
     [SerializeField] private TextMeshProUGUI Name;
     [SerializeField] private TextMeshProUGUI Description;
-     [SerializeField] private TextMeshProUGUI DescriptionEffect;
+    [SerializeField] private TextMeshProUGUI DescriptionEffect;
     [SerializeField] private TextMeshProUGUI Cost;
     [SerializeField] private TextMeshProUGUI SellPrice;
     [SerializeField] private TextMeshProUGUI Atk;
@@ -21,7 +19,6 @@ public class LexiqueTurret : MonoBehaviour
     
     void Start()
     {
-        SpriteTour = TourPrincipale.Sprite;
         Name.text = TourPrincipale.Name;
         Description.text = TourPrincipale.Description;
         DescriptionEffect.text = TourPrincipale.DescriptionEffect;
