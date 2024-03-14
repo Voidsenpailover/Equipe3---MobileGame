@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: FireBasic
+  m_Controller: {fileID: 9100000, guid: 113c0fca7bebb9c48b8c04bebc16fdfd, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: bae9443a6c9bcc14b9110e6888683574, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 112946d5dd09b5946ad8fde28d1b6349, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 89ace5f65d49c364584643c02148f745, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 32521f37fd0f245499525ab71b819e29, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: abaaf9a783449ae438a16295acb6e8b4, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 127e0ab62cd50da4ab21a7c0032e4100, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: d8025d28725cdd84a9358530cd0f559e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d151fe5ca8fe4b74fb77463ad5426202, type: 2}
