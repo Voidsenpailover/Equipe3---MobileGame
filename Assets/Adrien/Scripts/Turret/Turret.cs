@@ -54,6 +54,7 @@ using UnityEngine;
                             }
                         }
                         AudioManager.instance.PlaySound(AudioType.Phosphore, AudioSourceType.SFX);
+                        Instantiate(turret.PrefabBullet, transform.transform.position, Quaternion.identity);
                     }
                     else
                     {
@@ -255,7 +256,7 @@ using UnityEngine;
         {
             if (turret.Type == TurretType.Fulgurite)
             {
-                var lighting = Instantiate(turret.PrefabBullet, target.position + new Vector3(0, 3), Quaternion.identity);
+                var lighting = Instantiate(turret.PrefabBullet, target.position + new Vector3(0, 2), Quaternion.identity);
                 var bulletScript = lighting.GetComponent<Bullet>();
                 bulletScript.Turret = _turret;
                 bulletScript.localDamage = turretDamage;

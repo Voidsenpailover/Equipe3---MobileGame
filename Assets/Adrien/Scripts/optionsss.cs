@@ -6,9 +6,11 @@ using UnityEngine.SceneManagement;
 public class optionsss : MonoBehaviour
 {
   [SerializeField] private GameObject _options;
+  
 
     public void OpenOptions()
     {
+        Debug.Log(_options);
         _options.SetActive(true);
         Time.timeScale = 0;
     }
@@ -21,6 +23,6 @@ public class optionsss : MonoBehaviour
 
     public void RestartGame()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadSceneAsync(0);
     }
 }

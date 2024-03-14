@@ -129,6 +129,16 @@ public class GridBuildingSystem : MonoBehaviour
 
             TileBase tileSelected = mainTilemap.GetTile(cellPos); //Tile Selected
 
+            RaycastHit2D hit2dForButton = Physics2D.Raycast(touchPos, Vector2.zero);
+            if(hit2dForButton.collider != null)
+            {
+                if(hit2dForButton.collider.GetComponent<Button>() != null)
+                {
+                    Debug.Log("WOW");
+                    hit2dForButton.collider.GetComponent<Button>().onClick.Invoke();
+                    return;
+                }
+            }
             //If it's beyond grid
             if (tileSelected == tileBases[TileType.Empty][0]) 
             {
@@ -143,15 +153,7 @@ public class GridBuildingSystem : MonoBehaviour
                 }
             }
 
-            RaycastHit2D hit2dForButton = Physics2D.Raycast(touchPos, Vector2.zero);
-            if(hit2dForButton.collider != null)
-            {
-                if(hit2dForButton.collider.GetComponent<Button>() != null)
-                {
-                    Debug.Log("WOW");
-                    return;
-                }
-            }
+
 
 
             //Selection

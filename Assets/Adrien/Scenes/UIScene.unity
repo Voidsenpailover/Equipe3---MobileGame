@@ -749,7 +749,7 @@ RectTransform:
   m_Father: {fileID: 2095038712}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -12719,7 +12719,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c0d85a30c68cfa438c5945824952314, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _options: {fileID: 1352764691}
+  _options: {fileID: 1839629463}
 --- !u!4 &686237709
 Transform:
   m_ObjectHideFlags: 0
@@ -13331,6 +13331,7 @@ GameObject:
   - component: {fileID: 742463407}
   - component: {fileID: 742463406}
   - component: {fileID: 742463405}
+  - component: {fileID: 742463408}
   m_Layer: 5
   m_Name: RestartButton
   m_TagString: Untagged
@@ -13401,7 +13402,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 742463406}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 686237708}
+        m_TargetAssemblyTypeName: optionsss, Assembly-CSharp
+        m_MethodName: RestartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &742463406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13440,6 +13453,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 742463403}
   m_CullTransparentMesh: 1
+--- !u!61 &742463408
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742463403}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.3363037, y: 0.3629074}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 412.7614, y: 84.31897}
+  m_EdgeRadius: 0
 --- !u!1 &750618705
 GameObject:
   m_ObjectHideFlags: 0
@@ -14697,8 +14755,6 @@ RectTransform:
   - {fileID: 50229443}
   - {fileID: 1245587182}
   - {fileID: 703866493}
-  - {fileID: 1352764692}
-  - {fileID: 2115362650}
   - {fileID: 979642739}
   - {fileID: 1681333283}
   m_Father: {fileID: 2145063916}
@@ -15840,6 +15896,7 @@ GameObject:
   - component: {fileID: 1112253999}
   - component: {fileID: 1112253998}
   - component: {fileID: 1112253997}
+  - component: {fileID: 1112254000}
   m_Layer: 5
   m_Name: RestartButton
   m_TagString: Untagged
@@ -15910,7 +15967,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1112253998}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 686237708}
+        m_TargetAssemblyTypeName: optionsss, Assembly-CSharp
+        m_MethodName: RestartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1112253998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15949,6 +16018,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1112253995}
   m_CullTransparentMesh: 1
+--- !u!61 &1112254000
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1112253995}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.42195892, y: 0.28215027}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 410.90253, y: 83.95271}
+  m_EdgeRadius: 0
 --- !u!1 &1119345001
 GameObject:
   m_ObjectHideFlags: 0
@@ -15982,7 +16096,7 @@ RectTransform:
   m_Father: {fileID: 1617848996}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -22865,6 +22979,7 @@ GameObject:
   - component: {fileID: 1352764695}
   - component: {fileID: 1352764694}
   - component: {fileID: 1352764693}
+  - component: {fileID: 1352764696}
   m_Layer: 5
   m_Name: OptionButton
   m_TagString: Untagged
@@ -22879,16 +22994,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1352764691}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 0.6373242, y: 0.6373242, z: 0.6373242}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 961296191}
+  m_Father: {fileID: 2145063916}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1943, y: -59}
+  m_AnchoredPosition: {x: 428.70667, y: 910}
   m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1352764693
@@ -22985,6 +23100,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1352764691}
   m_CullTransparentMesh: 1
+--- !u!61 &1352764696
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352764691}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -1.282032, y: 2.6553726}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 146.38223, y: 143.79768}
+  m_EdgeRadius: 0
 --- !u!1 &1357963175
 GameObject:
   m_ObjectHideFlags: 0
@@ -30223,7 +30383,7 @@ RectTransform:
   m_Father: {fileID: 1457391659}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -32370,7 +32530,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1839629464
 RectTransform:
   m_ObjectHideFlags: 0
@@ -32378,7 +32538,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1839629463}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -32945,6 +33105,7 @@ GameObject:
   - component: {fileID: 1933988758}
   - component: {fileID: 1933988757}
   - component: {fileID: 1933988756}
+  - component: {fileID: 1933988759}
   m_Layer: 5
   m_Name: RestartButton
   m_TagString: Untagged
@@ -33015,7 +33176,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1933988757}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 686237708}
+        m_TargetAssemblyTypeName: optionsss, Assembly-CSharp
+        m_MethodName: RestartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1933988757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33054,6 +33227,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1933988754}
   m_CullTransparentMesh: 1
+--- !u!61 &1933988759
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1933988754}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.08262634, y: -0.7440872}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 411.35495, y: 84.978485}
+  m_EdgeRadius: 0
 --- !u!1 &1935370368
 GameObject:
   m_ObjectHideFlags: 0
@@ -33412,41 +33630,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1969352516}
   m_CullTransparentMesh: 1
---- !u!1 &1991917720
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1991917721}
-  m_Layer: 5
-  m_Name: CardsScreenCanva
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &1991917721
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1991917720}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0622069, y: 1.0622069, z: 1.0622069}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2145063916}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -169.20833}
-  m_SizeDelta: {x: 100, y: 1300}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1998607388
 GameObject:
   m_ObjectHideFlags: 0
@@ -33560,7 +33743,7 @@ RectTransform:
   m_Father: {fileID: 770678856}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -35036,6 +35219,7 @@ GameObject:
   - component: {fileID: 2115362653}
   - component: {fileID: 2115362652}
   - component: {fileID: 2115362651}
+  - component: {fileID: 2115362654}
   m_Layer: 5
   m_Name: CodexButton
   m_TagString: Untagged
@@ -35050,16 +35234,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2115362649}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 0.6373242, y: 0.6373242, z: 0.6373242}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 961296191}
+  m_Father: {fileID: 2145063916}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1942.9999, y: -644.9999}
+  m_AnchoredPosition: {x: 428.70654, y: 785.5095}
   m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2115362651
@@ -35144,6 +35328,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2115362649}
   m_CullTransparentMesh: 1
+--- !u!61 &2115362654
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115362649}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 1.4834404, y: -0.51511383}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 150.05243, y: 153.76869}
+  m_EdgeRadius: 0
 --- !u!1 &2145063912
 GameObject:
   m_ObjectHideFlags: 0
@@ -35240,15 +35469,16 @@ RectTransform:
   m_Children:
   - {fileID: 1713022495}
   - {fileID: 1677736836}
+  - {fileID: 1352764692}
+  - {fileID: 2115362650}
   - {fileID: 961296191}
   - {fileID: 1875187651}
   - {fileID: 1136383021}
-  - {fileID: 1839629464}
   - {fileID: 140158931}
-  - {fileID: 1991917721}
   - {fileID: 2069536095}
   - {fileID: 1589188489}
   - {fileID: 908472481}
+  - {fileID: 1839629464}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -35282,8 +35512,12 @@ PrefabInstance:
       objectReference: {fileID: 423251575}
     - target: {fileID: 99319184519853171, guid: d16023d0aada86248af7c5922734d1c4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 3
+      value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 99319184519853171, guid: d16023d0aada86248af7c5922734d1c4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 11400000, guid: be143ab2cd24bad4fa006cd3b3ce9d68, type: 2}
     - target: {fileID: 973698615939296287, guid: d16023d0aada86248af7c5922734d1c4, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -35378,8 +35612,12 @@ PrefabInstance:
       objectReference: {fileID: 423251575}
     - target: {fileID: 2104096314946856905, guid: d16023d0aada86248af7c5922734d1c4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 1
+      value: 16
       objectReference: {fileID: 0}
+    - target: {fileID: 2104096314946856905, guid: d16023d0aada86248af7c5922734d1c4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 11400000, guid: 6df8dc298a999034a95ebcd38fc82447, type: 2}
     - target: {fileID: 2582833802794652918, guid: d16023d0aada86248af7c5922734d1c4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
