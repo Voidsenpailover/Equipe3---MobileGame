@@ -13192,22 +13192,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4882041698799904689, guid: f71553e82850cad449b3df4700aa7a1f, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7183304194231719718, guid: f71553e82850cad449b3df4700aa7a1f, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7701190884591356777, guid: f71553e82850cad449b3df4700aa7a1f, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7701190884591356777, guid: f71553e82850cad449b3df4700aa7a1f, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8423427681872163357, guid: f71553e82850cad449b3df4700aa7a1f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.06
@@ -13248,10 +13232,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8731389485126639175, guid: f71553e82850cad449b3df4700aa7a1f, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 583942c0cad224043bdc7a15cbc1ee1e, type: 2}
     - target: {fileID: 8852987453620772867, guid: f71553e82850cad449b3df4700aa7a1f, type: 3}
       propertyPath: m_Name
       value: TurretPrefab
