@@ -13,6 +13,7 @@ public class Grimoire : MonoBehaviour
     
     public void CloseGrimoire()
     {
+        _index = 0;
         foreach (var card in _cards)
         {
             card.SetActive(false);
@@ -40,12 +41,14 @@ public class Grimoire : MonoBehaviour
     {
         _cards[_index].SetActive(false);
         _cards[_index - 1].SetActive(true);
+        _index--;
     }
     
     public void flecheDroite()
     {
         _cards[_index].SetActive(false);
         _cards[_index + 1].SetActive(true);
+        _index++;
     }
 
     
