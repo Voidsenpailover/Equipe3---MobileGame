@@ -65,12 +65,14 @@ public class LevelManager : MonoBehaviour
     public void GameOver()
     {
         CurrentState = GameState.GameOver;
+        Time.timeScale = 0;
         OnGameOver?.Invoke();
     }
         
     public void Victory()
     {
         CurrentState = GameState.Victory;
+        Time.timeScale = 0;
         OnVictory?.Invoke();
     }
 
