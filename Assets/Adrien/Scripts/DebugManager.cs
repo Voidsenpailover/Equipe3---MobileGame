@@ -1,27 +1,29 @@
+using System;
 using UnityEngine;
 
     public class DebugManager : MonoBehaviour
     { 
         
         [SerializeField] private GameObject _mainMenu;
-        [SerializeField]private AudioSource _audioSource;
-        [SerializeField] private AudioClip _musiqueDeFond;
-        [SerializeField] private AudioClip _musiqueDeFond2;
-    
-        private void Update()
+        [SerializeField] private GameObject _tuto;
+
+        private void Start()
         {
-            if(LevelManager.instance.CurrentState == LevelManager.GameState.MainMenu)
-            {
-                _audioSource.clip = _musiqueDeFond;
-            }else if(LevelManager.instance.CurrentState == LevelManager.GameState.InGame)
-            {
-                _audioSource.clip = _musiqueDeFond2;
-            }
+            AudioManager.instance.PlaySound(AudioType.World, AudioSourceType.Music);
         }
-    public void LauncheGame()
+
+        public void LauncheGame()
         {
             LevelManager.instance.StartGame();
             _mainMenu.SetActive(false);
+            _tuto.SetActive(true);
+            Time.timeScale = 0;
         }
-
+    
+        
+        public void CloseTuto()
+        {
+            _tuto.SetActive(false);
+            Time.timeScale = 1;
+        }
     }

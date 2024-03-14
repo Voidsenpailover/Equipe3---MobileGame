@@ -54,7 +54,8 @@ public class UiManager : MonoBehaviour
     }
     void Start()
     {
-        _waveText.text =  EnemySpawner._instance._currentRoundIndex.ToString() + 1;
+         var localWave = EnemySpawner._instance._currentRoundIndex + 1;
+        _waveText.text =  localWave.ToString();
         _maxWaveText.text = EnemySpawner._instance._rounds.Count.ToString();
         _moneyText.text = LevelManager.instance.money.ToString();
         _healthText.text = LevelManager.instance.HP.ToString();
