@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Brasier
   _description: Flamme Immolante
+  _descriptionEffect: 
   _cost: 750
   _damage: 3
   _delayBetweenAtk: 1
   _radAtk: 4
-  _AtkSFX: {fileID: 3801919937251534224, guid: c90e1426aec832748ab5e0a03984e1ad, type: 3}
+  _prefabBullet: {fileID: 3801919937251534224, guid: c90e1426aec832748ab5e0a03984e1ad, type: 3}
   _sprite: {fileID: 21300000, guid: 83f86aedfcc1030499dd41b18a133bcd, type: 3}
   _type: 0
   _level: 2
