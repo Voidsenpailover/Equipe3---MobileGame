@@ -15,7 +15,7 @@ public class Building : MonoBehaviour
 
     void Start()
     {
-        GetComponent<SpriteRenderer>().sprite = Data.Sprite;
+        this.transform.Find("Text").GetComponent<SpriteRenderer>().sprite = Data.Sprite;
     }
 
     #region Build Methods

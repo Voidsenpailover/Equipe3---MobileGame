@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Card-13
   m_EditorClassIdentifier: 
   _name: Cancer
-  _Goodeffect: 'Toutes tours : Force d''effet + 30%'
+  _goodeffect: 'Toutes tours : Force d''effet + 30%'
   _badEffect: "Toutes tours : D\xE9gats des tours - 50%"
   _cardName: 6
   _type: 0
-  _icone: {fileID: 0}
-  _background: {fileID: 0}
+  _icone: {fileID: 21300000, guid: af3d2ab7e8b304749a9736567efdb71a, type: 3}
+  _background: {fileID: 21300000, guid: afbde76d797ad0a4f9e71ce824090814, type: 3}
+  _bouleSoleilLune: {fileID: 21300000, guid: fe9bde3ab034cd548a4deeb7c308c9c5, type: 3}

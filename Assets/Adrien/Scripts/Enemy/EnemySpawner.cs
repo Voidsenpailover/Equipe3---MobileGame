@@ -37,7 +37,7 @@ public class EnemySpawner : MonoBehaviour
             if (!_isRoundOver) return;
         
             _timer += Time.deltaTime;
-            if(_timer > 10f)
+            if(_timer > 1f)
             {
                 _timer = 0;
                 if(_currentRoundIndex is 10 or 20 or 30)
