@@ -1659,7 +1659,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &140158931
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10850,6 +10850,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DraggableFusionTurret
       objectReference: {fileID: 0}
+    - target: {fileID: 6300795142784985044, guid: 47718e3f6fa717047bb1233a82df0457, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7703148395445338067, guid: 47718e3f6fa717047bb1233a82df0457, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.39
@@ -14017,6 +14021,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d6d6d77412e103148b55c3b46f60c58a, type: 2}
   - {fileID: 11400000, guid: 08bdb2cad983e8446a832ab994eab9eb, type: 2}
   - {fileID: 11400000, guid: bb3c3d5212514e84fa6b35a2405f9ad4, type: 2}
+  - {fileID: 11400000, guid: c86c7b0f8a5ccdd4eb376519b2c208a4, type: 2}
 --- !u!114 &841614801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35585,6 +35590,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 4250634078760452853, guid: d16023d0aada86248af7c5922734d1c4, type: 3}
+      propertyPath: LevelManager
+      value: 
+      objectReference: {fileID: 423251575}
     - target: {fileID: 4809582737363825691, guid: d16023d0aada86248af7c5922734d1c4, type: 3}
       propertyPath: m_IsActive
       value: 0
