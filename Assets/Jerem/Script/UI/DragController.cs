@@ -97,6 +97,7 @@ public class DragController : MonoBehaviour
     void InitDrag()
     {
         _lastDragged.GetComponent<Draggable>().CanDrop = false;
+        _lastDragged.GetComponent<Draggable>().DeactivateFusionUI();
         UpdateDragStatus(true);
     }
 
