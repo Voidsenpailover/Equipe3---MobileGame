@@ -17,6 +17,6 @@ MonoBehaviour:
   _hits: 10
   _speed: 2
   _money: 12
-  _spriteRenderer: {fileID: 0}
+  _spriteRenderer: {fileID: 1779674040, guid: c6e1c2537aa2daa4db4cf0054703029e, type: 3}
   _damage: 2
   _canBeStunned: 1

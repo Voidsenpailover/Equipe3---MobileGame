@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Card-10
   m_EditorClassIdentifier: 
   _name: Lion
-  _Goodeffect: "Tour de Feu :  Dur\xE9e de la brulure + 100%"
+  _goodeffect: "Tour de Feu :  Dur\xE9e de la brulure + 100%"
   _badEffect: "Tour de Terre : Dur\xE9e de stun - 50%"
   _cardName: 4
   _type: 1
-  _icone: {fileID: 0}
-  _background: {fileID: 0}
+  _icone: {fileID: 21300000, guid: 7c0efb78e34936f4e989f197ba91be27, type: 3}
+  _background: {fileID: 21300000, guid: a5b5d4e19699a3d43b8d5ebefede0020, type: 3}
+  _bouleSoleilLune: {fileID: 21300000, guid: 3f57b354252edec4db9062ef0a8b8e67, type: 3}
