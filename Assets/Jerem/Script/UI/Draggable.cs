@@ -7,6 +7,7 @@ public class Draggable : MonoBehaviour
     public bool IsDragging;
 
     [SerializeField] GridBuildingSystem gridBuildingSystem;
+    [SerializeField] FusionBehaviour fusionBehaviour;
 
     private Vector3 _lastPosition;
 
@@ -38,8 +39,9 @@ public class Draggable : MonoBehaviour
         if (CanDrop)
         {
             Debug.Log("Il a drop");
-            collider2dTemp.transform.gameObject.GetComponent<Building>().Data = TurretData;
-            collider2dTemp.transform.Find("Text").gameObject.GetComponent<SpriteRenderer>().sprite = TurretData.Sprite;
+            TurretsData newData = fusionBehaviour.SpawningRightTower(TurretData.Type, collider2dTemp.transform.gameObject.GetComponent<Building>().Data.Type);
+            collider2dTemp.transform.gameObject.GetComponent<Building>().Data = newData;
+            collider2dTemp.transform.Find("Text").gameObject.GetComponent<SpriteRenderer>().sprite = newData.Sprite;
             _movementDestination = collider2dTemp.transform.position;
             CanDrop = false;
         }

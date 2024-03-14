@@ -7472,7 +7472,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 2.9339561, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &716667083
@@ -8030,11 +8030,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 798273280}
   m_CullTransparentMesh: 1
---- !u!1 &806115096 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7848582849154922247, guid: d16023d0aada86248af7c5922734d1c4, type: 3}
-  m_PrefabInstance: {fileID: 8624561956224669202}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &814716430
 GameObject:
   m_ObjectHideFlags: 0
@@ -8243,7 +8238,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!156049354 &841614798
 Grid:
   m_ObjectHideFlags: 0
@@ -10286,17 +10281,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _turretMenu: {fileID: 2014181226}
-  _menuRotationPoint: {fileID: 806115096}
-  _waveText: {fileID: 1776849895}
-  _maxWaveText: {fileID: 940634823}
-  _moneyText: {fileID: 2043400461}
-  _healthText: {fileID: 1834672582}
-  _bonusIcone1: {fileID: 1120984227}
-  _bonusIcone2: {fileID: 88965780}
-  _bonusIcone3: {fileID: 1536675262}
-  _bonusSunMoon1: {fileID: 481012233}
-  _bonusSunMoon2: {fileID: 1624397246}
-  _bonusSunMoon3: {fileID: 481012233}
+  _menuSelectionPoint: {fileID: 0}
+  _menuInfoPoint: {fileID: 0}
+  _menuFusionPoint: {fileID: 0}
   _listCard: []
 --- !u!4 &1138939575
 Transform:
@@ -16973,7 +16960,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &2046857387
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Eruption
   _description: Flamme Purificatrice
+  _descriptionEffect: 
   _cost: 2500
   _damage: 3
   _delayBetweenAtk: 1
   _radAtk: 4
   _AtkSFX: {fileID: 0}
+  _prefabBullet: {fileID: 6703202451157482724, guid: 10ca29ce84c3bc241ada104b8db57c76, type: 3}
   _sprite: {fileID: 21300000, guid: 3e97d1f49157ed7408e3cd488f57f946, type: 3}
   _type: 0
   _level: 3
