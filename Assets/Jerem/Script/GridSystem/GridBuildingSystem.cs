@@ -11,6 +11,7 @@ public class GridBuildingSystem : MonoBehaviour
 {
     //Instantiate
     [SerializeField] public static GridBuildingSystem current;
+    [SerializeField] private LevelManager levelManager;
 
     //Events
     public static event Action<Vector3> OnSelectionMenuActive;
@@ -60,11 +61,13 @@ public class GridBuildingSystem : MonoBehaviour
     public bool CanSelect { get => _canSelect; set => _canSelect = value; }
     public List<TurretsData> TurretsData { get => _turretsData; set => _turretsData = value; }
     public static Dictionary<Vector3Int, GameObject> TileDataBases { get => tileDataBases; set => tileDataBases = value; }
+    public bool HaveEnoughMoney { get => _haveEnoughMoney; set => _haveEnoughMoney = value; }
 
     //Selections
     private bool _canSelect;
     private bool _canDrag = false;
     private bool _isDraggingNow = false;
+    private bool _haveEnoughMoney;
 
     #region Unity Methods
 
@@ -72,7 +75,6 @@ public class GridBuildingSystem : MonoBehaviour
     {
         LevelManager.OnSell += LevelManager_OnSell;
     }
-
     private void LevelManager_OnSell()
     {
         OnInfoMenuDeactivated?.Invoke();
@@ -286,15 +288,33 @@ public class GridBuildingSystem : MonoBehaviour
 
     public void InitializeWithBuilding(GameObject building)
     {
-        temp = Instantiate(building, prevPos, Quaternion.identity).GetComponent<Building>();
-        temp.Data = TurretsData[CurrentID];
-        temp.transform.position = GridLayout.CellToLocalInterpolated(prevPos + new Vector3(.5f, .5f, 0f));
-        temp.GetComponent<Turret>().InitializeTurret(temp.Data);
-        temp.transform.Find("Text").GetComponent<SpriteRenderer>().sortingOrder = -prevPos.y;
-        mainTilemap.SetTile(gridLayout.WorldToCell(temp.transform.position), tileBases[TileType.Green][1]);
-        tileDataBases.Add(gridLayout.WorldToCell(temp.transform.position), temp.transform.gameObject);
-        OnSelectionMenuDeactivated?.Invoke();
-        CanSelect = true;
+        int tempCost = levelManager.money - TurretsData[CurrentID].Cost;
+        if (tempCost > 0)
+        {
+            levelManager.money = tempCost;
+            HaveEnoughMoney = true;
+        }
+        else
+        {
+            HaveEnoughMoney = false;
+        }
+        if (HaveEnoughMoney == true)
+        {
+            temp = Instantiate(building, prevPos, Quaternion.identity).GetComponent<Building>();
+            temp.Data = TurretsData[CurrentID];
+            temp.transform.position = GridLayout.CellToLocalInterpolated(prevPos + new Vector3(.5f, .5f, 0f));
+            temp.GetComponent<Turret>().InitializeTurret(temp.Data);
+            temp.transform.Find("Text").GetComponent<SpriteRenderer>().sortingOrder = -prevPos.y;
+            mainTilemap.SetTile(gridLayout.WorldToCell(temp.transform.position), tileBases[TileType.Green][1]);
+            tileDataBases.Add(gridLayout.WorldToCell(temp.transform.position), temp.transform.gameObject);
+            OnSelectionMenuDeactivated?.Invoke();
+            CanSelect = true;
+        }
+        else
+        {
+            Debug.Log("NOT ENOUGH");
+        }
+
     }
     
     private void ClearArea()

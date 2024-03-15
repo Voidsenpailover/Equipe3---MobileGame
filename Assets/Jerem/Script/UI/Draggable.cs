@@ -30,6 +30,7 @@ public class Draggable : MonoBehaviour
     private bool _isFusionUIStay = false;
 
     private Collider2D collider2dTemp;
+    [SerializeField] private LevelManager levelManager;
 
     public Vector3 LastPosition { get => _lastPosition; set => _lastPosition = value; }
     public TurretsData TurretData { get => _turretData; set => _turretData = value; }
@@ -72,14 +73,25 @@ public class Draggable : MonoBehaviour
                 newData = fusionBehaviour.SpawningRightTower(TurretData, collider2dTemp.transform.gameObject.GetComponent<Building>().Data);
 
             }
-            collider2dTemp.transform.gameObject.GetComponent<Building>().Data = newData;
-            collider2dTemp.transform.Find("Text").gameObject.GetComponent<SpriteRenderer>().sprite = newData.Sprite;
-            _movementDestination = collider2dTemp.transform.position;
-            gridBuildingSystem.ClearAreaDeuxPointZero(gridBuildingSystem.GridLayout.WorldToCell(LastPosition));
-            GridBuildingSystem.TileDataBases.Remove(gridBuildingSystem.GridLayout.WorldToCell(LastPosition));
-            OnMoneyLoose?.Invoke(newData.Cost);
-            Destroy(LastTurret);
-            DeactivateFusionUI();
+            int tempCost = levelManager.money - newData.Cost;
+            if (tempCost > 0)
+            {
+                levelManager.money = tempCost;
+                collider2dTemp.transform.gameObject.GetComponent<Building>().Data = newData;
+                collider2dTemp.transform.Find("Text").gameObject.GetComponent<SpriteRenderer>().sprite = newData.Sprite;
+                _movementDestination = collider2dTemp.transform.position;
+                gridBuildingSystem.ClearAreaDeuxPointZero(gridBuildingSystem.GridLayout.WorldToCell(LastPosition));
+                GridBuildingSystem.TileDataBases.Remove(gridBuildingSystem.GridLayout.WorldToCell(LastPosition));
+                OnMoneyLoose?.Invoke(newData.Cost);
+                Destroy(LastTurret);
+                DeactivateFusionUI();
+            }
+            else
+            {
+                DeactivateFusionUI();
+                Debug.Log("Pas assez pour la fusion");
+            }
+
         }
     }
 
