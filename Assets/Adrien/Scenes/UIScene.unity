@@ -3579,6 +3579,10 @@ PrefabInstance:
       value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 1000319492054409521, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
+      propertyPath: hpText
+      value: 
+      objectReference: {fileID: 1834672582}
+    - target: {fileID: 1000319492054409521, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
       propertyPath: gridBuildingSystem
       value: 
       objectReference: {fileID: 841614800}
