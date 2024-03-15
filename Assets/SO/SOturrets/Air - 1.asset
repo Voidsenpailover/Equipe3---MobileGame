@@ -15,7 +15,7 @@ MonoBehaviour:
   _name: Air
   _description: "Attaque tr\xE8s vite"
   _descriptionEffect: 
-  _cost: 150
+  _cost: 200
   _damage: 1
   _delayBetweenAtk: 3
   _radAtk: 6

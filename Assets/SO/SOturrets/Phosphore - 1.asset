@@ -15,7 +15,7 @@ MonoBehaviour:
   _name: Phosphore
   _description: "Aura Cendr\xE9e"
   _descriptionEffect: 
-  _cost: 1000
+  _cost: 750
   _damage: 2
   _delayBetweenAtk: 3
   _radAtk: 3

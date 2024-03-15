@@ -16,7 +16,7 @@ MonoBehaviour:
   _description: Appel le pouvoir de la foudre
   _descriptionEffect: 
   _cost: 1000
-  _damage: 10
+  _damage: 15
   _delayBetweenAtk: 0.3
   _radAtk: 20
   _prefabBullet: {fileID: 3801919937251534224, guid: 58157a8e9c40e474db5aae1be0c7da11, type: 3}

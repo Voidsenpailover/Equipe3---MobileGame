@@ -15,7 +15,7 @@ MonoBehaviour:
   _name: "Sel\xB2"
   _description: Cristaux Parasitaire
   _descriptionEffect: 
-  _cost: 3000
+  _cost: 5000
   _damage: 1
   _delayBetweenAtk: 1
   _radAtk: 3

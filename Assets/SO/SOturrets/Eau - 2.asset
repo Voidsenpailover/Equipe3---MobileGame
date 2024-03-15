@@ -15,7 +15,7 @@ MonoBehaviour:
   _name: Torrent
   _description: Vague Ralentissante plus forte
   _descriptionEffect: 
-  _cost: 750
+  _cost: 500
   _damage: 3
   _delayBetweenAtk: 0.5
   _radAtk: 5

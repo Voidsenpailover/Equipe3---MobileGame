@@ -15,7 +15,7 @@ MonoBehaviour:
   _name: "Soufre\xB2"
   _description: "D\xE9flagration Min\xE9rale"
   _descriptionEffect: 
-  _cost: 3000
+  _cost: 1500
   _damage: 16
   _delayBetweenAtk: 1
   _radAtk: 5
