@@ -24,8 +24,12 @@ public class Bullet : MonoBehaviour
     private float turretDamage;
     public int compteurTurret;
     public static event Action OnMoneyChanged;
-    
-    
+
+    public static event Action OnDamage;
+
+
+   
+
     public void SetTarget(Transform _target)
     {
         target = _target;
@@ -392,6 +396,7 @@ public class Bullet : MonoBehaviour
                     enemy.HP -= turretDamage;
                     break;
             }
+            OnDamage?.Invoke();
             
             if (enemy.HP <= 0)
             {

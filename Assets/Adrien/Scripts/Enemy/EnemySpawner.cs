@@ -37,15 +37,15 @@ public class EnemySpawner : MonoBehaviour
             if (!_isRoundOver) return;
         
             _timer += Time.deltaTime;
-            if(_timer > 1f)
+            if(_timer > 1.5f)
             {
                 _timer = 0;
                 if(_currentRoundIndex is 11 or 21 or 31)
                 {
                     CardChoice?.Invoke();
                 }
-                OnWaveChanged?.Invoke();
                 StartRound();  
+                OnWaveChanged?.Invoke();
                 _isRoundOver = false;
             }
         }
