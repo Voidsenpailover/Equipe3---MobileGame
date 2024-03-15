@@ -13379,6 +13379,7 @@ MonoBehaviour:
   - {fileID: 7212536564416903958}
   _boutonGauche: {fileID: 1021956218260250868}
   _boutonDroite: {fileID: 2403946360116075661}
+  _grimoire: {fileID: 2542323771142356655}
 --- !u!1 &1654253499219098362
 GameObject:
   m_ObjectHideFlags: 0
@@ -22161,7 +22162,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5459142765696660243
 RectTransform:
   m_ObjectHideFlags: 0
@@ -22235,7 +22236,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &2823435501362443017
 MonoBehaviour:
   m_ObjectHideFlags: 0

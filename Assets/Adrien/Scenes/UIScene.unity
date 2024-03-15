@@ -14053,11 +14053,6 @@ MonoBehaviour:
   _damage: {fileID: 634776911}
   _atkSpeed: {fileID: 1662191523}
   _cost: {fileID: 314165854}
---- !u!1 &685921917 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2542323771142356655, guid: 85ef2b346ea82bd40a3c2057a56b2bbe, type: 3}
-  m_PrefabInstance: {fileID: 1468977579}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &686237707
 GameObject:
   m_ObjectHideFlags: 0
@@ -25532,22 +25527,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1700909014044543223, guid: 85ef2b346ea82bd40a3c2057a56b2bbe, type: 3}
-      propertyPath: m_PresetInfoIsWorld
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2542323771142356655, guid: 85ef2b346ea82bd40a3c2057a56b2bbe, type: 3}
       propertyPath: m_Name
       value: balt_grmoire
       objectReference: {fileID: 0}
-    - target: {fileID: 2542323771142356655, guid: 85ef2b346ea82bd40a3c2057a56b2bbe, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3189556950050793890, guid: 85ef2b346ea82bd40a3c2057a56b2bbe, type: 3}
-      propertyPath: _grimoire
-      value: 
-      objectReference: {fileID: 685921917}
     - target: {fileID: 5459142765696660243, guid: 85ef2b346ea82bd40a3c2057a56b2bbe, type: 3}
       propertyPath: m_Pivot.x
       value: 0
