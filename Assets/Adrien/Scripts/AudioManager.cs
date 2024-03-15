@@ -1,7 +1,7 @@
 using UnityEngine;
 public enum AudioSourceType
     {
-        Background,
+        Music,
         SFX,
     }
 
@@ -32,7 +32,7 @@ public enum AudioSourceType
     public class AudioManager : MonoBehaviour
     {
         public static AudioManager instance;
-        public AudioSource backgroundSource;
+        public AudioSource musicSource;
         public AudioSource sfxSource;
     
         public float volume = 0.5f;
@@ -51,7 +51,7 @@ public enum AudioSourceType
 
         void Start()
         {
-            backgroundSource.volume = volume;
+            musicSource.volume = volume;
             sfxSource.volume = volume;
         }
     
@@ -61,8 +61,8 @@ public enum AudioSourceType
             AudioClip clip = GetClip(type);
             switch (sourceType)
             {
-                case AudioSourceType.Background:
-                    backgroundSource.PlayOneShot((clip));
+                case AudioSourceType.Music:
+                    musicSource.loop = true;
                     break;
                 case AudioSourceType.SFX:
                     sfxSource.PlayOneShot(clip);

@@ -9,13 +9,19 @@ public class LevelManager : MonoBehaviour
     public static event Action OnGameStarted;
     public static event Action OnGameOver;
     public static event Action OnVictory;
+    public static event Action OnSell;
+    public static event Action LowMoney;
+    public static event Action HighMoney;
         
     
     public int HP = 200;
     public int money = 200;
     public int moneyToLoose;
-    
-    
+
+    [SerializeField] GridBuildingSystem gridBuildingSystem;
+
+    [SerializeField] private float mult = 0.5f;
+
     public enum GameState
     {
         MainMenu,
@@ -26,14 +32,18 @@ public class LevelManager : MonoBehaviour
     
     public GameState CurrentState;
     public Transform[] Chemin;
-        
-    
+
+    private void OnEnable()
+    {
+        GridBuildingSystem.OnRoadEnd += GridBuildingSystem_OnRoadEnd;
+        Draggable.OnMoneyLoose += WhenMoneyLoose;
+    }
+
     private void Awake()
     {
         instance = this;
         Application.targetFrameRate = 60;
-        GridBuildingSystem.OnRoadEnd += GridBuildingSystem_OnRoadEnd;
-        Draggable.OnMoneyLoose += WhenMoneyLoose;
+
     }
 
     private void WhenMoneyLoose(int cost)
@@ -61,12 +71,14 @@ public class LevelManager : MonoBehaviour
     public void GameOver()
     {
         CurrentState = GameState.GameOver;
+        Time.timeScale = 0;
         OnGameOver?.Invoke();
     }
         
     public void Victory()
     {
         CurrentState = GameState.Victory;
+        Time.timeScale = 0;
         OnVictory?.Invoke();
     }
 
@@ -81,6 +93,20 @@ public class LevelManager : MonoBehaviour
     }
     public void LooseMoney(TurretsData data)
     {
-        money -= data.Cost;
+        if((money -= data.Cost) > 0)
+        {
+            money -= data.Cost;
+            gridBuildingSystem.HaveEnoughMoney = true;
+        }
+        else
+        {
+            gridBuildingSystem.HaveEnoughMoney = false;
+        }
+    }
+    public void LooseMoneyForSell(TurretsData data)
+    {
+        Debug.Log("Test");
+        money += (int)(data.Cost * mult);
+        OnSell?.Invoke();
     }
 }

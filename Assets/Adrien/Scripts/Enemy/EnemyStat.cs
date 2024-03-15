@@ -1,3 +1,4 @@
+using UnityEditor.Animations;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Enemy-", menuName = "Scriptable Objects/Enemies", order = 0)]
@@ -11,6 +12,7 @@ public class EnemyStat : ScriptableObject
     [SerializeField] private Sprite _spriteRenderer;
     [SerializeField] private int _damage;
     [SerializeField] private bool _canBeStunned;
+    [SerializeField] private AnimatorOverrideController _animatorController;
     
 
 
@@ -23,5 +25,5 @@ public class EnemyStat : ScriptableObject
     public Sprite SpriteEnemy { get => _spriteRenderer; set => _spriteRenderer = value;}
     public int Damage { get => _damage; set => _damage = value;}
     public bool CanBeStunned { get => _canBeStunned; set => _canBeStunned = value;}
-    
+    public AnimatorOverrideController AnimatorController { get => _animatorController; set => _animatorController = value;}
 }

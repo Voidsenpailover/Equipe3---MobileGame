@@ -16,7 +16,8 @@ MonoBehaviour:
   _vulnerability: 1
   _hits: 40
   _speed: 1
-  _money: 20
+  _money: 15
   _spriteRenderer: {fileID: 540033857, guid: 2966598c727cdf44585f76cf4c959fe8, type: 3}
   _damage: 5
   _canBeStunned: 1
+  _animatorController: {fileID: 22100000, guid: 489f0cbb3c22fac4c834c51fc89d2fc7, type: 2}
