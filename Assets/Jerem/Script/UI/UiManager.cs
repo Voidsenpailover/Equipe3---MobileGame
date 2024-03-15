@@ -118,15 +118,19 @@ public class UiManager : MonoBehaviour
          {
              case 1:
                 _bonusIcone1.GetComponent<Image>().sprite = card.Icone;
+                _bonusIcone1.GetComponent<Image>().color.a.Equals(255);
                  _bonusSunMoon1.GetComponent<Image>().sprite = card.BouleSoleilLune;
                  break;
              case 2:
                  _bonusIcone2.GetComponent<Image>().sprite = card.Icone;
+                 _bonusIcone2.GetComponent<Image>().color.a.Equals(255);
+
                  _bonusSunMoon2.GetComponent<Image>().sprite = card.BouleSoleilLune;
                  break;
              case 3:
                 _bonusIcone3.GetComponent<Image>().sprite = card.Icone;
-                 _bonusSunMoon3.GetComponent<Image>().sprite = card.BouleSoleilLune;
+                _bonusIcone3.GetComponent<Image>().color.a.Equals(255);
+                _bonusSunMoon3.GetComponent<Image>().sprite = card.BouleSoleilLune;
                  break;
          }
         

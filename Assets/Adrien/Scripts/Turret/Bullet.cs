@@ -24,8 +24,10 @@ public class Bullet : MonoBehaviour
     private float turretDamage;
     public int compteurTurret;
     public static event Action OnMoneyChanged;
-    
-    
+
+
+   
+
     public void SetTarget(Transform _target)
     {
         target = _target;
@@ -402,7 +404,8 @@ public class Bullet : MonoBehaviour
                 Destroy(enemy.gameObject);
                 Destroy(gameObject);
             }
-            
+            var animator = enemy.GetComponentInChildren<Animator>();
+            animator.SetTrigger("Dmg");
             switch (Turret.AtkType)
             { 
                 case TurretAtk.Stun:
