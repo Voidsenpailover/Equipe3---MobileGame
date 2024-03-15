@@ -15,7 +15,7 @@ MonoBehaviour:
   _name: Soufre
   _description: "R\xE9action d\xE9tonante"
   _descriptionEffect: 
-  _cost: 1000
+  _cost: 750
   _damage: 8
   _delayBetweenAtk: 1
   _radAtk: 4

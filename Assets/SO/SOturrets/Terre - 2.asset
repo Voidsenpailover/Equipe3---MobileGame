@@ -15,7 +15,7 @@ MonoBehaviour:
   _name: Fracture
   _description: Glissement de terrain
   _descriptionEffect: 
-  _cost: 750
+  _cost: 1000
   _damage: 8
   _delayBetweenAtk: 0.33
   _radAtk: 2
