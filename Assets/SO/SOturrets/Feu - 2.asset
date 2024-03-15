@@ -15,7 +15,7 @@ MonoBehaviour:
   _name: Brasier
   _description: Flamme Immolante
   _descriptionEffect: 
-  _cost: 750
+  _cost: 350
   _damage: 3
   _delayBetweenAtk: 1
   _radAtk: 4

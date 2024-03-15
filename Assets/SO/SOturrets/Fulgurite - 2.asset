@@ -15,8 +15,8 @@ MonoBehaviour:
   _name: "Fulgurite\xB2"
   _description: Le ciel s'abbat sur les indignes
   _descriptionEffect: 
-  _cost: 3000
-  _damage: 20
+  _cost: 5000
+  _damage: 40
   _delayBetweenAtk: 0.5
   _radAtk: 20
   _prefabBullet: {fileID: 3801919937251534224, guid: 3a961fa3a149bfa45a336d974ae03b86, type: 3}

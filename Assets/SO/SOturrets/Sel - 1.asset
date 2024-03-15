@@ -15,7 +15,7 @@ MonoBehaviour:
   _name: Sel
   _description: "Cristaux infest\xE9s"
   _descriptionEffect: 
-  _cost: 1000
+  _cost: 1500
   _damage: 1
   _delayBetweenAtk: 1
   _radAtk: 2

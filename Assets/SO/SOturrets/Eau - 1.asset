@@ -16,7 +16,7 @@ MonoBehaviour:
   _description: Vague Ralentissante
   _descriptionEffect: 
   _cost: 150
-  _damage: 2
+  _damage: 3
   _delayBetweenAtk: 0.5
   _radAtk: 5
   _prefabBullet: {fileID: 3801919937251534224, guid: 523cae426ba85a34280a63f29b878291, type: 3}

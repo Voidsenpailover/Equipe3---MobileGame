@@ -15,7 +15,7 @@ MonoBehaviour:
   _name: Feu
   _description: "Flamme br\xFBlante"
   _descriptionEffect: 
-  _cost: 150
+  _cost: 100
   _damage: 2
   _delayBetweenAtk: 1
   _radAtk: 4

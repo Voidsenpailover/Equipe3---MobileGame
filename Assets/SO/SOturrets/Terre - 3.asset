@@ -15,7 +15,7 @@ MonoBehaviour:
   _name: "S\xE9isme"
   _description: Fissure terrestre
   _descriptionEffect: 
-  _cost: 2500
+  _cost: 2000
   _damage: 20
   _delayBetweenAtk: 0.33
   _radAtk: 3
