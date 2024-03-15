@@ -15,7 +15,7 @@ MonoBehaviour:
   _name: Tsunami
   _description: "Vague g\xE9ante !"
   _descriptionEffect: 
-  _cost: 2500
+  _cost: 1500
   _damage: 5
   _delayBetweenAtk: 0.75
   _radAtk: 5

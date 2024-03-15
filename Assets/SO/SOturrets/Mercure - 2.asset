@@ -15,7 +15,7 @@ MonoBehaviour:
   _name: "Mercure\xB2"
   _description: Transforme les ennemis en or
   _descriptionEffect: 
-  _cost: 3000
+  _cost: 2000
   _damage: 5
   _delayBetweenAtk: 2
   _radAtk: 6
