@@ -30,6 +30,7 @@ public class Draggable : MonoBehaviour
     private bool _isFusionUIStay = false;
 
     private Collider2D collider2dTemp;
+    [SerializeField] private LevelManager levelManager;
 
     public Vector3 LastPosition { get => _lastPosition; set => _lastPosition = value; }
     public TurretsData TurretData { get => _turretData; set => _turretData = value; }
@@ -61,17 +62,36 @@ public class Draggable : MonoBehaviour
     public void MakeFusion()
     {
         newData = collider2dTemp.transform.gameObject.GetComponent<Building>().Data;
-        if (TurretData.Type != collider2dTemp.transform.gameObject.GetComponent<Building>().Data.Type)
+        if (LastTurret.transform != collider2dTemp.transform)
         {
-            newData = fusionBehaviour.SpawningRightTower(TurretData, collider2dTemp.transform.gameObject.GetComponent<Building>().Data);
-            collider2dTemp.transform.gameObject.GetComponent<Building>().Data = newData;
-            collider2dTemp.transform.Find("Text").gameObject.GetComponent<SpriteRenderer>().sprite = newData.Sprite;
-            _movementDestination = collider2dTemp.transform.position;
-            gridBuildingSystem.ClearAreaDeuxPointZero(gridBuildingSystem.GridLayout.WorldToCell(LastPosition));
-            GridBuildingSystem.TileDataBases.Remove(gridBuildingSystem.GridLayout.WorldToCell(LastPosition));
-            OnMoneyLoose?.Invoke(newData.Cost);
-            Destroy(LastTurret);
-            DeactivateFusionUI();
+            if (TurretData.Level == 2 && collider2dTemp.transform.gameObject.GetComponent<Building>().Data.Level == 2)
+            {
+                newData = fusionBehaviour.SpawningRightTowerLevel3(TurretData, collider2dTemp.transform.gameObject.GetComponent<Building>().Data);
+            }
+            else
+            {
+                newData = fusionBehaviour.SpawningRightTower(TurretData, collider2dTemp.transform.gameObject.GetComponent<Building>().Data);
+
+            }
+            int tempCost = levelManager.money - newData.Cost;
+            if (tempCost > 0)
+            {
+                levelManager.money = tempCost;
+                collider2dTemp.transform.gameObject.GetComponent<Building>().Data = newData;
+                collider2dTemp.transform.Find("Text").gameObject.GetComponent<SpriteRenderer>().sprite = newData.Sprite;
+                _movementDestination = collider2dTemp.transform.position;
+                gridBuildingSystem.ClearAreaDeuxPointZero(gridBuildingSystem.GridLayout.WorldToCell(LastPosition));
+                GridBuildingSystem.TileDataBases.Remove(gridBuildingSystem.GridLayout.WorldToCell(LastPosition));
+                OnMoneyLoose?.Invoke(newData.Cost);
+                Destroy(LastTurret);
+                DeactivateFusionUI();
+            }
+            else
+            {
+                DeactivateFusionUI();
+                Debug.Log("Pas assez pour la fusion");
+            }
+
         }
     }
 
@@ -104,7 +124,8 @@ public class Draggable : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(!other.CompareTag("Bullet"))
+        
+        if(!other.CompareTag("Bullet") && other.excludeLayers == LayerMask.GetMask("FX"))
         {
 
 
@@ -122,15 +143,23 @@ public class Draggable : MonoBehaviour
             if (other.CompareTag("DropValid"))
             {
                 newData = collider2dTemp.transform.gameObject.GetComponent<Building>().Data;
-                if (TurretData.Type != collider2dTemp.transform.gameObject.GetComponent<Building>().Data.Type)
+                if (LastTurret.transform != collider2dTemp.transform)
                 {
                     newData = fusionBehaviour.SpawningRightTower(TurretData, collider2dTemp.transform.gameObject.GetComponent<Building>().Data);
-                    CanDrop = true;
-                    OnFusionMenuActive?.Invoke(other.transform.position,newData);
-                }
-                else if (TurretData.GetComponent<Transform>() != collider2dTemp.transform)
-                {
-
+                    if (TurretData.Level == 2 && collider2dTemp.transform.gameObject.GetComponent<Building>().Data.Level == 2)
+                    {
+                        newData = fusionBehaviour.SpawningRightTowerLevel3(TurretData, collider2dTemp.transform.gameObject.GetComponent<Building>().Data);
+                    }
+                    if (newData == gridBuildingSystem.TurretsData[24])
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        Debug.Log(newData.name);
+                        CanDrop = true;
+                        OnFusionMenuActive?.Invoke(other.transform.position, newData);
+                    }
                 }
             } else if(other.CompareTag("DropInvalid"))
             {
