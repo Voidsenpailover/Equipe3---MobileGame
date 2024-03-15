@@ -5,109 +5,127 @@ using System;
 
 
 public class EnemySpawner : MonoBehaviour
+{
+    public GameObject enemyPrefab;
+    private SpriteRenderer _spriteRenderer; 
+    public List<RoundProperties> _rounds; 
+    public int _currentRoundIndex;
+    [SerializeField] private RoundProperties _curRound;
+    [SerializeField] private float _timer;
+    [SerializeField] private bool _isRoundOver;
+    [SerializeField] private int _enemiesLeft;
+    public static EnemySpawner _instance;
+    public static event Action CardChoice;
+
+    public static event Action OnWaveChanged;
+
+    [SerializeField] GooglePlayManager _googlePlayManager;
+    private void Awake()
     {
-        public GameObject enemyPrefab;
-        private SpriteRenderer _spriteRenderer; 
-        public List<RoundProperties> _rounds; 
-        public int _currentRoundIndex;
-        [SerializeField] private RoundProperties _curRound;
-        [SerializeField] private float _timer;
-        [SerializeField] private bool _isRoundOver;
-        [SerializeField] private int _enemiesLeft;
-        public static EnemySpawner _instance;
-        public static event Action CardChoice;
+        _instance = this;
+    }
+    private void OnEnable()
+    {
+        LevelManager.OnGameStarted += StartRound;
+    }
 
-        public static event Action OnWaveChanged;
-        private void Awake()
-        {
-            _instance = this;
-        }
-        private void OnEnable()
-        {
-            LevelManager.OnGameStarted += StartRound;
-        }
+    private void OnDestroy() 
+    {
+        LevelManager.OnGameStarted -= StartRound;
+    }
 
-        private void OnDestroy() 
-        {
-            LevelManager.OnGameStarted -= StartRound;
-        }
-
-        private void Update()
-        {
-            if (!_isRoundOver) return;
+    private void Update()
+    {
+        if (!_isRoundOver) return;
         
-            _timer += Time.deltaTime;
-            if(_timer > 1.5f)
+        _timer += Time.deltaTime;
+        if(_timer > 1.5f)
+        {
+            _timer = 0;
+            if(_currentRoundIndex is 11 or 21 or 31)
             {
-                _timer = 0;
-                if(_currentRoundIndex is 11 or 21 or 31)
-                {
-                    CardChoice?.Invoke();
-                }
-                StartRound();  
-                OnWaveChanged?.Invoke();
-                _isRoundOver = false;
+                CardChoice?.Invoke();
             }
+            StartRound();  
+            OnWaveChanged?.Invoke();
+            _isRoundOver = false;
         }
-        
-        private void StartRound()
+        if(_currentRoundIndex == 11)
         {
-            _currentRoundIndex++;
-            
-            if (_currentRoundIndex > _rounds.Count)
-            {
-                LevelManager.instance.Victory();
-            }
-            _curRound = _rounds[_currentRoundIndex - 1];
-            _enemiesLeft = _curRound.EnemiesInRound;
-            StartCoroutine(SpawnEnemiesInRound(_curRound));
+            _googlePlayManager.DoGrandAchievement(GPGSIds.achievement_dompteur_des_flammes);
         }
-
-        private IEnumerator SpawnEnemiesInRound(RoundProperties roundProperties)
+        if (_currentRoundIndex == 21)
         {
-            foreach (var spawnGroup in roundProperties.SpawnGroups)
-            {
-                yield return new WaitForSeconds(spawnGroup.InitialDelay);
-                StartCoroutine(SpawnEnemiesInGroup(spawnGroup));
-            }
+            _googlePlayManager.DoGrandAchievement(GPGSIds.achievement_roi_de_locan);
         }
-
-        private IEnumerator SpawnEnemiesInGroup(SpawnGroup spawnGroup)
+        if (_currentRoundIndex == 31)
         {
-            var timeBetweenSpawns = new WaitForSeconds(spawnGroup.TimeBetweenSpawn);
-            for (var i = 0; i < spawnGroup.NumberInGroup; i++)
-            {
-                SpawnEnemyType(spawnGroup.EnemyType);
-                yield return timeBetweenSpawns;
-            }
+            _googlePlayManager.DoGrandAchievement(GPGSIds.achievement_dernier_maitre_de_lair);
         }
-
-        private void SpawnEnemyType(EnemyTypes enemyType)
+        if (_currentRoundIndex == 40)
         {
-            var enemyProperties = EnemyDictionnary.GetEnemyStat(enemyType);
-            SpawnEnemy(enemyProperties);
-        }
-    
-        private void SpawnEnemy(EnemyStat enemyStat)
-        {
-            var prefab = Instantiate(enemyPrefab, LevelManager.instance.Chemin[0].transform.position, Quaternion.identity);
-            var enemyMovement = prefab.GetComponent<EnemyMovement>();
-            enemyMovement.InitializeEnemies(enemyStat);
-        }
-        
-        
-        public void EnemyReachedEndOfPath()
-        {
-            DecrementEnemiesLeftCount(1);
-        }
-
-        private void DecrementEnemiesLeftCount(int numberToDecrement)
-        {
-            _enemiesLeft -= numberToDecrement;
-            if (_enemiesLeft <= 0)
-            {
-                _isRoundOver = true;
-            }
+            _googlePlayManager.DoGrandAchievement(GPGSIds.achievement_terraformeur);
         }
     }
+        
+    private void StartRound()
+    {
+        _currentRoundIndex++;
+            
+        if (_currentRoundIndex > _rounds.Count)
+        {
+            LevelManager.instance.Victory();
+        }
+        _curRound = _rounds[_currentRoundIndex - 1];
+        _enemiesLeft = _curRound.EnemiesInRound;
+        StartCoroutine(SpawnEnemiesInRound(_curRound));
+    }
+
+    private IEnumerator SpawnEnemiesInRound(RoundProperties roundProperties)
+    {
+        foreach (var spawnGroup in roundProperties.SpawnGroups)
+        {
+            yield return new WaitForSeconds(spawnGroup.InitialDelay);
+            StartCoroutine(SpawnEnemiesInGroup(spawnGroup));
+        }
+    }
+
+    private IEnumerator SpawnEnemiesInGroup(SpawnGroup spawnGroup)
+    {
+        var timeBetweenSpawns = new WaitForSeconds(spawnGroup.TimeBetweenSpawn);
+        for (var i = 0; i < spawnGroup.NumberInGroup; i++)
+        {
+            SpawnEnemyType(spawnGroup.EnemyType);
+            yield return timeBetweenSpawns;
+        }
+    }
+
+    private void SpawnEnemyType(EnemyTypes enemyType)
+    {
+        var enemyProperties = EnemyDictionnary.GetEnemyStat(enemyType);
+        SpawnEnemy(enemyProperties);
+    }
+    
+    private void SpawnEnemy(EnemyStat enemyStat)
+    {
+        var prefab = Instantiate(enemyPrefab, LevelManager.instance.Chemin[0].transform.position, Quaternion.identity);
+        var enemyMovement = prefab.GetComponent<EnemyMovement>();
+        enemyMovement.InitializeEnemies(enemyStat);
+    }
+        
+        
+    public void EnemyReachedEndOfPath()
+    {
+        DecrementEnemiesLeftCount(1);
+    }
+
+    private void DecrementEnemiesLeftCount(int numberToDecrement)
+    {
+        _enemiesLeft -= numberToDecrement;
+        if (_enemiesLeft <= 0)
+        {
+            _isRoundOver = true;
+        }
+    }
+}
     

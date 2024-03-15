@@ -45,6 +45,7 @@ public class UiManager : MonoBehaviour
 
         Draggable.OnFusionMenuActive += SetFusionMenu;
         Draggable.OnFusionMenuDeactivated += UnsetFusionMenu;
+        GridBuildingSystem.OnFusionMenuDeactivated += UnsetFusionMenu;
 
         EnemySpawner.OnWaveChanged += UpdateWaveText;
         Bullet.OnMoneyChanged += UpdateMoneyText;

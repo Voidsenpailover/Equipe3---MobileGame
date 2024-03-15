@@ -21,6 +21,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI hpText;
 
     [SerializeField] GridBuildingSystem gridBuildingSystem;
+    [SerializeField] GooglePlayManager googlePlayManager;
 
     [SerializeField] private float mult = 0.5f;
 
@@ -91,6 +92,7 @@ public class LevelManager : MonoBehaviour
     {
         CurrentState = GameState.Victory;
         Time.timeScale = 0;
+        googlePlayManager.DoGrandAchievement(GPGSIds.achievement_alchimiste_confirm);
         OnVictory?.Invoke();
     }
 

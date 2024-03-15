@@ -68,6 +68,8 @@ public class GridBuildingSystem : MonoBehaviour
     private bool _canDrag = false;
     private bool _isDraggingNow = false;
     private bool _haveEnoughMoney;
+    [SerializeField] Grimoire grimoire;
+    [SerializeField] optionsss option;
 
     #region Unity Methods
 
@@ -141,7 +143,21 @@ public class GridBuildingSystem : MonoBehaviour
     {
         /// Clicking System 
         /// Input ON TOUCH (to change) 
-        if(Input.GetMouseButtonDown(0))
+        /// 
+
+        if(levelManager.CurrentState == LevelManager.GameState.MainMenu || levelManager.CurrentState == LevelManager.GameState.Victory)
+        {
+            return;
+        }
+        if (grimoire.IsGrimoirOpen)
+        {
+            return;
+        }
+        if (option.IsOptionOpen)
+        {
+            return;
+        }
+        if (Input.GetMouseButtonDown(0))
         {
             Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) * 1 / GridLayout.transform.localScale.x; //where the point is
             cellPos = GridLayout.LocalToCell(touchPos); //corresponding touch to his cell
@@ -183,6 +199,7 @@ public class GridBuildingSystem : MonoBehaviour
             //Selection
             if (CanSelect) // Check For selection
             {
+                OnFusionMenuDeactivated?.Invoke();
                 CanSelect = false; //Un-allow Spaming
                 ClearArea(); //Clear Tiles for TEMP
                 prevPos = cellPos; //Keep Pos For Further utility
