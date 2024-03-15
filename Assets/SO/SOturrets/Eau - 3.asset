@@ -16,7 +16,7 @@ MonoBehaviour:
   _description: "Vague g\xE9ante !"
   _descriptionEffect: 
   _cost: 1500
-  _damage: 5
+  _damage: 10
   _delayBetweenAtk: 0.75
   _radAtk: 5
   _prefabBullet: {fileID: 3801919937251534224, guid: 34353b0bad0380b4a948ce577fe33c0d, type: 3}
