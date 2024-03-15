@@ -44,8 +44,8 @@ public class EnemySpawner : MonoBehaviour
                 {
                     CardChoice?.Invoke();
                 }
-                OnWaveChanged?.Invoke();
                 StartRound();  
+                OnWaveChanged?.Invoke();
                 _isRoundOver = false;
             }
         }

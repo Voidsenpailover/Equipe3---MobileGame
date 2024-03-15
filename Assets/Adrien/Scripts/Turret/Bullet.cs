@@ -23,7 +23,6 @@ public class Bullet : MonoBehaviour
     public float localDamage;
     private float turretDamage;
     public int compteurTurret;
-    [SerializeField]private Animator _animator;
     public static event Action OnMoneyChanged;
 
     public static event Action OnDamage;

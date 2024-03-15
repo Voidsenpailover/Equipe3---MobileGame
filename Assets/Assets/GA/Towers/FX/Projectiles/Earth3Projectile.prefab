@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 3213189831819981988}
   - component: {fileID: 2577726099573422787}
   - component: {fileID: 1156123931342755787}
+  - component: {fileID: -8458384605178548847}
   m_Layer: 0
   m_Name: Earth3Projectile
   m_TagString: Untagged
@@ -220,6 +221,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-8458384605178548847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3801919937251534224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6cd441f2a7a78e439e6f9a718ee956d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 1156123931342755787}
+  bulletSpeed: 5
+  range: 1
+  Turret: {fileID: 0}
+  localDamage: 0
+  compteurTurret: 0
 --- !u!1 &5978310972526211130
 GameObject:
   m_ObjectHideFlags: 0

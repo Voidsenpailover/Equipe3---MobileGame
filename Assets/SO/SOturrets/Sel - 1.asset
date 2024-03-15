@@ -19,7 +19,7 @@ MonoBehaviour:
   _damage: 1
   _delayBetweenAtk: 1
   _radAtk: 2
-  _prefabBullet: {fileID: 3801919937251534224, guid: 7c9d7963f9e3bdf4a8c86d26ce1a7a60, type: 3}
+  _prefabBullet: {fileID: 3801919937251534224, guid: 58d2279281397cd479a693d60897e4b9, type: 3}
   _sprite: {fileID: 21300000, guid: 6d7406ae2ecb1d14b970baf78ea5d019, type: 3}
   _type: 7
   _level: 1
