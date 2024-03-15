@@ -17,6 +17,7 @@ public class EnemyMovement : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private bool reachedEnd;
     public float HP;
+  
     
     public bool stunned;
     private Coroutine stunCoroutine;
@@ -112,6 +113,7 @@ public class EnemyMovement : MonoBehaviour
       EnemyStat = enemyStat;
       MoveSpeed = enemyStat.Speed;
       HP = enemyStat.Hits;
+      _animator.runtimeAnimatorController = enemyStat.AnimatorController;
     }
 
     public void ApplyStun(float duration)

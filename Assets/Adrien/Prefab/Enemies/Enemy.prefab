@@ -5024,7 +5024,7 @@ MonoBehaviour:
   debuffPercent: 1
   isMercure: 0
   mercureBonus: 0
-  _animator: {fileID: 0}
+  _animator: {fileID: 6223552717656617021}
 --- !u!50 &5046722912952151004
 Rigidbody2D:
   serializedVersion: 4
