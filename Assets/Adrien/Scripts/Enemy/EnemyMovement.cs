@@ -13,7 +13,6 @@ public class EnemyMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Transform target;
     [SerializeField] private int Point;
-    private float radius = 0.8f;
     private SpriteRenderer _spriteRenderer;
     private bool reachedEnd;
     public float HP;
@@ -47,7 +46,7 @@ public class EnemyMovement : MonoBehaviour
     public int mercureBonus;
 
     [SerializeField] private Animator _animator;
-    private Animator _animatorChild;
+    [SerializeField] private Animator _animatorChild;
 
     public EnemyStat EnemyStat {get; private set;}
 
@@ -56,7 +55,16 @@ public class EnemyMovement : MonoBehaviour
       _animator = GetComponent<Animator>();
       rb = GetComponent<Rigidbody2D>();
       target = LevelManager.instance.Chemin[0];
-      _animatorChild = GetComponentInChildren<Animator>();
+    }
+
+    private void OnEnable()
+    {
+      Bullet.OnDamage += DamageUpdate;
+    }
+
+    private void OnDestroy()
+    {
+      Bullet.OnDamage -= DamageUpdate;
     }
 
     private void Update()
@@ -99,17 +107,11 @@ public class EnemyMovement : MonoBehaviour
     }
 
     
-    
-    
-    private void OnDrawGizmos()
+    private void DamageUpdate()
     {
-#if UNITY_EDITOR
-
-        Handles.color = Color.red;
-      Handles.DrawWireDisc(transform.position, transform.forward, radius);
-#endif
+      _animatorChild.SetTrigger("Dmg");
     }
-  
+    
     public void InitializeEnemies(EnemyStat enemyStat)
     {
       EnemyStat = enemyStat;

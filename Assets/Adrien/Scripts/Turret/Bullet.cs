@@ -23,7 +23,10 @@ public class Bullet : MonoBehaviour
     public float localDamage;
     private float turretDamage;
     public int compteurTurret;
+    [SerializeField]private Animator _animator;
     public static event Action OnMoneyChanged;
+
+    public static event Action OnDamage;
 
 
    
@@ -394,6 +397,7 @@ public class Bullet : MonoBehaviour
                     enemy.HP -= turretDamage;
                     break;
             }
+            OnDamage?.Invoke();
             
             if (enemy.HP <= 0)
             {
@@ -404,8 +408,7 @@ public class Bullet : MonoBehaviour
                 Destroy(enemy.gameObject);
                 Destroy(gameObject);
             }
-            var animator = enemy.GetComponentInChildren<Animator>();
-            animator.SetTrigger("Dmg");
+            
             switch (Turret.AtkType)
             { 
                 case TurretAtk.Stun:
