@@ -47,6 +47,7 @@ public class EnemyMovement : MonoBehaviour
     public int mercureBonus;
 
     [SerializeField] private Animator _animator;
+    private Animator _animatorChild;
 
     public EnemyStat EnemyStat {get; private set;}
 
@@ -55,6 +56,7 @@ public class EnemyMovement : MonoBehaviour
       _animator = GetComponent<Animator>();
       rb = GetComponent<Rigidbody2D>();
       target = LevelManager.instance.Chemin[0];
+      _animatorChild = GetComponentInChildren<Animator>();
     }
 
     private void Update()
@@ -128,7 +130,7 @@ public class EnemyMovement : MonoBehaviour
         return;
       }
       stunned = true;
-
+      _animatorChild.SetBool("Stun", true);
       stunSeconds = 0;
       if(stunCoroutine != null) {
         StopCoroutine(stunCoroutine);
@@ -154,7 +156,7 @@ public class EnemyMovement : MonoBehaviour
         stunSeconds = total - (Time.time - start);
         yield return new WaitForEndOfFrame();
       }
-      
+      _animatorChild.SetBool("Stun", false);
       stunned = false;
       yield return null;
     }
@@ -181,7 +183,7 @@ public class EnemyMovement : MonoBehaviour
         return;
       }
       isBurning = true;
-  
+      _animatorChild.SetBool("Burn", true);
       burnSeconds = 0;
       if(burnCoroutine != null) {
         StopCoroutine(burnCoroutine);
@@ -207,7 +209,7 @@ public class EnemyMovement : MonoBehaviour
         burnSeconds = total - (Time.time - start);
         yield return new WaitForSeconds(1f);
       }
-
+      _animatorChild.SetBool("Burn", false);  
       isBurning = false;
       yield return null;
     }
@@ -221,7 +223,7 @@ public class EnemyMovement : MonoBehaviour
       }
       
       isSlowed = true;
-      
+      _animatorChild.SetBool("Slow", true);
       slowPercent = percent;
       slowSeconds = 0;
       
@@ -245,6 +247,7 @@ public class EnemyMovement : MonoBehaviour
       }
       
       MoveSpeed = EnemyStat.Speed;
+      _animatorChild.SetBool("Slow", false);
       isSlowed = false;
       yield return null;
     }
@@ -257,6 +260,7 @@ public class EnemyMovement : MonoBehaviour
       }
       
       isDebuffed = true;
+      _animatorChild.SetBool("Debuff", true);
       debuffSeconds = 0;
       
       if(debuffCoroutine != null) {
@@ -276,7 +280,7 @@ public class EnemyMovement : MonoBehaviour
         debuffSeconds = total - (Time.time - start);
         yield return new WaitForSeconds(debuffSeconds);
       }
-      
+      _animatorChild.SetBool("Debuff", false);
       isDebuffed = false;
       yield return null;
     }
@@ -285,6 +289,7 @@ public class EnemyMovement : MonoBehaviour
     {
       if (isMercure) return;
         isMercure = true;
+        _animatorChild.SetBool("Mercure", true);
         mercureBonus = money;
     }
   }
