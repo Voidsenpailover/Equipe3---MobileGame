@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
@@ -145,7 +146,7 @@ public class GridBuildingSystem : MonoBehaviour
         /// Input ON TOUCH (to change) 
         /// 
 
-        if(levelManager.CurrentState == LevelManager.GameState.MainMenu || levelManager.CurrentState == LevelManager.GameState.Victory)
+        if(levelManager.CurrentState == LevelManager.GameState.MainMenu || levelManager.CurrentState == LevelManager.GameState.Victory || levelManager.CurrentState == LevelManager.GameState.GameOver)
         {
             return;
         }
@@ -449,7 +450,16 @@ public class GridBuildingSystem : MonoBehaviour
         return false;
     }
     #endregion
+    private void OnDestroy()
+    {
+        tileBases.Remove(TileType.Empty);
+        tileBases.Remove(TileType.Green);
+        tileBases.Remove(TileType.White);
+        tileBases.Remove(TileType.Road);
+        tileBases.Remove(TileType.Water);
+    }
 }
+
 public enum TileType
 {
     Empty,

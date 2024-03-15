@@ -720,8 +720,8 @@ RectTransform:
   - {fileID: 350759422}
   m_Father: {fileID: 2095038712}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMin: {x: 0.00090009003, y: 0}
+  m_AnchorMax: {x: 0.00090009003, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3614,6 +3614,10 @@ PrefabInstance:
       propertyPath: _turretDragObject
       value: 
       objectReference: {fileID: 633715262}
+    - target: {fileID: 4417856035091384151, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
+      propertyPath: _googlePlayManager
+      value: 
+      objectReference: {fileID: 1079057026}
     - target: {fileID: 4417856035091384151, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
       propertyPath: _rounds.Array.size
       value: 40
@@ -15084,7 +15088,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 742463406}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 686237708}
+        m_TargetAssemblyTypeName: optionsss, Assembly-CSharp
+        m_MethodName: RestartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &742463406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18015,7 +18031,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1112253998}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 686237708}
+        m_TargetAssemblyTypeName: optionsss, Assembly-CSharp
+        m_MethodName: RestartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1112253998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18087,7 +18115,7 @@ RectTransform:
   m_Father: {fileID: 1617848996}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0.00090009003, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -33074,8 +33102,8 @@ RectTransform:
   - {fileID: 1878634573}
   m_Father: {fileID: 1457391659}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMin: {x: 0.00090009003, y: 0}
+  m_AnchorMax: {x: 0.00090009003, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -36028,9 +36056,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 169614578212682837, guid: 82afeecadb3a3d248bbb020fbed0f8cc, type: 3}
+      propertyPath: m_text
+      value: Cyclone
+      objectReference: {fileID: 0}
+    - target: {fileID: 1249433658698387502, guid: 82afeecadb3a3d248bbb020fbed0f8cc, type: 3}
+      propertyPath: m_text
+      value: Fracture
+      objectReference: {fileID: 0}
+    - target: {fileID: 1326295579433617147, guid: 82afeecadb3a3d248bbb020fbed0f8cc, type: 3}
+      propertyPath: m_text
+      value: Tsunami
+      objectReference: {fileID: 0}
+    - target: {fileID: 1420256667998103912, guid: 82afeecadb3a3d248bbb020fbed0f8cc, type: 3}
+      propertyPath: m_text
+      value: Seisme
+      objectReference: {fileID: 0}
     - target: {fileID: 1717028188804685440, guid: 82afeecadb3a3d248bbb020fbed0f8cc, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2431518775373824132, guid: 82afeecadb3a3d248bbb020fbed0f8cc, type: 3}
+      propertyPath: m_text
+      value: Vent
       objectReference: {fileID: 0}
     - target: {fileID: 2542323771142356655, guid: 82afeecadb3a3d248bbb020fbed0f8cc, type: 3}
       propertyPath: m_Name
@@ -36040,10 +36088,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2853985376020482847, guid: 82afeecadb3a3d248bbb020fbed0f8cc, type: 3}
+      propertyPath: m_text
+      value: Eruption
+      objectReference: {fileID: 0}
     - target: {fileID: 3189556950050793890, guid: 82afeecadb3a3d248bbb020fbed0f8cc, type: 3}
       propertyPath: _grimoire
       value: 
       objectReference: {fileID: 1816656478}
+    - target: {fileID: 3283999017993492626, guid: 82afeecadb3a3d248bbb020fbed0f8cc, type: 3}
+      propertyPath: m_text
+      value: Feu
+      objectReference: {fileID: 0}
+    - target: {fileID: 3806334903317012692, guid: 82afeecadb3a3d248bbb020fbed0f8cc, type: 3}
+      propertyPath: m_text
+      value: Bourasque
+      objectReference: {fileID: 0}
+    - target: {fileID: 3979439889360974837, guid: 82afeecadb3a3d248bbb020fbed0f8cc, type: 3}
+      propertyPath: m_text
+      value: Brasier
+      objectReference: {fileID: 0}
     - target: {fileID: 5459142765696660243, guid: 82afeecadb3a3d248bbb020fbed0f8cc, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -36124,9 +36188,23 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6295051416024183091, guid: 82afeecadb3a3d248bbb020fbed0f8cc, type: 3}
+      propertyPath: m_text
+      value: Eau
+      objectReference: {fileID: 0}
+    - target: {fileID: 7970485066227056699, guid: 82afeecadb3a3d248bbb020fbed0f8cc, type: 3}
+      propertyPath: m_text
+      value: Torrent
+      objectReference: {fileID: 0}
+    - target: {fileID: 8864182713794670417, guid: 82afeecadb3a3d248bbb020fbed0f8cc, type: 3}
+      propertyPath: m_text
+      value: Terre
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 4020071509113066697, guid: 82afeecadb3a3d248bbb020fbed0f8cc, type: 3}
+    - {fileID: 848193429478899161, guid: 82afeecadb3a3d248bbb020fbed0f8cc, type: 3}
+    - {fileID: 3689433817514795797, guid: 82afeecadb3a3d248bbb020fbed0f8cc, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82afeecadb3a3d248bbb020fbed0f8cc, type: 3}
@@ -36212,7 +36290,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1933988757}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 686237708}
+        m_TargetAssemblyTypeName: optionsss, Assembly-CSharp
+        m_MethodName: RestartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1933988757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36856,7 +36946,7 @@ RectTransform:
   m_Father: {fileID: 770678856}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0.00090009003, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

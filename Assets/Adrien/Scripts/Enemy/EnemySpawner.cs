@@ -124,6 +124,7 @@ public class EnemySpawner : MonoBehaviour
         _enemiesLeft -= numberToDecrement;
         if (_enemiesLeft <= 0)
         {
+            _googlePlayManager.DoGrandAchievement(GPGSIds.achievement_survivant);
             _isRoundOver = true;
         }
     }

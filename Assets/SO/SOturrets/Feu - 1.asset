@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Feu
   _description: "Flamme br\xFBlante"
-  _descriptionEffect: 
+  _descriptionEffect: Applique de la brulure
   _cost: 100
   _damage: 2
   _delayBetweenAtk: 1
