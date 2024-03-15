@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyType: 15
   _vulnerability: 4
-  _hits: 20
+  _hits: 10
   _speed: 2
   _money: 20
   _spriteRenderer: {fileID: -1471605543, guid: c6e1c2537aa2daa4db4cf0054703029e, type: 3}
