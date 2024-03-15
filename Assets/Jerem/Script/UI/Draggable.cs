@@ -74,7 +74,7 @@ public class Draggable : MonoBehaviour
 
             }
             int tempCost = levelManager.money - newData.Cost;
-            if (tempCost > 0)
+            if (tempCost >= 0)
             {
                 levelManager.money = tempCost;
                 collider2dTemp.transform.gameObject.GetComponent<Building>().Data = newData;
