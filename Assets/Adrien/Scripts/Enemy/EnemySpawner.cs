@@ -22,7 +22,7 @@ public class EnemySpawner : MonoBehaviour
         {
             _instance = this;
         }
-        private void OnEnable()
+        private void Start()
         {
             LevelManager.OnGameStarted += StartRound;
         }
@@ -57,6 +57,7 @@ public class EnemySpawner : MonoBehaviour
             if (_currentRoundIndex > _rounds.Count)
             {
                 LevelManager.instance.Victory();
+                return;
             }
             _curRound = _rounds[_currentRoundIndex - 1];
             _enemiesLeft = _curRound.EnemiesInRound;

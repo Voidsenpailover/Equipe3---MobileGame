@@ -17,7 +17,6 @@ public class EnemyMovement : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private bool reachedEnd;
     public float HP;
-  
     
     public bool stunned;
     private Coroutine stunCoroutine;
@@ -45,15 +44,19 @@ public class EnemyMovement : MonoBehaviour
     
     public bool isMercure;
     public int mercureBonus;
+<<<<<<< HEAD
 
     [SerializeField] private Animator _animator;
     private Animator _animatorChild;
 
+=======
+    
+    
+>>>>>>> parent of 0470bd4 (DEV into GD)
     public EnemyStat EnemyStat {get; private set;}
 
     private void Start()
     {
-      _animator = GetComponent<Animator>();
       rb = GetComponent<Rigidbody2D>();
       target = LevelManager.instance.Chemin[0];
       _animatorChild = GetComponentInChildren<Animator>();
@@ -61,14 +64,9 @@ public class EnemyMovement : MonoBehaviour
 
     private void Update()
     {
-      _animator.SetFloat("velocityX", rb.velocity.x);
-      _animator.SetFloat("velocityY", rb.velocity.y);
-      
-      
       if (!reachedEnd && Vector2.Distance(target.position, transform.position) <= 0.1f)
       {
         Point++;
-        rb.velocity = Vector2.zero;
         if (Point >= LevelManager.instance.Chemin.Length)
         {
           reachedEnd = true;
@@ -97,10 +95,7 @@ public class EnemyMovement : MonoBehaviour
         rb.velocity = Vector2.zero;
       }
     }
-
-    
-    
-    
+  
     private void OnDrawGizmos()
     {
 #if UNITY_EDITOR
@@ -115,7 +110,6 @@ public class EnemyMovement : MonoBehaviour
       EnemyStat = enemyStat;
       MoveSpeed = enemyStat.Speed;
       HP = enemyStat.Hits;
-      _animator.runtimeAnimatorController = enemyStat.AnimatorController;
     }
 
     public void ApplyStun(float duration)
@@ -182,6 +176,7 @@ public class EnemyMovement : MonoBehaviour
       if(isBurning) {
         return;
       }
+      
       isBurning = true;
       _animatorChild.SetBool("Burn", true);
       burnSeconds = 0;

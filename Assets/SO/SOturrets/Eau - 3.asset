@@ -17,7 +17,7 @@ MonoBehaviour:
   _descriptionEffect: 
   _cost: 1500
   _damage: 5
-  _delayBetweenAtk: 0.75
+  _delayBetweenAtk: 1.5
   _radAtk: 5
   _prefabBullet: {fileID: 3801919937251534224, guid: 34353b0bad0380b4a948ce577fe33c0d, type: 3}
   _sprite: {fileID: 21300000, guid: ea3e737444090254eb9c449bfae99320, type: 3}

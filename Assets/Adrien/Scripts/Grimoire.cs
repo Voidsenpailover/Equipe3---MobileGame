@@ -10,7 +10,6 @@ public class Grimoire : MonoBehaviour
 
     [SerializeField] private GameObject _boutonGauche;
     [SerializeField] private GameObject _boutonDroite;
-    [SerializeField] private GameObject _grimoire;
     
     public void CloseGrimoire()
     {
@@ -22,7 +21,6 @@ public class Grimoire : MonoBehaviour
         Time.timeScale = 1;
         _boutonGauche.SetActive(false);
         _boutonDroite.SetActive(false);
-        _grimoire.SetActive(false);
     }
 
     private void Update()
@@ -35,7 +33,6 @@ public class Grimoire : MonoBehaviour
     {
         _cards[0].SetActive(true);
         _boutonDroite.SetActive(true);
-        _grimoire.SetActive(true);
         _index = 0;
         Time.timeScale = 0;
     }

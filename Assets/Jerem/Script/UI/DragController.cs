@@ -21,11 +21,6 @@ public class DragController : MonoBehaviour
 
     private TurretsData _currentTurretData;
 
-    private void OnEnable()
-    {
-        GridBuildingSystem.OnInfoMenuDragActive += WhenDragIsProc;
-    }
-
     private void Awake()
     {
         DragController[] controller = FindObjectsOfType<DragController>();
@@ -33,6 +28,7 @@ public class DragController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        GridBuildingSystem.OnInfoMenuDragActive += WhenDragIsProc;
         _lastDragged = _turretDragObject.GetComponent<Draggable>();
     }
 
@@ -113,7 +109,6 @@ public class DragController : MonoBehaviour
     void Drop()
     {
         UpdateDragStatus(false);
-        Debug.Log("Drop");
         _lastDragged.transform.position = new Vector2(100, 100);
         _buildingSystem.IsDraggingNow = false;
         _buildingSystem.CanSelect = true;

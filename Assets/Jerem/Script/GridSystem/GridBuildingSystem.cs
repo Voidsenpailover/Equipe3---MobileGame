@@ -11,7 +11,6 @@ public class GridBuildingSystem : MonoBehaviour
 {
     //Instantiate
     [SerializeField] public static GridBuildingSystem current;
-    [SerializeField] private LevelManager levelManager;
 
     //Events
     public static event Action<Vector3> OnSelectionMenuActive;
@@ -28,7 +27,6 @@ public class GridBuildingSystem : MonoBehaviour
     public static event Action<Vector3Int> OnPointCreated;
     public static event Action OnRoadEnd;
 
-
     //TileMaps
     [SerializeField] private GridLayout gridLayout;
     [SerializeField] Tilemap mainTilemap;
@@ -44,7 +42,6 @@ public class GridBuildingSystem : MonoBehaviour
     private Building temp;
     private Vector3Int prevPos;
     private BoundsInt prevArea;
-    private Vector3Int cellPos;
 
     private Vector3Int spawningPos;
     [SerializeField] private Transform spawningPosT;
@@ -61,28 +58,13 @@ public class GridBuildingSystem : MonoBehaviour
     public bool CanSelect { get => _canSelect; set => _canSelect = value; }
     public List<TurretsData> TurretsData { get => _turretsData; set => _turretsData = value; }
     public static Dictionary<Vector3Int, GameObject> TileDataBases { get => tileDataBases; set => tileDataBases = value; }
-    public bool HaveEnoughMoney { get => _haveEnoughMoney; set => _haveEnoughMoney = value; }
 
     //Selections
     private bool _canSelect;
     private bool _canDrag = false;
     private bool _isDraggingNow = false;
-    private bool _haveEnoughMoney;
 
     #region Unity Methods
-
-    private void OnEnable()
-    {
-        LevelManager.OnSell += LevelManager_OnSell;
-    }
-    private void LevelManager_OnSell()
-    {
-        OnInfoMenuDeactivated?.Invoke();
-        ClearAreaDeuxPointZero(GridLayout.WorldToCell(prevPos));
-        Destroy(TileDataBases[prevPos]);
-        TileDataBases.Remove(GridLayout.WorldToCell(prevPos));
-        CanSelect = true;
-    }
 
     private void Awake()
     {
@@ -95,7 +77,6 @@ public class GridBuildingSystem : MonoBehaviour
         tileBases.Add(TileType.Green, _sourceTileData.SelectionTile);
         tileBases.Add(TileType.White, _sourceTileData.FloorTile);
         tileBases.Add(TileType.Road, _sourceTileData.RoadTile);
-        tileBases.Add(TileType.Water, _sourceTileData.WaterTile);
         //tileBases.Add(TileType.Red, Resources.Load<TileBase>(_tilePath + "SquareR"));
         CanSelect = true;
 
@@ -144,27 +125,12 @@ public class GridBuildingSystem : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) * 1 / GridLayout.transform.localScale.x; //where the point is
-            cellPos = GridLayout.LocalToCell(touchPos); //corresponding touch to his cell
+            Vector3Int cellPos = GridLayout.LocalToCell(touchPos); //corresponding touch to his cell
 
             TileBase tileSelected = mainTilemap.GetTile(cellPos); //Tile Selected
 
-            RaycastHit2D hit2dForButton = Physics2D.Raycast(touchPos, Vector2.zero);
-            if(hit2dForButton.collider != null)
-            {
-                if(hit2dForButton.collider.GetComponent<Button>() != null)
-                {
-                    Debug.Log("WOW");
-                    hit2dForButton.collider.GetComponent<Button>().onClick.Invoke();
-                    return;
-                }
-            }
             //If it's beyond grid
             if (tileSelected == tileBases[TileType.Empty][0]) 
-            {
-                return;
-            }
-            //If it's water
-            if (tileSelected == tileBases[TileType.Water][0])
             {
                 return;
             }
@@ -177,7 +143,15 @@ public class GridBuildingSystem : MonoBehaviour
                 }
             }
 
-
+            RaycastHit2D hit2dForButton = Physics2D.Raycast(touchPos, Vector2.zero);
+            if(hit2dForButton.collider != null)
+            {
+                if(hit2dForButton.collider.GetComponent<Button>() != null)
+                {
+                    Debug.Log("WOW");
+                    return;
+                }
+            }
 
 
             //Selection
@@ -288,33 +262,15 @@ public class GridBuildingSystem : MonoBehaviour
 
     public void InitializeWithBuilding(GameObject building)
     {
-        int tempCost = levelManager.money - TurretsData[CurrentID].Cost;
-        if (tempCost > 0)
-        {
-            levelManager.money = tempCost;
-            HaveEnoughMoney = true;
-        }
-        else
-        {
-            HaveEnoughMoney = false;
-        }
-        if (HaveEnoughMoney == true)
-        {
-            temp = Instantiate(building, prevPos, Quaternion.identity).GetComponent<Building>();
-            temp.Data = TurretsData[CurrentID];
-            temp.transform.position = GridLayout.CellToLocalInterpolated(prevPos + new Vector3(.5f, .5f, 0f));
-            temp.GetComponent<Turret>().InitializeTurret(temp.Data);
-            temp.transform.Find("Text").GetComponent<SpriteRenderer>().sortingOrder = -prevPos.y;
-            mainTilemap.SetTile(gridLayout.WorldToCell(temp.transform.position), tileBases[TileType.Green][1]);
-            tileDataBases.Add(gridLayout.WorldToCell(temp.transform.position), temp.transform.gameObject);
-            OnSelectionMenuDeactivated?.Invoke();
-            CanSelect = true;
-        }
-        else
-        {
-            Debug.Log("NOT ENOUGH");
-        }
-
+        temp = Instantiate(building, prevPos, Quaternion.identity).GetComponent<Building>();
+        temp.Data = TurretsData[CurrentID];
+        temp.transform.position = GridLayout.CellToLocalInterpolated(prevPos + new Vector3(.5f, .5f, 0f));
+        temp.GetComponent<Turret>().InitializeTurret(temp.Data);
+        temp.transform.Find("Text").GetComponent<SpriteRenderer>().sortingOrder = -prevPos.y;
+        mainTilemap.SetTile(gridLayout.WorldToCell(temp.transform.position), tileBases[TileType.Green][1]);
+        tileDataBases.Add(gridLayout.WorldToCell(temp.transform.position), temp.transform.gameObject);
+        OnSelectionMenuDeactivated?.Invoke();
+        CanSelect = true;
     }
     
     private void ClearArea()

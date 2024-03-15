@@ -20,7 +20,6 @@ public class RessourceTileDataBase: MonoBehaviour
     private List<TileBase> selectionTile;
     private List<TileBase> floorTile;
     private List<TileBase> emptyTile;
-    private List<TileBase> waterTile;
 
     //Properties
     public List<TileBase> RoadTile { get => roadTile; set => roadTile = value; }
@@ -31,7 +30,6 @@ public class RessourceTileDataBase: MonoBehaviour
     public TileBase BlankTileBase { get => blankTileBase; set => blankTileBase = value; }
     public TileBase TurnTileBase { get => turnTileBase; set => turnTileBase = value; }
     public TileBase InterTileBase { get => interTileBase; set => interTileBase = value; }
-    public List<TileBase> WaterTile { get => waterTile; set => waterTile = value; }
 
     void Awake()
     {
@@ -59,12 +57,6 @@ public class RessourceTileDataBase: MonoBehaviour
         FloorTile = new List<TileBase>
         {
                 Resources.Load<TileBase>(_floorPath + "Square")
-        };
-
-        string _waterPath = @"PaletteTest\";
-        WaterTile = new List<TileBase>
-        {
-                Resources.Load<TileBase>(_floorPath + "SquareG")
         };
 
         //No Path
