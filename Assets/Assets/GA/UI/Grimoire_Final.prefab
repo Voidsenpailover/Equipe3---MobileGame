@@ -2221,6 +2221,7 @@ GameObject:
   - component: {fileID: 8263681360832668281}
   - component: {fileID: 6482098921280088198}
   - component: {fileID: 1192286188569809146}
+  - component: {fileID: 8988346331374801274}
   m_Layer: 5
   m_Name: 23
   m_TagString: Untagged
@@ -2341,6 +2342,51 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!61 &8988346331374801274
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 227185971533649163}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.27134705, y: -0.000030517578}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 247.47305, y: 76.29239}
+  m_EdgeRadius: 0
 --- !u!1 &231256867018414434
 GameObject:
   m_ObjectHideFlags: 0
@@ -12536,6 +12582,7 @@ MonoBehaviour:
   _boutonGauche: {fileID: 1021956218260250868}
   _boutonDroite: {fileID: 2403946360116075661}
   _grimoire: {fileID: 0}
+  IsGrimoirOpen: 0
 --- !u!1 &1654253499219098362
 GameObject:
   m_ObjectHideFlags: 0
@@ -20604,7 +20651,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5459142765696660243
 RectTransform:
   m_ObjectHideFlags: 0
@@ -33927,7 +33974,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 1.1087873, y: 0, z: -1.9927311, w: 0.89261633}
+  m_margin: {x: -13.817005, y: -2.3567238, z: -5.135027, w: -0.6784916}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -43789,7 +43836,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6d7406ae2ecb1d14b970baf78ea5d019, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2c4511ae9bdf80d4dada6fb74a16405b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -44558,8 +44605,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 8.2415, y: 3.5}
-  m_SizeDelta: {x: 66.917, y: 50}
+  m_AnchoredPosition: {x: 0.000015258789, y: 3.5}
+  m_SizeDelta: {x: 75.158, y: 50}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &9150413371472734022
 CanvasRenderer:
@@ -44652,7 +44699,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 70.61657, y: 0, z: 65.85731, w: 3.5442753}
+  m_margin: {x: 82.23638, y: 0, z: 75.2841, w: -0.38355613}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -69245,7 +69292,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -0.8119812, y: 0, z: 1.0879277, w: 3.5442753}
+  m_margin: {x: -18.880024, y: 0, z: -2.8399062, w: 0.40201822}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
