@@ -158,6 +158,10 @@ public class GridBuildingSystem : MonoBehaviour
         {
             return;
         }
+        if (CardManager.instance.CardUp)
+        {
+            return;
+        }
         if (Input.GetMouseButtonDown(0))
         {
             Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) * 1 / GridLayout.transform.localScale.x; //where the point is
@@ -193,9 +197,6 @@ public class GridBuildingSystem : MonoBehaviour
                     return;
                 }
             }
-
-
-
 
             //Selection
             if (CanSelect) // Check For selection

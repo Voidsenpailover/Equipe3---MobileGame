@@ -66,6 +66,29 @@ public class UiManager : MonoBehaviour
         
     }
 
+    private void Update()
+    {
+        switch (LevelManager.instance.CurrentState)
+        {
+            case LevelManager.GameState.MainMenu:
+                UnsetInfoMenu();
+                UnsetFusionMenu();
+                UnsetSelectionMenu();
+                break;
+            case LevelManager.GameState.Victory:
+                UnsetInfoMenu();
+                UnsetFusionMenu();
+                UnsetSelectionMenu();
+                break;
+            case LevelManager.GameState.GameOver:
+                UnsetInfoMenu();
+                UnsetFusionMenu();
+                UnsetSelectionMenu();
+                break;
+            default: break;
+        }
+    }
+
     private void SetInfoMenu(Vector3 pos)
     {
         _turretMenu.position = pos;
@@ -75,7 +98,7 @@ public class UiManager : MonoBehaviour
         _menuInfoPoint.SetActive(true);
        
     }
-    private void UnsetInfoMenu()
+    public void UnsetInfoMenu()
     {
         _turretMenu.position = Vector3.zero;
         _menuInfoPoint.SetActive(false);
@@ -89,7 +112,7 @@ public class UiManager : MonoBehaviour
         _menuFusionPoint.SetActive(true);
     }
 
-    private void UnsetFusionMenu()
+    public void UnsetFusionMenu()
     {
         _turretMenu.position = Vector3.zero;
         _menuFusionPoint.SetActive(false);
@@ -103,7 +126,7 @@ public class UiManager : MonoBehaviour
         _banner.SetActive(false);
     }
     
-    private void UnsetSelectionMenu()
+    public void UnsetSelectionMenu()
     {
         _turretMenu.position = Vector3.zero;
         _menuSelectionPoint.SetActive(false);

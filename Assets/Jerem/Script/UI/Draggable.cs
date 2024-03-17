@@ -68,6 +68,10 @@ public class Draggable : MonoBehaviour
             if (TurretData.Level == 2 && collider2dTemp.transform.gameObject.GetComponent<Building>().Data.Level == 2)
             {
                 newData = fusionBehaviour.SpawningRightTowerLevel3(TurretData, collider2dTemp.transform.gameObject.GetComponent<Building>().Data);
+            }else if(TurretData.Level != collider2dTemp.transform.gameObject.GetComponent<Building>().Data.Level)
+            {
+                DeactivateFusionUI();
+                return;
             }
             else
             {
@@ -171,10 +175,14 @@ public class Draggable : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        CanDrop = false;
-        if (!_isFusionUIStay)
+        
+        if (!collision.CompareTag("Bullet") && collision.excludeLayers == LayerMask.GetMask("FX"))
         {
-            OnFusionMenuDeactivated?.Invoke();
+            CanDrop = false;
+            if (!_isFusionUIStay)
+            {
+                OnFusionMenuDeactivated?.Invoke();
+            }
         }
     }
 }

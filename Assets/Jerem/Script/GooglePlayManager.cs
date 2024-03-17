@@ -13,7 +13,7 @@ public class GooglePlayManager : MonoBehaviour
 
     public void Start()
     {
-        //AchievementsHandler.UnlockAchievement(GPGSIds.achievement_bienvenue_en_enfer);
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
     }
 
     public static void ProcessAuthentication(SignInStatus status)
