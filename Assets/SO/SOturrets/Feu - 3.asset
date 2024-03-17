@@ -15,7 +15,7 @@ MonoBehaviour:
   _name: Eruption
   _description: Flamme Purificatrice
   _descriptionEffect: 
-  _cost: 2500
+  _cost: 1000
   _damage: 3
   _delayBetweenAtk: 1
   _radAtk: 4

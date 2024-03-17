@@ -15,9 +15,9 @@ MonoBehaviour:
   _name: "Phosphore\xB2"
   _description: Aura infernal
   _descriptionEffect: 
-  _cost: 3000
-  _damage: 4
-  _delayBetweenAtk: 0.33
+  _cost: 5000
+  _damage: 10
+  _delayBetweenAtk: 3
   _radAtk: 5
   _prefabBullet: {fileID: 8033771812414370071, guid: 8ddc65076f4ae7d49a22ae324ed67b7d, type: 3}
   _sprite: {fileID: 21300000, guid: fc2683e1d1370424f8bf17cbb9b1cf71, type: 3}

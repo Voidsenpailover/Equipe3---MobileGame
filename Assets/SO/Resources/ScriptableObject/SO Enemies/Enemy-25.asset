@@ -20,3 +20,4 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 2145120081, guid: 2966598c727cdf44585f76cf4c959fe8, type: 3}
   _damage: 200
   _canBeStunned: 0
+  _animatorController: {fileID: 22100000, guid: 26762467989646d4eb35377a447dc2ac, type: 2}

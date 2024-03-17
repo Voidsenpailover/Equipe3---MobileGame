@@ -15,9 +15,9 @@ MonoBehaviour:
   _name: Air
   _description: "Attaque tr\xE8s vite"
   _descriptionEffect: 
-  _cost: 150
+  _cost: 200
   _damage: 1
-  _delayBetweenAtk: 0.33
+  _delayBetweenAtk: 3
   _radAtk: 6
   _prefabBullet: {fileID: 3801919937251534224, guid: 187811f269b723b4ea3c78ff183eefba, type: 3}
   _sprite: {fileID: 21300000, guid: 0874cff35fd9ed4448cdd5545f6afdb7, type: 3}

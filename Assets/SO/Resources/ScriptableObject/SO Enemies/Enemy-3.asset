@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyType: 2
   _vulnerability: 4
-  _hits: 30
+  _hits: 10
   _speed: 1
   _money: 15
   _spriteRenderer: {fileID: 41783712, guid: c6e1c2537aa2daa4db4cf0054703029e, type: 3}
   _damage: 3
   _canBeStunned: 1
+  _animatorController: {fileID: 22100000, guid: e53fd27b0bc499449bf8a5b8648c7e00, type: 2}

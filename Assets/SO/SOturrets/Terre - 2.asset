@@ -15,9 +15,9 @@ MonoBehaviour:
   _name: Fracture
   _description: Glissement de terrain
   _descriptionEffect: 
-  _cost: 750
+  _cost: 1000
   _damage: 8
-  _delayBetweenAtk: 3
+  _delayBetweenAtk: 0.33
   _radAtk: 2
   _prefabBullet: {fileID: 3801919937251534224, guid: 77165e571b7394e4f8a5896df6623066, type: 3}
   _sprite: {fileID: 21300000, guid: 28548899b75fa45408b02caa869c0203, type: 3}

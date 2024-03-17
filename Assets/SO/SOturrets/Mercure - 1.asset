@@ -15,7 +15,7 @@ MonoBehaviour:
   _name: Mercure
   _description: Transforme les ennemis en plomb
   _descriptionEffect: 
-  _cost: 1000
+  _cost: 400
   _damage: 5
   _delayBetweenAtk: 1
   _radAtk: 5
