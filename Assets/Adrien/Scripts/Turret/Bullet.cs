@@ -397,6 +397,8 @@ public class Bullet : MonoBehaviour
                     break;
             }
             OnDamage?.Invoke();
+
+            enemy.CallDamageFlash();
             
             if (enemy.HP <= 0)
             {
@@ -404,7 +406,7 @@ public class Bullet : MonoBehaviour
                 LevelManager.instance.money += enemy.EnemyStat.Money;
                 if(enemy.isMercure) LevelManager.instance.money += enemy.mercureBonus;
                 OnMoneyChanged?.Invoke();
-                Destroy(enemy.gameObject);
+                enemy.Dies();
                 Destroy(gameObject);
             }
             
