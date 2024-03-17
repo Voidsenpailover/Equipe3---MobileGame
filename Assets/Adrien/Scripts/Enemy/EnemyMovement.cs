@@ -16,7 +16,7 @@ public class EnemyMovement : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private bool reachedEnd;
     public float HP;
-  
+    
     
     public bool stunned;
     private Coroutine stunCoroutine;
@@ -44,9 +44,15 @@ public class EnemyMovement : MonoBehaviour
     
     public bool isMercure;
     public int mercureBonus;
+    private Coroutine _damageFlashCoroutine;
 
     [SerializeField] private Animator _animator;
     [SerializeField] private Animator _animatorChild;
+    [SerializeField] public GameObject DyingEffect;    
+
+    [SerializeField] private Color _flashColor = Color.white;
+    [SerializeField] private float flashTime = 0.25f;
+    private Material _material;
 
     public EnemyStat EnemyStat {get; private set;}
 
@@ -55,6 +61,7 @@ public class EnemyMovement : MonoBehaviour
       _animator = GetComponent<Animator>();
       rb = GetComponent<Rigidbody2D>();
       target = LevelManager.instance.Chemin[0];
+      _material = GetComponent<SpriteRenderer>().material;
     }
 
     private void OnEnable()
@@ -69,9 +76,9 @@ public class EnemyMovement : MonoBehaviour
 
     private void Update()
     {
+        DyingEffect = this.gameObject.transform.GetChild(2).gameObject;
       _animator.SetFloat("velocityX", rb.velocity.x);
       _animator.SetFloat("velocityY", rb.velocity.y);
-      
       
       if (!reachedEnd && Vector2.Distance(target.position, transform.position) <= 0.1f)
       {
@@ -109,7 +116,6 @@ public class EnemyMovement : MonoBehaviour
     
     private void DamageUpdate()
     {
-      _animatorChild.SetTrigger("Dmg");
     }
     
     public void InitializeEnemies(EnemyStat enemyStat)
@@ -206,7 +212,7 @@ public class EnemyMovement : MonoBehaviour
         if(HP <= 0) {
           EnemySpawner._instance.EnemyReachedEndOfPath();
           LevelManager.instance.money += EnemyStat.Money;
-          Destroy(gameObject);
+          Dies();
         }
         burnSeconds = total - (Time.time - start);
         yield return new WaitForSeconds(1f);
@@ -293,6 +299,49 @@ public class EnemyMovement : MonoBehaviour
         isMercure = true;
         _animatorChild.SetBool("Mercure", true);
         mercureBonus = money;
+    }
+
+    public void Dies ()
+    {
+        DyingEffect.SetActive(true);
+        StartCoroutine(DestroyingEnemy());
+    }
+
+    IEnumerator DestroyingEnemy ()
+    {
+        yield return new WaitForSeconds(0.25f);
+        Destroy(gameObject);
+    }
+
+    public void CallDamageFlash()
+    {
+        _damageFlashCoroutine = StartCoroutine(DamageFlasher());
+    }
+
+    private IEnumerator DamageFlasher()
+    {
+        SetFlashcolor();
+
+        float currentFlashAmount = 0f;
+        float elapsedTime = 0f;
+        while(elapsedTime < flashTime)
+        {
+            elapsedTime += Time.deltaTime;
+
+            currentFlashAmount = Mathf.Lerp(10f, 0f, (elapsedTime/flashTime));
+            SetFlashAmount(currentFlashAmount);
+            yield return null;
+        }
+    }
+
+    private void SetFlashcolor()
+    {
+    _material.SetColor("_FlashColor", _flashColor);
+    }
+
+    private void SetFlashAmount(float Amount)
+    {
+        _material.SetFloat("_FlashAmount", Amount);
     }
   }
 
