@@ -24,8 +24,12 @@ public class Bullet : MonoBehaviour
     private float turretDamage;
     public int compteurTurret;
     public static event Action OnMoneyChanged;
-    
-    
+
+    public static event Action OnDamage;
+
+
+   
+
     public void SetTarget(Transform _target)
     {
         target = _target;
@@ -392,6 +396,9 @@ public class Bullet : MonoBehaviour
                     enemy.HP -= turretDamage;
                     break;
             }
+            OnDamage?.Invoke();
+
+            enemy.CallDamageFlash();
             
             if (enemy.HP <= 0)
             {
@@ -399,7 +406,7 @@ public class Bullet : MonoBehaviour
                 LevelManager.instance.money += enemy.EnemyStat.Money;
                 if(enemy.isMercure) LevelManager.instance.money += enemy.mercureBonus;
                 OnMoneyChanged?.Invoke();
-                Destroy(enemy.gameObject);
+                enemy.Dies();
                 Destroy(gameObject);
             }
             

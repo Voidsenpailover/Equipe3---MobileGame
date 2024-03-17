@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 
 public class LevelManager : MonoBehaviour
@@ -17,8 +18,10 @@ public class LevelManager : MonoBehaviour
     public int HP = 200;
     public int money = 200;
     public int moneyToLoose;
+    [SerializeField] private TextMeshProUGUI hpText;
 
     [SerializeField] GridBuildingSystem gridBuildingSystem;
+    [SerializeField] GooglePlayManager googlePlayManager;
 
     [SerializeField] private float mult = 0.5f;
 
@@ -37,6 +40,7 @@ public class LevelManager : MonoBehaviour
     {
         GridBuildingSystem.OnRoadEnd += GridBuildingSystem_OnRoadEnd;
         Draggable.OnMoneyLoose += WhenMoneyLoose;
+        CardManager.CardSelected += Scorpion;
     }
 
     private void Awake()
@@ -45,7 +49,16 @@ public class LevelManager : MonoBehaviour
         Application.targetFrameRate = 60;
 
     }
-
+    
+    private void Scorpion(CardData data)
+    {
+        if (data.CardName == CardName.Scorpion)
+        {
+            HP = 1;
+            hpText.text = HP.ToString();
+        }
+    }
+    
     private void WhenMoneyLoose(int cost)
     {
         money -= cost;
@@ -79,6 +92,7 @@ public class LevelManager : MonoBehaviour
     {
         CurrentState = GameState.Victory;
         Time.timeScale = 0;
+        googlePlayManager.DoGrandAchievement(GPGSIds.achievement_alchimiste_confirm);
         OnVictory?.Invoke();
     }
 

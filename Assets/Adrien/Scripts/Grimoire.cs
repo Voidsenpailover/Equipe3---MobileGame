@@ -11,6 +11,8 @@ public class Grimoire : MonoBehaviour
     [SerializeField] private GameObject _boutonGauche;
     [SerializeField] private GameObject _boutonDroite;
     [SerializeField] private GameObject _grimoire;
+
+    public bool IsGrimoirOpen = false;
     
     public void CloseGrimoire()
     {
@@ -23,6 +25,7 @@ public class Grimoire : MonoBehaviour
         _boutonGauche.SetActive(false);
         _boutonDroite.SetActive(false);
         _grimoire.SetActive(false);
+        IsGrimoirOpen = false;
     }
 
     private void Update()
@@ -38,6 +41,7 @@ public class Grimoire : MonoBehaviour
         _grimoire.SetActive(true);
         _index = 0;
         Time.timeScale = 0;
+        IsGrimoirOpen = true;
     }
 
     public void flecheGauche()
