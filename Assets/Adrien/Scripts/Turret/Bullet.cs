@@ -23,7 +23,6 @@ public class Bullet : MonoBehaviour
     public float localDamage;
     private float turretDamage;
     public int compteurTurret;
-    public static event Action OnMoneyChanged;
 
     public static event Action OnDamage;
 
@@ -68,13 +67,6 @@ public class Bullet : MonoBehaviour
             foreach (var hit in hits)
             {
                  hit.transform.GetComponent<EnemyMovement>().HP -= 8;
-                 if(hit.transform.GetComponent<EnemyMovement>().HP <= 0)
-                 {
-                     LevelManager.instance.money += hit.transform.GetComponent<EnemyMovement>().EnemyStat.Money;
-                     OnMoneyChanged?.Invoke();
-                     EnemySpawner._instance.EnemyReachedEndOfPath();
-                     Destroy(hit.transform.gameObject);
-                 }
             }
         }
         
@@ -399,16 +391,6 @@ public class Bullet : MonoBehaviour
             OnDamage?.Invoke();
 
             enemy.CallDamageFlash();
-            
-            if (enemy.HP <= 0)
-            {
-                EnemySpawner._instance.EnemyReachedEndOfPath();
-                LevelManager.instance.money += enemy.EnemyStat.Money;
-                if(enemy.isMercure) LevelManager.instance.money += enemy.mercureBonus;
-                OnMoneyChanged?.Invoke();
-                enemy.Dies();
-                Destroy(gameObject);
-            }
             
             switch (Turret.AtkType)
             { 

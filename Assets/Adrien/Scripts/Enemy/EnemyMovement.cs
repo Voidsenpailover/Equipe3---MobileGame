@@ -17,7 +17,8 @@ public class EnemyMovement : MonoBehaviour
     private bool reachedEnd;
     public float HP;
     
-    
+    public static event Action OnMoneyChanged;
+
     public bool stunned;
     private Coroutine stunCoroutine;
     private float stunSeconds;
@@ -79,6 +80,16 @@ public class EnemyMovement : MonoBehaviour
         DyingEffect = this.gameObject.transform.GetChild(2).gameObject;
       _animator.SetFloat("velocityX", rb.velocity.x);
       _animator.SetFloat("velocityY", rb.velocity.y);
+      
+      if(HP <= 0) {
+        EnemySpawner._instance.EnemyReachedEndOfPath();
+        LevelManager.instance.money += EnemyStat.Money;
+        if(isMercure) LevelManager.instance.money += mercureBonus;
+        OnMoneyChanged?.Invoke();
+        Dies();
+        Destroy(gameObject);
+      }
+      
       
       if (!reachedEnd && Vector2.Distance(target.position, transform.position) <= 0.1f)
       {
@@ -209,11 +220,7 @@ public class EnemyMovement : MonoBehaviour
       while (burnSeconds > 0) {
         isBurning = true;
         HP -= burnDamage;
-        if(HP <= 0) {
-          EnemySpawner._instance.EnemyReachedEndOfPath();
-          LevelManager.instance.money += EnemyStat.Money;
-          Dies();
-        }
+        
         burnSeconds = total - (Time.time - start);
         yield return new WaitForSeconds(1f);
       }
