@@ -11,6 +11,7 @@ public class Grimoire : MonoBehaviour
     [SerializeField] private GameObject _boutonGauche;
     [SerializeField] private GameObject _boutonDroite;
     [SerializeField] private GameObject _grimoire;
+    [SerializeField] private GameObject _boutonPage1;
 
     public bool IsGrimoirOpen = false;
     
@@ -28,6 +29,14 @@ public class Grimoire : MonoBehaviour
         IsGrimoirOpen = false;
     }
 
+    public void GoToPage1()
+    {
+        _cards[_index].SetActive(false);
+        _index = 0;
+        _cards[0].SetActive(true);
+        
+    }
+    
     private void Update()
     {
         _boutonGauche.SetActive(_index != 0);
