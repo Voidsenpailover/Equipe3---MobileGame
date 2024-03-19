@@ -48,7 +48,7 @@ public class UiManager : MonoBehaviour
         GridBuildingSystem.OnFusionMenuDeactivated += UnsetFusionMenu;
 
         EnemySpawner.OnWaveChanged += UpdateWaveText;
-        Bullet.OnMoneyChanged += UpdateMoneyText;
+        EnemyMovement.OnMoneyChanged += UpdateMoneyText;
         EnemyMovement.OnHealthChanged += UpdateHealthText;
         CardManager.CardSelected += UpdateSlotBonus;
     }
@@ -187,7 +187,7 @@ public class UiManager : MonoBehaviour
         
         
         EnemySpawner.OnWaveChanged -= UpdateWaveText;
-        Bullet.OnMoneyChanged -= UpdateMoneyText;
+        EnemyMovement.OnMoneyChanged -= UpdateMoneyText;
         EnemyMovement.OnHealthChanged -= UpdateHealthText;
         CardManager.CardSelected -= UpdateSlotBonus;
     }

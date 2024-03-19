@@ -42,12 +42,12 @@ public class EnemySpawner : MonoBehaviour
         if(_timer > 1.5f)
         {
             _timer = 0;
-            if(_currentRoundIndex is 11 or 21 or 31)
+            if(_currentRoundIndex is 10 or 20 or 30)
             {
                 CardChoice?.Invoke();
             }
             StartRound();  
-            OnWaveChanged?.Invoke();
+            
             _isRoundOver = false;
         }
         if(_currentRoundIndex == 11)
@@ -76,6 +76,7 @@ public class EnemySpawner : MonoBehaviour
         {
             LevelManager.instance.Victory();
         }
+        OnWaveChanged?.Invoke();
         _curRound = _rounds[_currentRoundIndex - 1];
         _enemiesLeft = _curRound.EnemiesInRound;
         StartCoroutine(SpawnEnemiesInRound(_curRound));
