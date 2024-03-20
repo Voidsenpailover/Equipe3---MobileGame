@@ -87,7 +87,6 @@ public class EnemyMovement : MonoBehaviour
         if(isMercure) LevelManager.instance.money += mercureBonus;
         OnMoneyChanged?.Invoke();
         Dies();
-        Destroy(gameObject);
       }
       
       
@@ -310,7 +309,7 @@ public class EnemyMovement : MonoBehaviour
 
     public void Dies ()
     {
-        DyingEffect.SetActive(true);
+        CallDamageFlash();
         StartCoroutine(DestroyingEnemy());
     }
 
