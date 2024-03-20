@@ -3494,6 +3494,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1000319492054409521, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
+      propertyPath: money
+      value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000319492054409521, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
       propertyPath: hpText
       value: 
       objectReference: {fileID: 1834672582}
