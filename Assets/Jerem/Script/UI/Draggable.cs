@@ -63,7 +63,7 @@ public class Draggable : MonoBehaviour
     public void MakeFusion()
     {
         newData = collider2dTemp.transform.gameObject.GetComponent<Building>().Data;
-        var turret = collision.GetComponent<Turret>();
+        var turret = collider2dTemp.GetComponent<Turret>();
         if (LastTurret.transform != collider2dTemp.transform)
         {
             if (TurretData.Level == 2 && collider2dTemp.transform.gameObject.GetComponent<Building>().Data.Level == 2)
