@@ -31,6 +31,7 @@ public class Draggable : MonoBehaviour
 
     private Collider2D collider2dTemp;
     [SerializeField] private LevelManager levelManager;
+    [SerializeField] private GooglePlayManager googlePlayManager;
 
     public Vector3 LastPosition { get => _lastPosition; set => _lastPosition = value; }
     public TurretsData TurretData { get => _turretData; set => _turretData = value; }
@@ -67,6 +68,10 @@ public class Draggable : MonoBehaviour
             if (TurretData.Level == 2 && collider2dTemp.transform.gameObject.GetComponent<Building>().Data.Level == 2)
             {
                 newData = fusionBehaviour.SpawningRightTowerLevel3(TurretData, collider2dTemp.transform.gameObject.GetComponent<Building>().Data);
+            }else if(TurretData.Level != collider2dTemp.transform.gameObject.GetComponent<Building>().Data.Level)
+            {
+                DeactivateFusionUI();
+                return;
             }
             else
             {
@@ -82,9 +87,9 @@ public class Draggable : MonoBehaviour
                 _movementDestination = collider2dTemp.transform.position;
                 gridBuildingSystem.ClearAreaDeuxPointZero(gridBuildingSystem.GridLayout.WorldToCell(LastPosition));
                 GridBuildingSystem.TileDataBases.Remove(gridBuildingSystem.GridLayout.WorldToCell(LastPosition));
-                OnMoneyLoose?.Invoke(newData.Cost);
                 Destroy(LastTurret);
                 DeactivateFusionUI();
+                googlePlayManager.DoGrandAchievement(GPGSIds.achievement_apprentie);
             }
             else
             {
@@ -170,10 +175,14 @@ public class Draggable : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        CanDrop = false;
-        if (!_isFusionUIStay)
+        
+        if (!collision.CompareTag("Bullet") && collision.excludeLayers == LayerMask.GetMask("FX"))
         {
-            OnFusionMenuDeactivated?.Invoke();
+            CanDrop = false;
+            if (!_isFusionUIStay)
+            {
+                OnFusionMenuDeactivated?.Invoke();
+            }
         }
     }
 }

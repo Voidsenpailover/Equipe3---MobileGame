@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
@@ -68,6 +69,8 @@ public class GridBuildingSystem : MonoBehaviour
     private bool _canDrag = false;
     private bool _isDraggingNow = false;
     private bool _haveEnoughMoney;
+    [SerializeField] Grimoire grimoire;
+    [SerializeField] optionsss option;
 
     #region Unity Methods
 
@@ -141,7 +144,25 @@ public class GridBuildingSystem : MonoBehaviour
     {
         /// Clicking System 
         /// Input ON TOUCH (to change) 
-        if(Input.GetMouseButtonDown(0))
+        /// 
+
+        if(levelManager.CurrentState == LevelManager.GameState.MainMenu || levelManager.CurrentState == LevelManager.GameState.Victory || levelManager.CurrentState == LevelManager.GameState.GameOver)
+        {
+            return;
+        }
+        if (grimoire.IsGrimoirOpen)
+        {
+            return;
+        }
+        if (option.IsOptionOpen)
+        {
+            return;
+        }
+        if (CardManager.instance.CardUp)
+        {
+            return;
+        }
+        if (Input.GetMouseButtonDown(0))
         {
             Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) * 1 / GridLayout.transform.localScale.x; //where the point is
             cellPos = GridLayout.LocalToCell(touchPos); //corresponding touch to his cell
@@ -177,12 +198,10 @@ public class GridBuildingSystem : MonoBehaviour
                 }
             }
 
-
-
-
             //Selection
             if (CanSelect) // Check For selection
             {
+                OnFusionMenuDeactivated?.Invoke();
                 CanSelect = false; //Un-allow Spaming
                 ClearArea(); //Clear Tiles for TEMP
                 prevPos = cellPos; //Keep Pos For Further utility
@@ -432,7 +451,16 @@ public class GridBuildingSystem : MonoBehaviour
         return false;
     }
     #endregion
+    private void OnDestroy()
+    {
+        tileBases.Remove(TileType.Empty);
+        tileBases.Remove(TileType.Green);
+        tileBases.Remove(TileType.White);
+        tileBases.Remove(TileType.Road);
+        tileBases.Remove(TileType.Water);
+    }
 }
+
 public enum TileType
 {
     Empty,

@@ -45,9 +45,10 @@ public class UiManager : MonoBehaviour
 
         Draggable.OnFusionMenuActive += SetFusionMenu;
         Draggable.OnFusionMenuDeactivated += UnsetFusionMenu;
+        GridBuildingSystem.OnFusionMenuDeactivated += UnsetFusionMenu;
 
         EnemySpawner.OnWaveChanged += UpdateWaveText;
-        Bullet.OnMoneyChanged += UpdateMoneyText;
+        EnemyMovement.OnMoneyChanged += UpdateMoneyText;
         EnemyMovement.OnHealthChanged += UpdateHealthText;
         CardManager.CardSelected += UpdateSlotBonus;
     }
@@ -65,6 +66,29 @@ public class UiManager : MonoBehaviour
         
     }
 
+    private void Update()
+    {
+        switch (LevelManager.instance.CurrentState)
+        {
+            case LevelManager.GameState.MainMenu:
+                UnsetInfoMenu();
+                UnsetFusionMenu();
+                UnsetSelectionMenu();
+                break;
+            case LevelManager.GameState.Victory:
+                UnsetInfoMenu();
+                UnsetFusionMenu();
+                UnsetSelectionMenu();
+                break;
+            case LevelManager.GameState.GameOver:
+                UnsetInfoMenu();
+                UnsetFusionMenu();
+                UnsetSelectionMenu();
+                break;
+            default: break;
+        }
+    }
+
     private void SetInfoMenu(Vector3 pos)
     {
         _turretMenu.position = pos;
@@ -74,7 +98,7 @@ public class UiManager : MonoBehaviour
         _menuInfoPoint.SetActive(true);
        
     }
-    private void UnsetInfoMenu()
+    public void UnsetInfoMenu()
     {
         _turretMenu.position = Vector3.zero;
         _menuInfoPoint.SetActive(false);
@@ -88,7 +112,7 @@ public class UiManager : MonoBehaviour
         _menuFusionPoint.SetActive(true);
     }
 
-    private void UnsetFusionMenu()
+    public void UnsetFusionMenu()
     {
         _turretMenu.position = Vector3.zero;
         _menuFusionPoint.SetActive(false);
@@ -102,7 +126,7 @@ public class UiManager : MonoBehaviour
         _banner.SetActive(false);
     }
     
-    private void UnsetSelectionMenu()
+    public void UnsetSelectionMenu()
     {
         _turretMenu.position = Vector3.zero;
         _menuSelectionPoint.SetActive(false);
@@ -118,7 +142,7 @@ public class UiManager : MonoBehaviour
          {
              case 1:
                 _bonusIcone1.GetComponent<Image>().sprite = card.Icone;
-                 _bonusSunMoon1.GetComponent<Image>().sprite = card.BouleSoleilLune;
+                _bonusSunMoon1.GetComponent<Image>().sprite = card.BouleSoleilLune;
                  break;
              case 2:
                  _bonusIcone2.GetComponent<Image>().sprite = card.Icone;
@@ -126,7 +150,7 @@ public class UiManager : MonoBehaviour
                  break;
              case 3:
                 _bonusIcone3.GetComponent<Image>().sprite = card.Icone;
-                 _bonusSunMoon3.GetComponent<Image>().sprite = card.BouleSoleilLune;
+                _bonusSunMoon3.GetComponent<Image>().sprite = card.BouleSoleilLune;
                  break;
          }
         
@@ -163,7 +187,7 @@ public class UiManager : MonoBehaviour
         
         
         EnemySpawner.OnWaveChanged -= UpdateWaveText;
-        Bullet.OnMoneyChanged -= UpdateMoneyText;
+        EnemyMovement.OnMoneyChanged -= UpdateMoneyText;
         EnemyMovement.OnHealthChanged -= UpdateHealthText;
         CardManager.CardSelected -= UpdateSlotBonus;
     }
