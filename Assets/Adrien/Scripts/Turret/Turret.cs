@@ -331,6 +331,4 @@ using UnityEngine;
         {
             _material.SetColor("_OutlineColor", Color.black);   
         }
-
-        
     }

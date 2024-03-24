@@ -169,12 +169,10 @@ public class GridBuildingSystem : MonoBehaviour
 
             cellPos = GridLayout.LocalToCell(touchPos); //corresponding touch to his cell
             TileBase tileSelected = mainTilemap.GetTile(cellPos); //Tile Selected
-            Debug.Log("Up");
             if(hit2dForButton.collider != null)
             {
                 if(hit2dForButton.collider.transform.GetComponent<Button>() != null)
                 {
-                    Debug.Log("WOW");
                     hit2dForButton.collider.transform.GetComponent<Button>().onClick.Invoke();
                     return;
                 }
@@ -202,6 +200,10 @@ public class GridBuildingSystem : MonoBehaviour
             if (CanSelect) // Check For selection
             {
                 OnFusionMenuDeactivated?.Invoke();
+                foreach (GameObject element in tileDataBases.Values)
+                {
+                    element.GetComponent<Turret>().RemoveOutline();
+                }
                 CanSelect = false; //Un-allow Spaming
                 ClearArea(); //Clear Tiles for TEMP
                 prevPos = cellPos; //Keep Pos For Further utility
@@ -346,7 +348,7 @@ public class GridBuildingSystem : MonoBehaviour
     public void InitializeWithBuilding(GameObject building)
     {
         int tempCost = levelManager.money - TurretsData[CurrentID].Cost;
-        if (tempCost > 0)
+        if (tempCost >= 0)
         {
             levelManager.money = tempCost;
             HaveEnoughMoney = true;

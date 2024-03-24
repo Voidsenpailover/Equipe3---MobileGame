@@ -198,14 +198,18 @@ public class UiManager : MonoBehaviour
     private void OnDestroy()
     {  
         GridBuildingSystem.OnSelectionMenuActive -= SetSelectionMenu;
+        GridBuildingSystem.OnSelectionMenuLActive -= SetSelectionLMenu;
+        GridBuildingSystem.OnSelectionMenuRActive -= SetSelectionRMenu;
         GridBuildingSystem.OnSelectionMenuDeactivated -= UnsetSelectionMenu;
+
 
         GridBuildingSystem.OnInfoMenuActive -= SetInfoMenu;
         GridBuildingSystem.OnInfoMenuDeactivated -= UnsetInfoMenu;
 
+        Draggable.OnFusionMenuActive -= SetFusionMenu;
+        Draggable.OnFusionMenuDeactivated -= UnsetFusionMenu;
         GridBuildingSystem.OnFusionMenuDeactivated -= UnsetFusionMenu;
-        
-        
+
         EnemySpawner.OnWaveChanged -= UpdateWaveText;
         EnemyMovement.OnMoneyChanged -= UpdateMoneyText;
         EnemyMovement.OnHealthChanged -= UpdateHealthText;
