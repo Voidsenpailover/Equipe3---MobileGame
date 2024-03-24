@@ -12,6 +12,8 @@ public class UiManager : MonoBehaviour
 
     [SerializeField] RectTransform _turretMenu;
     [SerializeField] GameObject _menuSelectionPoint;
+    [SerializeField] GameObject _menuSelectionLPoint;
+    [SerializeField] GameObject _menuSelectionRPoint;
     [SerializeField] GameObject _menuInfoPoint;
     [SerializeField] GameObject _menuFusionPoint;
     
@@ -37,6 +39,8 @@ public class UiManager : MonoBehaviour
     private void OnEnable()
     {
         GridBuildingSystem.OnSelectionMenuActive += SetSelectionMenu;
+        GridBuildingSystem.OnSelectionMenuLActive += SetSelectionLMenu;
+        GridBuildingSystem.OnSelectionMenuRActive += SetSelectionRMenu;
         GridBuildingSystem.OnSelectionMenuDeactivated += UnsetSelectionMenu;
 
 
@@ -125,11 +129,27 @@ public class UiManager : MonoBehaviour
         _cardsSlot.SetActive(true);
         _banner.SetActive(false);
     }
-    
+    private void SetSelectionLMenu(Vector3 pos)
+    {
+        _turretMenu.position = pos;
+        _menuSelectionLPoint.SetActive(true);
+        _cardsSlot.SetActive(true);
+        _banner.SetActive(false);
+    }
+    private void SetSelectionRMenu(Vector3 pos)
+    {
+        _turretMenu.position = pos;
+        _menuSelectionRPoint.SetActive(true);
+        _cardsSlot.SetActive(true);
+        _banner.SetActive(false);
+    }
+
     public void UnsetSelectionMenu()
     {
         _turretMenu.position = Vector3.zero;
         _menuSelectionPoint.SetActive(false);
+        _menuSelectionLPoint.SetActive(false);
+        _menuSelectionRPoint.SetActive(false);
         _cardsSlot.SetActive(false);
         _banner.SetActive(true);
     }
