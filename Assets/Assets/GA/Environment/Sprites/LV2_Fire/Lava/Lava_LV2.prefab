@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5426619647076021175}
   - component: {fileID: 2490049533029220270}
+  - component: {fileID: 3779985374025858545}
   m_Layer: 0
   m_Name: Lava_LV2
   m_TagString: Untagged
@@ -50,6 +51,27 @@ SortingGroup:
   m_SortingLayer: -1
   m_SortingOrder: 0
   m_SortAtRoot: 0
+--- !u!95 &3779985374025858545
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2366980406543529433}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a7d70bdc3301a16499838151406fcc0e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3703753178585911476
 GameObject:
   m_ObjectHideFlags: 0
