@@ -18316,6 +18316,7 @@ MonoBehaviour:
   _options: {fileID: 1839629463}
   _gameOverScene: {fileID: 2069536094}
   _winScene: {fileID: 1589188488}
+  IsOptionOpen: 0
 --- !u!4 &686237709
 Transform:
   m_ObjectHideFlags: 0
@@ -21506,6 +21507,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 08bdb2cad983e8446a832ab994eab9eb, type: 2}
   - {fileID: 11400000, guid: bb3c3d5212514e84fa6b35a2405f9ad4, type: 2}
   - {fileID: 11400000, guid: c86c7b0f8a5ccdd4eb376519b2c208a4, type: 2}
+  grimoire: {fileID: 0}
+  option: {fileID: 0}
 --- !u!114 &841614801
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30626,6 +30629,8 @@ MonoBehaviour:
   gridBuildingSystem: {fileID: 841614800}
   _turretMenu: {fileID: 2014181226}
   _menuSelectionPoint: {fileID: 1212134953}
+  _menuSelectionLPoint: {fileID: 0}
+  _menuSelectionRPoint: {fileID: 0}
   _menuInfoPoint: {fileID: 8624561956224669204}
   _menuFusionPoint: {fileID: 8624561956224669203}
   _waveText: {fileID: 1776849895}
@@ -50327,7 +50332,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &2046857387
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -51855,6 +51860,7 @@ MonoBehaviour:
   _cardBadEffect2: {fileID: 504839093}
   _cardIcone2: {fileID: 9717054}
   _cardBackground2: {fileID: 814716432}
+  _uiManager: {fileID: 0}
 --- !u!4 &2100151281
 Transform:
   m_ObjectHideFlags: 0
