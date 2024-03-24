@@ -16,6 +16,8 @@ public class GridBuildingSystem : MonoBehaviour
 
     //Events
     public static event Action<Vector3> OnSelectionMenuActive;
+    public static event Action<Vector3> OnSelectionMenuLActive;
+    public static event Action<Vector3> OnSelectionMenuRActive;
     public static event Action OnSelectionMenuDeactivated;
     public static event Action OnTurretMenuActivated;
 
@@ -165,17 +167,17 @@ public class GridBuildingSystem : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition) * 1 / GridLayout.transform.localScale.x; //where the point is
-            cellPos = GridLayout.LocalToCell(touchPos); //corresponding touch to his cell
+            RaycastHit2D hit2dForButton = Physics2D.Raycast(touchPos, Vector2.zero);
 
+            cellPos = GridLayout.LocalToCell(touchPos); //corresponding touch to his cell
             TileBase tileSelected = mainTilemap.GetTile(cellPos); //Tile Selected
 
-            RaycastHit2D hit2dForButton = Physics2D.Raycast(touchPos, Vector2.zero);
             if(hit2dForButton.collider != null)
             {
-                if(hit2dForButton.collider.GetComponent<Button>() != null)
+                if(hit2dForButton.collider.transform.GetComponent<Button>() != null)
                 {
                     Debug.Log("WOW");
-                    hit2dForButton.collider.GetComponent<Button>().onClick.Invoke();
+                    hit2dForButton.collider.transform.GetComponent<Button>().onClick.Invoke();
                     return;
                 }
             }
@@ -185,14 +187,14 @@ public class GridBuildingSystem : MonoBehaviour
                 return;
             }
             //If it's water
-            if (tileSelected == tileBases[TileType.Water][0])
+            if (tileSelected == tileBases[TileType.Water][0] && CanSelect)
             {
                 return;
             }
             //If it's road
             for (int i = 0; i < tileBases[TileType.Road].Count; i++)
             {
-                if (tileSelected == tileBases[TileType.Road][i])
+                if (tileSelected == tileBases[TileType.Road][i] && CanSelect)
                 {
                     return;
                 }
@@ -221,7 +223,17 @@ public class GridBuildingSystem : MonoBehaviour
                 }
                 else
                 {
-                    OnSelectionMenuActive?.Invoke(GridLayout.CellToLocalInterpolated(cellPos + new Vector3(.5f, .5f, 0f)));
+                    if(cellPos.x == 3)
+                    {
+                        OnSelectionMenuRActive?.Invoke(GridLayout.CellToLocalInterpolated(cellPos + new Vector3(.5f, .5f, 0f)));
+                    } else if (cellPos.x == -4)
+                    {
+                        OnSelectionMenuLActive?.Invoke(GridLayout.CellToLocalInterpolated(cellPos + new Vector3(.5f, .5f, 0f)));
+                    }
+                    else
+                    {
+                        OnSelectionMenuActive?.Invoke(GridLayout.CellToLocalInterpolated(cellPos + new Vector3(.5f, .5f, 0f)));
+                    }
                 }
             }
             else //UI already UP
@@ -229,16 +241,44 @@ public class GridBuildingSystem : MonoBehaviour
                 //Check if its not a fusion mode
                 if(mainTilemap.GetTile(prevPos) != tileBases[TileType.Green][1])
                 {
-                    //Check for UP/DOWN/LEFT/RIGHT Pos For Buttons
-                    if (cellPos != prevPos && cellPos != new Vector3Int(prevPos.x + 1, prevPos.y) && cellPos != new Vector3Int(prevPos.x - 1, prevPos.y)
-                        && cellPos != new Vector3Int(prevPos.x, prevPos.y + 1) && cellPos != new Vector3Int(prevPos.x, prevPos.y - 1))
+                    if(prevPos.x == 3)
                     {
-                        ClearArea(prevPos); //Clear TEMP
+                        if (cellPos != prevPos && cellPos != new Vector3Int(prevPos.x - 1, prevPos.y) && cellPos != new Vector3Int(prevPos.x - 1, prevPos.y +1)
+                            && cellPos != new Vector3Int(prevPos.x, prevPos.y + 1) && cellPos != new Vector3Int(prevPos.x, prevPos.y - 1) && cellPos != new Vector3Int(prevPos.x - 1, prevPos.y - 1))
+                        {
+                            ClearArea(prevPos); //Clear TEMP
 
-                        //Event for disabling UI
-                        OnSelectionMenuDeactivated?.Invoke();
+                            //Event for disabling UI
+                            OnSelectionMenuDeactivated?.Invoke();
 
-                        CanSelect = true; //Allow Another Selection
+                            CanSelect = true; //Allow Another Selection
+                        }
+                    } else if (prevPos.x == -4)
+                    {
+                        if (cellPos != prevPos && cellPos != new Vector3Int(prevPos.x + 1, prevPos.y) && cellPos != new Vector3Int(prevPos.x + 1, prevPos.y + 1)
+                            && cellPos != new Vector3Int(prevPos.x, prevPos.y + 1) && cellPos != new Vector3Int(prevPos.x, prevPos.y - 1) && cellPos != new Vector3Int(prevPos.x + 1, prevPos.y - 1))
+                        {
+                            ClearArea(prevPos); //Clear TEMP
+
+                            //Event for disabling UI
+                            OnSelectionMenuDeactivated?.Invoke();
+
+                            CanSelect = true; //Allow Another Selection
+                        }
+                    }
+                    else
+                    {
+                        //Check for UP/DOWN/LEFT/RIGHT Pos For Buttons
+                        if (cellPos != prevPos && cellPos != new Vector3Int(prevPos.x + 1, prevPos.y) && cellPos != new Vector3Int(prevPos.x - 1, prevPos.y)
+                            && cellPos != new Vector3Int(prevPos.x, prevPos.y + 1) && cellPos != new Vector3Int(prevPos.x, prevPos.y - 1))
+                        {
+                            ClearArea(prevPos); //Clear TEMP
+
+                            //Event for disabling UI
+                            OnSelectionMenuDeactivated?.Invoke();
+
+                            CanSelect = true; //Allow Another Selection
+                        }
                     }
                 }
                 else
