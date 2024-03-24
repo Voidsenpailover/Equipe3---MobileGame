@@ -63,6 +63,7 @@ public class Draggable : MonoBehaviour
     public void MakeFusion()
     {
         newData = collider2dTemp.transform.gameObject.GetComponent<Building>().Data;
+        var turret = collider2dTemp.GetComponent<Turret>();
         if (LastTurret.transform != collider2dTemp.transform)
         {
             if (TurretData.Level == 2 && collider2dTemp.transform.gameObject.GetComponent<Building>().Data.Level == 2)
@@ -71,6 +72,7 @@ public class Draggable : MonoBehaviour
             }else if(TurretData.Level != collider2dTemp.transform.gameObject.GetComponent<Building>().Data.Level)
             {
                 DeactivateFusionUI();
+                turret.RemoveOutline();
                 return;
             }
             else
@@ -89,12 +91,14 @@ public class Draggable : MonoBehaviour
                 GridBuildingSystem.TileDataBases.Remove(gridBuildingSystem.GridLayout.WorldToCell(LastPosition));
                 Destroy(LastTurret);
                 DeactivateFusionUI();
+                turret.RemoveOutline();
                 googlePlayManager.DoGrandAchievement(GPGSIds.achievement_apprentie);
             }
             else
             {
                 DeactivateFusionUI();
                 Debug.Log("Pas assez pour la fusion");
+                turret.RemoveOutline();
             }
 
         }
@@ -161,13 +165,15 @@ public class Draggable : MonoBehaviour
                     }
                     else
                     {
+                        var turret = other.GetComponent<Turret>();
                         Debug.Log(newData.name);
                         CanDrop = true;
                         OnFusionMenuActive?.Invoke(other.transform.position, newData);
+                        turret.SetOutline();
                     }
                 }
             } else if(other.CompareTag("DropInvalid"))
-            {
+            {   
                 _movementDestination = LastPosition;
                 CanDrop = false;
             }
@@ -181,7 +187,9 @@ public class Draggable : MonoBehaviour
             CanDrop = false;
             if (!_isFusionUIStay)
             {
+                var turret = collision.GetComponent<Turret>();
                 OnFusionMenuDeactivated?.Invoke();
+                turret.RemoveOutline();
             }
         }
     }
