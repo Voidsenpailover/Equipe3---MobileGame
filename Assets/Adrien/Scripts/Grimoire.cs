@@ -14,7 +14,12 @@ public class Grimoire : MonoBehaviour
     [SerializeField] private GameObject _boutonPage1;
 
     public bool IsGrimoirOpen = false;
+    public static Grimoire Instance;
     
+    private void Awake()
+    {
+        Instance = this;
+    }
     public void CloseGrimoire()
     {
         _index = 0;
