@@ -16,7 +16,7 @@ public class EnemyMovement : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private bool reachedEnd;
     public float HP;
-    
+    private int compteur;    
     public static event Action OnMoneyChanged;
 
     public bool stunned;
@@ -65,29 +65,19 @@ public class EnemyMovement : MonoBehaviour
       _material = GetComponent<SpriteRenderer>().material;
     }
 
-    private void OnEnable()
-    {
-      Bullet.OnDamage += DamageUpdate;
-    }
-
-    private void OnDestroy()
-    {
-      Bullet.OnDamage -= DamageUpdate;
-    }
-
     private void Update()
     {
         DyingEffect = this.gameObject.transform.GetChild(2).gameObject;
-      _animator.SetFloat("velocityX", rb.velocity.x);
-      _animator.SetFloat("velocityY", rb.velocity.y);
+        _animator.SetFloat("velocityX", rb.velocity.x);
+        _animator.SetFloat("velocityY", rb.velocity.y);
       
-      if(HP <= 0) {
-        EnemySpawner._instance.EnemyReachedEndOfPath();
-        LevelManager.instance.money += EnemyStat.Money;
-        if(isMercure) LevelManager.instance.money += mercureBonus;
-        OnMoneyChanged?.Invoke();
-        Dies();
-      }
+        if(HP <= 0) {
+          if(compteur >= 1) return;
+            Dies();
+            LevelManager.instance.money += EnemyStat.Money;
+            if(isMercure) LevelManager.instance.money += mercureBonus;
+            OnMoneyChanged?.Invoke();
+        }
       
       
       if (!reachedEnd && Vector2.Distance(target.position, transform.position) <= 0.1f)
@@ -124,9 +114,7 @@ public class EnemyMovement : MonoBehaviour
     }
 
     
-    private void DamageUpdate()
-    {
-    }
+   
     
     public void InitializeEnemies(EnemyStat enemyStat)
     {
@@ -309,6 +297,7 @@ public class EnemyMovement : MonoBehaviour
 
     public void Dies ()
     {
+        compteur++;
         CallDamageFlash();
         StartCoroutine(DestroyingEnemy());
     }
@@ -316,6 +305,7 @@ public class EnemyMovement : MonoBehaviour
     IEnumerator DestroyingEnemy ()
     {
         yield return new WaitForSeconds(0.25f);
+        EnemySpawner._instance.EnemyReachedEndOfPath();
         Destroy(gameObject);
     }
 
