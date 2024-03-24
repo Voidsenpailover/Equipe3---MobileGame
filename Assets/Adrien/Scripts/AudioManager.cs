@@ -62,7 +62,10 @@ public enum AudioSourceType
             switch (sourceType)
             {
                 case AudioSourceType.Music:
+                    musicSource.Stop();
+                    musicSource.clip = clip; 
                     musicSource.loop = true;
+                    musicSource.Play();
                     break;
                 case AudioSourceType.SFX:
                     sfxSource.PlayOneShot(clip);
