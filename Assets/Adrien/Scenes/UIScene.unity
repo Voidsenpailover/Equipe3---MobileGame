@@ -17590,14 +17590,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1453591599}
         m_TargetAssemblyTypeName: DebugManager, Assembly-CSharp
-        m_MethodName: LauncheGame
-        m_Mode: 1
+        m_MethodName: LaunchSpecialGame
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: UIScene 3
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &884192883
@@ -35542,14 +35542,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1453591599}
         m_TargetAssemblyTypeName: DebugManager, Assembly-CSharp
-        m_MethodName: LauncheGame
-        m_Mode: 1
+        m_MethodName: LaunchSpecialGame
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: UIScene 2
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1677365948
@@ -40096,14 +40096,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1453591599}
         m_TargetAssemblyTypeName: DebugManager, Assembly-CSharp
-        m_MethodName: LauncheGame
-        m_Mode: 1
+        m_MethodName: LaunchSpecialGame
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: UIScene 4
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2034472047

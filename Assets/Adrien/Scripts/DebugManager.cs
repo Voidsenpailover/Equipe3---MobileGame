@@ -10,6 +10,10 @@ public class DebugManager : MonoBehaviour
     [SerializeField] private GameObject _creditsScene;
     [SerializeField] private GameObject _selectionMenu;
 
+    [SerializeField] private Scene scene2;
+    [SerializeField] private Scene scene3;
+    [SerializeField] private Scene scene4;
+
     private void Start()
     {
         AudioManager.instance.PlaySound(AudioType.World, AudioSourceType.Music);
@@ -22,9 +26,9 @@ public class DebugManager : MonoBehaviour
         Time.timeScale = 0;
     }
         
-    public void LaunchSpecialGame(int id)
+    public void LaunchSpecialGame(string name)
     {
-        SceneManager.LoadScene(id);
+        SceneManager.LoadSceneAsync(name);
     }
     
     public void OpenCredits()
