@@ -3186,6 +3186,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1000319492054409521, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
+      propertyPath: lvl
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000319492054409521, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
       propertyPath: money
       value: 5000
       objectReference: {fileID: 0}
@@ -8433,7 +8437,7 @@ Tilemap:
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 0.5157232, b: 0.5157232, a: 1}
+  m_Color: {r: 1, g: 0.5157232, b: 0.5157232, a: 0}
   m_Origin: {x: -4, y: -7, z: 0}
   m_Size: {x: 8, y: 17, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
@@ -13283,6 +13287,11 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &653362411 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5355503403144636750, guid: d16023d0aada86248af7c5922734d1c4, type: 3}
+  m_PrefabInstance: {fileID: 8624561956224669202}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &677483281
 GameObject:
   m_ObjectHideFlags: 0
@@ -14296,6 +14305,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 750618705}
   m_CullTransparentMesh: 1
+--- !u!1 &753548820 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6292093813139660271, guid: d16023d0aada86248af7c5922734d1c4, type: 3}
+  m_PrefabInstance: {fileID: 8624561956224669202}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &770678855
 GameObject:
   m_ObjectHideFlags: 0
@@ -14920,7 +14934,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!156049354 &841614798
 Grid:
   m_ObjectHideFlags: 0
@@ -22761,8 +22775,8 @@ MonoBehaviour:
   gridBuildingSystem: {fileID: 841614800}
   _turretMenu: {fileID: 2014181226}
   _menuSelectionPoint: {fileID: 1212134953}
-  _menuSelectionLPoint: {fileID: 0}
-  _menuSelectionRPoint: {fileID: 0}
+  _menuSelectionLPoint: {fileID: 653362411}
+  _menuSelectionRPoint: {fileID: 753548820}
   _menuInfoPoint: {fileID: 8624561956224669204}
   _menuFusionPoint: {fileID: 8624561956224669203}
   _waveText: {fileID: 1776849895}

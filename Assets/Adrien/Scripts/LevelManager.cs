@@ -13,7 +13,8 @@ public class LevelManager : MonoBehaviour
     public static event Action OnSell;
     public static event Action LowMoney;
     public static event Action HighMoney;
-        
+
+    public bool lvl;        
     
     public int HP = 200;
     public int money = 200;
@@ -47,7 +48,6 @@ public class LevelManager : MonoBehaviour
     {
         instance = this;
         Application.targetFrameRate = 60;
-
     }
     
     private void Scorpion(CardData data)
@@ -73,6 +73,10 @@ public class LevelManager : MonoBehaviour
             Chemin[i] = parent.transform.GetChild(i);
         }
         CurrentState = GameState.MainMenu;
+        if (lvl)
+        {
+            StartGame();
+        }
     }
     
     public void StartGame()

@@ -139,7 +139,6 @@ public class GridBuildingSystem : MonoBehaviour
         }
         OnPointCreated?.Invoke(cellpos);
         OnRoadEnd?.Invoke();
-
     }
 
     private void Update()
@@ -147,8 +146,7 @@ public class GridBuildingSystem : MonoBehaviour
         /// Clicking System 
         /// Input ON TOUCH (to change) 
         /// 
-
-        if(levelManager.CurrentState == LevelManager.GameState.MainMenu || levelManager.CurrentState == LevelManager.GameState.Victory || levelManager.CurrentState == LevelManager.GameState.GameOver)
+        if (levelManager.CurrentState == LevelManager.GameState.MainMenu || levelManager.CurrentState == LevelManager.GameState.Victory || levelManager.CurrentState == LevelManager.GameState.GameOver)
         {
             return;
         }
@@ -171,7 +169,7 @@ public class GridBuildingSystem : MonoBehaviour
 
             cellPos = GridLayout.LocalToCell(touchPos); //corresponding touch to his cell
             TileBase tileSelected = mainTilemap.GetTile(cellPos); //Tile Selected
-
+            Debug.Log("Up");
             if(hit2dForButton.collider != null)
             {
                 if(hit2dForButton.collider.transform.GetComponent<Button>() != null)
