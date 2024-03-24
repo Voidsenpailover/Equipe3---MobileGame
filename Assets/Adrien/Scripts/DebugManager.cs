@@ -49,7 +49,7 @@ public class DebugManager : MonoBehaviour
     {
         _tuto.SetActive(false);
         LevelManager.instance.StartGame();
-        AudioManager.instance.PlaySound(AudioType.Music, AudioSourceType.Music);
         Time.timeScale = 1;
+        AudioManager.instance.PlaySound(AudioType.Music, AudioSourceType.Music);
     }
 }
