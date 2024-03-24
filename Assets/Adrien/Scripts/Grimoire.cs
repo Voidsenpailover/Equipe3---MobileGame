@@ -20,6 +20,8 @@ public class Grimoire : MonoBehaviour
     {
         Instance = this;
     }
+    
+
     public void CloseGrimoire()
     {
         _index = 0;
