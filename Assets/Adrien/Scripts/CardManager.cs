@@ -11,6 +11,8 @@ public class CardManager : MonoBehaviour
 {
     [SerializeField] private List<CardData> _cards;
 
+    public static CardManager instance;
+
     public CardData Card;
     public CardData Card2;
     
@@ -30,7 +32,13 @@ public class CardManager : MonoBehaviour
     [SerializeField] private Image _cardIcone2;
     [SerializeField] private Image _cardBackground2;
 
+    [SerializeField] private UiManager _uiManager;
+
     public static event Action<CardData> CardSelected;
+
+    private bool _cardUp = false;
+
+    public bool CardUp { get => _cardUp; set => _cardUp = value; }
 
     private void Update()
     {
@@ -45,7 +53,8 @@ public class CardManager : MonoBehaviour
                     _cardPanel.SetActive(false);
                     _cardPanel2.SetActive(false);
                     _cardPanel3.SetActive(false);
-                    Time.timeScale = 1; 
+                    Time.timeScale = 1;
+                    CardUp =false;
                 }
                 else if (hit.collider.gameObject == _cardPanel2)
                 {
@@ -53,7 +62,9 @@ public class CardManager : MonoBehaviour
                     _cardPanel.SetActive(false);
                     _cardPanel2.SetActive(false);
                     _cardPanel3.SetActive(false);
-                    Time.timeScale = 1; 
+                    Time.timeScale = 1;
+                    CardUp = false;
+
                 }
             }
         }
@@ -63,6 +74,7 @@ public class CardManager : MonoBehaviour
 
     private void OnEnable()
     {
+        instance = this;
         EnemySpawner.CardChoice += ChooseCard;
     }
     
@@ -79,10 +91,14 @@ public class CardManager : MonoBehaviour
         InitializeCard(card, card2);
         _cards.Remove(card);
         _cards.Remove(card2);
+        _uiManager.UnsetInfoMenu();
+        _uiManager.UnsetFusionMenu();
+        _uiManager.UnsetSelectionMenu();
         _cardPanel.SetActive(true);
         _cardPanel2.SetActive(true);
         _cardPanel3.SetActive(true);
         Time.timeScale = 0;
+        CardUp = true;
     }
     
     private void InitializeCard(CardData card, CardData card2)

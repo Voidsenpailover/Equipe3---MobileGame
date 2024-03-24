@@ -12446,7 +12446,6 @@ MonoBehaviour:
   _boutonGauche: {fileID: 1021956218260250868}
   _boutonDroite: {fileID: 2403946360116075661}
   _grimoire: {fileID: 1717028188804685440}
-  _boutonPage1: {fileID: 0}
   IsGrimoirOpen: 0
 --- !u!1 &1654253499219098362
 GameObject:

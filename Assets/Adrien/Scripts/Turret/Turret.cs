@@ -17,7 +17,14 @@ using UnityEngine;
         public int compteurTour;
 
         private TurretsData turret {get; set;}
-        
+
+        private Material _material;
+
+        private void Start()
+        {  
+            _material = this.gameObject.transform.GetChild(0).gameObject.GetComponent<SpriteRenderer>().material;
+        }
+
         public void SellTower()
         {
             compteurTour--;
@@ -314,5 +321,16 @@ using UnityEngine;
             compteurTour++;
             
         }
+
+         public void SetOutline()
+        {
+            _material.SetColor("_OutlineColor", Color.white);   
+        }
+
+        public void RemoveOutline()
+        {
+            _material.SetColor("_OutlineColor", Color.black);   
+        }
+
         
     }

@@ -9,6 +9,8 @@ public class optionsss : MonoBehaviour
   
   [SerializeField] private GameObject _gameOverScene;
   [SerializeField] private GameObject _winScene;
+
+     public bool IsOptionOpen = false;
   private void OnEnable()
   {
       LevelManager.OnGameOver += OnGameOver;
@@ -33,12 +35,14 @@ public class optionsss : MonoBehaviour
     {
         _options.SetActive(true);
         Time.timeScale = 0;
+        IsOptionOpen = true;
     }
 
     public void CloseOptions()
     {
         _options.SetActive(false);
         Time.timeScale = 1;
+        IsOptionOpen = false;
     }
 
     public void RestartGame()

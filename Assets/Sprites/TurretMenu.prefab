@@ -132,7 +132,7 @@ RectTransform:
   m_GameObject: {fileID: 1059045971520055946}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4294609449969530877}
@@ -231,7 +231,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -249,12 +249,12 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: LooseMoney
-        m_Mode: 2
+        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+        m_MethodName: UpdateMoneyText
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: d593fac37a241b64a9dfaa8ce0cda9df, type: 2}
-          m_ObjectArgumentAssemblyTypeName: TurretsData, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -360,8 +360,8 @@ RectTransform:
   m_GameObject: {fileID: 2592723306183270516}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5515351955667500879}
   - {fileID: 4404511035244009218}
@@ -476,7 +476,7 @@ RectTransform:
   m_GameObject: {fileID: 5189575940761233370}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4294609449969530877}
@@ -575,7 +575,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -593,12 +593,12 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: LooseMoney
-        m_Mode: 2
+        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+        m_MethodName: UpdateMoneyText
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: c38c6f359d1fb2b4c8d3237a1bd66a98, type: 2}
-          m_ObjectArgumentAssemblyTypeName: TurretsData, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -632,7 +632,7 @@ RectTransform:
   m_GameObject: {fileID: 7743337603519172458}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4294609449969530877}
@@ -731,7 +731,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -749,12 +749,12 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: LooseMoney
-        m_Mode: 2
+        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+        m_MethodName: UpdateMoneyText
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 4bfd0cbf76421ce4eaacb683e8a6bc0a, type: 2}
-          m_ObjectArgumentAssemblyTypeName: TurretsData, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -769,13 +769,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4294609449969530877}
+  - component: {fileID: 3017979325501805818}
   m_Layer: 5
   m_Name: SelectionMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4294609449969530877
 RectTransform:
   m_ObjectHideFlags: 0
@@ -786,13 +787,13 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 2944252802425139478}
   - {fileID: 7257230823903643727}
   - {fileID: 2493098250867799783}
   - {fileID: 3672593780938951380}
   - {fileID: 2110151376210730224}
-  - {fileID: 2944252802425139478}
   m_Father: {fileID: 973698615939296287}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -800,6 +801,27 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &3017979325501805818
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7848582849154922247}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7133ff493d1c03f48a537d0f1fdc3471, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8498561612802817101
 GameObject:
   m_ObjectHideFlags: 0
@@ -903,7 +925,7 @@ RectTransform:
   m_GameObject: {fileID: 8512479946805815435}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4294609449969530877}
@@ -1002,7 +1024,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1020,12 +1042,12 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: LevelManager, Assembly-CSharp
-        m_MethodName: LooseMoney
-        m_Mode: 2
+        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+        m_MethodName: UpdateMoneyText
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 5b51eb6a9a4098546b696fcf42084ec1, type: 2}
-          m_ObjectArgumentAssemblyTypeName: TurretsData, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1045,10 +1067,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2605228640671568530, guid: 6c1e5520f90980546be6aba1db937e01, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2605228640671568530, guid: 6c1e5520f90980546be6aba1db937e01, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2605228640671568530, guid: 6c1e5520f90980546be6aba1db937e01, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2605228640671568530, guid: 6c1e5520f90980546be6aba1db937e01, type: 3}
@@ -1056,16 +1082,52 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2605228640671568530, guid: 6c1e5520f90980546be6aba1db937e01, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2605228640671568530, guid: 6c1e5520f90980546be6aba1db937e01, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: MakeFusion
+      objectReference: {fileID: 0}
+    - target: {fileID: 2605228640671568530, guid: 6c1e5520f90980546be6aba1db937e01, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: UpdateMoneyText
       objectReference: {fileID: 0}
     - target: {fileID: 2605228640671568530, guid: 6c1e5520f90980546be6aba1db937e01, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Draggable, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2605228640671568530, guid: 6c1e5520f90980546be6aba1db937e01, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UiManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2605228640671568530, guid: 6c1e5520f90980546be6aba1db937e01, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2605228640671568530, guid: 6c1e5520f90980546be6aba1db937e01, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131425476268032588, guid: 6c1e5520f90980546be6aba1db937e01, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131425476268032588, guid: 6c1e5520f90980546be6aba1db937e01, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131425476268032588, guid: 6c1e5520f90980546be6aba1db937e01, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4131425476268032588, guid: 6c1e5520f90980546be6aba1db937e01, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5154999377801519192, guid: 6c1e5520f90980546be6aba1db937e01, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5451758955464931079, guid: 6c1e5520f90980546be6aba1db937e01, type: 3}
       propertyPath: m_Name
@@ -1171,6 +1233,22 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9013913274015073908, guid: 6c1e5520f90980546be6aba1db937e01, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9013913274015073908, guid: 6c1e5520f90980546be6aba1db937e01, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9013913274015073908, guid: 6c1e5520f90980546be6aba1db937e01, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9013913274015073908, guid: 6c1e5520f90980546be6aba1db937e01, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 6865961777597222847, guid: 6c1e5520f90980546be6aba1db937e01, type: 3}
@@ -1179,6 +1257,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5451758955464931079, guid: 6c1e5520f90980546be6aba1db937e01, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4250634078760452853}
+    - targetCorrespondingSourceObject: {fileID: 5451758955464931079, guid: 6c1e5520f90980546be6aba1db937e01, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8044096415820096472}
     - targetCorrespondingSourceObject: {fileID: 2115770400713322466, guid: 6c1e5520f90980546be6aba1db937e01, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1805580947954345116}
@@ -1254,6 +1335,28 @@ MonoBehaviour:
   _TurretAtk: {fileID: 5018890345339463627}
   _TurretAtkSpeed: {fileID: 7310824519773891553}
   _TurretCost: {fileID: 8702100190118587081}
+  LevelManager: {fileID: 0}
+--- !u!95 &8044096415820096472
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4809582737363825691}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 40931a1096e5de54ea30d91527d00dbd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &5018890345339463627 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5526257365356766423, guid: 6c1e5520f90980546be6aba1db937e01, type: 3}
@@ -1313,15 +1416,67 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2670032963222893589, guid: 87d8eb93503a16444881486dcb2500f4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2670032963222893589, guid: 87d8eb93503a16444881486dcb2500f4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2670032963222893589, guid: 87d8eb93503a16444881486dcb2500f4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2670032963222893589, guid: 87d8eb93503a16444881486dcb2500f4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 5728763630823993390}
+    - target: {fileID: 2670032963222893589, guid: 87d8eb93503a16444881486dcb2500f4, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2670032963222893589, guid: 87d8eb93503a16444881486dcb2500f4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2670032963222893589, guid: 87d8eb93503a16444881486dcb2500f4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SellTurret
+      objectReference: {fileID: 0}
+    - target: {fileID: 2670032963222893589, guid: 87d8eb93503a16444881486dcb2500f4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: UpdateMoneyText
+      objectReference: {fileID: 0}
+    - target: {fileID: 2670032963222893589, guid: 87d8eb93503a16444881486dcb2500f4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SetInfo, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2670032963222893589, guid: 87d8eb93503a16444881486dcb2500f4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UiManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2670032963222893589, guid: 87d8eb93503a16444881486dcb2500f4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2670032963222893589, guid: 87d8eb93503a16444881486dcb2500f4, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2928780675532309948, guid: 87d8eb93503a16444881486dcb2500f4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2928780675532309948, guid: 87d8eb93503a16444881486dcb2500f4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2928780675532309948, guid: 87d8eb93503a16444881486dcb2500f4, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2928780675532309948, guid: 87d8eb93503a16444881486dcb2500f4, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3251913750521281213, guid: 87d8eb93503a16444881486dcb2500f4, type: 3}
       propertyPath: m_Pivot.x
@@ -1415,6 +1570,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3690654704236459411, guid: 87d8eb93503a16444881486dcb2500f4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3690654704236459411, guid: 87d8eb93503a16444881486dcb2500f4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3690654704236459411, guid: 87d8eb93503a16444881486dcb2500f4, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3690654704236459411, guid: 87d8eb93503a16444881486dcb2500f4, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4318423698364287982, guid: 87d8eb93503a16444881486dcb2500f4, type: 3}
       propertyPath: m_Name
       value: InfoMenu
@@ -1443,6 +1614,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4318423698364287982, guid: 87d8eb93503a16444881486dcb2500f4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5728763630823993390}
+    - targetCorrespondingSourceObject: {fileID: 4318423698364287982, guid: 87d8eb93503a16444881486dcb2500f4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4778390966410687065}
     - targetCorrespondingSourceObject: {fileID: 5738871289986341760, guid: 87d8eb93503a16444881486dcb2500f4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8151832833007450652}
@@ -1487,6 +1661,28 @@ MonoBehaviour:
   _TurretAtk: {fileID: 8350518420691771581}
   _TurretAtkSpeed: {fileID: 4633699052329350705}
   _TurretCost: {fileID: 3364852883445123715}
+  LevelManager: {fileID: 0}
+--- !u!95 &4778390966410687065
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2132645940387789576}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 40931a1096e5de54ea30d91527d00dbd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &3364852883445123715 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 631887722305157733, guid: 87d8eb93503a16444881486dcb2500f4, type: 3}

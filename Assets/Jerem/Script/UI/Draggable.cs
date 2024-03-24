@@ -31,6 +31,7 @@ public class Draggable : MonoBehaviour
 
     private Collider2D collider2dTemp;
     [SerializeField] private LevelManager levelManager;
+    [SerializeField] private GooglePlayManager googlePlayManager;
 
     public Vector3 LastPosition { get => _lastPosition; set => _lastPosition = value; }
     public TurretsData TurretData { get => _turretData; set => _turretData = value; }
@@ -62,11 +63,17 @@ public class Draggable : MonoBehaviour
     public void MakeFusion()
     {
         newData = collider2dTemp.transform.gameObject.GetComponent<Building>().Data;
+        var turret = collider2dTemp.GetComponent<Turret>();
         if (LastTurret.transform != collider2dTemp.transform)
         {
             if (TurretData.Level == 2 && collider2dTemp.transform.gameObject.GetComponent<Building>().Data.Level == 2)
             {
                 newData = fusionBehaviour.SpawningRightTowerLevel3(TurretData, collider2dTemp.transform.gameObject.GetComponent<Building>().Data);
+            }else if(TurretData.Level != collider2dTemp.transform.gameObject.GetComponent<Building>().Data.Level)
+            {
+                DeactivateFusionUI();
+                turret.RemoveOutline();
+                return;
             }
             else
             {
@@ -74,7 +81,7 @@ public class Draggable : MonoBehaviour
 
             }
             int tempCost = levelManager.money - newData.Cost;
-            if (tempCost > 0)
+            if (tempCost >= 0)
             {
                 levelManager.money = tempCost;
                 collider2dTemp.transform.gameObject.GetComponent<Building>().Data = newData;
@@ -82,14 +89,16 @@ public class Draggable : MonoBehaviour
                 _movementDestination = collider2dTemp.transform.position;
                 gridBuildingSystem.ClearAreaDeuxPointZero(gridBuildingSystem.GridLayout.WorldToCell(LastPosition));
                 GridBuildingSystem.TileDataBases.Remove(gridBuildingSystem.GridLayout.WorldToCell(LastPosition));
-                OnMoneyLoose?.Invoke(newData.Cost);
                 Destroy(LastTurret);
                 DeactivateFusionUI();
+                turret.RemoveOutline();
+                googlePlayManager.DoGrandAchievement(GPGSIds.achievement_apprentie);
             }
             else
             {
                 DeactivateFusionUI();
                 Debug.Log("Pas assez pour la fusion");
+                turret.RemoveOutline();
             }
 
         }
@@ -156,13 +165,15 @@ public class Draggable : MonoBehaviour
                     }
                     else
                     {
+                        var turret = other.GetComponent<Turret>();
                         Debug.Log(newData.name);
                         CanDrop = true;
                         OnFusionMenuActive?.Invoke(other.transform.position, newData);
+                        turret.SetOutline();
                     }
                 }
             } else if(other.CompareTag("DropInvalid"))
-            {
+            {   
                 _movementDestination = LastPosition;
                 CanDrop = false;
             }
@@ -170,10 +181,16 @@ public class Draggable : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        CanDrop = false;
-        if (!_isFusionUIStay)
+        
+        if (!collision.CompareTag("Bullet") && collision.excludeLayers == LayerMask.GetMask("FX"))
         {
-            OnFusionMenuDeactivated?.Invoke();
+            CanDrop = false;
+            if (!_isFusionUIStay)
+            {
+                var turret = collision.GetComponent<Turret>();
+                OnFusionMenuDeactivated?.Invoke();
+                turret.RemoveOutline();
+            }
         }
     }
 }

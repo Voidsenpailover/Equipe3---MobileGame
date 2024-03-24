@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1567951105467351925}
   - component: {fileID: 3468198321025085550}
   - component: {fileID: 7013182201261127929}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: DraggableFusionTurret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,6 +50,8 @@ MonoBehaviour:
   IsDragging: 0
   gridBuildingSystem: {fileID: 0}
   fusionBehaviour: {fileID: 0}
+  levelManager: {fileID: 0}
+  googlePlayManager: {fileID: 0}
 --- !u!61 &1567951105467351925
 BoxCollider2D:
   m_ObjectHideFlags: 0
