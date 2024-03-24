@@ -31,6 +31,10 @@ public class UiManager : MonoBehaviour
     
     [SerializeField] private GameObject _cardsSlot;
     [SerializeField] private GameObject _banner;
+
+    [SerializeField] private GameObject Check1;
+    [SerializeField] private GameObject Check2;
+    [SerializeField] private GameObject Check3;
     
     public List<CardData> _listCard;
     public static UiManager instance;
@@ -67,7 +71,18 @@ public class UiManager : MonoBehaviour
         _maxWaveText.text = EnemySpawner._instance._rounds.Count.ToString();
         _moneyText.text = LevelManager.instance.money.ToString();
         _healthText.text = LevelManager.instance.HP.ToString();
-        
+        if(PlayerPrefs.GetInt("Level1", 0) == 1)
+        {
+            Check1.SetActive(true);
+        }
+        if (PlayerPrefs.GetInt("Level2", 0) == 1)
+        {
+            Check2.SetActive(true);
+        }
+        if (PlayerPrefs.GetInt("Level3", 0) == 1)
+        {
+            Check3.SetActive(true);
+        }
     }
 
     private void Update()

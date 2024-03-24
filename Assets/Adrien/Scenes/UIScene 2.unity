@@ -3190,6 +3190,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1000319492054409521, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
+      propertyPath: lvl2
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000319492054409521, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
       propertyPath: money
       value: 200
       objectReference: {fileID: 0}
@@ -3385,6 +3389,10 @@ PrefabInstance:
       propertyPath: _rounds.Array.data[39]
       value: 
       objectReference: {fileID: 11400000, guid: 93d22b7de274ec849978afe7b2848ce9, type: 2}
+    - target: {fileID: 6031861013927170124, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6108355931400305964, guid: 9e26c9e426e20de43802a2b8a1617be8, type: 3}
       propertyPath: m_Name
       value: ---MANAGER---
@@ -22955,6 +22963,9 @@ MonoBehaviour:
   _bonusSunMoon3: {fileID: 481012233}
   _cardsSlot: {fileID: 1875187650}
   _banner: {fileID: 961296190}
+  Check1: {fileID: 0}
+  Check2: {fileID: 0}
+  Check3: {fileID: 0}
   _listCard: []
 --- !u!4 &1138939575
 Transform:
