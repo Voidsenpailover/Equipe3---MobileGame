@@ -14,7 +14,12 @@ public class LevelManager : MonoBehaviour
     public static event Action LowMoney;
     public static event Action HighMoney;
 
-    public bool lvl;        
+    public bool lvl2;        
+    public bool lvl3;
+
+    public bool isLvl1Win = false;
+    public bool isLvl2Win = false;
+    public bool isLvl3Win = false;
     
     public int HP = 200;
     public int money = 200;
@@ -73,7 +78,7 @@ public class LevelManager : MonoBehaviour
             Chemin[i] = parent.transform.GetChild(i);
         }
         CurrentState = GameState.MainMenu;
-        if (lvl)
+        if (lvl2 || lvl3)
         {
             StartGame();
         }
@@ -95,6 +100,21 @@ public class LevelManager : MonoBehaviour
     public void Victory()
     {
         CurrentState = GameState.Victory;
+        if (lvl2)
+        {
+            PlayerPrefs.SetInt("Level2", 1);
+            isLvl2Win = true;
+        }
+        else if (lvl3)
+        {
+            PlayerPrefs.SetInt("Level3", 1);
+            isLvl3Win = true;
+        }
+        else
+        {
+            PlayerPrefs.SetInt("Level1", 1);
+            isLvl1Win = true;
+        }
         Time.timeScale = 0;
         googlePlayManager.DoGrandAchievement(GPGSIds.achievement_alchimiste_confirm);
         OnVictory?.Invoke();

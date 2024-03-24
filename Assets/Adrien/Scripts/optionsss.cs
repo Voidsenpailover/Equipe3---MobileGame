@@ -51,7 +51,7 @@ public class optionsss : MonoBehaviour
         _gameOverScene.SetActive(false);
         _options.SetActive(false);
         Time.timeScale = 1;
-        SceneManager.LoadSceneAsync(0);
+        SceneManager.LoadSceneAsync("UIScene");
         
     }
 }
