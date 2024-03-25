@@ -30926,12 +30926,12 @@ MonoBehaviour:
   _maxWaveText: {fileID: 940634823}
   _moneyText: {fileID: 2043400461}
   _healthText: {fileID: 1834672582}
-  _bonusIcone1: {fileID: 1120984227}
+  _bonusIcone1: {fileID: 1536675262}
   _bonusIcone2: {fileID: 88965780}
-  _bonusIcone3: {fileID: 1536675262}
-  _bonusSunMoon1: {fileID: 727760719}
+  _bonusIcone3: {fileID: 1120984227}
+  _bonusSunMoon1: {fileID: 481012233}
   _bonusSunMoon2: {fileID: 1624397246}
-  _bonusSunMoon3: {fileID: 481012233}
+  _bonusSunMoon3: {fileID: 727760719}
   _cardsSlot: {fileID: 1875187650}
   _banner: {fileID: 961296190}
   Check1: {fileID: 0}
@@ -52049,7 +52049,7 @@ MonoBehaviour:
   _cardBadEffect2: {fileID: 504839093}
   _cardIcone2: {fileID: 9717054}
   _cardBackground2: {fileID: 814716432}
-  _uiManager: {fileID: 0}
+  _uiManager: {fileID: 1138939574}
 --- !u!4 &2100151281
 Transform:
   m_ObjectHideFlags: 0
