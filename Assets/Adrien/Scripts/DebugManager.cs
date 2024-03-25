@@ -16,9 +16,17 @@ public class DebugManager : MonoBehaviour
 
     private void Start()
     {
-        AudioManager.instance.PlaySound(AudioType.World, AudioSourceType.Music);
+        if(GameObject.Find("MainMenu") == null)
+        {
+            AudioManager.instance.PlaySound(AudioType.Music, AudioSourceType.Music);
+        }
+        else
+        { 
+            AudioManager.instance.PlaySound(AudioType.World, AudioSourceType.Music);
+        }
     }
-
+    
+    
     public void LauncheGame()
     {
         _selectionMenu.SetActive(false);
