@@ -102,6 +102,7 @@ public class Draggable : MonoBehaviour
             }
 
         }
+        turret.InitializeTurret(newData);
     }
 
     public void DeactivateFusionUI()
